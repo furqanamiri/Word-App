@@ -1,0 +1,19 @@
+.sharemodal {
+  input[type="radio"] {
+    transform: scale(4);
+  }
+
+  .sharelink p {
+    overflow-wrap: break-word;
+    width: 100%;
+    text-align: center;
+    /* text-overflow: ellipsis; */
+    /* overflow: hidden; */
+    /* white-space: nowrap; */
+
+    font-size: 50px;
+  }
+  p {
+    width: fit-content;
+  }
+}

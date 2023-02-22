@@ -1,0 +1,62 @@
+
+h1 {
+  color: blue;
+  font-family: "open sans";
+}
+.light {
+  font-family: sans-serif;
+  color: black;
+  background-color: white;
+  * {
+    transition: all 10ms;
+  }
+}
+.dark {
+  font-family: sans-serif;
+  color: white;
+  background-color: black;
+  box-shadow: 0px 0px 20px rgba(21, 95, 136, 0.08);
+  * {
+    transition: all 10ms;
+  }
+}
+.dark textarea {
+  background-color: black !important;
+  color: white !important;
+}
+.modalDark {
+  background-color: #303133 !important;
+  color: white !important;
+  border-color: transparent;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.modalLight {
+  color: black !important;
+  background: white !important;
+  border-color: transparent;
+  // border-bottom-right-radius: 10px;
+  // border-bottom-left-radius: 10px;
+}
+body {
+  height: 100vh;
+}
+input[type="radio"] {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: relative;
+  border: 1px solid #fa8b2e;
+}
+input[type="radio"]:checked::before {
+  content: '';
+  width: 65%;
+  height: 65%;
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fa8b2e;
+}

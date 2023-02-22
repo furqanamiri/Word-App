@@ -1,0 +1,101 @@
+.modalLightpass {
+  color: black !important;
+  background: white !important;
+  border-color: transparent;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.bordeRv {
+  border-radius: 1rem;
+  backdrop-filter: blur(1px);
+  .modal-content {
+    background-color: #0000;
+    border: none;
+    .modal-header {
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+
+      height: 6 vh;
+      margin: 0;
+      font-weight: "400";
+      font: 1.5em sans-serif;
+    }
+    .modal-footer {
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+    .form-control:focus {
+      color: #212529;
+      background-color: #fff;
+
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+}
+.LoginDarkHeader {
+  background-color: #48494b !important;
+  color: white !important;
+  border-color: transparent;
+}
+.LoginLightHeader {
+  color: black !important;
+  background: #ecf5ff !important;
+  border-color: transparent;
+}
+.centering {
+  margin: 0 auto;
+  padding: auto 0;
+}
+.inputiconleft {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+
+  transform: translateY(-50%);
+}
+.resetbut {
+  border-radius: 10px;
+
+  border-color: transparent;
+  background-color: transparent;
+  height: 3vh;
+  transition: none;
+  width: 50%;
+  justify-self: center;
+  margin: 0 26%;
+  font-size: 16px;
+  font-weight: lighter;
+}
+.googlebut {
+  border-radius: 10px;
+  padding-left: 6%;
+  border: 1px solid #dcedff;
+  background-color: transparent;
+  height: 3rem;
+  transition: none;
+  width: 55%;
+  justify-self: center;
+  margin: 0 22%;
+  font-size: 16px;
+  font-weight: lighter;
+  position: relative;
+}
+.inputiconleftg {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+
+  transform: translateY(-50%);
+}
+p {
+  font-size: 14px;
+  width: 100%;
+  font-weight: lighter;
+  margin-top: 1rem;
+  text-align: center;
+}
