@@ -6,11 +6,27 @@ import Captcha from "./captcha";
 
 import { useState } from "react";
 export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark }) {
-  const [passCheck, setPassCheck] = useState(true);
+  let passCheck = true;
 
   const togglePassCheck = (e) => {
     e.preventDefault();
-    setPassCheck(!passCheck);
+    var temp = document.getElementById('password');
+    if (temp.type === "password") {
+      temp.type = "text";
+    }
+    else {
+      temp.type = "password"
+    }
+  };
+  const togglePassCheck1 = (e) => {
+    e.preventDefault();
+    var temp = document.getElementById('cpassword');
+    if (temp.type === "password") {
+      temp.type = "text";
+    }
+    else {
+      temp.type = "password"
+    }
   };
 
 
@@ -81,8 +97,9 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                   margin: "0 auto",
                   fontSize: '1.2rem'
                 }}
-                type={passCheck ? "password" : 'text'}
+                type={passCheck ? "password" : "text"}
                 placeholder="Password"
+                id="password"
               />
               <img src="loginlock.svg" className="inputiconleft"></img>
               <button style={{
@@ -108,6 +125,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                   margin: "0 auto",
                   fontSize: '1.2rem'
                 }}
+                id="cpassword"
                 type={passCheck ? "password" : 'text'}
                 placeholder="Confirm Password"
               />
@@ -118,7 +136,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 left: '74%',
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
               }}
-                onClick={togglePassCheck}
+                onClick={togglePassCheck1}
               ><img src="eye.svg"></img></button>
             </Form.Group>
 
@@ -134,7 +152,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                   transition: "none",
                   width: "80%",
                   justifySelf: "center",
-                  margin: "0 auto",  
+                  margin: "0 auto",
                   fontSize: '1.2rem'
                 }}
                 type="text"
@@ -152,7 +170,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 height: "3rem",
                 transition: "none",
                 width: "80%",
-                justifySelf: "center", 
+                justifySelf: "center",
                 margin: "0 10%",
                 fontSize: '20px',
                 fontWeight: 'lighter',

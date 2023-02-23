@@ -91,8 +91,8 @@ export default function TextArea({ text, setText }) {
 
   return (<>
 
-    <textarea id="inputField" value={text} className='d-lg-block d-md-none d-sm-none  d-xs-none'
-      onChange={changeHandler} className="form-control" placeholder='New Note'></textarea>
+    <textarea id="inputField" value={text}
+      onChange={changeHandler} className="form-control h-lg-75 h-lg-65 h-md-50" placeholder='New Note'></textarea>
 
 
     {/* Footer */}
@@ -143,7 +143,7 @@ export default function TextArea({ text, setText }) {
     </div>
     {/* Resposinve Footer */}
     <div className='footerres d-lg-none d-md-flex d-sm-flex  d-xs-flex'>
-      <div className='footerresdivword' className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
+      <div className='footerresdivword'>
         <ul style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '2rem' }}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
       </div>
       <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
