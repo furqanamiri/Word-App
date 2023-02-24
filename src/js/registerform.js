@@ -3,11 +3,12 @@ import Modal from "react-bootstrap/Modal";
 import "../scss/registerform.scss";
 import Form from "react-bootstrap/Form";
 import Captcha from "./captcha";
-
+import Loginform from "./loginform";
 import { useState } from "react";
 import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark }) {
   let passCheck = true;
+
   let regexspecial = /^[a-zA-Z]*$/
   const validateregister = (e) => {
     e.preventDefault();
@@ -53,6 +54,13 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
         password: passwordstring,
 
       })
+
+    }).then(respone => {
+      document.getElementById('errormessage').innerHTML = "User is successfully Registered"
+      setTimeout(() => {
+        LoginRegisterClose();
+
+      }, 4000)
 
     })
   }
@@ -226,11 +234,12 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
               }} >Sign Up</button>
             </div>
 
-            <span className='registererror' id="errormessage"></span>
+            <p className='registererror' id="errormessage"></p>
           </Form>
         </Modal.Body>
 
       </Modal>
+      {/* <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} /> */}
     </>
   );
 }

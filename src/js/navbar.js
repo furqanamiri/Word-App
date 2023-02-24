@@ -62,7 +62,7 @@ export function Navbar({ toggleTheme, isDark, text, setText }) {
         /></button>
 
         </li>
-        <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} />
+        <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} LoginModalOpen={LoginModalOpen} />
       </ul>
 
       <div className='align-self-center justify-self-center main-header'>

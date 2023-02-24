@@ -5,7 +5,7 @@ import "../scss/loginform.scss";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import Registerform from "./registerform";
-export default function Loginform({ showLoginModal, LoginModalClose, isDark }) {
+export default function Loginform({ showLoginModal, LoginModalClose, isDark, LoginModalOpen }) {
   const [passCheck, setPassCheck] = useState(true);
 
   const togglePassCheck = (e) => {
@@ -130,7 +130,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark }) {
         </Modal.Body>
 
       </Modal>
-      <Registerform showRegisterModal={showRegisterModal} LoginRegisterClose={LoginRegisterClose} isDark={isDark} />
+      <Registerform showRegisterModal={showRegisterModal} LoginRegisterClose={LoginRegisterClose} isDark={isDark}  />
     </>
   );
 }
