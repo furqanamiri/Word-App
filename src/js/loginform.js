@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import Registerform from "./registerform";
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, LoginModalOpen }) {
+  const [loginState, setloginState] = useState(false)
   const [useremail, setUserEmail] = useState('')
   const changeUserEmail = (event) => {
     setUserEmail(event.target.value);
@@ -30,16 +31,14 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, Log
     }).then((response) => response.json()).then((response) => {
       console.log(response)
       response.forEach(user => {
-        console.log(user.email)
-        console.log(user.password)
-        if (user.email == useremail && user.password == userpassword) {
-          return console.log("User Logged In")
-        }
-        else {
-          console.log("Check Your Credentials")
 
+        if (user.email == useremail && user.password == userpassword) {
+          setloginState(true)
         }
-      });
+      })
+      document.getElementById('loginerrormessage').innerHTML = loginState ? "Login Successful" : "Check Credentials"
+      console.log(loginState)
+
 
     })
   }
@@ -157,9 +156,11 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, Log
               <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="googleicon.svg" className="inputiconleftg"></img></button>
               <p style={isDark ? { color: "white" } : { color: 'black' }
               }> Don't have an account yet? <button onClick={LoginRegisterOpen} style={{ color: "#FA8B2E", padding: '0', margin: '0', width: 'fit-content' }}>Sign Up</button> </p>
+
             </div>
 
           </Form>
+          <p className="loginerror" id="loginerrormessage"> </p>
         </Modal.Body>
 
       </Modal>
