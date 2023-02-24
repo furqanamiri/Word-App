@@ -6,6 +6,43 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import Registerform from "./registerform";
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, LoginModalOpen }) {
+  const [useremail, setUserEmail] = useState('')
+  const changeUserEmail = (event) => {
+    setUserEmail(event.target.value);
+    console.log(useremail)
+  }
+  const [userpassword, setUSerPassword] = useState('')
+  const changeUserPassword = (event) => {
+    setUSerPassword(event.target.value)
+  }
+  const loginValidation = (e) => {
+    e.preventDefault();
+
+    console.log(useremail)
+    console.log(userpassword)
+
+    console.log(userpassword)
+    console.log(userpassword.value)
+    fetch('http://18.234.225.252:4000/api/ninjas', {
+      method: 'GET', headers: {
+        accept: 'application.json', 'Content-Type': 'application/json'
+      }
+    }).then((response) => response.json()).then((response) => {
+      console.log(response)
+      response.forEach(user => {
+        console.log(user.email)
+        console.log(user.password)
+        if (user.email == useremail && user.password == userpassword) {
+          return console.log("User Logged In")
+        }
+        else {
+          console.log("Check Your Credentials")
+
+        }
+      });
+
+    })
+  }
   const [passCheck, setPassCheck] = useState(true);
 
   const togglePassCheck = (e) => {
@@ -25,18 +62,8 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, Log
     LoginModalClose();
     setShowRegisterModal(true);
   }
-  const loginformcheck = (e) => {
-    console.log(usernameid)
-    e.preventDefault()
-    fetch('http://18.234.225.252:4000/api/ninjas', {
-      method: 'GET',
-      headers: {
-        Accept: 'application.json',
-        'Content-Type': 'application/json'
-      }
 
-    })
-  }
+
   return (
     <>
 
@@ -53,7 +80,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, Log
           <Modal.Title className={isDark ? "LoginDarkHeader centering" : "LoginLightHeader centering"}>Login Your Account </Modal.Title>
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLightpass"}>
-          <Form onSubmit={loginformcheck}>
+          <Form onSubmit={loginValidation}>
             <Form.Group className="mb-3 " controlId="Email" style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
@@ -69,7 +96,10 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, Log
                   fontSize: '1.2rem'
                 }}
                 type="email"
-                placeholder=" Enter your email"
+                id='userEmailId'
+                value={useremail}
+                onChange={changeUserEmail}
+                placeholder=" Enter your email" required
               />
               <img src="loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
@@ -87,9 +117,12 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, Log
                   justifySelf: "center",
                   margin: "0 auto",
                   fontSize: '1.2rem'
-                }}
+                }} id='userpassword'
                 type={passCheck ? "password" : 'text'}
                 placeholder="Type Password"
+                onChange={changeUserPassword}
+
+                required
               />
               <img src="loginlock.svg" className="inputiconleft"></img>
               <button style={{
@@ -114,7 +147,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, Log
                 margin: "0 10%",
                 fontSize: '20px',
                 fontWeight: 'lighter',
-              }}>Login</button>
+              }} type="submit" >Login</button>
               <button style={isDark ? { color: "#AFAFAF" } : { color: "#666666" }} className='resetbut'
               >Reset Your Password</button>
               <p style={{
@@ -130,7 +163,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, Log
         </Modal.Body>
 
       </Modal>
-      <Registerform showRegisterModal={showRegisterModal} LoginRegisterClose={LoginRegisterClose} isDark={isDark}  />
+      <Registerform showRegisterModal={showRegisterModal} LoginRegisterClose={LoginRegisterClose} isDark={isDark} />
     </>
   );
 }
