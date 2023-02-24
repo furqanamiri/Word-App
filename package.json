@@ -20,6 +20,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^2.1.0",
+    "react-google-recaptcha-v3": "^1.10.1",
     "react-simple-captcha": "^9.0.2",
     "reaptcha": "^1.12.1",
     "save-file": "^2.3.1",

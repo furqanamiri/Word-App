@@ -25,6 +25,18 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark }) {
     LoginModalClose();
     setShowRegisterModal(true);
   }
+  const loginformcheck = (e) => {
+    console.log(usernameid)
+    e.preventDefault()
+    fetch('http://18.234.225.252:4000/api/ninjas', {
+      method: 'GET',
+      headers: {
+        Accept: 'application.json',
+        'Content-Type': 'application/json'
+      }
+
+    })
+  }
   return (
     <>
 
@@ -41,7 +53,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark }) {
           <Modal.Title className={isDark ? "LoginDarkHeader centering" : "LoginLightHeader centering"}>Login Your Account </Modal.Title>
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLightpass"}>
-          <Form>
+          <Form onSubmit={loginformcheck}>
             <Form.Group className="mb-3 " controlId="Email" style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}

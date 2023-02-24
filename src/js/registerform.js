@@ -5,9 +5,57 @@ import Form from "react-bootstrap/Form";
 import Captcha from "./captcha";
 
 import { useState } from "react";
+import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark }) {
   let passCheck = true;
+  let regexspecial = /^[a-zA-Z]*$/
+  const validateregister = (e) => {
+    e.preventDefault();
+    document.getElementById('errormessage').innerHTML = " "
+    // console.log('work')
+    const usernameid = document.getElementById('usernameid').value
+    // console.log(usernameid)
+    if (usernameid == "") {
+      return document.getElementById('errormessage').innerHTML = 'Username can not be blank'
+    }
+    if (usernameid.length <= 4) {
+      return document.getElementById('errormessage').innerHTML = 'Username is too short'
+    }
+    if (usernameid.length >= 15) {
+      return document.getElementById('errormessage').innerHTML = 'Username is too long'
+    }
+    if (!regexspecial.test(usernameid)) {
+      return document.getElementById('errormessage').innerHTML = 'No Special Characters allowed'
+    }
+    var passwordstring = document.getElementById('password').value
+    var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    if (!regularExpression.test(passwordstring)) {
+      return document.getElementById('errormessage').innerHTML = 'Password should contain one special character, from 6 to 16 characters and atleast one number'
+    }
+    var cpasswordid = document.getElementById('cpassword').value
+    if (cpasswordid != passwordstring) {
+      return document.getElementById('errormessage').innerHTML = 'Confirm Password and Password should match  '
+    }
+    registerformcheck(passwordstring);
+  }
+  const registerformcheck = (passwordstring) => {
+    console.log(usernameid)
+    const emailid = document.getElementById('emailid').value
+    fetch('http://18.234.225.252:4000/api/ninjas', {
+      method: 'POST',
+      headers: {
+        Accept: 'application.json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: usernameid.value,
+        email: emailid,
+        password: passwordstring,
 
+      })
+
+    })
+  }
   const togglePassCheck = (e) => {
     e.preventDefault();
     var temp = document.getElementById('password');
@@ -43,7 +91,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
           <Modal.Title className={isDark ? "LoginDarkHeader centering" : "LoginLightHeader centering"}>Sign Up Your account </Modal.Title>
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLight"}>
-          <Form>
+          <Form onSubmit={validateregister}>
             <Form.Group className="mb-3 " controlId="Email" style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
@@ -59,6 +107,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                   fontSize: '1.2rem'
                 }}
                 type="text"
+                id="usernameid"
                 placeholder=" Enter Username"
               />
               <img src="loginemail.svg" className="inputiconleft"></img>
@@ -77,7 +126,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                   margin: "0 auto",
                   fontSize: '1.2rem'
                 }}
-                type="email"
+                type="email" id='emailid'
                 placeholder="Enter Your Email"
               />
               <img src="registeremail.svg" className="inputiconleft"></img>
@@ -140,7 +189,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
               ><img src="eye.svg"></img></button>
             </Form.Group>
 
-            <Captcha />
+
             <Form.Group className="mb-3 " controlId="captcha" style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
@@ -174,10 +223,10 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 margin: "0 10%",
                 fontSize: '20px',
                 fontWeight: 'lighter',
-              }}>Sign Up</button>
+              }} >Sign Up</button>
             </div>
 
-
+            <span className='registererror' id="errormessage"></span>
           </Form>
         </Modal.Body>
 

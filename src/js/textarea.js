@@ -92,7 +92,7 @@ export default function TextArea({ text, setText }) {
   return (<>
 
     <textarea id="inputField" value={text}
-      onChange={changeHandler} className="form-control h-lg-75 h-lg-65 h-md-50" placeholder='New Note'></textarea>
+      onChange={changeHandler} className="form-control h-lg-75  h-md-50" placeholder='New Note'></textarea>
 
 
     {/* Footer */}
