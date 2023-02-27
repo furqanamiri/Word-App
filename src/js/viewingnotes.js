@@ -1,7 +1,8 @@
 import moment from 'moment'
 import React from 'react'
+import { useState } from 'react'
 import '../scss/viewNotes.scss'
-export default function Viewingnotes() {
+export default function Viewingnotes({isDark}) {
   const [textnote, setTextNote] = useState('false')
   return (<>
     <div className="note col-md-5 col-lg-2 col-sm-4">

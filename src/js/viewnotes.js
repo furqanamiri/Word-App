@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import '../scss/viewNotes.scss';
 import moment from 'moment';
+import Viewingnotes from "./viewingnotes";
 // import Viewingnotes from "./viewingnotes";
 
 
@@ -10,6 +11,7 @@ export function Viewnotes(isDark) {
   // word count
   const [wordCount, setWordCount] = useState(0);
   const [charCount, setCharCount] = useState(0);
+  const [list, setList] = useState([]);
   const spaces = textnote.match(/\s+/g);
   const addNotes = () => {
     fetch('http://18.234.225.252:4000/notes/list', {
@@ -17,12 +19,8 @@ export function Viewnotes(isDark) {
         accept: 'application.json', 'Content-Type': 'application/json'
       }
     }).then((response) => response.json()).then((response) => {
-      response.forEach(user => {
-        console.log(user.title)
-        textnote = user.title
-        // return (<><Viewingnotes title={user.title} /> </>)
-
-      })
+      const temp = response.map(user => (user.title))
+      setList(temp);
     })
   }
   useEffect(() => {
@@ -36,6 +34,7 @@ export function Viewnotes(isDark) {
     setCharCount
       ((prev) => textnote.length);
   }, [textnote]);
+  useEffect(() => { addNotes() }, [])
   function countWords() {
 
     var spaces = textnote;
@@ -43,7 +42,7 @@ export function Viewnotes(isDark) {
     console.log(spaces)
     // var words = spaces ? spaces.length : 0;
   }
-  useEffect(() => { }, [])
+
 
   return (
     <>
@@ -59,7 +58,10 @@ export function Viewnotes(isDark) {
             <img className="deletenote" src='./notedelete.svg'></img>
           </div>
         </div>
-        {/* {addNotes()} */}
+        {list.map(t => (
+          <Viewingnotes isDark={isDark} />
+        ))}
+
       </div>
 
       {/* Footer */}
@@ -116,13 +118,7 @@ export function Viewnotes(isDark) {
         <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
           <ul style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '2rem' }}>
             <li>  Last Updated : {
-
-
-
               (moment(dateUpd).fromNow())
-
-
-
             }</li>
           </ul>
         </div>
