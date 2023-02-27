@@ -15,7 +15,7 @@ var FileSaver = require('file-saver');
 
 
 
-export function Navbar({ toggleTheme, isDark, text, setText }) {
+export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
   //ShareModal  hook state
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
@@ -62,7 +62,7 @@ export function Navbar({ toggleTheme, isDark, text, setText }) {
         /></button>
 
         </li>
-        <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} LoginModalOpen={LoginModalOpen} />
+        <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
       </ul>
 
       <div className='align-self-center justify-self-center main-header'>

@@ -1,0 +1,134 @@
+.mainnotes {
+  margin: 0;
+  padding: 0 2rem;
+}
+.note {
+  background-image: url("../../notes.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 0;
+  font-family: "Open Sans";
+  font-weight: 900;
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-style: normal;
+  // box-shadow: 0px 2px 0px 0px gray;
+
+  padding: 0 1%;
+}
+.lightnote {
+  color: black;
+}
+.darknote {
+  color: #ffffff;
+}
+.notetext {
+  margin-left: 6%;
+  margin-top: 0%;
+  width: 88%;
+  padding-top: 15%;
+  text-align: justify;
+  word-wrap: wrap;
+  padding-bottom: 10%;
+}
+.darknotetext {
+  border-bottom: 2px solid rgb(255, 255, 255, 0.2);
+}
+.lightnotetext {
+  border-bottom: 2px solid rgb(0, 0, 0, 0.1);
+}
+.darknotesfooter {
+}
+.lightnotesfooter {
+}
+.footerpara {
+  margin-left: 6%;
+  width: fit-content;
+  text-align: justify;
+  margin-bottom: 0;
+  margin-top: 0;
+  color: #7496b8;
+}
+.deletenote {
+  position: relative;
+  left: 82%;
+  height: 60%;
+  width: 9%;
+  transform: translateY(-270%);
+}
+
+.light .footer {
+  color: #7496b8;
+  font-family: sans-serif;
+  margin-bottom: 0.5rem;
+  font-weight: 200;
+  height: fit-content;
+  position: fixed;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+  bottom: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+.dark .footer {
+  color: #7496b8;
+  font-family: sans-serif;
+  margin-bottom: 0.5rem;
+  font-weight: 200;
+  height: fit-content;
+  position: fixed;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+  bottom: 1rem;
+  border-top: 1px solid rgb(255, 255, 255, 0.14);
+}
+.light .footer {
+  color: #7496b8;
+  font-family: sans-serif;
+  margin-bottom: 0.5rem;
+  font-weight: 200;
+  height: fit-content;
+  position: fixed;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+  bottom: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.footerdiv ul {
+  height: fit-content;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.footerdiv {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  align-items: center;
+}
+.footer ul li {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0;
+  margin: 0.3rem 0;
+  margin-left: 1.2rem;
+}
+.right-footer {
+  justify-content: end;
+  margin-right: 0;
+  margin-left: 3rem;
+  width: 20%;
+  li {
+    width: 50%;
+  }
+}
+.left-footer {
+  margin-left: 3rem;
+}

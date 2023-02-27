@@ -5,7 +5,7 @@ import "../scss/loginform.scss";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import Registerform from "./registerform";
-export default function Loginform({ showLoginModal, LoginModalClose, isDark, LoginModalOpen }) {
+export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes }) {
   const [loginState, setloginState] = useState(false)
   const [useremail, setUserEmail] = useState('')
   const changeUserEmail = (event) => {
