@@ -197,7 +197,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
               ><img src="eye.svg"></img></button>
             </Form.Group>
 
-
+            {/* <GoogleReCaptcha /> */}
             <Form.Group className="mb-3 " controlId="captcha" style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
