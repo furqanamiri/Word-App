@@ -42,7 +42,10 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const LoginModalClose = () => setShowLoginModal(false);
-  const LoginModalOpen = () => setShowLoginModal(true);
+  const LoginModalOpen = () => {
+    setShowLoginModal(true)
+    
+  };
 
   return (<>
     <nav className='d-md-none d-lg-flex d-sm-none  d-xs-none flex-wrap-wrap' >
@@ -142,7 +145,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
         /></button>
 
         </li>
-        <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} />
+        <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
       </ul>
 
       <div className='align-self-center justify-self-center main-header' style={{ fontSize: '50px' }} >

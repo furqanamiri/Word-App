@@ -1,13 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import '../scss/viewNotes.scss';
 import moment from 'moment';
+// import Viewingnotes from "./viewingnotes";
+
+
 export function Viewnotes(isDark) {
-  const [textnote, setTextnote] = useState(' ')
+  const [textnote, setTextNote] = useState('')
   const [dateUpd, setDateUpd] = useState(moment())
   // word count
   const [wordCount, setWordCount] = useState(0);
   const [charCount, setCharCount] = useState(0);
   const spaces = textnote.match(/\s+/g);
+  const addNotes = () => {
+    fetch('http://18.234.225.252:4000/notes/list', {
+      method: 'POST', headers: {
+        accept: 'application.json', 'Content-Type': 'application/json'
+      }
+    }).then((response) => response.json()).then((response) => {
+      response.forEach(user => {
+        console.log(user.title)
+        textnote = user.title
+        // return (<><Viewingnotes title={user.title} /> </>)
+
+      })
+    })
+  }
   useEffect(() => {
     // update word count
     let wordCount = 0;
@@ -26,10 +43,12 @@ export function Viewnotes(isDark) {
     console.log(spaces)
     // var words = spaces ? spaces.length : 0;
   }
+  useEffect(() => { }, [])
 
   return (
     <>
-      <div className='container mainnotes'  >
+      <div className='container mainnotes' id='mainnotes'>
+
         <div className="note col-md-5 col-lg-2 col-sm-4">
           <p className={isDark ? "lightnotetext notetext" : "darknotetext notetext"} > {textnote} Lorem Ipsum is simply dummy text of the printing and typesetting.
           </p>
@@ -40,6 +59,7 @@ export function Viewnotes(isDark) {
             <img className="deletenote" src='./notedelete.svg'></img>
           </div>
         </div>
+        {/* {addNotes()} */}
       </div>
 
       {/* Footer */}

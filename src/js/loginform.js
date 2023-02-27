@@ -18,25 +18,23 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   }
   const loginValidation = (e) => {
     e.preventDefault();
-
-    console.log(useremail)
-    console.log(userpassword)
-
-    console.log(userpassword)
-    console.log(userpassword.value)
     fetch('http://18.234.225.252:4000/api/ninjas', {
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
       }
     }).then((response) => response.json()).then((response) => {
-      console.log(response)
+
       response.forEach(user => {
 
         if (user.email == useremail && user.password == userpassword) {
+          console.log(toggleViewNotes);
+          toggleViewNotes()
           setloginState(true)
+          LoginModalClose()
         }
       })
-      document.getElementById('loginerrormessage').innerHTML = loginState ? "Login Successful" : "Check Credentials"
+
+      // document.getElementById('loginerrormessage').innerHTML = '{loginState ? "Login Successful" : "Check Credentials"}'
       console.log(loginState)
 
 
@@ -71,8 +69,6 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         className='bordeRv '
         show={showLoginModal}
         onHide={LoginModalClose}
-
-
         centered
       >
         <Modal.Header className={isDark ? "LoginDarkHeader" : "LoginLightHeader"}  >

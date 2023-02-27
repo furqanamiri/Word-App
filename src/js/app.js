@@ -13,9 +13,15 @@ function App() {
   function toggleUserLogin() {
     setLoginUser(!loginUser);
   }
-  const [viewNotes, setViewNotes] = useState(true)
-  function toggleViewNotes() {
-    setViewNotes(!viewNotes);
+  const [viewNotes, setViewNotes] = useState(false)
+  const toggleViewNotes = () => {
+    console.log('hggdjusgjihg');
+    if (viewNotes == false) {
+      setViewNotes(true)
+    } else {
+      setViewNotes(false)
+    }
+    console.log(viewNotes)
   }
   const [theme, setTheme] = useState('light');
   const toggleTheme = () => {
@@ -31,7 +37,8 @@ function App() {
   }, [theme]);
   return (
 
-    <><Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} setText={setText} toggleViewNotes={toggleViewNotes} />
+    <>
+      <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} />
       {viewNotes ? <Viewnotes isDark={theme === 'dark'} /> : <TextArea text={text} setText={setText} />}
       <Footer />
     </>
