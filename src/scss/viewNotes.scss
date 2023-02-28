@@ -7,6 +7,7 @@
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0;
+  margin-left: 2rem;
   font-family: "sans-serif";
   font-weight: 900;
   margin-top: 2rem;
@@ -21,6 +22,7 @@
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0;
+  margin-left: 2rem;
   font-family: "sans-serif";
   font-weight: 900;
   margin-top: 2rem;
@@ -44,12 +46,18 @@
   text-align: justify;
   word-wrap: wrap;
   padding-bottom: 10%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  /* text-overflow: clip; */
+  overflow-wrap: break-word;
+  overflow: hidden;
 }
 .darknotetext {
-  border-bottom: 2px solid rgb(255, 255, 255, 0.2);
+  border-top: 2px solid rgb(255, 255, 255, 0.2);
 }
 .lightnotetext {
-  border-bottom: 2px solid rgb(0, 0, 0, 0.1);
+  border-top: 2px solid rgb(0, 0, 0, 0.1);
 }
 // .darknotesfooter {
 // }
@@ -63,12 +71,20 @@
   margin-top: 0;
   color: #7496b8;
 }
+.darknotesfooter {
+   position: relative;
+   position: relative;
+   /* bottom: 0%; */
+   padding-top: 6%;
+   top: 23%;
+   
+}
 .deletenote {
   position: relative;
   left: 82%;
   height: 60%;
   width: 9%;
-  transform: translateY(-270%);
+  transform: translateY(-97%);
 }
 
 .light .footer {

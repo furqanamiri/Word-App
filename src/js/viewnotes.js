@@ -9,19 +9,34 @@ export function Viewnotes(isDark) {
   const [textnote, setTextNote] = useState('')
   const [dateUpd, setDateUpd] = useState(moment())
   // word count
+  const [userobj, setuserobj] = useState({
+    id: ' ',
+    title: ''
+  })
+
   const [wordCount, setWordCount] = useState(0);
   const [charCount, setCharCount] = useState(0);
   const [list, setList] = useState([]);
+  const [id, setId] = useState([])
   const spaces = textnote.match(/\s+/g);
+  let count = 0;
   const addNotes = () => {
     fetch('http://18.234.225.252:4000/notes/list', {
       method: 'POST', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
       }
     }).then((response) => response.json()).then((response) => {
+      console.log(response)
       const temp = response.map(user => (user.title))
+      const tempId = response.map(idtemp => (idtemp.id))
       setList(temp);
+      setId(tempId)
+
+
+
     })
+    console.log(list)
+    console.log()
   }
   useEffect(() => {
     // update word count
@@ -42,26 +57,34 @@ export function Viewnotes(isDark) {
     console.log(spaces)
     // var words = spaces ? spaces.length : 0;
   }
-
+  const notesAdding = () => {
+    const divId = document.getElementById('notesadd');
+    for (let i = 0; i < list.length; i++) { divId.innerHTML += '<ViewingNotes isDark={isDark}  list={list[i]} id={id[i]} /> ' }
+  }
 
   return (
     <>
-      <div className='container mainnotes' id='mainnotes'>
+      <div className='fluid-container mainnotes' id='mainnotes'>
+        <div className="row" id='notesadd'>
+          <div className="note col-md-5 col-lg-2 col-sm-4">
+            <p className="notetext" > {textnote} Lorem Ipsum is simply dummy text of the printing and typesetting.
+            </p>
+            <div className={isDark ? "lightnotetext darknotesfooter" : " darknotetext  darknotesfooter"}>
+              <div>
+                <p className='footerpara'>Last Updated</p>
+              </div><div><p className='footerpara'>{(moment(dateUpd).fromNow())}</p></div>
 
-        <div className="note col-md-5 col-lg-2 col-sm-4">
-          <p className={isDark ? "lightnotetext notetext" : "darknotetext notetext"} > {textnote} Lorem Ipsum is simply dummy text of the printing and typesetting.
-          </p>
-          <div className={isDark ? "darknotesfooter" : "lightnotesfooter"}>
-            <div>
-              <p className='footerpara'>Last Updated</p>
-            </div><div><p className='footerpara'>{(moment(dateUpd).fromNow())}</p></div>
-            <img className="deletenote" src='./notedelete.svg'></img>
+            </div>
           </div>
-        </div>
-        {list.map(t => (
-          <Viewingnotes isDark={isDark} />
-        ))}
 
+          {
+            list.map(t => (
+
+              <Viewingnotes isDark={isDark} list={t} />
+
+            ))
+          }
+        </div>
       </div>
 
       {/* Footer */}
