@@ -39,7 +39,7 @@ function App() {
 
     <>
       <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} />
-      {viewNotes ? <Viewnotes isDark={theme === 'dark'} /> : <TextArea text={text} setText={setText} />}
+      {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
       <Footer />
     </>
 

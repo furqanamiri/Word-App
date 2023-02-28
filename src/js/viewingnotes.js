@@ -2,19 +2,37 @@ import moment from 'moment'
 import React, { useRef } from 'react'
 import { useState } from 'react'
 import '../scss/viewNotes.scss'
-export default function Viewingnotes({ isDark, list, id }) {
+export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNote, setText }) {
   const textnote = useRef('false')
-  console.log(id)
+  console.log(idnote)
   textnote.current = list
+  const deletenote = () => {
+    fetch('http://18.234.225.252:4000/notes/delete', {
+      method: 'DELETE', headers: {
+        accept: 'application.json', 'Content-Type': 'application/json',
+      }, body: JSON.stringify({
+        id: idnote,
+      })
+    }).then((response) => {
+      togglerefreshchange()
+
+    })
+
+  }
+  // document.getElementById('creatednote').addEventListener('click', () => {
+  //   setText(textnote.current)
+  //   toggleViewNotes()
+
+  // })
   return (<>
-    <div className="note col-md-5 col-lg-2 col-sm-4">
-      <p className="notetext" > {textnote.current}
-      </p>
-      <div className={isDark ? "lightnotetext darknotesfooter" : "darknotetext darknotefooter"}>
+    <div className="note col-md-5 col-lg-2 col-sm-4" id="creatednote">
+      <button><p className="notetext" > {textnote.current}
+      </p></button>
+      <div className={isDark ? "darknotetext darknotesfooter" : "lightnotetext darknotesfooter"}>
         <div>
           <p className='footerpara'>Last Updated</p>
         </div><div><p className='footerpara'>few seconds ago</p></div>
-        <button className="deletenote"><img src='./notedelete.svg'></img></button>
+        <button className="deletenote" onClick={deletenote}><img src='./notedelete.svg'></img></button>
       </div>
     </div>
   </>)
