@@ -2,7 +2,7 @@ import moment from 'moment'
 import React, { useRef } from 'react'
 import { useState } from 'react'
 import '../scss/viewNotes.scss'
-export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNote, setText }) {
+export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNotes, setText }) {
   const textnote = useRef('false')
   console.log(idnote)
   textnote.current = list
@@ -20,13 +20,14 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
 
   }
   // document.getElementById('creatednote').addEventListener('click', () => {
-  //   setText(textnote.current)
-  //   toggleViewNotes()
-
+  const clickFunction = () => {
+    setText(textnote.current)
+    toggleViewNotes()
+  }
   // })
   return (<>
     <div className="note col-md-5 col-lg-2 col-sm-4" id="creatednote">
-      <button><p className="notetext" > {textnote.current}
+      <button onClick={clickFunction}><p className="notetext" > {textnote.current}
       </p></button>
       <div className={isDark ? "darknotetext darknotesfooter" : "lightnotetext darknotesfooter"}>
         <div>

@@ -31,6 +31,17 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
   //File Saving functionality
   const toggleSaveFile = (event) => {
     event.preventDefault();
+    idgenerator()
+    fetch('http://18.234.225.252:4000/notes/add',{
+      method : 'POST',
+      headers : {
+        headers: {
+          accept: 'application.json', 'Content-Type': 'application/json',
+        }, body: JSON.stringify({
+          id: idnote,
+        })
+      }
+    })
     const newstring = text;
 
 
@@ -44,8 +55,22 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
   const LoginModalClose = () => setShowLoginModal(false);
   const LoginModalOpen = () => {
     setShowLoginModal(true)
-    
+
   };
+  //File Saving to cloud
+  const [idsave, setidsave] = useState['']
+  const idgenerator = () => {
+    let retVal = "";
+    let charset = "0123456789"
+    let length = 6;
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+
+    setidsave(retVal)
+
+  }
+
 
   return (<>
     <nav className='d-md-none d-lg-flex d-sm-none  d-xs-none flex-wrap-wrap' >

@@ -34,7 +34,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
       setList(temp);
       setId(tempId)
       setUsers(response)
-      togglerefreshchange();
+
 
     })
     console.log(list)
@@ -59,21 +59,23 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
     console.log(spaces)
     // var words = spaces ? spaces.length : 0;
   }
-  
+
 
   // const notediv = document.getElementById("newnote")
   // notediv.addEventListener('click', () => {
-  //   setText('')
-  //   toggleViewNotes()
 
+  const clickFunction = () => {
+    setText('')
+    toggleViewNotes()
+  }
   // })
   return (
     <>
       <div className='fluid-container mainnotes' id='mainnotes'>
         <div className="row" id='notesadd'>
           <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote">
-            <p className="notetext" > {textnote.current}
-            </p>
+            <button onClick={clickFunction}><p className="notetext" > {textnote.current}
+            </p></button>
             <div className={isDark ? "darknotetext darknotesfooter" : " lightnotetext  darknotesfooter"}>
               <div>
                 <p className='footerpara'>Last Updated</p>

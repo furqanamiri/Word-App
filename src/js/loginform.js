@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../scss/loginform.scss";
@@ -8,6 +8,7 @@ import Registerform from "./registerform";
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes }) {
   const [loginState, setloginState] = useState(false)
   const [useremail, setUserEmail] = useState('')
+  const error = useRef('');
   const changeUserEmail = (event) => {
     setUserEmail(event.target.value);
     console.log(useremail)
@@ -156,7 +157,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
             </div>
 
           </Form>
-          <p className="loginerror" id="loginerrormessage"> </p>
+          <p className="loginerror" id="loginerrormessage"></p>
         </Modal.Body>
 
       </Modal>
