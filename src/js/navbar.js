@@ -2,7 +2,7 @@ import React from 'react';
 import "../scss/navbar.scss"
 import { Icon } from '@iconify/react';
 import Loginform from './loginform';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { saveAs } from 'file-saver';
@@ -28,20 +28,37 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
   const [showPassword, setShowPass] = useState(false);
   const handleClosePass = () => setShowPass(false);
   const handleShowPass = () => setShowPass(true);
+  //File Saving to cloud
+  const idsave = useRef('')
+  const idgenerator = () => {
+    let retVal = "";
+    let charset = "0123456789"
+    let length = 6;
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+
+    idsave.current = retVal;
+    console.log(idsave)
+
+  }
+
   //File Saving functionality
   const toggleSaveFile = (event) => {
     event.preventDefault();
-    idgenerator()
-    fetch('http://18.234.225.252:4000/notes/add',{
-      method : 'POST',
-      headers : {
-        headers: {
-          accept: 'application.json', 'Content-Type': 'application/json',
-        }, body: JSON.stringify({
-          id: idnote,
-        })
-      }
-    })
+    if(idsave.current == ""){idgenerator()}
+    fetch('http://18.234.225.252:4000/notes/add', {
+      method: 'POST',
+      headers: {
+        accept: 'application.json', 'Content-Type': 'application/json',
+      }, body: JSON.stringify({
+        id: idsave.current,
+        title: text,
+        userid: 'testuser',
+      })
+
+    }).then((response) => { console.log('fileadded') });
+
     const newstring = text;
 
 
@@ -57,19 +74,8 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
     setShowLoginModal(true)
 
   };
-  //File Saving to cloud
-  const [idsave, setidsave] = useState['']
-  const idgenerator = () => {
-    let retVal = "";
-    let charset = "0123456789"
-    let length = 6;
-    for (let i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
 
-    setidsave(retVal)
 
-  }
 
 
   return (<>
