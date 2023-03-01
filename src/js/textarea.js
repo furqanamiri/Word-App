@@ -17,7 +17,13 @@ export default function TextArea({ text, setText }) {
   const [charCount, setCharCount] = useState(0);
   const changeHandler = (event) => {
     setText(event.target.value);
+    window.localStorage.setItem('text', text);
   }
+
+
+
+
+
   const [countSec, setCountSec] = useState(0)
 
 
@@ -87,7 +93,7 @@ export default function TextArea({ text, setText }) {
     // var words = spaces ? spaces.length : 0;
   }
   let date = document.lastModified;
-
+useEffect(()=>{setText(window.localStorage.getItem('text'))},[])
 
   return (<>
 
