@@ -10,10 +10,7 @@ import FileReaderfun from './filereaderfun';
 
 function App() {
   const idsave = useRef('')
-  const newFile = useRef(false)
-  const toggleNewFile = () => {
-    newFile.current(!newFile.current)
-  }
+
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState('');
   //loginUser is used to persist login state once user is logged in
