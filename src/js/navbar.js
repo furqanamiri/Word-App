@@ -15,7 +15,7 @@ var FileSaver = require('file-saver');
 
 
 
-export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
+export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
@@ -42,11 +42,29 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
     console.log(idsave)
 
   }
+  //File Opening functionality 
+  function showFile() {
 
+
+    var preview = document.getElementById('show-text');
+    var file = document.querySelector('input[type=file]').files[0];
+    var reader = new FileReader()
+    console.log(file)
+    var textFile = /text.*/;
+    reader.readAsText(file)
+    // if (file.type.match(textFile)) 
+    reader.onload = function (event) {
+      setText(event.target.result)
+    }
+    reader.onerror = function (error) {
+      error.target.result
+    }
+    console.log(text)
+  }
   //File Saving functionality
   const toggleSaveFile = (event) => {
     event.preventDefault();
-    if(idsave.current == ""){idgenerator()}
+    if (idsave.current == "") { idgenerator() }
     fetch('http://18.234.225.252:4000/notes/add', {
       method: 'POST',
       headers: {
@@ -78,6 +96,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
 
 
 
+
   return (<>
     <nav className='d-md-none d-lg-flex d-sm-none  d-xs-none flex-wrap-wrap' >
       <ul >
@@ -87,7 +106,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes }) {
           <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="noteicon.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button>
         </li>
         {/* Password */}
-        <li><button className='iconnav' onClick={handleShowPass}><img src="lock.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button></li>
+        <li><label className='iconnav'><input className="files" type="file" onChange={showFile} /><img src="lock.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 

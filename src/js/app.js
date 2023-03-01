@@ -6,6 +6,7 @@ import Footer from './footer';
 import { useRef, useState, useEffect } from 'react'
 import { Viewnotes } from './viewnotes';
 
+import FileReaderfun from './filereaderfun';
 
 function App() {
   const [text, setText] = useState('');
@@ -38,7 +39,8 @@ function App() {
   return (
 
     <>
-      <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} />
+      <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText}/>
+      <FileReaderfun />
       {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
       <Footer />
     </>
