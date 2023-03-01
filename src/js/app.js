@@ -9,6 +9,7 @@ import { Viewnotes } from './viewnotes';
 import FileReaderfun from './filereaderfun';
 
 function App() {
+  const idsave = useRef('')
   const [text, setText] = useState('');
   const [loginUser, setLoginUser] = useState(false);
   function toggleUserLogin() {
@@ -39,8 +40,8 @@ function App() {
   return (
 
     <>
-      <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText}/>
-      <FileReaderfun />
+      <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
+
       {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
       <Footer />
     </>

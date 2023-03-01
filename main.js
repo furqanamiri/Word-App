@@ -1,5 +1,5 @@
 const { app, BrowserWindow, Menu } = require('electron');
-
+import MenuBuilder from './menu';
 // const path = require(path)
 // const { mainMenu } = require('./src/menumaker');
 function createWindow() {
@@ -33,6 +33,9 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow()
     }
+    const menuBuilder = new MenuBuilder(mainWindow);
+    menuBuilder.buildMenu();
+
   })
 })
 
