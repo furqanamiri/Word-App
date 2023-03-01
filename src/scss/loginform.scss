@@ -106,3 +106,8 @@ p {
   font-weight: lighter;
   text-align: center;
 }
+.nonselect {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

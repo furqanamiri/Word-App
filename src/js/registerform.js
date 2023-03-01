@@ -164,7 +164,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 top: '45%',
                 left: '74%',
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
-              }}
+              }} tabindex="-1"
                 onClick={togglePassCheck}
               ><img src="eye.svg"></img></button>
             </Form.Group>
@@ -192,7 +192,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 top: '45%',
                 left: '74%',
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
-              }}
+              }} tabindex="-1"
                 onClick={togglePassCheck1}
               ><img src="eye.svg"></img></button>
             </Form.Group>

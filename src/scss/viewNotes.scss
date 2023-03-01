@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
   padding: 0;
   margin-left: 2rem;
-
+  font-family: "sans-serif";
   font-weight: 900;
   margin-top: 2rem;
   font-size: 3rem;
@@ -38,7 +38,7 @@
 .darknote {
   color: #ffffff;
 }
-.notetext {
+.light .notetext {
   margin-left: 6%;
   margin-top: 0%;
   width: 88%;
@@ -46,6 +46,24 @@
   text-align: justify;
   word-wrap: wrap;
   padding-bottom: 10%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  /* text-overflow: clip; */
+  overflow-wrap: break-word;
+  overflow: hidden;
+  color: black;
+}
+.dark .notetext {
+  margin-left: 6%;
+  margin-top: 0%;
+  width: 88%;
+  padding-top: 15%;
+  text-align: justify;
+  word-wrap: wrap;
+  padding-bottom: 10%;
+  color: white;
+
   text-overflow: ellipsis;
   white-space: nowrap;
   word-break: break-all;
@@ -75,7 +93,7 @@
   position: relative;
   position: relative;
   /* bottom: 0%; */
-  padding-top: 6%;
+  padding-top: 1%;
   top: 23%;
 }
 .deletenote {

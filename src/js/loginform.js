@@ -121,14 +121,14 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 required
               />
               <img src="loginlock.svg" className="inputiconleft"></img>
-              <button style={{
+              <button className="nonselect" tabindex="-1" style={{
                 position: 'absolute',
                 top: '50%',
                 left: '75%',
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
               }}
                 onClick={togglePassCheck}
-              ><img src="eye.svg"></img></button>
+              ><img className="nonselect " src="eye.svg"></img></button>
             </Form.Group>
             <div className="mb-3">
               <button style={{
