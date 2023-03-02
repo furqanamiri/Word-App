@@ -1,12 +1,13 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../scss/loginform.scss";
 import Form from "react-bootstrap/Form";
+import { LoginContext } from "./Logincontext";
 import { useState } from "react";
 import Registerform from "./registerform";
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes }) {
-  const [loginState, setloginState] = useState(false)
+  const { loginUser, setLoginUser, toggleUserLogin } = useContext(LoginContext)
   const [useremail, setUserEmail] = useState('')
   const error = useRef('');
   const changeUserEmail = (event) => {
@@ -17,6 +18,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   const changeUserPassword = (event) => {
     setUSerPassword(event.target.value)
   }
+  console.log(loginUser)
   const loginValidation = (e) => {
     e.preventDefault();
     fetch('http://18.234.225.252:4000/api/ninjas', {
@@ -30,13 +32,14 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         if (user.email == useremail && user.password == userpassword) {
           console.log(toggleViewNotes);
           toggleViewNotes()
-          setloginState(true)
+
+          toggleUserLogin()
           LoginModalClose()
         }
       })
-
+      console.log(loginUser)
       // document.getElementById('loginerrormessage').innerHTML = '{loginState ? "Login Successful" : "Check Credentials"}'
-      console.log(loginState)
+
 
 
     })

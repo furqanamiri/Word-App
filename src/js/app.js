@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import "../scss/app.scss"
 import { Navbar } from './navbar'
 import TextArea from './textarea';
 import Footer from './footer';
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useContext } from 'react'
+import { LoginContext } from './Logincontext';
 import { Viewnotes } from './viewnotes';
 
 import FileReaderfun from './filereaderfun';
@@ -44,10 +45,12 @@ function App() {
   return (
 
     <>
-      <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
+      <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin }}>
+        <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
 
-      {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
-      <Footer />
+        {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
+        <Footer />
+      </LoginContext.Provider>
     </>
 
 

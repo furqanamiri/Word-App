@@ -2,7 +2,7 @@ import React from 'react';
 import "../scss/navbar.scss"
 import { Icon } from '@iconify/react';
 import Loginform from './loginform';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { saveAs } from 'file-saver';
@@ -10,6 +10,7 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 import Passwordform from './passwordform';
 import Registerform from './registerform';
 import Exportmodal from './exportmodal';
+import { LoginContext } from './Logincontext';
 import Sharemodal from './sharemodal';
 var FileSaver = require('file-saver');
 
@@ -17,10 +18,12 @@ var FileSaver = require('file-saver');
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
+
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
   const toggleShareModalOpen = () => setShareModal(true);
   //ExportModal hook state
+  const { loginUser, setLoginUser, toggleUserLogin } = useContext(LoginContext)
   const [exportModal, setExportModal] = useState(false);
   const toggleExportModalOpen = () => setExportModal(true);
   const toggleExportModalClose = () => setExportModal(false);
@@ -28,6 +31,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   const [showPassword, setShowPass] = useState(false);
   const handleClosePass = () => setShowPass(false);
   const handleShowPass = () => setShowPass(true);
+
   //File Saving to cloud
   const idsave = useRef('')
   const idgenerator = () => {
@@ -93,6 +97,10 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
 
   };
 
+  const LogOut = () => {
+    console.log("logOut")
+    location.reload()
+  }
 
 
 
@@ -106,14 +114,15 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="noteicon.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button>
         </li>
         {/* Password */}
-        <li><label className='iconnav '><input className="files" type="file" onChange={showFile} /><img src="lock.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
+        <li><label className='iconnav '><input className="files" type="file" onChange={showFile} /><img src="openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
-        {/* Login */}
-        <li><button className="iconnav change" onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="person.svg" width="20" height="20" className='iconnav'
+        {/* Login and Logout*/}
+        <li><button className={loginUser ? "d-none" : "iconnav change"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="person.svg" width="20" height="20" className='iconnav'
         /></button>
-
+          <button className={loginUser ? "iconnav change" : "d-none"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="logout.svg" width="20" height="20" className='iconnav'
+          /></button>
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
       </ul>
@@ -186,12 +195,12 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           <button className='iconnavsmall' onClick={toggleSaveFile} id="save" ><img src="noteicon.svg" className='iconnavsmall' color="#7496b8" width="50" height="50" /></button>
         </li>
         {/* Password */}
-        <li><button className='iconnavsmall' onClick={handleShowPass}><img src="lock.svg" className='iconnavsmall' color="#7496b8" width="50" height="50" /></button></li>
+        <li><button className='iconnavsmall' onClick={handleShowPass}><img src="openfiles.svg" className='iconnavsmall' color="#7496b8" width="50" height="50" /></button></li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login */}
-        <li><button className="iconnavsmall" onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="person.svg" width="50" height="50" className='iconnavsmall'
+        <li><button className="iconnavsmall" onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src={loginUser ? "logout.svg" : "person.svg"} width="50" height="50" className='iconnavsmall'
         /></button>
 
         </li>
