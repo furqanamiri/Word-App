@@ -6,6 +6,7 @@ import Footer from './footer';
 import { useRef, useState, useEffect, useContext } from 'react'
 import { LoginContext } from './Logincontext';
 import { Viewnotes } from './viewnotes';
+import { IsAuto } from './Isauto';
 
 import FileReaderfun from './filereaderfun';
 
@@ -30,27 +31,45 @@ function App() {
     }
     console.log(viewNotes)
   }
+  const time = new Date().getHours()
+
+  const isNight = () => {
+    if (time > 18 || time < 6) {
+      return true
+    }
+    else
+      return false
+
+  }
   const [theme, setTheme] = useState('light');
   const toggleTheme = () => {
+    console.log(theme)
+    console.log(time)
     if (theme === 'light') {
       setTheme('dark');
-    } else {
+    } else if (theme === 'dark') {
+      setTheme('auto');
+    }
+    else {
       setTheme('light');
     }
+
   };
   useEffect(() => {
     document.body.className = " ";
-    document.body.className = theme;
+    document.body.className = theme === "auto" && isNight() ? "dark" : theme === "auto" && !isNight() ? "light" : theme === "light" ? "light" : "dark";
   }, [theme]);
   return (
 
     <>
-      <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin }}>
-        <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
+      <IsAuto.Provider value={{ theme }} >
+        <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin }}>
+          <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
 
-        {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
-        <Footer />
-      </LoginContext.Provider>
+          {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
+          <Footer />
+        </LoginContext.Provider>
+      </IsAuto.Provider>
     </>
 
 

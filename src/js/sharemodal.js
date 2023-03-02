@@ -31,7 +31,7 @@ export default function Sharemodal({ shareModal, toggleShareModalClose, isDark }
                 padding: '1em',
                 justifyContent: 'space-evenly',
                 width: '100%',
-              }}><input type="input" type="radio" name="export" value="pdf" /><p style={{
+              }}><input type="radio" name="export" value="pdf" /><p style={{
                 fontSize: '50px', width: 'fit-content',
               }}>View Only</p></div>
 
@@ -41,7 +41,7 @@ export default function Sharemodal({ shareModal, toggleShareModalClose, isDark }
                 padding: '1em',
                 justifyContent: 'space-evenly',
                 width: '100%',
-              }} > <input type="input" type="radio" name="export" value="word" />
+              }} > <input type="radio" name="export" value="word" />
                 <p style={{ fontSize: '50px', width: 'fit-content', }}>Can Edit</p>
               </div>              </div>
             <div className="d-flex justify-content-center"> <button type="radio" name="sharerad" style={{ fontWeight: 'lighter', fontSize: '50px', color: '#7496B8', width: '50%' }}><img style={{

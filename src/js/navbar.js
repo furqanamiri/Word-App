@@ -13,12 +13,13 @@ import Exportmodal from './exportmodal';
 import { LoginContext } from './Logincontext';
 import Sharemodal from './sharemodal';
 var FileSaver = require('file-saver');
+import { IsAuto } from './Isauto';
 
 
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
-
+  const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
   const toggleShareModalOpen = () => setShareModal(true);
@@ -99,7 +100,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
 
   const LogOut = () => {
     console.log("logOut")
-    location.reload()
+    location.reload();
   }
 
 
@@ -131,7 +132,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <span className='W-head main-header'>W</span>ordpad
       </div>
       <ul className="justify-content-end" style={{ marginRight: '2rem' }}><li>
-        <button onClick={toggleTheme} className="buttonicon">{isDark ? <img src={"light.svg"} className='buttonicon moon' /> : <Icon className='moon' icon="ph:moon-bold" color="black" />}
+        <button onClick={toggleTheme} className="buttonicon">{theme === 'dark' ? <img src={"light.svg"} className='buttonicon moon' /> : theme === 'light' ? <Icon className='moon' icon="ph:moon-bold" color="black" /> : <p>A</p>}
         </button></li>
         <li >
           <OverlayTrigger
