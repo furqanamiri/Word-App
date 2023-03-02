@@ -66,6 +66,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
   const clickFunction = () => {
     setText('')
+    window.sessionStorage.clear('text')
     toggleViewNotes()
   }
   // })

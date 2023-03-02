@@ -22,6 +22,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   // document.getElementById('creatednote').addEventListener('click', () => {
   const clickFunction = () => {
     setText(textnote.current)
+    window.sessionStorage.clear('text')
     toggleViewNotes()
   }
   // })
