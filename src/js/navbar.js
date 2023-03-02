@@ -132,7 +132,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <span className='W-head main-header'>W</span>ordpad
       </div>
       <ul className="justify-content-end" style={{ marginRight: '2rem' }}><li>
-        <button onClick={toggleTheme} className="buttonicon">{theme === 'dark' ? <img src={"light.svg"} className='buttonicon moon' /> : theme === 'light' ? <Icon className='moon' icon="ph:moon-bold" color="black" /> : <p>A</p>}
+        <button onClick={toggleTheme} className="buttonicon">{theme === 'dark' ? <img src={"light.svg"} className='buttonicon moon' /> : theme === 'light' ? <Icon className='moon' icon="ph:moon-bold" color="black" /> : <img src={"autotheme.svg"} className='buttonicon moon' />}
         </button></li>
         <li >
           <OverlayTrigger
@@ -212,7 +212,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <span className='W-head main-header' style={{ fontSize: '60px' }} >W</span>ordpad
       </div>
       <ul className="justify-content-end" style={{ marginRight: '2rem' }}><li>
-        <button onClick={toggleTheme} className="buttonicon iconnavsmall d-block">{isDark ? <img src={"light.svg"} className='buttonicon iconnavsmall moon' /> : <Icon className='moon iconnavsmall' icon="ph:moon-bold" color="black" />}</button></li>
+        <button onClick={toggleTheme} className="buttonicon iconnavsmall d-block">{theme === 'dark' ? <img src={"light.svg"} className='buttonicon moon' /> : theme === 'light' ? <Icon className='moon' icon="ph:moon-bold" color="black" /> : <img src={"autotheme.svg"} className='buttonicon moon' />}</button></li>
         <li> <OverlayTrigger
           trigger="click"
           key={'bottom'}
