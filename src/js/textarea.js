@@ -16,8 +16,7 @@ export default function TextArea({ text, setText }) {
   // character count
   const [charCount, setCharCount] = useState(0);
   const changeHandler = (event) => {
-    setText(event.target.value);
-    window.sessionStorage.setItem('text', text);
+    setText(event.target.value); 
   }
 
 
@@ -93,7 +92,18 @@ export default function TextArea({ text, setText }) {
     // var words = spaces ? spaces.length : 0;
   }
   let date = document.lastModified;
-  useEffect(() => { if (window.sessionStorage.getItem('text')) { setText(window.sessionStorage.getItem('text')) } }, [])
+  useEffect(() => {
+    if (window.sessionStorage.getItem('text')) { setText(window.sessionStorage.getItem('text')) }
+    
+  }, [])
+  useEffect(()=>{
+    if(text=== "" || text === " ") { 
+      window.sessionStorage.removeItem('text')
+    }
+    else{
+    window.sessionStorage.setItem('text', text);
+    }
+  },[text])
 
   return (<>
 

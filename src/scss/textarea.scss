@@ -4,14 +4,27 @@
     font-size: 2rem;
   }
 }
+textarea{
+  scrollbar-color: #fe8b2e inherit;
+  -webkit-scrollbar-track {
+    background: inherit; 
+  }
+   
+  /* Handle */
+  -webkit-scrollbar-thumb {
+    background: #fe8b2e; 
+  }
+}
 
   textarea.form-control {
-    height: 78vh;
+    height: 76vh;
     padding: 3rem;
     border: transparent;
     outline: 0;
     font-weight: 200;
     font-size: 2rem;
+     
+   
   }
 
 .form-control:active {
@@ -26,6 +39,7 @@
 }
 .footer{
   background-color: inherit;
+  font-size: 1.5rem;
 }
 .light .footer {
   color: #7496b8;
