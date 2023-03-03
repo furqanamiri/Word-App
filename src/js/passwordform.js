@@ -56,7 +56,7 @@ export default function Passwordform({
                 transform: 'translateY(-50%)', padding: '0', margin: '0'
               }}
                 onClick={togglePassCheck}
-              ><img src="eye.svg"></img></button>
+              ><img src="./src/svg/eye.svg"></img></button>
             </Form.Group>
             <div style={{ padding: "0px", margin: "0px  " }}>
               <Button

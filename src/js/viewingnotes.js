@@ -34,7 +34,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
         <div>
           <p className='footerpara'>Last Updated</p>
         </div><div><p className='footerpara'>few seconds ago</p></div>
-        <button className="deletenote" onClick={deletenote}><img src='./notedelete.svg'></img></button>
+        <button className="deletenote" onClick={deletenote}><img src='./src/svg/notedelete.svg'></img></button>
       </div>
     </div>
   </>)

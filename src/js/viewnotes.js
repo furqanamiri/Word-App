@@ -44,7 +44,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
     // update word count
     let wordCount = 0;
     setWordCount(wordCount = spaces ? spaces.length : 0)
-    
+
     setWordCount(wordCount);
 
     // update char count (including whitespaces)

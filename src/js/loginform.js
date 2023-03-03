@@ -100,7 +100,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 onChange={changeUserEmail}
                 placeholder=" Enter your email" required
               />
-              <img src="loginemail.svg" className="inputiconleft"></img>
+              <img src="./src/svg/loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
 
             <Form.Group className="mb-3 " controlId="formBasicPassword" style={{ position: "relative" }}>
@@ -123,7 +123,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
 
                 required
               />
-              <img src="loginlock.svg" className="inputiconleft"></img>
+              <img src="./src/svg/loginlock.svg" className="inputiconleft"></img>
               <button className="nonselect" tabindex="-1" style={{
                 position: 'absolute',
                 top: '50%',
@@ -131,7 +131,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
               }}
                 onClick={togglePassCheck}
-              ><img className="nonselect " src="eye.svg"></img></button>
+              ><img className="nonselect " src="./src/svg/eye.svg"></img></button>
             </Form.Group>
             <div className="mb-3">
               <button style={{
@@ -153,7 +153,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 fontSize: '14px', width: '100%',
                 fontWeight: 'lighter', color: '#666666', marginTop: '1rem', marginBottom: '1rem', textAlign: 'center',
               }}> or </p>
-              <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="googleicon.svg" className="inputiconleftg"></img></button>
+              <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="./src/svg/googleicon.svg" className="inputiconleftg"></img></button>
               <p style={isDark ? { color: "white" } : { color: 'black' }
               }> Don't have an account yet? <button onClick={LoginRegisterOpen} style={{ color: "#FA8B2E", padding: '0', margin: '0', width: 'fit-content' }}>Sign Up</button> </p>
 
