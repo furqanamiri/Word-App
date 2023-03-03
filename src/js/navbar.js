@@ -115,7 +115,8 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="./src/svg/noteicon.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button>
         </li>
         {/* Password */}
-        <li><label className='iconnav '><input className="files" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
+<li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='./src/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
+        <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
@@ -197,8 +198,8 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           <button className='iconnavsmall' onClick={toggleSaveFile} id="save" ><img src="./src/svg/noteicon.svg" className='iconnavsmall' color="#7496b8" width="50" height="50" /></button>
         </li>
         {/* Password */}
-        <li><label className='iconnavsmall '><input className="files" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnavsmall' color="#7496b8" width="20" height="20" /></label> </li>
-
+        <li><button className={loginUser ? "iconnavsmall change" : "d-none"} onClick={toggleViewNotes}><img src='./src/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
+        <label className={loginUser ? "d-none" : "iconnavsmall change"}><input className="files iconnavsmall" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnavsmall' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 

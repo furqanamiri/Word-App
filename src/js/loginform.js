@@ -9,7 +9,7 @@ import Registerform from "./registerform";
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes }) {
   const { loginUser, setLoginUser, toggleUserLogin } = useContext(LoginContext)
   const [useremail, setUserEmail] = useState('')
-  const error = useRef('');
+  const [error,SetError] = useState('');
   const changeUserEmail = (event) => {
     setUserEmail(event.target.value);
     console.log(useremail)
@@ -42,7 +42,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
 
 
 
-    })
+    }).catch(error => SetError('Check Internet') )
   }
   const [passCheck, setPassCheck] = useState(true);
 
@@ -160,7 +160,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
             </div>
 
           </Form>
-          <p className="loginerror" id="loginerrormessage"></p>
+          <p className="loginerror" id="loginerrormessage">{error}</p>
         </Modal.Body>
 
       </Modal>

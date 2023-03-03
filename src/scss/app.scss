@@ -2,7 +2,7 @@ body::-webkit-scrollbar-track {
   background: inherit; 
 }
 html::-webkit-scrollbar {
-  width: 20px; 
+  width: 10px; 
 }
 
 html::-webkit-scrollbar-track {
@@ -65,12 +65,12 @@ h1 {
 }
 body {
   height: 100vh;
-  ::-webkit-scrollbar-track {
+  -webkit-scrollbar-track {
     background: inherit; 
   }
    scrollbar-color: #fe8b2e inherit;;
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+  -webkit-scrollbar-thumb {
     background: #fe8b2e; 
   }
 }
