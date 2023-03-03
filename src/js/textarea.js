@@ -150,10 +150,10 @@ export default function TextArea({ text, setText }) {
     {/* Resposinve Footer */}
     <div className='footerres d-lg-none d-md-flex d-sm-flex  d-xs-flex'>
       <div className='footerresdivword'>
-        <ul style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '2rem' }}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
+        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '2rem' }}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
       </div>
       <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-        <ul style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '2rem' }}>
+        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '2rem' }}>
           <li>  Last Updated : {
 
 
@@ -166,7 +166,7 @@ export default function TextArea({ text, setText }) {
         </ul>
       </div>
       <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-        <ul className='w-100 d-flex justify-content-around' style={{ fontSize: '2rem' }}>
+        <ul className='w-100 d-flex justify-content-around ulmargin' style={{ fontSize: '2rem' }}>
           <li>About Us</li>
           <li>Contact Us</li>
           <li>Privacy Policy</li>

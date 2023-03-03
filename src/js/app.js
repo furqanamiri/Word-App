@@ -34,7 +34,7 @@ function App() {
   const time = new Date().getHours()
 
   const isNight = () => {
-    if (time > 18 || time < 6) {
+    if (time >= 18 || time < 6) {
       return true
     }
     else

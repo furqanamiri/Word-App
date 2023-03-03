@@ -1,19 +1,19 @@
-@media screen and (max-width: 600px) {
+@media  (max-width: 980px) {
   textarea.form-control {
-    height: 50%;
+    height: 50vh;
     font-size: 2rem;
   }
 }
-@media screen and (min-width: 600px) {
+
   textarea.form-control {
-    height: 78%;
+    height: 78vh;
     padding: 3rem;
     border: transparent;
     outline: 0;
     font-weight: 200;
     font-size: 2rem;
   }
-}
+
 .form-control:active {
   border: transparent;
 }

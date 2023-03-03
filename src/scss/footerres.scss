@@ -6,18 +6,14 @@
   height: fit-content;
   position: fixed;
   display: flex;
+  background-color: inherit;
   flex-wrap: nowrap;
   flex-direction: column;
   width: 100%;
   bottom: 1rem;
   border-top: 1px solid rgba(0, 0, 0, 0.14);
 }
-.footerdiv ul {
-  height: fit-content;
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
+
 .footerdiv {
   display: flex;
   justify-content: space-between;
@@ -48,4 +44,7 @@
   ul {
     width: 35%;
   }
+}
+.ulmargin{
+  margin-bottom: -1rem;
 }
