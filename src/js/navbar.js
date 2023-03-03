@@ -215,7 +215,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <span className='W-head main-header' style={{ fontSize: '60px' }} >W</span>ordpad
       </div>
       <ul className="justify-content-end" style={{ marginRight: '2rem' }}><li>
-        <button onClick={toggleTheme} className="buttonicon iconnavsmall d-block">{theme === 'dark' ? <img src={"light.svg"} className='buttonicon moon' /> : theme === 'light' ? <Icon className='moon' icon="ph:moon-bold" color="black" /> : <img src={"autotheme.svg"} className='buttonicon moon' />}</button></li>
+        <button onClick={toggleTheme} className=" iconnavsmall d-block">{theme === 'dark' ? <img src={"light.svg"} className='buttonicon iconnavsmall' /> : theme === 'light' ? <Icon className='moon iconnavsmall' icon="ph:moon-bold" color="black" /> : <img src={"autotheme.svg"} className=' moon iconnavsmall' />}</button></li>
         <li> <OverlayTrigger
           trigger="click"
           key={'bottom'}
