@@ -49,6 +49,7 @@ function App() {
       setTheme('dark');
     } else if (theme === 'dark') {
       setTheme('auto');
+      console.log('auto')
     }
     else {
       setTheme('light');
