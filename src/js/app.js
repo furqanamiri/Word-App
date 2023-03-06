@@ -18,6 +18,7 @@ function App() {
   const [text, setText] = useState('');
   //loginUser is used to persist login state once user is logged in
   const [loginUser, setLoginUser] = useState(false);
+  const loginToken = useRef('')
   function toggleUserLogin() {
     setLoginUser(!loginUser);
   }
@@ -64,7 +65,7 @@ function App() {
 
     <>
       <IsAuto.Provider value={{ theme }} >
-        <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin }}>
+        <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
 
           {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}

@@ -24,7 +24,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   const toggleShareModalClose = () => setShareModal(false);
   const toggleShareModalOpen = () => setShareModal(true);
   //ExportModal hook state
-  const { loginUser, setLoginUser, toggleUserLogin } = useContext(LoginContext)
+  const { loginUser, setLoginUser, toggleUserLogin, loginToken } = useContext(LoginContext)
   const [exportModal, setExportModal] = useState(false);
   const toggleExportModalOpen = () => setExportModal(true);
   const toggleExportModalClose = () => setExportModal(false);
@@ -99,8 +99,23 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   };
 
   const LogOut = () => {
-    console.log("logOut")
+    fetch("http://18.234.225.252:4000/logout",{
+      method : 'POST',
+      headers: {
+        Accept: '*/*',
+        
+      },
+      body: JSON.stringify({
+    
+
+      })
+    }).then(()=>{
+      console.log("logOut")
     location.reload();
+    toggleUserLogin()
+    })
+    
+    
   }
 
 

@@ -7,7 +7,7 @@ import { LoginContext } from "./Logincontext";
 import { useState } from "react";
 import Registerform from "./registerform";
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes }) {
-  const { loginUser, setLoginUser, toggleUserLogin } = useContext(LoginContext)
+  const { loginUser, setLoginUser, toggleUserLogin ,loginToken} = useContext(LoginContext)
   const [useremail, setUserEmail] = useState('')
   const [error,SetError] = useState('');
   const changeUserEmail = (event) => {
@@ -21,28 +21,36 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   console.log(loginUser)
   const loginValidation = (e) => {
     e.preventDefault();
-    fetch('http://18.234.225.252:4000/api/ninjas', {
-      method: 'GET', headers: {
+    fetch('http://18.234.225.252:4000/login', {
+      method: 'POST', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        
+        email: useremail,
+        password: userpassword,
+
+      })
     }).then((response) => response.json()).then((response) => {
 
-      response.forEach(user => {
 
-        if (user.email == useremail && user.password == userpassword) {
-          console.log(toggleViewNotes);
-          toggleViewNotes()
 
+        if (response.token) {
+        loginToken.current = response.token
           toggleUserLogin()
           LoginModalClose()
+          console.log(loginToken.current)
         }
-      })
+        else{
+          SetError('Check Credentials')
+        }
+      
       console.log(loginUser)
       // document.getElementById('loginerrormessage').innerHTML = '{loginState ? "Login Successful" : "Check Credentials"}'
 
 
 
-    }).catch(error => SetError('Check Internet') )
+    }).catch(error => SetError('Check Your Connection') )
   }
   const [passCheck, setPassCheck] = useState(true);
 

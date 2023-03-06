@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import '../scss/viewNotes.scss';
 import moment from 'moment';
 import Viewingnotes from "./viewingnotes";
+import { LoginContext } from "./Logincontext";
 // import Viewingnotes from "./viewingnotes";
 
 
 export function Viewnotes({ isDark, toggleViewNotes, setText }) {
-
+  const { loginUser, setLoginUser, toggleUserLogin ,loginToken} = useContext(LoginContext)
   const textnote = useRef('')
   textnote.current = 'Click to create a new note'
   const [dateUpd, setDateUpd] = useState(moment())
@@ -25,7 +26,8 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   const addNotes = () => {
     fetch('http://18.234.225.252:4000/notes/list', {
       method: 'POST', headers: {
-        accept: 'application.json', 'Content-Type': 'application/json'
+        accept: 'application.json', 'Content-Type': 'application/json',
+        token                                                                                                                                                                                                                                                    : loginToken.current,
       }
     }).then((response) => response.json()).then((response) => {
       console.log(response)
