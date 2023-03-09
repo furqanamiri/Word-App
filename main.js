@@ -4,8 +4,10 @@ const { app, BrowserWindow, Menu } = require('electron');
 // const { mainMenu } = require('./src/menumaker');
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    minWidth: 1000,
+    minHeight: 700,
+    Width:1000,
+    Height:700,
     backgroundColor: "white",
     webPrefeferences: {
 
