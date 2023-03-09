@@ -7,12 +7,13 @@ import { useRef, useState, useEffect, useContext } from 'react'
 import { LoginContext } from './Logincontext';
 import { Viewnotes } from './viewnotes';
 import { IsAuto } from './Isauto';
-
+import { updateContext } from './updatecontext';
 import FileReaderfun from './filereaderfun';
 
 function App() {
   const idsave = useRef('')
-
+  const noteId = useRef('')
+const [updateNote, setUpdateNote] = useState(false)
 
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState('');
@@ -22,9 +23,13 @@ function App() {
   function toggleUserLogin() {
     setLoginUser(!loginUser);
   }
+  useEffect(()=>{
+    window.sessionStorage.setItem('updatecontext',updateNote)
+  },[updateNote])
+  
   const [viewNotes, setViewNotes] = useState(false)
   const toggleViewNotes = () => {
-    console.log('hggdjusgjihg');
+    
     if (viewNotes == false) {
       setViewNotes(true)
     } else {
@@ -61,15 +66,33 @@ function App() {
     document.body.className = " ";
     document.body.className = theme === "auto" && isNight() ? "dark" : theme === "auto" && !isNight() ? "light" : theme === "light" ? "light" : "dark";
   }, [theme]);
+useEffect(()=>{
+  if(loginUser){
+window.sessionStorage.setItem('loginUser',loginUser)  
+window.sessionStorage.setItem('loginToken',loginToken.current)  }
+},[loginUser])
+  useEffect(()=> {
+    if(window.sessionStorage.getItem('loginUser'))
+    {
+      setLoginUser(window.sessionStorage.getItem('loginUser'))
+    }
+    if(window.sessionStorage.getItem('loginToken')){
+      loginToken.current = window.sessionStorage.getItem('loginToken')
+      console.log(loginToken.current)
+    }
+    console.log(loginUser)
+  },[])
   return (
 
     <>
       <IsAuto.Provider value={{ theme }} >
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
+        <updateContext.Provider value={{updateNote , setUpdateNote, noteId}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
 
           {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
           <Footer />
+          </updateContext.Provider>
         </LoginContext.Provider>
       </IsAuto.Provider>
     </>

@@ -14,11 +14,13 @@ import { LoginContext } from './Logincontext';
 import Sharemodal from './sharemodal';
 var FileSaver = require('file-saver');
 import { IsAuto } from './Isauto';
+import { updateContext } from './updatecontext';
 
 
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
+  const {updateNote, setUpdate ,noteId } = useContext(updateContext)
   const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
@@ -67,26 +69,49 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     console.log(text)
   }
   //File Saving functionality
+  
   const toggleSaveFile = (event) => {
-    event.preventDefault();
-    if (idsave.current == "") { idgenerator() }
-    fetch('http://18.234.225.252:4000/notes/add', {
-      method: 'POST',
-      headers: {
+    if(!loginUser)
+    {    const newstring = text;
+
+      var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
+    FileSaver.saveAs(blob, "hello world.txt")}
+    else
+    if(!updateNote )
+    {
+      event.preventDefault();
+         idgenerator() 
+      fetch('http://18.234.225.252:4000/notes/add', {
+       method: 'POST',
+       headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
-      }, body: JSON.stringify({
-        id: idsave.current,
-        title: text,
-        userid: 'testuser',
-      })
+        token: loginToken.current
+        }, body: JSON.stringify({
+          id: idsave.current,
+          content : text,
+    
+                                  })
 
-    }).then((response) => { console.log('fileadded') });
-
-    const newstring = text;
+                 }).then((response) => { console.log('fileadded') });
 
 
-    var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
-    FileSaver.saveAs(blob, "hello world.txt")
+    
+  }
+  else{
+    fetch('http://18.234.225.252:4000/notes/update', {
+      method: 'PUT',
+      headers: {
+       accept: 'application.json', 'Content-Type': 'application/json',
+       token: loginToken.current
+       }, body: JSON.stringify({
+         id: noteId.current,
+         content : text,
+   
+                                 })
+
+                }).then((response) => { console.log('fileadded') });
+  }
+  
   }
 
   //Login Modal hook state 
@@ -100,19 +125,19 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
 
   const LogOut = () => {
     fetch("http://18.234.225.252:4000/logout",{
-      method : 'POST',
+      method : 'GET',
       headers: {
         Accept: '*/*',
-        
-      },
-      body: JSON.stringify({
-    
-
-      })
+        token: loginToken.current,
+      }
+      
     }).then(()=>{
       console.log("logOut")
-    location.reload();
+      window.sessionStorage.clear('loginToken')
+      window.sessionStorage.clear('loginUser')
+      window.sessionStorage.clear('')
     toggleUserLogin()
+    location.reload();
     })
     
     
@@ -122,7 +147,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
 
 
   return (<>
-    <nav className='d-md-none d-lg-flex d-sm-none  d-xs-none flex-wrap-wrap' >
+    <nav className='d-md-none d-lg-flex d-sm-none  flex-wrap-wrap' >
       <ul >
         {/* Note Icon */}
         <li>
@@ -205,7 +230,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         </li>
       </ul>
     </nav>
-    <nav className='d-md-flex d-lg-none d-sm-flex d-xs-flex' style={{ height: '10%' }} >
+    <nav className='d-md-flex d-lg-none d-sm-flex ' style={{ height: '10%' }} >
       <ul >
         {/* Note Icon */}
         <li>
@@ -213,15 +238,15 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           <button className='iconnavsmall' onClick={toggleSaveFile} id="save" ><img src="./src/svg/noteicon.svg" className='iconnavsmall' color="#7496b8" width="50" height="50" /></button>
         </li>
         {/* Password */}
-        <li><button className={loginUser ? "iconnavsmall change" : "d-none"} onClick={toggleViewNotes}><img src='./src/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
+        <li><button className={loginUser ? "iconnavsmall change" : "d-none"} onClick={toggleViewNotes}><img src='./src/svg/openfiles.svg' className="iconnavsmall" color="#7496b8" width="20" height="20"></img></button>
         <label className={loginUser ? "d-none" : "iconnavsmall change"}><input className="files iconnavsmall" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnavsmall' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login */}
-        <li><button className={loginUser ? "d-none" : "iconnavsmall change"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnavsmall'
+        <li><button className={loginUser ? "d-none" : "iconnavsmall"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnavsmall'
         /></button>
-          <button className={loginUser ? "iconnavsmall change" : "d-none"} onClick={LogOut} ><img src="./src/svg/logout.svg" width="20" height="20" className='iconnavsmall'
+          <button className={loginUser ? "iconnavsmall " : "d-none"} onClick={LogOut} ><img src="./src/svg/logout.svg" width="20" height="20" className='iconnavsmall'
           /></button>
 
         </li>

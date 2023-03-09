@@ -16,17 +16,36 @@ textarea{
   }
 }
 
+/* Hide scrollbar for IE, Edge and Firefox */
+textarea.form-control:active{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  -webkit-scrollbar: none;
+}
   textarea.form-control {
-    height: 76vh;
+   height: 75%;
+    max-height:77%;
     padding: 3rem;
     border: transparent;
     outline: 0;
     font-weight: 200;
     font-size: 2rem;
-     
+    scrollbar-color: #fa8b2e;
+    -ms-thumb: none;
+   
    
   }
-
+textarea.responsiveheight{
+  height: 30%;
+    max-height:30%;
+    padding: 3rem;
+    border: transparent;
+    outline: 0;
+    font-weight: 200;
+    font-size: 2rem;
+    scrollbar-color: #fa8b2e;
+    -ms-thumb: none;
+}
 .form-control:active {
   border: transparent;
 }
@@ -40,14 +59,16 @@ textarea{
 .footer{
   background-color: inherit;
   font-size: 1.5rem;
+  max-height: 20vh;
 }
 .light .footer {
   color: #7496b8;
   font-family: sans-serif;
   margin-bottom: 0.5rem;
   font-weight: 200;
-  height: fit-content;
-  position: fixed;
+  
+  max-height: 20vh;
+  position: relative;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -60,8 +81,9 @@ textarea{
   font-family: sans-serif;
   margin-bottom: 0.5rem;
   font-weight: 200;
-  height: fit-content;
-  position: fixed;
+  max-height: 20vh;
+  
+  position: relative;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -89,6 +111,7 @@ textarea{
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
+  width:50%;
 }
 .footerdiv {
   display: flex;
@@ -96,6 +119,8 @@ textarea{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   align-items: center;
+  max-height:10vh;
+  
 }
 .footer ul li {
   display: flex;
@@ -103,15 +128,20 @@ textarea{
   padding-bottom: 0;
   margin: 0.3rem 0;
   margin-left: 1.2rem;
+  font-size: 1.3rem;
+    
+
+
+}
+
+.endalign{
+ 
+
+  /* text-align: end; */
+  width:10%;
 }
 .right-footer {
   justify-content: end;
-  margin-right: 0;
-  margin-left: 3rem;
-  width: 20%;
-  li {
-    width: 50%;
-  }
 }
 .left-footer {
   margin-left: 3rem;

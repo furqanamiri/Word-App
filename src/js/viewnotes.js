@@ -3,6 +3,7 @@ import '../scss/viewNotes.scss';
 import moment from 'moment';
 import Viewingnotes from "./viewingnotes";
 import { LoginContext } from "./Logincontext";
+import { updateContext } from "./updatecontext";
 // import Viewingnotes from "./viewingnotes";
 
 
@@ -11,6 +12,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   const textnote = useRef('')
   textnote.current = 'Click to create a new note'
   const [dateUpd, setDateUpd] = useState(moment())
+  const {setUpdateNote} = useContext(updateContext)
   // word count
   const [refreshstate, setrefreshstate] = useState(false)
   const togglerefreshchange = () => {
@@ -25,13 +27,13 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   let count = 0;
   const addNotes = () => {
     fetch('http://18.234.225.252:4000/notes/list', {
-      method: 'POST', headers: {
+      method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
-        token                                                                                                                                                                                                                                                    : loginToken.current,
+        token: loginToken.current,                                                                                                                                                                                                                                    
       }
     }).then((response) => response.json()).then((response) => {
       console.log(response)
-      const temp = response.map(user => (user.title))
+      const temp = response.map(user => (user.content))
       const tempId = response.map(idtemp => (idtemp.id))
       setList(temp);
       setId(tempId)
@@ -66,8 +68,9 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   // const notediv = document.getElementById("newnote")
   // notediv.addEventListener('click', () => {
 
-  const clickFunction = () => {
+  const clickFunctionnew = () => {
     setText('')
+    setUpdateNote(false)
     window.sessionStorage.clear('text')
     toggleViewNotes()
   }
@@ -77,7 +80,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
       <div className='fluid-container mainnotes' id='mainnotes'>
         <div className="row" id='notesadd'>
           <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote">
-            <button onClick={clickFunction}><p className="notetext" > {textnote.current}
+            <button onClick={clickFunctionnew}><p className="notetext" > {textnote.current}
             </p></button>
             <div className={isDark ? "darknotetext darknotesfooter" : " lightnotetext  darknotesfooter"}>
               <div>
@@ -89,7 +92,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
           {
             users.map(t => (
-              <Viewingnotes isDark={isDark} list={t.title} idnote={t.id} togglerefreshchange={togglerefreshchange} toggleViewNotes={toggleViewNotes} setText={setText} />
+              <Viewingnotes isDark={isDark} list={t.content} idnote={t.id} togglerefreshchange={togglerefreshchange} toggleViewNotes={toggleViewNotes} setText={setText} />
 
             ))
           }

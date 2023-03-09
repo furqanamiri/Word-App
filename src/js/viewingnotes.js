@@ -1,15 +1,20 @@
 import moment from 'moment'
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { useState } from 'react'
 import '../scss/viewNotes.scss'
+import { LoginContext } from './Logincontext'
+import { updateContext } from './updatecontext'
 export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNotes, setText }) {
+  const {setUpdateNote , noteId} = useContext(updateContext)
   const textnote = useRef('false')
+  const{loginToken} = useContext(LoginContext)
   console.log(idnote)
   textnote.current = list
   const deletenote = () => {
     fetch('http://18.234.225.252:4000/notes/delete', {
       method: 'DELETE', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
+        token : loginToken.current,
       }, body: JSON.stringify({
         id: idnote,
       })
@@ -21,6 +26,8 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   }
   // document.getElementById('creatednote').addEventListener('click', () => {
   const clickFunction = () => {
+   setUpdateNote(true)
+    noteId.current = idnote;
     setText(textnote.current)
     window.sessionStorage.clear('text')
     toggleViewNotes()
