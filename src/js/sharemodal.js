@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import "../scss/shareModal.scss";
+import "../scss/sharemodal.scss";
 import Form from "react-bootstrap/Form";
 
 

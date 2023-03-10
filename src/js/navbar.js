@@ -152,10 +152,10 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         {/* Note Icon */}
         <li>
 
-          <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="./src/svg/noteicon.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button>
+          <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="../src/svg/noteicon.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button>
         </li>
         {/* Password */}
-<li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='./src/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
+<li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='../src/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
         <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
