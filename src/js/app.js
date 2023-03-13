@@ -9,9 +9,15 @@ import { Viewnotes } from './viewnotes';
 import { IsAuto } from './Isauto';
 import { updateContext } from './updatecontext';
 import FileReaderfun from './filereaderfun';
+import { AnonContext } from './anoncontext';
 
 function App() {
-  const idsave = useRef('')
+  const [anonContext,setAnonContext] = useState(true)
+  function toggleAnonUser(){
+    setAnonContext(!anonContext)
+  }
+  const anonToken = useRef('')
+    const idsave = useRef('')
   const noteId = useRef('')
 const [updateNote, setUpdateNote] = useState(false)
 
@@ -23,9 +29,7 @@ const [updateNote, setUpdateNote] = useState(false)
   function toggleUserLogin() {
     setLoginUser(!loginUser);
   }
-  useEffect(()=>{
-    window.sessionStorage.setItem('updatecontext',updateNote)
-  },[updateNote])
+  
   
   const [viewNotes, setViewNotes] = useState(false)
   const toggleViewNotes = () => {
@@ -62,6 +66,10 @@ const [updateNote, setUpdateNote] = useState(false)
     }
 
   };
+  useEffect(()=>{
+    window.sessionStorage.setItem('updatecontext',updateNote)
+  },[updateNote])
+  
   useEffect(() => {
     document.body.className = " ";
     document.body.className = theme === "auto" && isNight() ? "dark" : theme === "auto" && !isNight() ? "light" : theme === "light" ? "light" : "dark";
@@ -81,11 +89,14 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
       console.log(loginToken.current)
     }
     console.log(loginUser)
+
   },[])
+  
   return (
 
     <>
       <IsAuto.Provider value={{ theme }} >
+      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
         <updateContext.Provider value={{updateNote , setUpdateNote, noteId}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
@@ -94,7 +105,9 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
           <Footer />
           </updateContext.Provider>
         </LoginContext.Provider>
+        </AnonContext.Provider>
       </IsAuto.Provider>
+      
     </>
 
 

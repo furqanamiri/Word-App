@@ -42,7 +42,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   const registerformcheck = (passwordstring) => {
     console.log(usernameid)
     const emailid = document.getElementById('emailid').value
-    fetch('http://18.234.225.252:4000/api/ninjas', {
+    fetch('http://54.146.74.146:4000/api/ninjas', {
       method: 'POST',
       headers: {
         Accept: 'application.json',

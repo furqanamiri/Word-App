@@ -81,7 +81,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     {
       event.preventDefault();
          idgenerator() 
-      fetch('http://18.234.225.252:4000/notes/add', {
+      fetch('http://54.146.74.146:4000/notes/add', {
        method: 'POST',
        headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     
   }
   else{
-    fetch('http://18.234.225.252:4000/notes/update', {
+    fetch('http://54.146.74.146:4000/notes/update', {
       method: 'PUT',
       headers: {
        accept: 'application.json', 'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   };
 
   const LogOut = () => {
-    fetch("http://18.234.225.252:4000/logout",{
+    fetch("http://54.146.74.146:4000/logout",{
       method : 'GET',
       headers: {
         Accept: '*/*',
