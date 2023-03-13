@@ -15,11 +15,13 @@ import Sharemodal from './sharemodal';
 var FileSaver = require('file-saver');
 import { IsAuto } from './Isauto';
 import { updateContext } from './updatecontext';
+import { AnonContext } from './AnonContext';
 
 
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
+  const{anonContext,toggleAnonUser} = useContext(AnonContext)
   const {updateNote, setUpdate ,noteId } = useContext(updateContext)
   const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
@@ -136,7 +138,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
       window.sessionStorage.clear('loginToken')
       window.sessionStorage.clear('loginUser')
       window.sessionStorage.clear('')
-    toggleUserLogin()
+    toggleAnonUser()
     location.reload();
     })
     
@@ -244,9 +246,9 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login */}
-        <li><button className={loginUser ? "d-none" : "iconnavsmall"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnavsmall'
+        <li><button className={anonContext ? "iconnavsmall" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnavsmall'
         /></button>
-          <button className={loginUser ? "iconnavsmall " : "d-none"} onClick={LogOut} ><img src="./src/svg/logout.svg" width="20" height="20" className='iconnavsmall'
+          <button className={anonContext ? "d-none" : "iconnavsmall"} onClick={LogOut} ><img src="./src/svg/logout.svg" width="20" height="20" className='iconnavsmall'
           /></button>
 
         </li>

@@ -6,8 +6,10 @@ import Form from "react-bootstrap/Form";
 import { LoginContext } from "./Logincontext";
 import { useState } from "react";
 import Registerform from "./registerform";
+import { AnonContext } from "./AnonContext";
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes }) {
   const { loginUser, setLoginUser, toggleUserLogin ,loginToken} = useContext(LoginContext)
+  const{anonContext,toggleAnonUser} = useContext(AnonContext)
   const [useremail, setUserEmail] = useState('')
   const [error,SetError] = useState('');
   const changeUserEmail = (event) => {
@@ -21,7 +23,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   console.log(loginUser)
   const loginValidation = (e) => {
     e.preventDefault();
-    fetch('http://54.146.74.146:4000/login', {
+    fetch('http://http://54.146.74.146:4000/login', {
       method: 'POST', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
       },
@@ -37,7 +39,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
 
         if (response.token) {
         loginToken.current = response.token
-          toggleUserLogin()
+          toggleAnonUser()
           LoginModalClose()
           console.log(loginToken.current)
         }

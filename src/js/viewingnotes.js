@@ -2,7 +2,7 @@ import moment from 'moment'
 import React, { useContext, useRef } from 'react'
 import { useState } from 'react'
 import '../scss/viewNotes.scss'
-import { AnonContext } from './anoncontext'
+import { AnonContext } from './AnonContext'
 import { LoginContext } from './Logincontext'
 import { updateContext } from './updatecontext'
 export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNotes, setText }) {

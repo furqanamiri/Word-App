@@ -9,7 +9,7 @@ import { Viewnotes } from './viewnotes';
 import { IsAuto } from './Isauto';
 import { updateContext } from './updatecontext';
 import FileReaderfun from './filereaderfun';
-import { AnonContext } from './anoncontext';
+import { AnonContext } from './AnonContext';
 
 function App() {
   const [anonContext,setAnonContext] = useState(true)
@@ -79,6 +79,9 @@ useEffect(()=>{
 window.sessionStorage.setItem('loginUser',loginUser)  
 window.sessionStorage.setItem('loginToken',loginToken.current)  }
 },[loginUser])
+
+
+
   useEffect(()=> {
     if(window.sessionStorage.getItem('loginUser'))
     {
@@ -89,7 +92,17 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
       console.log(loginToken.current)
     }
     console.log(loginUser)
-
+fetch('http://54.146.74.146:4000/anonuser',{
+method: 'GET', headers: {
+  accept: 'application.json', 'Content-Type': 'application/json',
+                                                                                                                                                                                                                                     
+},
+  }).then((response)=> response.json()).then((response)=>{
+    if(response.token)
+    loginToken.current = response.token;
+    console.log(response.token)
+    setLoginUser(true)
+  })
   },[])
   
   return (
