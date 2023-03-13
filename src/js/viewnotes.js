@@ -26,7 +26,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   const spaces = textnote.current.match(/\s+/g);
   let count = 0;
   const addNotes = () => {
-    fetch('http://18.234.225.252:4000/notes/list', {
+    fetch('http://54.146.74.146:4000/notes/list', {
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
         token: loginToken.current,                                                                                                                                                                                                                                    
@@ -79,7 +79,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
     <>
       <div className='fluid-container mainnotes' id='mainnotes'>
         <div className="row" id='notesadd'>
-          <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote">
+          <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote" style={{minHeight : '201px'}}>
             <button onClick={clickFunctionnew}><p className="notetext" > {textnote.current}
             </p></button>
             <div className={isDark ? "darknotetext darknotesfooter" : " lightnotetext  darknotesfooter"}>

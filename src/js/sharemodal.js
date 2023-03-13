@@ -47,7 +47,7 @@ export default function Sharemodal({ shareModal, toggleShareModalClose, isDark }
             <div className="d-flex justify-content-center"> <button type="radio" name="sharerad" style={{ fontWeight: 'lighter', fontSize: '50px', color: '#7496B8', width: '50%' }}><img style={{
               transform: 'scale(3)',
               marginRight: '0.5em'
-            }} src="./src/svg/copylink.svg" ></img>Copy Link</button></div>
+            }} src="./svg/copylink.svg" ></img>Copy Link</button></div>
 
           </Form>
         </Modal.Body>

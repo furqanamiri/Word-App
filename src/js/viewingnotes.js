@@ -11,7 +11,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   console.log(idnote)
   textnote.current = list
   const deletenote = () => {
-    fetch('http://18.234.225.252:4000/notes/delete', {
+    fetch('http://54.146.74.146:4000/notes/delete', {
       method: 'DELETE', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
         token : loginToken.current,
@@ -41,7 +41,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
         <div>
           <p className='footerpara'>Last Updated</p>
         </div><div><p className='footerpara'>few seconds ago</p></div>
-        <button className="deletenote" onClick={deletenote}><img src='./src/svg/notedelete.svg'></img></button>
+        <button className="deletenote" onClick={deletenote}><img src='./svg/notedelete.svg'></img></button>
       </div>
     </div>
   </>)

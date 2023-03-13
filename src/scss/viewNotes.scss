@@ -5,7 +5,7 @@
   overflow-y: scroll;
 }
 .dark .note {
-  background-image: url("../svg/darknote.svg");
+  background-image: url("../../public/svg/darknote.svg");
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0;
@@ -21,7 +21,7 @@
   padding: 0 1%;
 }
 .light .note {
-  background-image: url("../svg/notes.svg");
+  background-image: url("../../public/svg/notes.svg");
   background-size: 100%;
   background-repeat: no-repeat;
   padding: 0;

@@ -42,7 +42,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   const registerformcheck = (passwordstring) => {
     console.log(usernameid)
     const emailid = document.getElementById('emailid').value
-    fetch('http://18.234.225.252:4000/api/ninjas', {
+    fetch('http://54.146.74.146:4000/api/ninjas', {
       method: 'POST',
       headers: {
         Accept: 'application.json',
@@ -118,7 +118,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 id="usernameid"
                 placeholder=" Enter Username"
               />
-              <img src="./src/svg/loginemail.svg" className="inputiconleft"></img>
+              <img src="./svg/loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
             <Form.Group className="mb-3 " controlId="Email" style={{ position: "relative" }}>
               <Form.Control
@@ -137,7 +137,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 type="email" id='emailid'
                 placeholder="Enter Your Email"
               />
-              <img src="./src/svg/registeremail.svg" className="inputiconleft"></img>
+              <img src="./svg/registeremail.svg" className="inputiconleft"></img>
             </Form.Group>
 
             <Form.Group className="mb-3 " controlId="formBasicPassword" style={{ position: "relative" }}>
@@ -158,7 +158,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 placeholder="Password"
                 id="password"
               />
-              <img src="./src/svg/loginlock.svg" className="inputiconleft"></img>
+              <img src="./svg/loginlock.svg" className="inputiconleft"></img>
               <button style={{
                 position: 'absolute',
                 top: '45%',
@@ -186,7 +186,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 type={passCheck ? "password" : 'text'}
                 placeholder="Confirm Password"
               />
-              <img src="./src/svg/loginlock.svg" className="inputiconleft"></img>
+              <img src="./svg/loginlock.svg" className="inputiconleft"></img>
               <button style={{
                 position: 'absolute',
                 top: '45%',
@@ -194,7 +194,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
               }} tabindex="-1"
                 onClick={togglePassCheck1}
-              ><img src="./src/svg/eye.svg"></img></button>
+              ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
 
             {/* <GoogleReCaptcha /> */}
