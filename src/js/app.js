@@ -102,6 +102,7 @@ method: 'GET', headers: {
     loginToken.current = response.token;
     console.log(response.token)
     setLoginUser(true)
+    setUpdateNote(true)
   })
   },[])
   

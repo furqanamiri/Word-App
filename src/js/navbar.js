@@ -21,8 +21,8 @@ import { AnonContext } from './AnonContext';
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
-  const{anonContext,toggleAnonUser} = useContext(AnonContext)
-  const {updateNote, setUpdate ,noteId } = useContext(updateContext)
+  const { anonContext, toggleAnonUser } = useContext(AnonContext)
+  const { updateNote, setUpdate, noteId } = useContext(updateContext)
   const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
@@ -71,49 +71,52 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     console.log(text)
   }
   //File Saving functionality
-  
+
   const toggleSaveFile = (event) => {
-    if(!loginUser)
-    {    const newstring = text;
+    if (!loginUser) {
+      const newstring = text;
 
       var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
-    FileSaver.saveAs(blob, "hello world.txt")}
+      FileSaver.saveAs(blob, "hello world.txt")
+    }
     else
-    if(!updateNote )
-    {
-      event.preventDefault();
-         idgenerator() 
-      fetch('http://54.146.74.146:4000/notes/add', {
-       method: 'POST',
-       headers: {
-        accept: 'application.json', 'Content-Type': 'application/json',
-        token: loginToken.current
-        }, body: JSON.stringify({
-          id: idsave.current,
-          content : text,
-    
-                                  })
+      if (!updateNote) {
+        event.preventDefault();
+        idgenerator()
+        fetch('http://54.146.74.146:4000/notes/add', {
+          method: 'POST',
+          headers: {
+            accept: 'application.json', 'Content-Type': 'application/json',
+            token: loginToken.current
+          }, body: JSON.stringify({
+            id: idsave.current,
+            content: text,
 
-                 }).then((response) => { console.log('fileadded') });
+          })
+
+        }).then((response) => {
+          console.log('fileadded')
+          setUpdate(true)
+        });
 
 
-    
-  }
-  else{
-    fetch('http://54.146.74.146:4000/notes/update', {
-      method: 'PUT',
-      headers: {
-       accept: 'application.json', 'Content-Type': 'application/json',
-       token: loginToken.current
-       }, body: JSON.stringify({
-         id: noteId.current,
-         content : text,
-   
-                                 })
 
-                }).then((response) => { console.log('fileadded') });
-  }
-  
+      }
+      else {
+        fetch('http://54.146.74.146:4000/notes/update', {
+          method: 'PUT',
+          headers: {
+            accept: 'application.json', 'Content-Type': 'application/json',
+            token: loginToken.current
+          }, body: JSON.stringify({
+            id: idsave.current,
+            content: text,
+
+          })
+
+        }).then((response) => { console.log('fileadded') });
+      }
+
   }
 
   //Login Modal hook state 
@@ -126,24 +129,62 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   };
 
   const LogOut = () => {
-    fetch("http://54.146.74.146:4000/logout",{
-      method : 'GET',
+    fetch("http://54.146.74.146:4000/logout", {
+      method: 'GET',
       headers: {
         Accept: '*/*',
         token: loginToken.current,
       }
-      
-    }).then(()=>{
+
+    }).then(() => {
       console.log("logOut")
       window.sessionStorage.clear('loginToken')
       window.sessionStorage.clear('loginUser')
       window.sessionStorage.clear('')
-    toggleAnonUser()
-    location.reload();
+      toggleAnonUser()
+      location.reload();
     })
-    
-    
+
+
   }
+  useEffect(() => {
+    if (!updateContext) {
+
+
+      event.preventDefault();
+      idgenerator()
+      fetch('http://54.146.74.146:4000/notes/add', {
+        method: 'POST',
+        headers: {
+          accept: 'application.json', 'Content-Type': 'application/json',
+          token: loginToken.current
+        }, body: JSON.stringify({
+          id: idsave.current,
+          content: text,
+
+        })
+
+      }).then((response) => { console.log('fileadded') });
+    }
+
+    if (updateContext) {
+      setTimeout(() => {
+        fetch('http://54.146.74.146:4000/notes/update', {
+          method: 'PUT',
+          headers: {
+            accept: 'application.json', 'Content-Type': 'application/json',
+            token: loginToken.current
+          }, body: JSON.stringify({
+            id: noteId.current,
+            content: text,
+
+          })
+
+        }).then((response) => { console.log('fileadded') });
+      }, 5000)
+    }
+  }, [])
+
 
 
 
@@ -157,15 +198,15 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="./src/svg/noteicon.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button>
         </li>
         {/* Password */}
-<li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='./src/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
-        <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
+        <li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='./src/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
+          <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login and Logout*/}
-        <li><button className={loginUser ? "d-none" : "iconnav change"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnav'
+        <li><button className={anonContext ? "iconnavsmall" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnav'
         /></button>
-          <button className={loginUser ? "iconnav change" : "d-none"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/logout.svg" width="20" height="20" className='iconnav'
+          <button className={anonContext ? "d-none" : "iconnavsmall"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/logout.svg" width="20" height="20" className='iconnav'
           /></button>
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
@@ -216,7 +257,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
             overlay={
               <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool" : "tooltiplight sharetool"} style={{ borderRadius: '10px' }}>
                 <Popover.Body>
-                  <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./src/svg/tooltiplink.svg"></img><p>https://wordpad.pw/share/837NltMa4DtgSFsMEdZG</p></div>
+                  <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./src/svg/tooltiplink.svg"></img><p>http://localhost:3000/?id={noteId.current}</p></div>
                   <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" /><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
                     <input type="radio" name="sharerad" /><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
                     <button type="radio" name="sharerad" style={{ fontWeight: '300', color: '#7496B8' }}><img src="./src/svg/copylink.svg" style={{ paddingRight: '1%' }} ></img>Copy Link</button></form>
@@ -241,7 +282,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         </li>
         {/* Password */}
         <li><button className={loginUser ? "iconnavsmall change" : "d-none"} onClick={toggleViewNotes}><img src='./src/svg/openfiles.svg' className="iconnavsmall" color="#7496b8" width="20" height="20"></img></button>
-        <label className={loginUser ? "d-none" : "iconnavsmall change"}><input className="files iconnavsmall" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnavsmall' color="#7496b8" width="20" height="20" /></label> </li>
+          <label className={loginUser ? "d-none" : "iconnavsmall change"}><input className="files iconnavsmall" type="file" onChange={showFile} /><img src="./src/svg/openfiles.svg" className='iconnavsmall' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
