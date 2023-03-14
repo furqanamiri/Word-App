@@ -1,5 +1,5 @@
 {
-  "name": "electron",
+  "name": "Wordapp",
   "version": "1.0.0",
   "description": " ",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy":"http://18.234.225.252:4000/" ,
+  
   "keywords": [],
   "author": "",
   "license": "ISC",

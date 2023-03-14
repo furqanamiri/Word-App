@@ -15,11 +15,13 @@ import Sharemodal from './sharemodal';
 var FileSaver = require('file-saver');
 import { IsAuto } from './Isauto';
 import { updateContext } from './updatecontext';
+import { AnonContext } from './AnonContext';
 // import noteIcon from '../svg/'
  
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
+  const { anonContext, toggleAnonUser} = useContext(AnonContext)
   const {updateNote, setUpdate ,noteId } = useContext(updateContext)
   const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
@@ -125,7 +127,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
 
   const LogOut = () => {
     fetch("http://54.146.74.146:4000/logout",{
-      method : 'GET',
+    
       headers: {
         Accept: '*/*',
         token: loginToken.current,
@@ -136,7 +138,8 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
       window.sessionStorage.clear('loginToken')
       window.sessionStorage.clear('loginUser')
       window.sessionStorage.clear('')
-    toggleUserLogin()
+    
+    toggleAnonUser()
     location.reload();
     })
     
@@ -161,9 +164,9 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login and Logout*/}
-        <li><button className={loginUser ? "d-none" : "iconnav change"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
+        <li><button className={anonContext ? "iconnavsmall" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
         /></button>
-          <button className={loginUser ? "iconnav change" : "d-none"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/logout.svg" width="20" height="20" className='iconnav'
+          <button className={anonContext ? "d-none" : "iconnavsmall"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/logout.svg" width="20" height="20" className='iconnav'
           /></button>
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
@@ -214,7 +217,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
             overlay={
               <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool" : "tooltiplight sharetool"} style={{ borderRadius: '10px' }}>
                 <Popover.Body>
-                  <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p>https://wordpad.pw/share/837NltMa4DtgSFsMEdZG</p></div>
+                  <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p>http://localhost:3000/?id={noteId.current}</p></div>
                   <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" /><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
                     <input type="radio" name="sharerad" /><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
                     <button type="radio" name="sharerad" style={{ fontWeight: '300', color: '#7496B8' }}><img src="./svg/copylink.svg" style={{ paddingRight: '1%' }} ></img>Copy Link</button></form>

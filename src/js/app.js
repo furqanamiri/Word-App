@@ -9,8 +9,14 @@ import { Viewnotes } from './viewnotes';
 import { IsAuto } from './Isauto';
 import { updateContext } from './updatecontext';
 import FileReaderfun from './filereaderfun';
-
+import { AnonContext } from './AnonContext';
 function App() {
+  const [anonContext,setAnonContext] = useState(true)
+  function toggleAnonUser(){
+    setAnonContext(!anonContext)
+  }
+
+
   const idsave = useRef('')
   const noteId = useRef('')
 const [updateNote, setUpdateNote] = useState(false)
@@ -27,6 +33,13 @@ const [updateNote, setUpdateNote] = useState(false)
     window.sessionStorage.setItem('updatecontext',updateNote)
   },[updateNote])
   
+  const queryString = window.location.search;
+console.log(queryString)
+  const urlParams = new URLSearchParams(queryString);
+let id = " "
+  id = urlParams.get('id')
+console.log(id)
+
   const [viewNotes, setViewNotes] = useState(false)
   const toggleViewNotes = () => {
     
@@ -81,11 +94,42 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
       console.log(loginToken.current)
     }
     console.log(loginUser)
-  },[])
+    // fetch('http://54.146.74.146:4000/anonuser')
+    fetch('http://54.146.74.146:4000/anonuser'
+  ).then((response)=> response.json()).then((response)=>{
+    if(response.token)
+    loginToken.current = response.token;
+    toggleUserLogin()
+    console.log(response.token)
+    
+    setUpdateNote(true)
+  }).then(()=>{
+    if(id!=" "){
+      fetch('http://54.146.74.146:4000/notes/note/'+id,{
+      method: 'GET',
+      headers:{
+        accept: 'application/json',
+        token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEwMDA3Zjk1N2Q4MjdhM2NiMzBiYTYiLCJpYXQiOjE2Nzg3NzAzMDN9.zQCOVN75UYc21r4Mfa0jlI-ChLX9LiAHNsULRBq09Fk',
+      }
+      }).then(response=> response.json()).then((response)=>{
+        
+        if(response)
+        console.log(response)
+        if(response)
+        setText(response.note.content)
+        noteId.current = id
+      })
+    
+    }
+  })
+  
+  }
+  ,[])
   return (
 
     <>
-      <IsAuto.Provider value={{ theme }} >
+       <IsAuto.Provider value={{ theme }} >
+      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
         <updateContext.Provider value={{updateNote , setUpdateNote, noteId}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
@@ -94,6 +138,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
           <Footer />
           </updateContext.Provider>
         </LoginContext.Provider>
+        </AnonContext.Provider>
       </IsAuto.Provider>
     </>
 
