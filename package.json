@@ -8,6 +8,7 @@
     "start": "electron .",
     "watch": "webpack --config webpack.common.js --watch"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
