@@ -4,7 +4,7 @@ var fs = require('fs'); // Load the File System to execute our common tasks (CRU
 dialog.showOpenDialog((fileNames) => {
   // fileNames is an array that contains all the selected
   if (fileNames === undefined) {
-    console.log("No file selected");
+    
     return;
   }
 
@@ -15,7 +15,7 @@ dialog.showOpenDialog((fileNames) => {
     }
 
     // Change how to handle the file content
-    console.log("The file content is : " + data);
+    
   });
 });
 //renderer.js - renderer process example

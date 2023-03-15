@@ -13,9 +13,9 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   const validateregister = (e) => {
     e.preventDefault();
     document.getElementById('errormessage').innerHTML = " "
-    // console.log('work')
+    
     const usernameid = document.getElementById('usernameid').value
-    // console.log(usernameid)
+  
     if (usernameid == "") {
       return document.getElementById('errormessage').innerHTML = 'Username can not be blank'
     }
@@ -40,7 +40,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     registerformcheck(passwordstring);
   }
   const registerformcheck = (passwordstring) => {
-    console.log(usernameid)
+    
     const emailid = document.getElementById('emailid').value
     fetch('http://54.146.74.146:4000/api/ninjas', {
       method: 'POST',
@@ -166,7 +166,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
               }} tabindex="-1"
                 onClick={togglePassCheck}
-              ><img src="./src/svg/eye.svg"></img></button>
+              ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
             <Form.Group className="mb-3 " controlId="formBasicPassword" style={{ position: "relative" }}>
               <Form.Control

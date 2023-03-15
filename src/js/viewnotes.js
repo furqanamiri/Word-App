@@ -32,7 +32,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
         token: loginToken.current,                                                                                                                                                                                                                                    
       }
     }).then((response) => response.json()).then((response) => {
-      console.log(response)
+   
       const temp = response.map(user => (user.content))
       const tempId = response.map(idtemp => (idtemp.id))
       setList(temp);
@@ -41,8 +41,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
 
     })
-    console.log(list)
-    console.log()
+  
   }
   useEffect(() => {
     // update word count
@@ -60,7 +59,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
     var spaces = textnote;
     // var spaces = self.value;
-    console.log(spaces)
+ 
     // var words = spaces ? spaces.length : 0;
   }
 

@@ -8,7 +8,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   const {setUpdateNote , noteId} = useContext(updateContext)
   const textnote = useRef('false')
   const{loginToken} = useContext(LoginContext)
-  console.log(idnote)
+
   textnote.current = list
   const deletenote = () => {
     fetch('http://54.146.74.146:4000/notes/delete', {

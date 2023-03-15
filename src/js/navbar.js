@@ -16,13 +16,14 @@ var FileSaver = require('file-saver');
 import { IsAuto } from './Isauto';
 import { updateContext } from './updatecontext';
 import { AnonContext } from './AnonContext';
-// import noteIcon from '../svg/'
- 
+
+
+
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
-  const { anonContext, toggleAnonUser} = useContext(AnonContext)
-  const {updateNote, setUpdate ,noteId } = useContext(updateContext)
+  const { anonContext, toggleAnonUser,editable } = useContext(AnonContext)
+  const { updateNote, setUpdateNote, noteId } = useContext(updateContext)
   const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
@@ -37,20 +38,14 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   const handleClosePass = () => setShowPass(false);
   const handleShowPass = () => setShowPass(true);
 
+  const setEdit = (string)=>{
+    editable.current= string
+    
+  }
+
   //File Saving to cloud
   const idsave = useRef('')
-  const idgenerator = () => {
-    let retVal = "";
-    let charset = "0123456789"
-    let length = 6;
-    for (let i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-
-    idsave.current = retVal;
-    console.log(idsave)
-
-  }
+  
   //File Opening functionality 
   function showFile() {
 
@@ -58,7 +53,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     var preview = document.getElementById('show-text');
     var file = document.querySelector('input[type=file]').files[0];
     var reader = new FileReader()
-    console.log(file)
+  
     var textFile = /text.*/;
     reader.readAsText(file)
     // if (file.type.match(textFile)) 
@@ -68,53 +63,18 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     reader.onerror = function (error) {
       error.target.result
     }
-    console.log(text)
+  
   }
   //File Saving functionality
-  
-  const toggleSaveFile = (event) => {
-    if(!loginUser)
-    {    const newstring = text;
+
+  const toggleSaveFile = () => {
+    if (!loginUser) {
+      const newstring = text;
 
       var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
-    FileSaver.saveAs(blob, "hello world.txt")}
-    else
-    if(!updateNote )
-    {
-      event.preventDefault();
-         idgenerator() 
-      fetch('http://54.146.74.146:4000/add', {
-       method: 'POST',
-       headers: {
-        accept: 'application.json', 'Content-Type': 'application/json',
-        token: loginToken.current
-        }, body: JSON.stringify({
-          id: idsave.current,
-          content : text,
-    
-                                  })
+      FileSaver.saveAs(blob, "hello world.txt")
 
-                 }).then((response) => { console.log('fileadded') });
-
-
-    
-  }
-  else{
-    fetch('http://54.146.74.146:4000/notes/update', {
-      method: 'PUT',
-      headers: {
-       accept: 'application.json', 'Content-Type': 'application/json',
-       token: loginToken.current
-       }, body: JSON.stringify({
-         id: noteId.current,
-         content : text,
-   
-                                 })
-
-                }).then((response) => { console.log('fileadded') });
-  }
-  
-  }
+  }}
 
   //Login Modal hook state 
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -126,25 +86,43 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   };
 
   const LogOut = () => {
-    fetch("http://54.146.74.146:4000/logout",{
-    
+    fetch("http://54.146.74.146:4000/logout", {
+      method: 'GET',
       headers: {
         Accept: '*/*',
         token: loginToken.current,
       }
-      
-    }).then(()=>{
-      console.log("logOut")
+
+    }).then(() => {
+    
       window.sessionStorage.clear('loginToken')
       window.sessionStorage.clear('loginUser')
       window.sessionStorage.clear('')
-    
-    toggleAnonUser()
-    location.reload();
+      toggleAnonUser()
+      location.reload();
     })
-    
-    
+
+
   }
+  useEffect(() => {
+   if (updateNote) {
+      
+        fetch('http://54.146.74.146:4000/notes/update', {
+          method: 'PUT',
+          headers: {
+            accept: 'application.json', 'Content-Type': 'application/json',
+            token: loginToken.current
+          }, body: JSON.stringify({
+            id: noteId.current,
+            content: text,
+
+          })
+
+        })
+      }
+    
+  }, [text])
+
 
 
 
@@ -158,15 +136,15 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="./svg/noteicon.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button>
         </li>
         {/* Password */}
-<li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='./svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
-        <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" type="file" onChange={showFile} /><img src="./svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
+        <li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
+          <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" type="file" onChange={showFile} /><img src="./svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login and Logout*/}
-        <li><button className={anonContext ? "iconnavsmall" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
+        <li><button className={anonContext ? "iconnav" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
         /></button>
-          <button className={anonContext ? "d-none" : "iconnavsmall"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/logout.svg" width="20" height="20" className='iconnav'
+          <button className={anonContext ? "d-none" : "iconnav"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/logout.svg" width="20" height="20" className='iconnav'
           /></button>
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
@@ -218,8 +196,8 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
               <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool" : "tooltiplight sharetool"} style={{ borderRadius: '10px' }}>
                 <Popover.Body>
                   <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p>http://localhost:3000/?id={noteId.current}</p></div>
-                  <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" /><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
-                    <input type="radio" name="sharerad" /><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
+                  <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" id="view only" onClick={()=>setEdit('No')}/><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
+                    <input type="radio" name="sharerad" id="editnote" onClick={()=>setEdit('yes')}/><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
                     <button type="radio" name="sharerad" style={{ fontWeight: '300', color: '#7496B8' }}><img src="./svg/copylink.svg" style={{ paddingRight: '1%' }} ></img>Copy Link</button></form>
                 </Popover.Body>
               </Popover>
@@ -242,14 +220,14 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         </li>
         {/* Password */}
         <li><button className={loginUser ? "iconnavsmall change" : "d-none"} onClick={toggleViewNotes}><img src='./svg/openfiles.svg' className="iconnavsmall" color="#7496b8" width="20" height="20"></img></button>
-        <label className={loginUser ? "d-none" : "iconnavsmall change"}><input className="files iconnavsmall" type="file" onChange={showFile} /><img src="./svg/openfiles.svg" className='iconnavsmall' color="#7496b8" width="20" height="20" /></label> </li>
+          <label className={loginUser ? "d-none" : "iconnavsmall change"}><input className="files iconnavsmall" type="file" onChange={showFile} /><img src="./svg/openfiles.svg" className='iconnavsmall' color="#7496b8" width="20" height="20" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login */}
-        <li><button className={loginUser ? "d-none" : "iconnavsmall"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnavsmall'
+        <li><button className={anonContext ? "iconnavsmall" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnavsmall'
         /></button>
-          <button className={loginUser ? "iconnavsmall " : "d-none"} onClick={LogOut} ><img src="./svg/logout.svg" width="20" height="20" className='iconnavsmall'
+          <button className={anonContext ? "d-none" : "iconnavsmall"} onClick={LogOut} ><img src="./svg/logout.svg" width="20" height="20" className='iconnavsmall'
           /></button>
 
         </li>

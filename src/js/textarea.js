@@ -63,7 +63,7 @@ export default function TextArea({ text, setText }) {
 
 
   // useEffect(() => {
-  //   console.log(statetDate)
+
   // }, [stateDate])
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function TextArea({ text, setText }) {
 
     var spaces = document.getElementById('inputField').value
     // var spaces = self.value;
-    console.log(spaces)
+
     // var words = spaces ? spaces.length : 0;
   }
   let date = document.lastModified;

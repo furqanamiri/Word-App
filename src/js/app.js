@@ -15,12 +15,21 @@ function App() {
   function toggleAnonUser(){
     setAnonContext(!anonContext)
   }
-
-
-  const idsave = useRef('')
+  const queryString = window.location.search;
+ 
+    const urlParams = new URLSearchParams(queryString);
+  let id = " "
+    id = urlParams.get('id')
+ 
   const noteId = useRef('')
+  if(!id==" ")
+  noteId.current = id
+  const anonToken = useRef('')
+    const idsave = useRef('')
+ 
 const [updateNote, setUpdateNote] = useState(false)
-
+//editable hook
+const editable = useRef('yes')
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState('');
   //loginUser is used to persist login state once user is logged in
@@ -29,17 +38,19 @@ const [updateNote, setUpdateNote] = useState(false)
   function toggleUserLogin() {
     setLoginUser(!loginUser);
   }
-  useEffect(()=>{
-    window.sessionStorage.setItem('updatecontext',updateNote)
-  },[updateNote])
-  
-  const queryString = window.location.search;
-console.log(queryString)
-  const urlParams = new URLSearchParams(queryString);
-let id = " "
-  id = urlParams.get('id')
-console.log(id)
+  const idgenerator = () => {
+    let retVal = "";
+    let charset = "0123456789"
+    let length = 6;
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
 
+    idsave.current = retVal;
+  
+
+  }
+  
   const [viewNotes, setViewNotes] = useState(false)
   const toggleViewNotes = () => {
     
@@ -48,7 +59,7 @@ console.log(id)
     } else {
       setViewNotes(false)
     }
-    console.log(viewNotes)
+    
   }
   const time = new Date().getHours()
 
@@ -60,21 +71,25 @@ console.log(id)
       return false
 
   }
+  
   const [theme, setTheme] = useState('light');
   const toggleTheme = () => {
-    console.log(theme)
-    console.log(time)
+    
     if (theme === 'light') {
       setTheme('dark');
     } else if (theme === 'dark') {
       setTheme('auto');
-      console.log('auto')
+    
     }
     else {
       setTheme('light');
     }
 
   };
+  useEffect(()=>{
+    window.sessionStorage.setItem('updatecontext',updateNote)
+  },[updateNote])
+  
   useEffect(() => {
     document.body.className = " ";
     document.body.className = theme === "auto" && isNight() ? "dark" : theme === "auto" && !isNight() ? "light" : theme === "light" ? "light" : "dark";
@@ -84,6 +99,9 @@ useEffect(()=>{
 window.sessionStorage.setItem('loginUser',loginUser)  
 window.sessionStorage.setItem('loginToken',loginToken.current)  }
 },[loginUser])
+
+
+
   useEffect(()=> {
     if(window.sessionStorage.getItem('loginUser'))
     {
@@ -91,45 +109,45 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
     }
     if(window.sessionStorage.getItem('loginToken')){
       loginToken.current = window.sessionStorage.getItem('loginToken')
-      console.log(loginToken.current)
+     
     }
-    console.log(loginUser)
-    // fetch('http://54.146.74.146:4000/anonuser')
-    fetch('http://54.146.74.146:4000/anonuser'
-  ).then((response)=> response.json()).then((response)=>{
-    if(response.token)
-    loginToken.current = response.token;
-    toggleUserLogin()
-    console.log(response.token)
-    
-    setUpdateNote(true)
-  }).then(()=>{
-    if(id!=" "){
-      fetch('http://54.146.74.146:4000/notes/note/'+id,{
-      method: 'GET',
-      headers:{
-        accept: 'application/json',
-        token:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEwMDA3Zjk1N2Q4MjdhM2NiMzBiYTYiLCJpYXQiOjE2Nzg3NzAzMDN9.zQCOVN75UYc21r4Mfa0jlI-ChLX9LiAHNsULRBq09Fk',
-      }
-      }).then(response=> response.json()).then((response)=>{
+   if(!loginUser)
+    fetch('http://54.146.74.146:4000/anonuser',{
+      method: 'GET', headers: {
+        accept: 'application.json', 'Content-Type': 'application/json',
+                                                                                                                                                                                                                                           
+      },
+        }).then((response)=> response.json()).then((response)=>{
+          if(response.token)
+          loginToken.current = response.token;
+       
+          
+         
+        }) 
+        if(id!=" "){
+          fetch("http://54.146.74.146:4000/notes/note/"+id,{
+          method: "GET",
+          headers:{
+            accept: "application/json",
+            token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEwMDA3Zjk1N2Q4MjdhM2NiMzBiYTYiLCJpYXQiOjE2Nzg3NzAzMDN9.zQCOVN75UYc21r4Mfa0jlI-ChLX9LiAHNsULRBq09Fk",
+          }
+          }).then(response=> response.json()).then((response)=>{
+            if(response)
+           
+            if(response)
+            setText(response.note.content)
+            
+          })
         
-        if(response)
-        console.log(response)
-        if(response)
-        setText(response.note.content)
-        noteId.current = id
-      })
-    
-    }
-  })
   
-  }
-  ,[])
+}},[])
+  
+  
   return (
 
     <>
-       <IsAuto.Provider value={{ theme }} >
-      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,}}>
+      <IsAuto.Provider value={{ theme }} >
+      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editable}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
         <updateContext.Provider value={{updateNote , setUpdateNote, noteId}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
@@ -140,6 +158,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
         </LoginContext.Provider>
         </AnonContext.Provider>
       </IsAuto.Provider>
+      
     </>
 
 
