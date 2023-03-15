@@ -28,8 +28,8 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
       },
       body: JSON.stringify({
         
-        email: useremail,
-        password: userpassword,
+        email: useremail.current,
+        password: userpassword.current,
 
       })
     }).then((response) => response.json()).then((response) => {

@@ -13,9 +13,9 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   const validateregister = (e) => {
     e.preventDefault();
     document.getElementById('errormessage').innerHTML = " "
-    
+
     const usernameid = document.getElementById('usernameid').value
-  
+
     if (usernameid == "") {
       return document.getElementById('errormessage').innerHTML = 'Username can not be blank'
     }
@@ -40,7 +40,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     registerformcheck(passwordstring);
   }
   const registerformcheck = (passwordstring) => {
-    
+
     const emailid = document.getElementById('emailid').value
     fetch('http://54.146.74.146:4000/api/ninjas', {
       method: 'POST',
@@ -100,7 +100,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLight"}>
           <Form onSubmit={validateregister}>
-            <Form.Group className="mb-3 " controlId="Email" style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{
@@ -120,7 +120,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
               />
               <img src="./svg/loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
-            <Form.Group className="mb-3 " controlId="Email" style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{
@@ -140,7 +140,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
               <img src="./svg/registeremail.svg" className="inputiconleft"></img>
             </Form.Group>
 
-            <Form.Group className="mb-3 " controlId="formBasicPassword" style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{
@@ -164,11 +164,11 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 top: '45%',
                 left: '74%',
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
-              }} tabindex="-1"
+              }} tabIndex="-1"
                 onClick={togglePassCheck}
               ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
-            <Form.Group className="mb-3 " controlId="formBasicPassword" style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{
@@ -192,13 +192,13 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 top: '45%',
                 left: '74%',
                 transform: 'translateY(-50%)', padding: '0', maring: '0',
-              }} tabindex="-1"
+              }} tabIndex="-1"
                 onClick={togglePassCheck1}
               ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
 
             {/* <GoogleReCaptcha /> */}
-            <Form.Group className="mb-3 " controlId="captcha" style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{

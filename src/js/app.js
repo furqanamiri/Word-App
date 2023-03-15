@@ -50,7 +50,7 @@ const editable = useRef('yes')
   
 
   }
-  
+  //Note state
   const [viewNotes, setViewNotes] = useState(false)
   const toggleViewNotes = () => {
     
@@ -123,8 +123,27 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
        
           
          
-        }) 
+        }).then((response)=>{
+          idgenerator()
+          fetch('http://54.146.74.146:4000/notes/add', {
+            method: 'POST',
+            headers: {
+              accept: 'application.json', 'Content-Type': 'application/json',
+              token: loginToken.current
+            }, body: JSON.stringify({
+              id: idsave.current,
+              content: text,
+               
+            })
+    
+          }).then((response) => { noteId.current = idsave.current
+          setUpdateNote(true)})
+          }
+        ).catch((err)=>alert('cloud add unsuccessful'))
+        
+        //Id in url parameter from share
         if(id!=" "){
+          
           fetch("http://54.146.74.146:4000/notes/note/"+id,{
           method: "GET",
           headers:{
@@ -137,10 +156,29 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
             if(response)
             setText(response.note.content)
             
+            noteId.current = id
           })
         
   
 }},[])
+useEffect(() => {
+  if (updateNote) {
+     
+       fetch('http://54.146.74.146:4000/notes/update', {
+         method: 'PUT',
+         headers: {
+           accept: 'application.json', 'Content-Type': 'application/json',
+           token: loginToken.current
+         }, body: JSON.stringify({
+           id: noteId.current,
+           content: text,
+
+         })
+
+       }).then((response) => { console.log('fileadded') });
+     }
+   
+ }, [text])
   
   
   return (
