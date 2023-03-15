@@ -10,11 +10,11 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   const textnote = useRef('false')
   const{loginUser,loginToken} = useContext(LoginContext)
   const{anonContext} = useContext(AnonContext)
-  console.log(idnote)
+ 
   textnote.current = list
   const deletenote = () => {
     
-    fetch('http://54.146.74.146:4000/notes/delete', {
+    fetch('http://34.232.69.171:4000/notes/delete', {
       method: 'DELETE', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
         token : loginToken.current,

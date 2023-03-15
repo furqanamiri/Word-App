@@ -11,7 +11,7 @@ export const Googlecaptcha = () => {
   // Create an event handler so you can call the verification on button click event or form submit
   const handleReCaptchaVerify = useCallback(async () => {
     if (!executeRecaptcha) {
-      console.log('Execute recaptcha not yet available');
+      
       return;
     }
 

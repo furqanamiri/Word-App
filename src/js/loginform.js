@@ -10,27 +10,27 @@ import { AnonContext } from "./AnonContext";
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes }) {
   const { loginUser, setLoginUser, toggleUserLogin ,loginToken} = useContext(LoginContext)
   const{anonContext,toggleAnonUser} = useContext(AnonContext)
-  const [useremail, setUserEmail] = useState('')
-  const [error,SetError] = useState('');
+  const useremail =useRef(' ')
+  const [error,SetError] = useState('')
   const changeUserEmail = (event) => {
-    setUserEmail(event.target.value);
-    console.log(useremail)
+    useremail.current = (event.target.value);
+   
   }
-  const [userpassword, setUSerPassword] = useState('')
+  const userpassword = useRef('')
   const changeUserPassword = (event) => {
-    setUSerPassword(event.target.value)
+    userpassword.current = (event.target.value)
   }
-  console.log(loginUser)
+  
   const loginValidation = (e) => {
     e.preventDefault();
-    fetch('http://54.146.74.146:4000/login', {
+    fetch('http://34.232.69.171:4000/login', {
       method: 'POST', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         
-        email: useremail,
-        password: userpassword,
+        email: useremail.current,
+        password: userpassword.current,
 
       })
     }).then((response) => response.json()).then((response) => {
@@ -39,15 +39,17 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
 
         if (response.token) {
         loginToken.current = response.token
+         toggleUserLogin(true)
           toggleAnonUser()
           LoginModalClose()
-          console.log(loginToken.current)
+          console.log(loginUser)
+        
         }
         else{
           SetError('Check Credentials')
         }
       
-      console.log(loginUser)
+      
       // document.getElementById('loginerrormessage').innerHTML = '{loginState ? "Login Successful" : "Check Credentials"}'
 
 
@@ -90,7 +92,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLightpass"}>
           <Form onSubmit={loginValidation}>
-            <Form.Group className="mb-3 " controlId="Email" style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{
@@ -106,14 +108,14 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 }}
                 type="email"
                 id='userEmailId'
-                value={useremail}
+                
                 onChange={changeUserEmail}
                 placeholder=" Enter your email" required
               />
               <img src="./src/svg/loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
 
-            <Form.Group className="mb-3 " controlId="formBasicPassword" style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{
@@ -134,7 +136,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 required
               />
               <img src="./src/svg/loginlock.svg" className="inputiconleft"></img>
-              <button className="nonselect" tabindex="-1" style={{
+              <button className="nonselect" tabIndex="-1" style={{
                 position: 'absolute',
                 top: '50%',
                 left: '75%',

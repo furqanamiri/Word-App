@@ -13,9 +13,9 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   const validateregister = (e) => {
     e.preventDefault();
     document.getElementById('errormessage').innerHTML = " "
-    // console.log('work')
+    
     const usernameid = document.getElementById('usernameid').value
-    // console.log(usernameid)
+   
     if (usernameid == "") {
       return document.getElementById('errormessage').innerHTML = 'Username can not be blank'
     }
@@ -40,9 +40,9 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     registerformcheck(passwordstring);
   }
   const registerformcheck = (passwordstring) => {
-    console.log(usernameid)
+
     const emailid = document.getElementById('emailid').value
-    fetch('http://54.146.74.146:4000/api/ninjas', {
+    fetch('http://34.232.69.171:4000/api/ninjas', {
       method: 'POST',
       headers: {
         Accept: 'application.json',

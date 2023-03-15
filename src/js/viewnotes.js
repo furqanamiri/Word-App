@@ -26,13 +26,13 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   const spaces = textnote.current.match(/\s+/g);
   let count = 0;
   const addNotes = () => {
-    fetch('http://54.146.74.146:4000/notes/list', {
+    fetch('http://34.232.69.171:4000/notes/list', {
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
         token: loginToken.current,                                                                                                                                                                                                                                    
       }
     }).then((response) => response.json()).then((response) => {
-      console.log(response)
+    
       const temp = response.map(user => (user.content))
       const tempId = response.map(idtemp => (idtemp.id))
       setList(temp);
@@ -41,8 +41,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
 
     })
-    console.log(list)
-    console.log()
+   
   }
   useEffect(() => {
     // update word count
@@ -60,7 +59,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
     var spaces = textnote;
     // var spaces = self.value;
-    console.log(spaces)
+   
     // var words = spaces ? spaces.length : 0;
   }
 
@@ -92,7 +91,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
           {
             users.map(t => (
-              <Viewingnotes isDark={isDark} list={t.content} idnote={t.id} togglerefreshchange={togglerefreshchange} toggleViewNotes={toggleViewNotes} setText={setText} />
+              <Viewingnotes key={t._id} isDark={isDark} list={t.content} idnote={t.id} togglerefreshchange={togglerefreshchange} toggleViewNotes={toggleViewNotes} setText={setText} />
 
             ))
           }

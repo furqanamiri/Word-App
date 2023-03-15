@@ -20,16 +20,28 @@ function App() {
     const idsave = useRef('')
   const noteId = useRef('')
 const [updateNote, setUpdateNote] = useState(false)
-
+//editable hook
+const editable = useRef('yes')
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState('');
   //loginUser is used to persist login state once user is logged in
   const [loginUser, setLoginUser] = useState(false);
   const loginToken = useRef('')
-  function toggleUserLogin() {
-    setLoginUser(!loginUser);
+  function toggleUserLogin(str) {
+    setLoginUser(str);
   }
-  
+  const idgenerator = () => {
+    let retVal = "";
+    let charset = "0123456789"
+    let length = 6;
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+
+    idsave.current = retVal;
+   
+
+  }
   
   const [viewNotes, setViewNotes] = useState(false)
   const toggleViewNotes = () => {
@@ -39,7 +51,7 @@ const [updateNote, setUpdateNote] = useState(false)
     } else {
       setViewNotes(false)
     }
-    console.log(viewNotes)
+   
   }
   const time = new Date().getHours()
 
@@ -51,15 +63,15 @@ const [updateNote, setUpdateNote] = useState(false)
       return false
 
   }
+  
   const [theme, setTheme] = useState('light');
   const toggleTheme = () => {
-    console.log(theme)
-    console.log(time)
+   
     if (theme === 'light') {
       setTheme('dark');
     } else if (theme === 'dark') {
       setTheme('auto');
-      console.log('auto')
+     
     }
     else {
       setTheme('light');
@@ -89,28 +101,68 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
     }
     if(window.sessionStorage.getItem('loginToken')){
       loginToken.current = window.sessionStorage.getItem('loginToken')
-      console.log(loginToken.current)
+     
     }
-    console.log(loginUser)
-fetch('http://54.146.74.146:4000/anonuser',{
-method: 'GET', headers: {
-  accept: 'application.json', 'Content-Type': 'application/json',
-                                                                                                                                                                                                                                     
-},
-  }).then((response)=> response.json()).then((response)=>{
-    if(response.token)
-    loginToken.current = response.token;
-    console.log(response.token)
-    setLoginUser(true)
-    setUpdateNote(true)
-  })
+   
+    fetch('http://34.232.69.171:4000/anonuser',{
+      method: 'GET', headers: {
+        accept: 'application.json', 'Content-Type': 'application/json',
+                                                                                                                                                                                                                                           
+      },
+        }).then((response)=> response.json()).then((response)=>{
+          if(response.token)
+          loginToken.current = response.token;
+          
+          
+         
+        }).then((response)=>{
+          idgenerator()
+          fetch('http://34.232.69.171:4000/notes/add', {
+            method: 'POST',
+            headers: {
+              accept: 'application.json', 'Content-Type': 'application/json',
+              token: loginToken.current
+            }, body: JSON.stringify({
+              id: idsave.current,
+              content: text,
+               
+            })
+    
+          }).then((response) => { noteId.current = idsave.current
+          setUpdateNote(true)});
+          }
+        )
+
   },[])
+
+
+  useEffect(() => {
+    if(!loginUser){
+    if (updateNote) {
+       
+         fetch('http://34.232.69.171:4000/notes/update', {
+           method: 'PUT',
+           headers: {
+             accept: 'application.json', 'Content-Type': 'application/json',
+             token: loginToken.current
+           }, body: JSON.stringify({
+             id: noteId.current,
+             content: text,
+ 
+           })
+ 
+         })
+       }
+     
+   }}, [text])
+ 
+  
   
   return (
 
     <>
       <IsAuto.Provider value={{ theme }} >
-      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken}}>
+      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editable}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
         <updateContext.Provider value={{updateNote , setUpdateNote, noteId}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />

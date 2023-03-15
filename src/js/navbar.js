@@ -21,8 +21,8 @@ import { AnonContext } from './AnonContext';
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
-  const { anonContext, toggleAnonUser } = useContext(AnonContext)
-  const { updateNote, setUpdate, noteId } = useContext(updateContext)
+  const { anonContext, toggleAnonUser,editable } = useContext(AnonContext)
+  const { updateNote, setUpdateNote, noteId } = useContext(updateContext)
   const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
@@ -37,8 +37,10 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   const handleClosePass = () => setShowPass(false);
   const handleShowPass = () => setShowPass(true);
 
-  //File Saving to cloud
-  const idsave = useRef('')
+  const setEdit = (string)=>{
+    editable.current= string
+   
+  }
   const idgenerator = () => {
     let retVal = "";
     let charset = "0123456789"
@@ -48,9 +50,13 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     }
 
     idsave.current = retVal;
-    console.log(idsave)
+   
 
   }
+
+  //File Saving to cloud
+  const idsave = useRef('')
+  
   //File Opening functionality 
   function showFile() {
 
@@ -58,7 +64,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     var preview = document.getElementById('show-text');
     var file = document.querySelector('input[type=file]').files[0];
     var reader = new FileReader()
-    console.log(file)
+    
     var textFile = /text.*/;
     reader.readAsText(file)
     // if (file.type.match(textFile)) 
@@ -68,56 +74,49 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
     reader.onerror = function (error) {
       error.target.result
     }
-    console.log(text)
+   
   }
   //File Saving functionality
 
-  const toggleSaveFile = (event) => {
+  const toggleSaveFile = () => {
+    console.log(loginUser)
     if (!loginUser) {
       const newstring = text;
-
       var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
       FileSaver.saveAs(blob, "hello world.txt")
     }
-    else
-      if (!updateNote) {
-        event.preventDefault();
-        idgenerator()
-        fetch('http://54.146.74.146:4000/notes/add', {
-          method: 'POST',
-          headers: {
-            accept: 'application.json', 'Content-Type': 'application/json',
-            token: loginToken.current
-          }, body: JSON.stringify({
-            id: idsave.current,
-            content: text,
-
-          })
-
-        }).then((response) => {
-          console.log('fileadded')
-          setUpdate(true)
-        });
-
-
-
-      }
-      else {
-        fetch('http://54.146.74.146:4000/notes/update', {
-          method: 'PUT',
-          headers: {
-            accept: 'application.json', 'Content-Type': 'application/json',
-            token: loginToken.current
-          }, body: JSON.stringify({
-            id: idsave.current,
-            content: text,
-
-          })
-
-        }).then((response) => { console.log('fileadded') });
-      }
-
-  }
+      else{
+        if(!updateNote){
+       idgenerator()
+          fetch('http://34.232.69.171:4000/notes/add', {
+            method: 'POST',
+            headers: {
+              accept: 'application.json', 'Content-Type': 'application/json',
+              token: loginToken.current
+            }, body: JSON.stringify({
+              id: idsave.current,
+              content: text,
+               
+            })
+    
+          }).then((response) => { noteId.current = idsave.current
+          setUpdateNote(true)});
+          }
+        else{
+          fetch('http://34.232.69.171:4000/notes/update', {
+           method: 'PUT',
+           headers: {
+             accept: 'application.json', 'Content-Type': 'application/json',
+             token: loginToken.current
+           }, body: JSON.stringify({
+             id: noteId.current,
+             content: text,
+ 
+           })
+ 
+         })
+        }
+  }}
 
   //Login Modal hook state 
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -129,7 +128,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   };
 
   const LogOut = () => {
-    fetch("http://54.146.74.146:4000/logout", {
+    fetch("http://34.232.69.171:4000/logout", {
       method: 'GET',
       headers: {
         Accept: '*/*',
@@ -137,53 +136,17 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
       }
 
     }).then(() => {
-      console.log("logOut")
+      
       window.sessionStorage.clear('loginToken')
       window.sessionStorage.clear('loginUser')
       window.sessionStorage.clear('')
       toggleAnonUser()
+      toggleUserLogin(false)
       location.reload();
     })
 
 
   }
-  useEffect(() => {
-    if (!updateContext) {
-
-
-      event.preventDefault();
-      idgenerator()
-      fetch('http://54.146.74.146:4000/notes/add', {
-        method: 'POST',
-        headers: {
-          accept: 'application.json', 'Content-Type': 'application/json',
-          token: loginToken.current
-        }, body: JSON.stringify({
-          id: idsave.current,
-          content: text,
-
-        })
-
-      }).then((response) => { console.log('fileadded') });
-    }
-
-    if (updateContext) {
-      setTimeout(() => {
-        fetch('http://54.146.74.146:4000/notes/update', {
-          method: 'PUT',
-          headers: {
-            accept: 'application.json', 'Content-Type': 'application/json',
-            token: loginToken.current
-          }, body: JSON.stringify({
-            id: noteId.current,
-            content: text,
-
-          })
-
-        }).then((response) => { console.log('fileadded') });
-      }, 5000)
-    }
-  }, [])
 
 
 
@@ -204,9 +167,9 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login and Logout*/}
-        <li><button className={anonContext ? "iconnavsmall" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnav'
+        <li><button className={anonContext ? "iconnav" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnav'
         /></button>
-          <button className={anonContext ? "d-none" : "iconnavsmall"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/logout.svg" width="20" height="20" className='iconnav'
+          <button className={anonContext ? "d-none" : "iconnav"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/logout.svg" width="20" height="20" className='iconnav'
           /></button>
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
@@ -258,8 +221,8 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
               <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool" : "tooltiplight sharetool"} style={{ borderRadius: '10px' }}>
                 <Popover.Body>
                   <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./src/svg/tooltiplink.svg"></img><p>http://localhost:3000/?id={noteId.current}</p></div>
-                  <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" /><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
-                    <input type="radio" name="sharerad" /><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
+                  <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" id="view only" onClick={()=>setEdit('No')}/><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
+                    <input type="radio" name="sharerad" id="editnote" onClick={()=>setEdit('yes')}/><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
                     <button type="radio" name="sharerad" style={{ fontWeight: '300', color: '#7496B8' }}><img src="./src/svg/copylink.svg" style={{ paddingRight: '1%' }} ></img>Copy Link</button></form>
                 </Popover.Body>
               </Popover>
