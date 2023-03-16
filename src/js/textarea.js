@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "../scss/textarea.scss"
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useRef} from 'react';
 import '../scss/footerres.scss'
 import moment from 'moment';
+import { AnonContext } from './AnonContext';
 
 export default function TextArea({ text, setText }) {
 
-
+const {editableNote} = useContext(AnonContext)
   const [dateUpd, setDateUpd] = useState(moment())
   // word count
   const [wordCount, setWordCount] = useState(0);
   const [stateDate, setStateDate] = useState();
 
-
+const textarea = useRef('')
   // character count
   const [charCount, setCharCount] = useState(0);
   const changeHandler = (event) => {
@@ -93,7 +94,7 @@ export default function TextArea({ text, setText }) {
   }
   let date = document.lastModified;
   useEffect(() => {
-    if (window.sessionStorage.getItem('text')) { setText(window.sessionStorage.getItem('text')) }
+    if (window.sessionStorage.getItem('text')) { setText(window.sessionStorage.getItem('text')) }   
     
   }, [])
   useEffect(()=>{
@@ -102,18 +103,21 @@ export default function TextArea({ text, setText }) {
     }
     else{
     window.sessionStorage.setItem('text', text);
+   
     }
+   
   },[text])
 
   return (<>
 {/* Fullcreen textarea */}
-    <textarea id="inputField" value={text}
-      onChange={changeHandler} className="form-control d-sm-none d-md-none d-lg-flex" placeholder='New Note'></textarea>
+
+    <textarea id="inputField1"  value={text}
+      onChange={changeHandler} className="form-control d-sm-none d-md-none d-lg-flex" placeholder='New Note' disabled = {editableNote ? false : true}></textarea>
 {/* Responsive Text Areaa */}
 <textarea id="inputField" value={text}
-      onChange={changeHandler} className=" form-control d-sm-flex d-md-none d-lg-none" placeholder='New Note' style={{height:'62%',maxHeight:'63%'}}></textarea>
+      onChange={changeHandler} className=" form-control d-sm-flex d-md-none d-lg-none" placeholder='New Note' disabled = {editableNote ? false : true} style={{height:'62%',maxHeight:'63%'}}></textarea>
 <textarea id="inputField" value={text}
-      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note' style={{height:'65%',maxHeight:'65%'}}></textarea>
+      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note' disabled = {editableNote ? false : true} style={{height:'65%',maxHeight:'65%'}}></textarea>
 
 
     {/* Footer */}
