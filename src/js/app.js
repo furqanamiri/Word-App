@@ -125,6 +125,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
             }, body: JSON.stringify({
               id: idsave.current,
               content: text,
+              editable : editable.current
                
             })
     
@@ -148,6 +149,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
            }, body: JSON.stringify({
              id: noteId.current,
              content: text,
+             editable : editable.current
  
            })
  
