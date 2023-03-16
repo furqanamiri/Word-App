@@ -37,6 +37,7 @@ const editable = useRef('yes')
   const loginToken = useRef('')
   function toggleUserLogin() {
     setLoginUser(!loginUser);
+    console.log(loginUser)
   }
   const idgenerator = () => {
     let retVal = "";
@@ -112,7 +113,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
      
     }
    if(!loginUser)
-    fetch('http://54.146.74.146:4000/anonuser',{
+    fetch('http://34.232.69.171:4000/anonuser',{
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
                                                                                                                                                                                                                                            
@@ -124,8 +125,28 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
           
          
         }).then((response)=>{
+          if(id!=" "){
+          
+            fetch("http://34.232.69.171:4000/notes/note/"+id,{
+            method: "GET",
+            headers:{
+              accept: "application/json",
+              token:loginToken.current,
+            }
+            }).then(response=> response.json()).then((response)=>{
+              if(response)
+             
+              if(response)
+              setText(response.note.content)
+              
+              noteId.current = id
+            })
+          
+    
+  }
+        }).then((response)=>{
           idgenerator()
-          fetch('http://54.146.74.146:4000/notes/add', {
+          fetch('http://34.232.69.171:4000/notes/add', {
             method: 'POST',
             headers: {
               accept: 'application.json', 'Content-Type': 'application/json',
@@ -142,29 +163,11 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
         ).catch((err)=>alert('cloud add unsuccessful'))
         
         //Id in url parameter from share
-        if(id!=" "){
-          
-          fetch("http://54.146.74.146:4000/notes/note/"+id,{
-          method: "GET",
-          headers:{
-            accept: "application/json",
-            token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDEwMDA3Zjk1N2Q4MjdhM2NiMzBiYTYiLCJpYXQiOjE2Nzg3NzAzMDN9.zQCOVN75UYc21r4Mfa0jlI-ChLX9LiAHNsULRBq09Fk",
-          }
-          }).then(response=> response.json()).then((response)=>{
-            if(response)
-           
-            if(response)
-            setText(response.note.content)
-            
-            noteId.current = id
-          })
-        
-  
-}},[])
+       },[])
 useEffect(() => {
   if (updateNote) {
      
-       fetch('http://54.146.74.146:4000/notes/update', {
+       fetch('http://34.232.69.171:4000/notes/update', {
          method: 'PUT',
          headers: {
            accept: 'application.json', 'Content-Type': 'application/json',

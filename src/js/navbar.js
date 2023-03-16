@@ -37,7 +37,18 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   const [showPassword, setShowPass] = useState(false);
   const handleClosePass = () => setShowPass(false);
   const handleShowPass = () => setShowPass(true);
+  const idgenerator = () => {
+    let retVal = "";
+    let charset = "0123456789"
+    let length = 6;
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
 
+    idsave.current = retVal;
+  
+
+  }
   const setEdit = (string)=>{
     editable.current= string
     
@@ -68,12 +79,27 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   //File Saving functionality
 
   const toggleSaveFile = () => {
-    if (!loginUser) {
+    if (anonContext) {
       const newstring = text;
 
       var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
       FileSaver.saveAs(blob, "hello world.txt")
 
+  }else{
+    idgenerator()
+    fetch('http://34.232.69.171:4000/notes/add', {
+      method: 'POST',
+      headers: {
+        accept: 'application.json', 'Content-Type': 'application/json',
+        token: loginToken.current
+      }, body: JSON.stringify({
+        id: idsave.current,
+        content: text,
+         
+      })
+
+    }).then((response) => { noteId.current = idsave.current
+    setUpdateNote(true)}).catch((err)=>alert('cloud add unsuccessful'))
   }}
 
   //Login Modal hook state 
@@ -86,7 +112,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   };
 
   const LogOut = () => {
-    fetch("http://54.146.74.146:4000/logout", {
+    fetch("http://34.232.69.171:4000/logout", {
       method: 'GET',
       headers: {
         Accept: '*/*',
@@ -107,7 +133,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   useEffect(() => {
    if (updateNote) {
       
-        fetch('http://54.146.74.146:4000/notes/update', {
+        fetch('http://34.232.69.171:4000/notes/update', {
           method: 'PUT',
           headers: {
             accept: 'application.json', 'Content-Type': 'application/json',

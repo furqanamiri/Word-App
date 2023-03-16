@@ -22,7 +22,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   }
   const loginValidation = (e) => {
     e.preventDefault();
-    fetch('http://54.146.74.146:4000/login', {
+    fetch('http://34.232.69.171:4000/login', {
       method: 'POST', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
       },
@@ -38,7 +38,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
 
         if (response.token) {
         loginToken.current = response.token
-          
+          toggleUserLogin()
           toggleAnonUser()
           LoginModalClose()
               }
