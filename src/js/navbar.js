@@ -23,7 +23,7 @@ import { AnonContext } from './AnonContext';
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
   const { anonContext, toggleAnonUser,editable } = useContext(AnonContext)
-  const { updateNote, setUpdateNote, noteId } = useContext(updateContext)
+  const { updateNote, setUpdateNote, noteId , copyFunction} = useContext(updateContext)
   const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
@@ -169,12 +169,12 @@ const idgenerator = () => {
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login and Logout*/}
-        <li><button className={anonContext ? "iconnav" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
+        <li><button className={loginUser ? "d-none" : "iconnav"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
         /></button>
-          <button className={anonContext ? "d-none" : "iconnav"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/logout.svg" width="20" height="20" className='iconnav'
+          <button className={loginUser ? "iconnav" : "d-none"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/logout.svg" width="20" height="20" className='iconnav'
           /></button>
         </li>
-        <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
+        <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} LoginModalOpen={LoginModalOpen}/>
       </ul>
 
       <div className='align-self-center justify-self-center main-header'>
@@ -225,7 +225,7 @@ const idgenerator = () => {
                   <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p>http://localhost:3000/?id={noteId.current}</p></div>
                   <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" id="view only" onClick={()=>setEdit('No')}/><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
                     <input type="radio" name="sharerad" id="editnote" onClick={()=>setEdit('yes')}/><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
-                    <button type="radio" name="sharerad" style={{ fontWeight: '300', color: '#7496B8' }}><img src="./svg/copylink.svg" style={{ paddingRight: '1%' }} ></img>Copy Link</button></form>
+                    <button type="radio" onClick={copyFunction} name="sharerad" style={{ fontWeight: '300', color: '#7496B8' }}><img src="./svg/copylink.svg" style={{ paddingRight: '1%' }} ></img>Copy Link</button></form>
                 </Popover.Body>
               </Popover>
             }
@@ -282,7 +282,7 @@ const idgenerator = () => {
                   <li> <button onClick={toggleShareModalOpen} className='share smallnavbutticon' >
                     <img src="./svg/share.png" height='40' width='40' />Share
                   </button></li>
-                  <Sharemodal shareModal={shareModal} toggleShareModalClose={toggleShareModalClose} isDark={isDark} />
+                  <Sharemodal shareModal={shareModal} toggleShareModalClose={toggleShareModalClose} isDark={isDark} setEdit={setEdit}/>
                 </ul>
 
 

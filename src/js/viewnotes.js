@@ -5,7 +5,7 @@ import Viewingnotes from "./viewingnotes";
 import { LoginContext } from "./Logincontext";
 import { updateContext } from "./updatecontext";
 // import Viewingnotes from "./viewingnotes";
-
+import Footer from './footer';
 
 export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   const { loginUser, setLoginUser, toggleUserLogin ,loginToken} = useContext(LoginContext)
@@ -98,74 +98,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="footer d-lg-flex d-md-none d-sm-none  d-xs-none">
-        <div className="d-flex footerdiv">
-          <ul className="left-footer">
-            <li id="wordcount">
-
-              Words : 0
-            </li>
-            <li>
-              Characters : 0
-            </li>
-          </ul><ul className='right-footer'>
-            <li>
-              About Us
-            </li>
-            <li>
-              Contact Us
-            </li>
-          </ul>
-        </div>
-        <div className="d-flex footerdiv">
-
-          <ul className='left-footer'>
-            <li>  Last Updated : {
-
-
-
-
-
-
-
-            }</li>
-          </ul>
-
-
-          <ul className='right-footer'>
-            <li>
-              Privacy Policy
-            </li>
-            <li>
-              Terms
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      {/* Resposinve Footer */}
-      <div className='footerres d-lg-none d-md-flex d-sm-flex  d-xs-flex'>
-        <div className='footerresdivword'>
-          <ul style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '2rem' }}><li >Words : 0 </li><li>Characters : 0</li></ul>
-        </div>
-        <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-          <ul style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '2rem' }}>
-            <li>  Last Updated : {
-
-            }</li>
-          </ul>
-        </div>
-        <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-          <ul className='w-100 d-flex justify-content-around' style={{ fontSize: '2rem' }}>
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Privacy Policy</li>
-            <li>Terms</li>
-          </ul>
-        </div>
-      </div>
-
+      <Footer dateUpd={dateUpd} charCount={charCount} wordCount={wordCount}/>
     </>
   )
 }

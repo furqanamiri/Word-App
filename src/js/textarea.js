@@ -4,6 +4,7 @@ import { useState, useEffect ,useRef} from 'react';
 import '../scss/footerres.scss'
 import moment from 'moment';
 import { AnonContext } from './AnonContext';
+import Footer from './footer';
 
 export default function TextArea({ text, setText }) {
 
@@ -117,81 +118,9 @@ const textarea = useRef('')
 <textarea id="inputField" value={text}
       onChange={changeHandler} className=" form-control d-sm-flex d-md-none d-lg-none" placeholder='New Note' disabled = {editableNote ? false : true} style={{height:'62%',maxHeight:'63%'}}></textarea>
 <textarea id="inputField" value={text}
-      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note' disabled = {editableNote ? false : true} style={{height:'65%',maxHeight:'65%'}}></textarea>
+      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note' disabled = {editableNote ? false : true} style={{height:'78%',maxHeight:'78%'}}></textarea>
 
 
-    {/* Footer */}
-    <div className="footer d-lg-flex d-md-none d-sm-none  d-xs-none">
-      <div className="d-flex footerdiv">
-        <ul className="left-footer">
-          <li id="wordcount">
-
-            Words : {wordCount}
-          </li>
-          <li>
-            Characters : {charCount}
-          </li>
-        </ul><ul className='right-footer '>
-          <li className='endalign' style={{justifyContent:'end', width:'40%'}}>
-            About Us
-          </li>
-          <li className='endalign' style={{justifyContent:'center' , width:'30%'}}>
-            Contact Us
-          </li>
-        </ul>
-      </div>
-      <div className="d-flex footerdiv">
-
-        <ul className='left-footer'>
-          <li >  Last Updated : {
-
-
-
-            (moment(dateUpd).fromNow())
-
-
-
-          }</li>
-        </ul>
-
-
-        <ul className='right-footer'>
-          <li className='endalign' style={{justifyContent:'end',width:'40%'}}>
-            Privacy Policy
-          </li>
-          <li className='endalign' style={{justifyContent:'center',width:'30%'}}>
-            Terms
-          </li>
-        </ul>
-      </div>
-
-    </div>
-    {/* Resposinve Footer */}
-    <div className='footerres d-lg-none  d-md-flex d-sm-flex  d-xs-flex'>
-      <div className='footerresdivword'>
-        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '1.2rem' }}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
-      </div>
-      <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: '1.2rem' }}>
-          <li>  Last Updated : {
-
-
-
-            (moment(dateUpd).fromNow())
-
-
-
-          }</li>
-        </ul>
-      </div>
-      <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-        <ul className='w-100 d-flex justify-content-around ulmargin' style={{ fontSize: '1.2rem' }}>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Privacy Policy</li>
-          <li>Terms</li>
-        </ul>
-      </div>
-    </div>
+  <Footer dateUpd={dateUpd} charCount={charCount} wordCount={wordCount}/>
   </>)
 }

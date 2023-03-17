@@ -6,7 +6,7 @@ import Captcha from "./captcha";
 import Loginform from "./loginform";
 import { useState } from "react";
 import { GoogleReCaptcha } from "react-google-recaptcha-v3";
-export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark }) {
+export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark , LoginModalOpen }) {
   let passCheck = true;
 
   let regexspecial = /^[a-zA-Z]*$/
@@ -59,8 +59,8 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
       document.getElementById('errormessage').innerHTML = "User is successfully Registered"
       setTimeout(() => {
         LoginRegisterClose();
-
-      }, 4000)
+        LoginModalOpen();
+      }, 3000)
 
     })
   }

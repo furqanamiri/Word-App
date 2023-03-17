@@ -8,7 +8,7 @@ import { useState } from "react";
 import Registerform from "./registerform";
 import { AnonContext } from "./AnonContext";
 
-export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes }) {
+export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes, LoginModalOpen }) {
   const { loginUser, setLoginUser, toggleUserLogin ,loginToken} = useContext(LoginContext)
   const useremail = useRef('')
   const {toggleAnonUser} = useContext(AnonContext)
@@ -40,6 +40,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         loginToken.current = response.token
           toggleUserLogin('true')
           toggleAnonUser()
+          toggleViewNotes()
           LoginModalClose()
               }
         else{
@@ -71,6 +72,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
     event.preventDefault();
     LoginModalClose();
     setShowRegisterModal(true);
+   
   }
 
 
@@ -173,7 +175,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         </Modal.Body>
 
       </Modal>
-      <Registerform showRegisterModal={showRegisterModal} LoginRegisterClose={LoginRegisterClose} isDark={isDark} />
+      <Registerform showRegisterModal={showRegisterModal} LoginRegisterClose={LoginRegisterClose} isDark={isDark} LoginModalOpen={LoginModalOpen}/>
     </>
   );
 }
