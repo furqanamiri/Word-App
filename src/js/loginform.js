@@ -38,7 +38,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
 
         if (response.token) {
         loginToken.current = response.token
-          toggleUserLogin('true')
+          toggleUserLogin()
           toggleAnonUser()
           toggleViewNotes()
           LoginModalClose()

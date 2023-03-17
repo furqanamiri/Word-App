@@ -30,20 +30,16 @@ function App() {
  
 const [updateNote, setUpdateNote] = useState(false)
 //editable hook
-const [editableNote,setEditableNote] = useState(true);
-const toggleEditable = () => {
-setEditableNote(!editableNote)
-}
+const editable = useRef('yes')
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState('');
   //loginUser is used to persist login state once user is logged in
   const [loginUser, setLoginUser] = useState(false);
   const loginToken = useRef('')
-  function toggleUserLogin(str) {
-    setLoginUser(str);
-    
+  function toggleUserLogin() {
+    setLoginUser(!loginUser);
+    console.log(loginUser)
   }
-  
   const idgenerator = () => {
     let retVal = "";
     let charset = "0123456789"
@@ -120,7 +116,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
    if(!loginUser)
     fetch('http://34.232.69.171:4000/anonuser',{
       method: 'GET', headers: {
-        accept: '*/*',
+        accept: 'application.json', 'Content-Type': 'application/json',
                                                                                                                                                                                                                                            
       },
         }).then((response)=> response.json()).then((response)=>{
@@ -139,14 +135,11 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
               token:loginToken.current,
             }
             }).then(response=> response.json()).then((response)=>{
-             
-              
+              if(response)
              
               if(response)
               setText(response.note.content)
-             console.log(response.note.editable)
-            if(response.note.editable=='No')
-            toggleEditable()
+              
               noteId.current = id
             })
           
@@ -216,7 +209,7 @@ useEffect(() => {
 
     <>
       <IsAuto.Provider value={{ theme }} >
-      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken, editableNote}}>
+      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editable}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
         <updateContext.Provider value={{updateNote , setUpdateNote, noteId , copyFunction}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />

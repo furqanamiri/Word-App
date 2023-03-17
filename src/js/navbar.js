@@ -37,7 +37,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   const [showPassword, setShowPass] = useState(false);
   const handleClosePass = () => setShowPass(false);
   const handleShowPass = () => setShowPass(true);
-const idgenerator = () => {
+  const idgenerator = () => {
     let retVal = "";
     let charset = "0123456789"
     let length = 6;
@@ -79,7 +79,7 @@ const idgenerator = () => {
   //File Saving functionality
 
   const toggleSaveFile = () => {
-    if (!loginUser) {
+    if (anonContext) {
       const newstring = text;
 
       var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
@@ -126,7 +126,6 @@ const idgenerator = () => {
       window.sessionStorage.clear('')
       toggleAnonUser()
       location.reload();
-      toggleUserLogin(false)
     })
 
 
