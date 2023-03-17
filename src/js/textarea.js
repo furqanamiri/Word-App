@@ -10,7 +10,7 @@ export default function TextArea({ text, setText }) {
   const [dateUpd, setDateUpd] = useState(moment())
   // word count
   const [wordCount, setWordCount] = useState(0);
-  const [stateDate, setStateDate] = useState();
+
 
 
   // character count
@@ -63,7 +63,7 @@ export default function TextArea({ text, setText }) {
 
 
   // useEffect(() => {
-
+  //   console.log(statetDate)
   // }, [stateDate])
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function TextArea({ text, setText }) {
 
     var spaces = document.getElementById('inputField').value
     // var spaces = self.value;
-
+  
     // var words = spaces ? spaces.length : 0;
   }
   let date = document.lastModified;
@@ -113,9 +113,81 @@ export default function TextArea({ text, setText }) {
 <textarea id="inputField" value={text}
       onChange={changeHandler} className=" form-control d-sm-flex d-md-none d-lg-none" placeholder='New Note' style={{height:'62%',maxHeight:'63%'}}></textarea>
 <textarea id="inputField" value={text}
-      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note' disabled = {editableNote ? false : true} style={{height:'78%',maxHeight:'78%'}}></textarea>
+      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note' style={{height:'78%',maxHeight:'78%'}}></textarea>
 
 
-  <Footer dateUpd={dateUpd} charCount={charCount} wordCount={wordCount}/>
+    {/* Footer */}
+    <div className="footer d-lg-flex d-md-none d-sm-none  d-xs-none">
+      <div className="d-flex footerdiv">
+        <ul className="left-footer">
+          <li id="wordcount">
+
+            Words : {wordCount}
+          </li>
+          <li>
+            Characters : {charCount}
+          </li>
+        </ul><ul className='right-footer '>
+          <li className='endalign' style={{ width:'fit-content'}}>
+            About Us
+          </li>
+          <li className='endalign' style={{ width:'25%'}}>
+            Contact Us
+          </li>
+        </ul>
+      </div>
+      <div className="d-flex footerdiv">
+
+        <ul className='left-footer'>
+          <li >  Last Updated : {
+
+
+
+            (moment(dateUpd).fromNow())
+
+
+
+          }</li>
+        </ul>
+
+
+        <ul className='right-footer'>
+          <li className='endalign' style={{width:'fit-content'}}>
+            Privacy Policy
+          </li>
+          <li className='endalign' style={{width:'25%'}}>
+            Terms
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    {/* Resposinve Footer */}
+    <div className='footerres d-lg-none  d-md-flex d-sm-flex  d-xs-flex'>
+      <div className='footerresdivword'>
+        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large' }}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
+      </div>
+      <div className='d-flex flex-wrap footeresdivword justify-content-center align-items-center w-100 '>
+        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large' }}>
+          <li>  Last Updated : {
+
+
+
+            (moment(dateUpd).fromNow())
+
+
+
+          }</li>
+        </ul>
+      </div>
+      <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
+        <ul className='w-100 d-flex justify-content-around ulmargin' style={{ fontSize: 'xx-large' }}>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Privacy Policy</li>
+          <li>Terms</li>
+        </ul>
+      </div>
+    </div>
   </>)
 }
