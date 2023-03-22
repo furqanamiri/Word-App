@@ -30,8 +30,9 @@ function App() {
  
 const [updateNote, setUpdateNote] = useState(false)
 //editable hook
-const editable = useRef('yes')
-const[editableNote, setEditablenote] = useState(true)
+const [editable,setEditable] = useState('yes')
+const[editableNote, setEditableNote] = useState(true)
+
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState('');
   //loginUser is used to persist login state once user is logged in
@@ -74,11 +75,7 @@ const[editableNote, setEditablenote] = useState(true)
       return false
 
   }
-  const toggleEditable =()=>{
-if(editable.current=='No'){
-  setEditablenote(false)
-}
-  }
+  
   
   const [theme, setTheme] = useState('light');
   const toggleTheme = () => {
@@ -145,9 +142,10 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
              
               if(response)
               setText(response.note.content)
-              if(response.note.editable)
-              {setEditablenote(response.note.editable)
-              toggleEditable()}
+              if(response.note.editable == "No"){
+                setEditableNote(false)
+              }
+              
               noteId.current = id
             })
           
@@ -185,7 +183,7 @@ useEffect(() => {
          }, body: JSON.stringify({
            id: noteId.current,
            content: text,
-
+          editable: editable
          })
 
        }).then((response) => { console.log('fileadded') });
@@ -213,12 +211,27 @@ useEffect(() => {
       })
   }
  }
+ useEffect(()=>{
+  fetch('http://34.232.69.171:4000/notes/update', {
+    method: 'PUT',
+    headers: {
+      accept: 'application.json', 'Content-Type': 'application/json',
+      token: loginToken.current
+    }, body: JSON.stringify({
+      id: noteId.current,
+      content: text,
+      editable : editable
+    })
+
+  }).then((response) => { console.log('fileadded') });
+}
+ ,[editable])
   
   return (
 
     <>
       <IsAuto.Provider value={{ theme }} >
-      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editableNote}}>
+      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editableNote,setEditable,editable}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
         <updateContext.Provider value={{updateNote , setUpdateNote, noteId , copyFunction}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />

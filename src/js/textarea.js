@@ -13,7 +13,7 @@ export default function TextArea({ text, setText }) {
   const [wordCount, setWordCount] = useState(0);
 
 
-const{editableNote} = useContext(AnonContext)
+const{editableNote,editable} = useContext(AnonContext)
   // character count
   const [charCount, setCharCount] = useState(0);
   const changeHandler = (event) => {
@@ -104,17 +104,18 @@ const{editableNote} = useContext(AnonContext)
     else{
     window.sessionStorage.setItem('text', text);
     }
+    console.log(editableNote)
   },[text])
 
   return (<>
 {/* Fullcreen textarea */}
     <textarea id="inputField" value={text}
-      onChange={changeHandler} className="form-control d-sm-none d-md-none d-lg-flex" placeholder='New Note' disabled={editableNote? true : false}></textarea>
+      onChange={changeHandler} className="form-control d-sm-none d-md-none d-lg-flex" placeholder='New Note' disabled={editableNote? false : true}></textarea>
 {/* Responsive Text Areaa */}
 <textarea id="inputField" value={text}
-      onChange={changeHandler} className=" form-control d-sm-flex d-md-none d-lg-none" placeholder='New Note' disabled={editableNote? true : false} style={{height:'62%',maxHeight:'63%'}}></textarea>
+      onChange={changeHandler} className=" form-control d-sm-flex d-md-none d-lg-none" placeholder='New Note' disabled={editableNote? false : true} style={{height:'62%',maxHeight:'63%'}}></textarea>
 <textarea id="inputField" value={text}
-      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note'  disabled={editableNote? true : false} style={{height:'78%',maxHeight:'78%'}}></textarea>
+      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note'  disabled={editableNote? false : true} style={{height:'78%',maxHeight:'78%'}}></textarea>
 
 
     {/* Footer */}
