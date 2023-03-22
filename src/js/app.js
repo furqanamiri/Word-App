@@ -215,7 +215,7 @@ useEffect(() => {
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
 
           {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}
-          <Footer />
+          {/* <Footer /> */}
           </updateContext.Provider>
         </LoginContext.Provider>
         </AnonContext.Provider>
