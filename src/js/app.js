@@ -31,6 +31,7 @@ function App() {
 const [updateNote, setUpdateNote] = useState(false)
 //editable hook
 const editable = useRef('yes')
+const[editableNote, setEditablenote] = useState(true)
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState('');
   //loginUser is used to persist login state once user is logged in
@@ -72,6 +73,11 @@ const editable = useRef('yes')
     else
       return false
 
+  }
+  const toggleEditable =()=>{
+if(editable.current=='No'){
+  setEditablenote(false)
+}
   }
   
   const [theme, setTheme] = useState('light');
@@ -139,7 +145,9 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
              
               if(response)
               setText(response.note.content)
-              
+              if(response.note.editable)
+              {setEditablenote(response.note.editable)
+              toggleEditable()}
               noteId.current = id
             })
           
@@ -155,6 +163,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
             }, body: JSON.stringify({
               id: idsave.current,
               content: text,
+              editable : 'yes'
                
             })
     
@@ -198,7 +207,7 @@ useEffect(() => {
       }, body: JSON.stringify({
         id: noteId.current,
         content: text,
-       editable : editableNote,
+       editable : editable.current,
         })
 
       })
@@ -209,7 +218,7 @@ useEffect(() => {
 
     <>
       <IsAuto.Provider value={{ theme }} >
-      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editable}}>
+      <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editableNote}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
         <updateContext.Provider value={{updateNote , setUpdateNote, noteId , copyFunction}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />

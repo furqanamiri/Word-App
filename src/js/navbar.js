@@ -22,7 +22,7 @@ import { AnonContext } from './AnonContext';
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
-  const { anonContext, toggleAnonUser,editable } = useContext(AnonContext)
+  const { anonContext, toggleAnonUser,setEditable } = useContext(AnonContext)
   const { updateNote, setUpdateNote, noteId , copyFunction} = useContext(updateContext)
   const { theme } = useContext(IsAuto)
   const [shareModal, setShareModal] = useState(false);
@@ -50,7 +50,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
 
   }
   const setEdit = (string)=>{
-    editable.current= string
+    setEditable(string)
     
   }
 
