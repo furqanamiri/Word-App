@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import "../scss/registerform.scss";
 import Form from "react-bootstrap/Form";
 import Captcha from "./captcha";
 import Loginform from "./loginform";
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark , LoginModalOpen }) {
   let passCheck = true;
+ const [captchatext,setCaptchaText] = useState('')
+ const captcha = () => {
+    
+  let retVal = "";
+  let charset = "0123456789"
+  let length = 4;
+  for (let i = 0, n = charset.length; i < length; ++i) {
+    retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
 
+  setCaptchaText(retVal);
+
+}
+useEffect(()=>{
+  captcha()
+},[])
   let regexspecial = /^[a-zA-Z]*$/
   const validateregister = (e) => {
     e.preventDefault();
@@ -28,17 +43,26 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     if (!regexspecial.test(usernameid)) {
       return document.getElementById('errormessage').innerHTML = 'No Special Characters allowed'
     }
-    var passwordstring = document.getElementById('password').value
-    var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    const passwordstring = document.getElementById('password').value
+    const regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
     if (!regularExpression.test(passwordstring)) {
       return document.getElementById('errormessage').innerHTML = 'Password should contain one special character, from 6 to 16 characters and atleast one number'
     }
-    var cpasswordid = document.getElementById('cpassword').value
+    const cpasswordid = document.getElementById('cpassword').value
     if (cpasswordid != passwordstring) {
       return document.getElementById('errormessage').innerHTML = 'Confirm Password and Password should match  '
     }
+    const captchatextstr = document.getElementById('captchadiv').value
+    console.log(captchatext +''+ captchatextstr)
+    if(captchatextstr != captchatext){
+      return document.getElementById('errormessage').innerHTML = 'Retry Captcha'
+    }
+    
     registerformcheck(passwordstring);
+   
+  
   }
+  
   const registerformcheck = (passwordstring) => {
 
     const emailid = document.getElementById('emailid').value
@@ -62,6 +86,8 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
         LoginModalOpen();
       }, 3000)
 
+    }).catch((err)=>{
+      return document.getElementById('errormessage').innerHTML = 'Check your Internet Connection'
     })
   }
   const togglePassCheck = (e) => {
@@ -197,8 +223,9 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
               ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
 
-            {/* <GoogleReCaptcha /> */}
+          
             <Form.Group className="mb-3 " style={{ position: "relative" }}>
+            <Captcha setCaptchaText={setCaptchaText} captchatext={captchatext}/>
               <Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{
@@ -213,9 +240,11 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                   fontSize: '1.2rem'
                 }}
                 type="text"
-                id="captcha"
+                id="captchadiv"
+                
                 placeholder=" Enter CAPTCHA as seen above"
               />
+             
 
             </Form.Group>
             <div className="mb-3">

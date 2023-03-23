@@ -1,8 +1,11 @@
 import React from 'react';
 import "../scss/catpcha.scss"
-function Captcha() {
-  var captchatext = ""
-  const captcha = () => {
+function Captcha({setCaptchaText,captchatext}) {
+  
+  
+
+  const recaptcha = () => {
+    
     let retVal = "";
     let charset = "0123456789"
     let length = 4;
@@ -10,16 +13,14 @@ function Captcha() {
       retVal += charset.charAt(Math.floor(Math.random() * n));
     }
 
-    captchatext = retVal;
+    setCaptchaText(retVal)
 
   }
 
-
-
-  return (<>{captcha()}<div className='captchadiv'>
+  return (<><div className='captchadiv'>
     <p>Captcha</p>
     <div className='captcha'>{captchatext}</div>
-    <div><button onClick={captcha()}></button></div></div>
+    <div><button onClick={recaptcha}>Retry</button></div></div>
   </>);
 
 

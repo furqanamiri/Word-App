@@ -98,7 +98,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
          
       })
 
-    }).then((response) => { noteId.current = idsave.current
+    }).then(() => { noteId.current = idsave.current
     setUpdateNote(true)}).catch((err)=>alert('cloud add unsuccessful'))
   }}
 
@@ -237,7 +237,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         </li>
       </ul>
     </nav>
-    <nav className='d-md-flex d-lg-none d-sm-flex ' style={{ height: '10%' }} >
+    <nav className='d-md-flex d-lg-none d-sm-flex ' style={{ height: '15%' }} >
       <ul >
         {/* Note Icon */}
         <li>
@@ -281,7 +281,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
                   <li> <button onClick={toggleShareModalOpen} className='share smallnavbutticon' >
                     <img src="./svg/share.png" height='40' width='40' />Share
                   </button></li>
-                  <Sharemodal shareModal={shareModal} toggleShareModalClose={toggleShareModalClose} isDark={isDark} setEdit={setEdit}/>
+                  <Sharemodal shareModal={shareModal}  toggleShareModalClose={toggleShareModalClose} isDark={isDark} setEdit={setEdit}/>
                 </ul>
 
 
