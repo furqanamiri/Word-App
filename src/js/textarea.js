@@ -115,7 +115,7 @@ const{editableNote,editable} = useContext(AnonContext)
 <textarea id="inputField" value={text}
       onChange={changeHandler} className=" form-control d-sm-flex d-md-none d-lg-none" placeholder='New Note' disabled={editableNote? false : true} style={{height:'62%',maxHeight:'63%',fontSize:'100px'}}></textarea>
 <textarea id="inputField" value={text}
-      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note'  disabled={editableNote? false : true} style={{height:'78%',maxHeight:'78%',fontSize:'3rem',fontWeight:'400'}}></textarea>
+      onChange={changeHandler} className=" form-control d-sm-none d-md-flex d-lg-none" placeholder='New Note'  disabled={editableNote? false : true} style={{height:'78%',maxHeight:'78%',fontSize:'3rem',fontWeight:'500'}}></textarea>
 
 
     {/* Footer */}
@@ -165,12 +165,12 @@ const{editableNote,editable} = useContext(AnonContext)
 
     </div>
     {/* Resposinve Footer */}
-    <div className='footerres d-lg-none  d-md-flex d-sm-flex  d-xs-flex'>
-      <div className='footerresdivword'>
-        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large' }}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
+    <div className='footerres d-lg-none  d-md-flex d-sm-flex  d-xs-flex' style={{fontWeight : '500'}}>
+      <div className='footerresdivword' style={{fontWeight : '500'}}>
+        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large' ,fontWeight : '600'}}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
       </div>
-      <div className='d-flex flex-wrap footeresdivword justify-content-center align-items-center w-100 '>
-        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large' }}>
+      <div className='d-flex flex-wrap footeresdivword justify-content-center align-items-center w-100 ' style={{fontWeight : '600'}}>
+        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large' , fontWeight : '600'}}>
           <li>  Last Updated : {
 
 
@@ -182,8 +182,8 @@ const{editableNote,editable} = useContext(AnonContext)
           }</li>
         </ul>
       </div>
-      <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-        <ul className='w-100 d-flex justify-content-around ulmargin' style={{ fontSize: 'xx-large' }}>
+      <div className='d-flex flex-wrap justify-content-center align-items-center w-100'  >
+        <ul className='w-100 d-flex justify-content-around ulmargin' style={{ fontSize: 'xx-large' ,fontWeight : '600'}}>
           <li>About Us</li>
           <li>Contact Us</li>
           <li>Privacy Policy</li>

@@ -79,28 +79,45 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   //File Saving functionality
 
   const toggleSaveFile = () => {
-    if (anonContext) {
+    console.log(loginUser)
+    if (!loginUser) {
       const newstring = text;
-
       var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
       FileSaver.saveAs(blob, "hello world.txt")
-
-  }else{
-    idgenerator()
-    fetch('http://34.232.69.171:4000/notes/add', {
-      method: 'POST',
-      headers: {
-        accept: 'application.json', 'Content-Type': 'application/json',
-        token: loginToken.current
-      }, body: JSON.stringify({
-        id: idsave.current,
-        content: text,
-         
-      })
-
-    }).then(() => { noteId.current = idsave.current
-    setUpdateNote(true)}).catch((err)=>alert('cloud add unsuccessful'))
+    }
+      else{
+        if(!updateNote){
+       idgenerator()
+          fetch('http://34.232.69.171:4000/notes/add', {
+            method: 'POST',
+            headers: {
+              accept: 'application.json', 'Content-Type': 'application/json',
+              token: loginToken.current
+            }, body: JSON.stringify({
+              id: idsave.current,
+              content: text,
+               
+            })
+    
+          }).then((response) => { noteId.current = idsave.current
+          setUpdateNote(true)});
+          }
+        else{
+          fetch('http://34.232.69.171:4000/notes/update', {
+           method: 'PUT',
+           headers: {
+             accept: 'application.json', 'Content-Type': 'application/json',
+             token: loginToken.current
+           }, body: JSON.stringify({
+             id: noteId.current,
+             content: text,
+ 
+           })
+ 
+         })
+        }
   }}
+
 
   //Login Modal hook state 
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -237,7 +254,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
       </ul>
     </nav>
     {/* Responsive Navbar */}
-    <nav className='d-md-flex d-lg-none d-sm-flex ' style={{ height: '15%' }} >
+    <nav className='d-md-flex d-lg-none d-sm-flex ' style={{ height: '8%' }} >
       <ul >
         {/* Note Icon */}
         <li>
@@ -251,9 +268,9 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login */}
-        <li><button className={anonContext ? "iconnavsmall" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnavsmall'
+        <li><button className={loginUser ? "d-none" : "iconnavsmall"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnavsmall'
         /></button>
-          <button className={anonContext ? "d-none" : "iconnavsmall"} onClick={LogOut} ><img src="./svg/logout.svg" width="20" height="20" className='iconnavsmall'
+          <button className={loginUser ? "iconnavsmall" : "d-none"} onClick={LogOut} ><img src="./svg/logout.svg" width="20" height="20" className='iconnavsmall'
           /></button>
 
         </li>

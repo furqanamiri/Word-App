@@ -61,10 +61,10 @@ export default function Footer({dateUpd, wordCount,charCount}) {
     {/* Resposinve Footer */}
     <div className='footerres d-lg-none  d-md-flex d-sm-flex  d-xs-flex'>
       <div className='footerresdivword'>
-        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large' }}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
+        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large',fontWeight : '600' }}><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
       </div>
       <div className='d-flex flex-wrap footeresdivword justify-content-center align-items-center w-100 '>
-        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large' }}>
+        <ul className='ulmargin' style={{ width: '100%', display: 'flex', justifyContent: 'center', fontSize: 'xx-large',fontWeight : '600' }}>
           <li>  Last Updated : {
 
 
@@ -77,7 +77,7 @@ export default function Footer({dateUpd, wordCount,charCount}) {
         </ul>
       </div>
       <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-        <ul className='w-100 d-flex justify-content-around ulmargin' style={{ fontSize: 'xx-large' }}>
+        <ul className='w-100 d-flex justify-content-around ulmargin' style={{ fontSize: 'xx-large',fontWeight : '600' }}>
           <li>About Us</li>
           <li>Contact Us</li>
           <li>Privacy Policy</li>
