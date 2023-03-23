@@ -159,14 +159,33 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
    }}, [text])
  
   
-  
+   const copyFunction= (e)=>{
+    e.preventDefault()
+    navigator.clipboard.writeText("http://localhost:3000/?id="+noteId.current);
+    if (updateNote) {
+       
+      fetch('http://34.232.69.171:4000/notes/update', {
+        method: 'PUT',
+        headers: {
+          accept: 'application.json', 'Content-Type': 'application/json',
+          token: loginToken.current
+        }, body: JSON.stringify({
+          id: noteId.current,
+          content: text,
+          editable : editable.current
+
+        })
+
+      })
+    }
+   }
   return (
 
     <>
       <IsAuto.Provider value={{ theme }} >
       <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editable}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>
-        <updateContext.Provider value={{updateNote , setUpdateNote, noteId}}>
+        <updateContext.Provider value={{updateNote , setUpdateNote, noteId, copyFunction}}>
           <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={setText} />
 
           {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={setText} /> : <TextArea text={text} setText={setText} />}

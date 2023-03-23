@@ -42,7 +42,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
          toggleUserLogin(true)
           toggleAnonUser()
           LoginModalClose()
-          console.log(loginUser)
+          toggleViewNotes()
         
         }
         else{

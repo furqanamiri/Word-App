@@ -9,21 +9,11 @@ html::-webkit-scrollbar-track {
 background-color: inherit;
 }
 
-html::-webkit-scrollbar-thumb {
-background: #fe8b2e;
-border-radius: 25px;
-}
- 
-/* Handle */
-body::-webkit-scrollbar-thumb {
-  background: #fe8b2e; 
-}
+
 textarea::-webkit-scrollbar-track {
   background: inherit; 
 }
-textarea::-webkit-scrollbar-thumb {
-  background: #fe8b2e; 
-}
+
 h1 {
   color: blue;
   font-family: "open sans";

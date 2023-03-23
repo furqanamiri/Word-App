@@ -4,10 +4,24 @@ import "../scss/registerform.scss";
 import Form from "react-bootstrap/Form";
 import Captcha from "./captcha";
 import Loginform from "./loginform";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark }) {
   let passCheck = true;
+  const [captchatext,setCaptchaText] = useState('')
+  const captcha = () => {
+     
+   let retVal = "";
+   let charset = "0123456789"
+   let length = 4;
+   for (let i = 0, n = charset.length; i < length; ++i) {
+     retVal += charset.charAt(Math.floor(Math.random() * n));
+   }
+ 
+   setCaptchaText(retVal);
+ 
+ }
+
 
   let regexspecial = /^[a-zA-Z]*$/
   const validateregister = (e) => {
@@ -36,6 +50,11 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     var cpasswordid = document.getElementById('cpassword').value
     if (cpasswordid != passwordstring) {
       return document.getElementById('errormessage').innerHTML = 'Confirm Password and Password should match  '
+    }
+    const captchatextstr = document.getElementById('captchadiv').value
+    console.log(captchatext +''+ captchatextstr)
+    if(captchatextstr != captchatext){
+      return document.getElementById('errormessage').innerHTML = 'Retry Captcha'
     }
     registerformcheck(passwordstring);
   }
@@ -84,7 +103,9 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
       temp.type = "password"
     }
   };
-
+useEffect(()=>{
+  captcha()
+},[])
 
   return (
     <>
@@ -199,7 +220,8 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
 
             {/* <GoogleReCaptcha /> */}
             <Form.Group className="mb-3 " controlId="captcha" style={{ position: "relative" }}>
-              <Form.Control
+              
+            <Captcha setCaptchaText={setCaptchaText} captchatext={captchatext}/><Form.Control
                 className={isDark ? "modalDark" : "modalLight"}
                 style={{
                   borderRadius: "10px",
@@ -213,7 +235,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                   fontSize: '1.2rem'
                 }}
                 type="text"
-                id="captcha"
+                id="captchadiv"
                 placeholder=" Enter CAPTCHA as seen above"
               />
 
