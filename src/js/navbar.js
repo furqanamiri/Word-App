@@ -159,19 +159,18 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         {/* Note Icon */}
         <li>
 
-          <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="./svg/noteicon.svg" className='iconnav' color="#7496b8" width="20" height="20" /></button>
+          <button className='iconnav'  onClick={toggleSaveFile} id="save" ><img src="./svg/noteicon.svg"  data-bs-custom-class='navbar-tooltip' className='iconnav' color="#7496b8" width="20" height="20" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Saving Note"/></button>
         </li>
-        {/* Password */}
-        <li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='/svg/openfiles.svg' color="#7496b8" width="20" height="20"></img></button>
-          <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" type="file" onChange={showFile} /><img src="./svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" /></label> </li>
+        {/* File Open / List View */}
+        <li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='/svg/openfiles.svg' color="#7496b8" width="20" height="20" data-bs-custom-class='navbar-tooltip' data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Open Note"></img></button>
+          <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" type="file" onChange={showFile} /><img src="./svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Open Note" /></label> </li>
 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login and Logout*/}
-        <li><button className={loginUser ? "d-none" : "iconnav"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
+        <li><button className={loginUser ? "d-none" : "iconnav"} onClick={LoginModalOpen} data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Login"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
         /></button>
-          <button className={loginUser ? "iconnav" : "d-none"} onClick={LogOut} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./svg/logout.svg" width="20" height="20" className='iconnav'
-          /></button>
+          <button className={loginUser ? "iconnav" : "d-none"} onClick={LogOut} ><img src="./svg/logout.svg" width="20" height="20" className='iconnav' data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="LogOut"/></button>
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} LoginModalOpen={LoginModalOpen}/>
       </ul>
@@ -237,6 +236,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         </li>
       </ul>
     </nav>
+    {/* Responsive Navbar */}
     <nav className='d-md-flex d-lg-none d-sm-flex ' style={{ height: '15%' }} >
       <ul >
         {/* Note Icon */}
