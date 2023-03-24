@@ -53,7 +53,7 @@ useEffect(()=>{
       return document.getElementById('errormessage').innerHTML = 'Confirm Password and Password should match  '
     }
     const captchatextstr = document.getElementById('captchadiv').value
-    console.log(captchatext +''+ captchatextstr)
+   
     if(captchatextstr != captchatext){
       return document.getElementById('errormessage').innerHTML = 'Retry Captcha'
     }
@@ -66,7 +66,7 @@ useEffect(()=>{
   const registerformcheck = (passwordstring) => {
 
     const emailid = document.getElementById('emailid').value
-    fetch('http://34.232.69.171:4000/api/ninjas', {
+    fetch(process.env.REACT_APP_REGISTER, {
       method: 'POST',
       headers: {
         Accept: 'application.json',

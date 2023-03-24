@@ -104,7 +104,7 @@ const{editableNote,editable} = useContext(AnonContext)
     else{
     window.sessionStorage.setItem('text', text);
     }
-    console.log(editableNote)
+    
   },[text])
 
   return (<>

@@ -22,6 +22,9 @@ import { AnonContext } from './AnonContext';
 
 export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   //ShareModal  hook state
+  let r = /:\/\/(.[^/]+)/;
+  const urlapp = window.location.href
+ const domain =  urlapp.match(r)[1] 
   const { anonContext, toggleAnonUser,setEditable,editable } = useContext(AnonContext)
   const { updateNote, setUpdateNote, noteId , copyFunction} = useContext(updateContext)
   const { theme } = useContext(IsAuto)
@@ -88,7 +91,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
       else{
         if(!updateNote){
        idgenerator()
-          fetch('http://34.232.69.171:4000/notes/add', {
+          fetch(process.env.REACT_APP_ADD, {
             method: 'POST',
             headers: {
               accept: 'application.json', 'Content-Type': 'application/json',
@@ -103,7 +106,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           setUpdateNote(true)});
           }
         else{
-          fetch('http://34.232.69.171:4000/notes/update', {
+          fetch(process.env.REACT_APP_UPDATE, {
            method: 'PUT',
            headers: {
              accept: 'application.json', 'Content-Type': 'application/json',
@@ -129,7 +132,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   };
 
   const LogOut = () => {
-    fetch("http://34.232.69.171:4000/logout", {
+    fetch(process.env.REACT_APP_LOGOUT, {
       method: 'GET',
       headers: {
         Accept: '*/*',
@@ -150,7 +153,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
   useEffect(() => {
    if (updateNote) {
       
-        fetch('http://34.232.69.171:4000/notes/update', {
+        fetch(process.env.REACT_APP_UPDATE, {
           method: 'PUT',
           headers: {
             accept: 'application.json', 'Content-Type': 'application/json',
@@ -237,7 +240,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
             overlay={
               <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool" : "tooltiplight sharetool"} style={{ borderRadius: '10px' }}>
                 <Popover.Body>
-                  <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p>http://localhost:3000/?id={noteId.current}</p></div>
+                  <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p id="urllink">{domain}?id={noteId.current}</p></div>
                   <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" id="view only" onClick={()=>setEdit('No')}/><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
                     <input type="radio" name="sharerad" id="editnote" onClick={()=>setEdit('yes')}/><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
                     <button type="radio" onClick={copyFunction} name="sharerad" style={{ fontWeight: '300', color: '#7496B8' }}><img src="./svg/copylink.svg" style={{ paddingRight: '1%' }} ></img>Copy Link</button></form>

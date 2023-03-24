@@ -22,7 +22,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   }
   const loginValidation = (e) => {
     e.preventDefault();
-    fetch('http://34.232.69.171:4000/login', {
+    fetch(process.env.REACT_APP_LOGIN , {
       method: 'POST', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
       },
@@ -164,7 +164,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 fontSize: '14px', width: '100%',
                 fontWeight: 'lighter', color: '#666666', marginTop: '1rem', marginBottom: '1rem', textAlign: 'center',
               }}> or </p>
-              <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src=".//svg/googleicon.svg" className="inputiconleftg"></img></button>
+              <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="./svg/googleicon.svg" className="inputiconleftg"></img></button>
               <p style={isDark ? { color: "white" } : { color: 'black' }
               }> Don't have an account yet? <button onClick={LoginRegisterOpen} style={{ color: "#FA8B2E", padding: '0', margin: '0', width: 'fit-content' }}>Sign Up</button> </p>
 

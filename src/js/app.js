@@ -23,8 +23,7 @@ function App() {
     id = urlParams.get('id')
  
   const noteId = useRef('')
-  if(!id==" ")
-  noteId.current = id
+  
   const anonToken = useRef('')
     const idsave = useRef('')
  
@@ -40,7 +39,7 @@ const[editableNote, setEditableNote] = useState(true)
   const loginToken = useRef('')
   function toggleUserLogin() {
     setLoginUser(!loginUser);
-    console.log(loginUser)
+   
   }
   const idgenerator = () => {
     let retVal = "";
@@ -117,7 +116,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
      
     }
    if(!loginUser)
-    fetch('http://34.232.69.171:4000/anonuser',{
+    fetch(process.env.REACT_APP_ANON_USER,{
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
                                                                                                                                                                                                                                            
@@ -131,17 +130,18 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
         }).then((response)=>{
           if(id!=" "){
           
-            fetch("http://34.232.69.171:4000/notes/note/"+id,{
+            fetch(process.env.REACT_APP_SHARE_NOTE+id,{
             method: "GET",
             headers:{
               accept: "application/json",
               token:loginToken.current,
             }
             }).then(response=> response.json()).then((response)=>{
-              if(response)
              
-              if(response)
+             
+              
               setText(response.note.content)
+              setUpdateNote(true)
               if(response.note.editable == "No"){
                 setEditable('No')
                 setEditableNote(false)
@@ -153,8 +153,10 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
     
   }
         }).then((response)=>{
-          idgenerator()
-          fetch('http://34.232.69.171:4000/notes/add', {
+          
+         if(!updateNote){idgenerator()
+           fetch(process.env.REACT_APP_ADD, {
+          
             method: 'POST',
             headers: {
               accept: 'application.json', 'Content-Type': 'application/json',
@@ -168,15 +170,15 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
     
           }).then((response) => { noteId.current = idsave.current
           setUpdateNote(true)})
-          }
-        ).catch((err)=>alert('cloud add unsuccessful'))
+          }}
+        ).catch()
         
         //Id in url parameter from share
        },[])
 useEffect(() => {
   if (updateNote) {
      
-       fetch('http://34.232.69.171:4000/notes/update', {
+       fetch(process.env.REACT_APP_UPDATE, {
          method: 'PUT',
          headers: {
            accept: 'application.json', 'Content-Type': 'application/json',
@@ -187,18 +189,22 @@ useEffect(() => {
           editable: editable
          })
 
-       }).then((response) => { console.log('fileadded') });
+       })
      }
+    
    
  }, [text])
+ let r = /:\/\/(.[^/]+)/;
 
- 
- const copyFunction= (e)=>{
+
+const urlapp = window.location.href
+ const domain =  urlapp.match(r)[1] 
+ const  copyFunction= (e)=>{
   e.preventDefault()
-  navigator.clipboard.writeText("http://localhost:3000/?id="+noteId.current);
+   navigator.clipboard.writeText(domain+'/?id='+noteId.current);
   if (updateNote) {
        
-    fetch('http://34.232.69.171:4000/notes/update', {
+    fetch(process.env.REACT_APP_UPDATE, {
       method: 'PUT',
       headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
@@ -213,7 +219,7 @@ useEffect(() => {
   }
  }
  useEffect(()=>{
-  fetch('http://34.232.69.171:4000/notes/update', {
+  fetch(process.env.REACT_APP_UPDATE, {
     method: 'PUT',
     headers: {
       accept: 'application.json', 'Content-Type': 'application/json',
@@ -224,7 +230,7 @@ useEffect(() => {
       editable : editable
     })
 
-  }).then((response) => { console.log('fileadded') });
+  })
 }
  ,[editable])
   

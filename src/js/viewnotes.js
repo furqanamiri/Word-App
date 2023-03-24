@@ -26,7 +26,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   const spaces = textnote.current.match(/\s+/g);
   let count = 0;
   const addNotes = () => {
-    fetch('http://34.232.69.171:4000/notes/list', {
+    fetch(process.env.REACT_APP_NOTES, {
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
         token: loginToken.current,                                                                                                                                                                                                                                    

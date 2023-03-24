@@ -11,7 +11,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
 // const date
   textnote.current = list
   const deletenote = () => {
-    fetch('http://34.232.69.171:4000/notes/delete', {
+    fetch(process.env.REACT_APP_DELETE, {
       method: 'DELETE', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
         token : loginToken.current,

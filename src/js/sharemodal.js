@@ -8,8 +8,11 @@ import { updateContext } from "./updatecontext";
 
 export default function Sharemodal({ shareModal, toggleShareModalClose, isDark, setEdit }) {
 const {noteId,copyFunction} = useContext(updateContext)
+let r = /:\/\/(.[^/]+)/;
+const urlapp = window.location.href
+ const domain =  urlapp.match(r)[1] 
 
-
+   
   return (
     <>
 
@@ -26,7 +29,7 @@ const {noteId,copyFunction} = useContext(updateContext)
         <Modal.Body style={{ borderRadius: '40px' }} className={isDark ? "modalDarkpass d-flex flex-column justify-content-center" : "modalLightpass flex-column d-flex justify-content-center "}>
 
           <div className={isDark ? "items title" : "items title"} style={{ padding: '10% 0', fontSize: '50px' }}>Share As</div><Form className="d-flex flex-column w-100 "    >
-            <div style={{ backgroundColor: 'transparent', fontSize: '60px' }} className={isDark ? "tooltipdark sharelink" : "tooltiplight sharelink"}><p>http://localhost:3000/?id={noteId.current}</p></div>
+            <div style={{ backgroundColor: 'transparent', fontSize: '60px' }} className={isDark ? "tooltipdark sharelink" : "tooltiplight sharelink"}><p>{domain}?id={noteId.current}</p></div>
             <div style={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", }} className="">
               <div className="d-flex flex-nowrap align-items-center " style={{
                 padding: '1em',
