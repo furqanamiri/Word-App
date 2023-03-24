@@ -143,6 +143,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
               if(response)
               setText(response.note.content)
               if(response.note.editable == "No"){
+                setEditable('No')
                 setEditableNote(false)
               }
               
@@ -161,7 +162,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
             }, body: JSON.stringify({
               id: idsave.current,
               content: text,
-              editable : 'yes'
+              editable : editable
                
             })
     

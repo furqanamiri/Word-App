@@ -24,7 +24,7 @@ export default function Footer({dateUpd, wordCount,charCount}) {
             Characters : {charCount}
           </li>
         </ul><ul className='right-footer '>
-          <li className='endalign' style={{ width:'15%'}}>
+          <li className='endalign' style={{ width:'125px'}}>
             About Us
           </li>
           <li className='endalign' style={{ width:'25%'}}>
