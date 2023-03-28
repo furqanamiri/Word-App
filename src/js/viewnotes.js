@@ -73,9 +73,35 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
     window.sessionStorage.clear('text')
     toggleViewNotes()
   }
+//ShowFile
+  function showFile() {
+
+    clickFunctionnew()
+        var preview = document.getElementById('show-text');
+        var file1 = document.querySelector('#file1').files[0];
+        var reader = new FileReader()
+        
+        var textFile = /text.*/;
+        reader.readAsText(file1)
+        // if (file.type.match(textFile)) 
+        setText(' ')
+        reader.onload = function (event) {
+          setText(event.target.result)
+          
+        }
+        reader.onerror = function (error) {
+          error.target.result
+        }
+        
+       
+      }
   // })
   return (
     <>
+     <div className="local-file-div">
+    <label className="button-file "><input style={{display:'none'}} id='file1' type="file" onChange={showFile} /><img src="./svg/localfile.svg"></img><b style={isDark?{color:'white' , marginLeft:'10px',alignSelf:'center'}:{color:'black',marginLeft:'10px',alignSelf:'center'}}>Browse</b> <span style={{alignSelf:'center'}}> your files</span>
+</label>
+    </div>
       <div className='fluid-container mainnotes' id='mainnotes'>
         <div className="row" id='notesadd'>
           <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote" style={{minHeight : '201px'}}>
