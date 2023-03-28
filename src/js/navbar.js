@@ -168,9 +168,9 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login and Logout*/}
-        <li><button className={anonContext ? "iconnav" : "d-none"} onClick={LoginModalOpen} ><img src="./src/svg/person.svg" width="20" height="20" className='iconnav'
+        <li><button className={loginUser ? "d-none" : "iconnav"} onClick={LoginModalOpen} ><img src="./src/svg/person.svg" width="20" height="20" className='iconnav'
         data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Login"/></button>
-          <button className={anonContext ? "d-none" : "iconnav"} onClick={LogOut} ><img src="./src/svg/logout.svg" width="20" height="20" className='iconnav' data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="LogOut"
+          <button className={loginUser ? "iconnav" : "d-none"} onClick={LogOut} ><img src="./src/svg/logout.svg" width="20" height="20" className='iconnav' data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="LogOut"
           /></button>
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
@@ -252,9 +252,9 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
 
         {/* Login */}
-        <li><button className={anonContext ? "iconnavsmall" : "d-none"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnavsmall'
+        <li><button className={loginUser ? "d-none" : "iconnavsmall"} onClick={LoginModalOpen} data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="./src/svg/person.svg" width="20" height="20" className='iconnavsmall'
         /></button>
-          <button className={anonContext ? "d-none" : "iconnavsmall"} onClick={LogOut} ><img src="./src/svg/logout.svg" width="20" height="20" className='iconnavsmall'
+          <button className={loginUser ? "iconnavsmall" : "d-none"} onClick={LogOut} ><img src="./src/svg/logout.svg" width="20" height="20" className='iconnavsmall'
           /></button>
 
         </li>

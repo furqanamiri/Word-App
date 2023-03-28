@@ -186,4 +186,25 @@
 }
 .left-footer {
   margin-left: 3rem;
+} .local-file-div{
+  display:flex;
+  width:100%;
+  justify-content: center;
+  .button-file{
+    width: fit-content;
+    background: inherit;
+    border: 1px dashed black;
+    border-radius: 6px;
+    box-shadow: 0px 0px 0px 10px #f1f8fe;
+    margin-top: 35px;
+    /* padding: 15px; */
+    padding: 1.5% 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    /* font-size: 1rem; */
+    color: #7496b8;
+    min-height: 85px;
+
 }
+//  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  }

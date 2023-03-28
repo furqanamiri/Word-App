@@ -4,6 +4,7 @@ import moment from 'moment';
 import Viewingnotes from "./viewingnotes";
 import { LoginContext } from "./Logincontext";
 import { updateContext } from "./updatecontext";
+var FileSaver = require('file-saver');
 // import Viewingnotes from "./viewingnotes";
 
 
@@ -67,6 +68,28 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   // const notediv = document.getElementById("newnote")
   // notediv.addEventListener('click', () => {
 
+  //File Opening functionality 
+  function showFile() {
+
+clickFunctionnew()
+    var preview = document.getElementById('show-text');
+    var file1 = document.querySelector('#file1').files[0];
+    var reader = new FileReader()
+    
+    var textFile = /text.*/;
+    reader.readAsText(file1)
+    // if (file.type.match(textFile)) 
+    setText(' ')
+    reader.onload = function (event) {
+      setText(event.target.result)
+      
+    }
+    reader.onerror = function (error) {
+      error.target.result
+    }
+    
+   
+  }
   const clickFunctionnew = () => {
     setText('')
     setUpdateNote(false)
@@ -76,6 +99,10 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   // })
   return (
     <>
+    <div className="local-file-div">
+    <label className="button-file "><input style={{display:'none'}} id='file1' type="file" onChange={showFile} /><img src="./src/svg/localfile.svg"></img><b style={isDark?{color:'white' , marginLeft:'10px',alignSelf:'center'}:{color:'black',marginLeft:'10px',alignSelf:'center'}}>Browse</b> <span style={{alignSelf:'center'}}> your files</span>
+</label>
+    </div>
       <div className='fluid-container mainnotes' id='mainnotes'>
         <div className="row" id='notesadd' >
           <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote" style={{minHeight: '201px'}}>
@@ -100,50 +127,50 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
       {/* Footer */}
       <div className="footer d-lg-flex d-md-none d-sm-none  d-xs-none">
-        <div className="d-flex footerdiv">
-          <ul className="left-footer">
-            <li id="wordcount">
+      <div className="d-flex footerdiv">
+        <ul className="left-footer">
+          <li id="wordcount">
 
-              Words : 0
-            </li>
-            <li>
-              Characters : 0
-            </li>
-          </ul><ul className='right-footer'>
-            <li>
-              About Us
-            </li>
-            <li>
-              Contact Us
-            </li>
-          </ul>
-        </div>
-        <div className="d-flex footerdiv">
-
-          <ul className='left-footer'>
-            <li>  Last Updated : {
-
-
-
-
-
-
-
-            }</li>
-          </ul>
-
-
-          <ul className='right-footer'>
-            <li>
-              Privacy Policy
-            </li>
-            <li>
-              Terms
-            </li>
-          </ul>
-        </div>
-
+            Words : {wordCount}
+          </li>
+          <li>
+            Characters : {charCount}
+          </li>
+        </ul><ul className='right-footer '>
+          <li className='endalign' style={{ width:'125px'}}>
+            About Us
+          </li>
+          <li className='endalign' style={{ width:'25%'}}>
+            Contact Us
+          </li>
+        </ul>
       </div>
+      <div className="d-flex footerdiv">
+
+        <ul className='left-footer'>
+          <li >  Last Updated : {
+
+
+
+            (moment(dateUpd).fromNow())
+
+
+
+          }</li>
+        </ul>
+
+
+        <ul className='right-footer'>
+          <li className='endalign' style={{width:'fit-content'}}>
+            Privacy Policy
+          </li>
+          <li className='endalign' style={{width:'25%'}}>
+            Terms
+          </li>
+        </ul>
+      </div>
+
+    </div>
       {/* Resposinve Footer */}
       <div className='footerres d-lg-none d-md-flex d-sm-flex  d-xs-flex'>
         <div className='footerresdivword'>
