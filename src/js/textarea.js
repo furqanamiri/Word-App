@@ -1,19 +1,14 @@
 
 import "../scss/textarea.scss"
 import { useState, useEffect, useContext } from 'react';
-
 import moment from 'moment';
 import { AnonContext } from './AnonContext';
 import Footer from "./footer";
 
 export default function TextArea({ text, setText }) {
-
-
   const [dateUpd, setDateUpd] = useState(moment())
   // word count
   const [wordCount, setwordCount] = useState(0);
-
-
   const { editableNote } = useContext(AnonContext)
   // character count
   const [charCount, setCharCount] = useState(0);

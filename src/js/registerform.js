@@ -4,26 +4,23 @@ import "../scss/registerform.scss";
 import Form from "react-bootstrap/Form";
 import Captcha from "./captcha";
 import Loginform from "./loginform";
-import { useState,useRef } from "react";
+import { useState, useRef } from "react";
 import { GoogleReCaptcha } from "react-google-recaptcha-v3";
-export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark , LoginModalOpen }) {
+export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark, LoginModalOpen }) {
   let passCheck = true;
- const [captchatext,setCaptchaText] = useState('')
- const captcha = () => {
-    
-  let retVal = "";
-  let charset = "0123456789"
-  let length = 4;
-  for (let i = 0, n = charset.length; i < length; ++i) {
-    retVal += charset.charAt(Math.floor(Math.random() * n));
+  const [captchatext, setCaptchaText] = useState('')
+  const captcha = () => {
+    let retVal = "";
+    let charset = "0123456789"
+    let length = 4;
+    for (let i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    setCaptchaText(retVal);
   }
-
-  setCaptchaText(retVal);
-
-}
-useEffect(()=>{
-  captcha()
-},[])
+  useEffect(() => {
+    captcha()
+  }, [])
   let regexspecial = /^[a-zA-Z]*$/
   const validateregister = (e) => {
     e.preventDefault();
@@ -53,16 +50,16 @@ useEffect(()=>{
       return document.getElementById('errormessage').innerHTML = 'Confirm Password and Password should match  '
     }
     const captchatextstr = document.getElementById('captchadiv').value
-   
-    if(captchatextstr != captchatext){
+
+    if (captchatextstr != captchatext) {
       return document.getElementById('errormessage').innerHTML = 'Retry Captcha'
     }
-    
+
     registerformcheck(passwordstring);
-   
-  
+
+
   }
-  
+
   const registerformcheck = (passwordstring) => {
 
     const emailid = document.getElementById('emailid').value
@@ -86,7 +83,7 @@ useEffect(()=>{
         LoginModalOpen();
       }, 3000)
 
-    }).catch((err)=>{
+    }).catch((err) => {
       return document.getElementById('errormessage').innerHTML = 'Check your Internet Connection'
     })
   }
@@ -119,8 +116,7 @@ useEffect(()=>{
         className='bordeRreg'
         show={showRegisterModal}
         onHide={LoginRegisterClose}
-        centered
-      >
+        centered >
         <Modal.Header className={isDark ? "LoginDarkHeader" : "LoginLightHeader"}  >
           <Modal.Title className={isDark ? "LoginDarkHeader centering" : "LoginLightHeader centering"}>Sign Up Your account </Modal.Title>
         </Modal.Header>
@@ -147,22 +143,20 @@ useEffect(()=>{
             <Form.Group className="mb-3 reg-relative">
               <Form.Control
                 className={isDark ? "modalDark reg-input-div" : "reg-input-div modalLight"}
-               
                 type={passCheck ? "password" : "text"}
                 placeholder="Password"
                 id="password"
               />
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
               <button
-              className="reg-input-icons" 
-               tabIndex="-1"
+                className="reg-input-icons"
+                tabIndex="-1"
                 onClick={togglePassCheck}
               ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
             <Form.Group className="mb-3 reg-relative">
               <Form.Control
                 className={isDark ? "reg-input-div modalDark" : "reg-input-div modalLight"}
-                
                 id="cpassword"
                 type={passCheck ? "password" : 'text'}
                 placeholder="Confirm Password"
@@ -172,29 +166,21 @@ useEffect(()=>{
                 onClick={togglePassCheck1}
               ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
-
-          
             <Form.Group className="mb-3 reg-relative">
-            <Captcha setCaptchaText={setCaptchaText} captchatext={captchatext}/>
+              <Captcha setCaptchaText={setCaptchaText} captchatext={captchatext} />
               <Form.Control
-                className={isDark ? "modalDark reg-input-div"  : "reg-input-div modalLight"}
-               
+                className={isDark ? "modalDark reg-input-div" : "reg-input-div modalLight"}
                 type="text"
                 id="captchadiv"
-                
                 placeholder=" Enter CAPTCHA as seen above"
               />
-             
-
             </Form.Group>
             <div className="mb-3">
               <button className="reg-signup-butt">Sign Up</button>
             </div>
-
             <p className='registererror' id="errormessage"></p>
           </Form>
         </Modal.Body>
-
       </Modal>
       {/* <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} /> */}
     </>
