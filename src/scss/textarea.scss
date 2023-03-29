@@ -1,53 +1,42 @@
-@media  (max-width: 760px) {
-  textarea.form-control {
-    height: 50vh;
-    font-size: 2rem;
-  }
-}
-textarea{
+textarea {
   scrollbar-color: #fe8b2e inherit;
+
   -webkit-scrollbar-track {
-    background: inherit; 
+    background: inherit;
   }
-   
+
   /* Handle */
   -webkit-scrollbar-thumb {
-    background: #fe8b2e; 
+    background: #fe8b2e;
   }
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-textarea.form-control:active{
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+textarea.form-control:active {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
   -webkit-scrollbar: none;
 }
-  textarea.form-control {
-   height: 75%;
-    max-height:77%;
-    padding: 3rem;
-    border: transparent;
-    outline: 0;
-    font-weight: 200;
-    font-size: 2rem;
-    scrollbar-color: #fa8b2e;
-    -ms-thumb: none;
-   
-  }
-textarea.responsiveheight{
+
+
+textarea.responsiveheight {
   height: 30%;
-    max-height:30%;
-    padding: 3rem;
-    border: transparent;
-    outline: 0;
-    font-weight: 200;
-    font-size: 2rem;
-    scrollbar-color: #fa8b2e;
-    -ms-thumb: none;
+  max-height: 30%;
+  padding: 3rem;
+  border: transparent;
+  outline: 0;
+  font-weight: 200;
+  font-size: 2rem;
+  scrollbar-color: #fa8b2e;
+  -ms-thumb: none;
 }
+
 .form-control:active {
   border: transparent;
 }
+
 .form-control:focus {
   color: #212529;
   background-color: #fff;
@@ -55,96 +44,8 @@ textarea.responsiveheight{
   outline: 0px;
   box-shadow: 0 0 0 0 transparent;
 }
-.footer{
-  background-color: inherit;
-  font-size: 1.5rem;
-  max-height: 20vh;
-}
-.light .footer {
-  color: #7496b8;
-  font-family: sans-serif;
-  margin-bottom: 0.5rem;
-  font-weight: 200;
-  
-  max-height: 20vh;
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  width: 100%;
-  bottom: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.14);
-}
-.dark .footer {
-  color: #7496b8;
-  font-family: sans-serif;
-  margin-bottom: 0.5rem;
-  font-weight: 200;
-  max-height: 20vh;
-  
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  width: 100%;
-  bottom: 1rem;
-  border-top: 1px solid rgb(255, 255, 255, 0.14);
-}
-.light .footer {
-  color: #7496b8;
-  font-family: sans-serif;
-  margin-bottom: 0.5rem;
-  font-weight: 200;
-  height: fit-content;
-  position: fixed;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  width: 100%;
-  bottom: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.14);
-}
-
-.footerdiv ul {
-  height: fit-content;
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  width:50%;
-}
-.footerdiv {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  align-items: center;
-  max-height:10vh;
-  
-}
-.footer ul li {
-  display: flex;
-  flex-wrap: wrap;
-  padding-bottom: 0;
-  margin: 0.3rem 0;
-  margin-left: 1.2rem;
-  font-size: 1.3rem;
-    
 
 
-}
-
-.endalign{
- 
-
-  /* text-align: end; */
-  width:10%;
-}
-.right-footer {
-  justify-content: end;
-}
-.left-footer {
-  margin-left: 3rem;
-}
 textarea::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(233, 123, 33, 0.897);
 }

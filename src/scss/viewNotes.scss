@@ -1,9 +1,14 @@
 .mainnotes {
   margin: 0;
   padding: 0 2rem;
-  height: 75%;
-  overflow-y: scroll;
+  height: 85%;
 }
+
+.total-notes {
+  overflow-y: scroll;
+
+}
+
 .dark .note {
   background-image: url("../../public/svg/darknote.svg");
   background-size: 100%;
@@ -15,11 +20,13 @@
   margin-top: 2rem;
   font-size: 3rem;
   font-style: normal;
- min-width: 250px;
+  min-width: 250px;
+  min-height: 201px;
   // box-shadow: 0px 2px 0px 0px gray;
 
   padding: 0 1%;
 }
+
 .light .note {
   background-image: url("../../public/svg/notes.svg");
   background-size: 100%;
@@ -31,20 +38,23 @@
   margin-top: 2rem;
   font-size: 3rem;
   font-style: normal;
-  min-width:250px;
+  min-width: 250px;
+  min-height: 201px;
 
-  
-  
+
   // box-shadow: 0px 2px 0px 0px gray;
 
   padding: 0 1%;
 }
+
 .lightnote {
   color: black;
 }
+
 .darknote {
   color: #ffffff;
 }
+
 .light .notetext {
   margin-left: 6%;
   margin-top: 0%;
@@ -60,8 +70,9 @@
   overflow-wrap: break-word;
   overflow: hidden;
   color: black;
-  
+
 }
+
 .dark .notetext {
   margin-left: 6%;
   margin-top: 0%;
@@ -79,12 +90,15 @@
   overflow-wrap: break-word;
   overflow: hidden;
 }
+
 .darknotetext {
   border-top: 2px solid rgb(255, 255, 255, 0.2);
 }
+
 .lightnotetext {
   border-top: 2px solid rgb(0, 0, 0, 0.1);
 }
+
 // .darknotesfooter {
 // }
 // .lightnotesfooter {
@@ -97,6 +111,7 @@
   margin-top: 0;
   color: #7496b8;
 }
+
 .darknotesfooter {
   position: relative;
   position: relative;
@@ -104,6 +119,7 @@
   padding-top: 1%;
   top: 23%;
 }
+
 .deletenote {
   position: relative;
   left: 82%;
@@ -126,6 +142,7 @@
   bottom: 1rem;
   border-top: 1px solid rgba(0, 0, 0, 0.14);
 }
+
 .dark .footer {
   color: #7496b8;
   font-family: sans-serif;
@@ -140,6 +157,7 @@
   bottom: 1rem;
   border-top: 1px solid rgb(255, 255, 255, 0.14);
 }
+
 .light .footer {
   color: #7496b8;
   font-family: sans-serif;
@@ -161,6 +179,7 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
 .footerdiv {
   display: flex;
   justify-content: space-between;
@@ -168,6 +187,7 @@
   padding-bottom: 0.5rem;
   align-items: center;
 }
+
 .footer ul li {
   display: flex;
   flex-wrap: wrap;
@@ -175,24 +195,28 @@
   margin: 0.3rem 0;
   margin-left: 1.2rem;
 }
+
 .right-footer {
   justify-content: end;
   margin-right: 0;
   margin-left: 3rem;
   width: 20%;
+
   li {
     width: 50%;
   }
 }
+
 .left-footer {
   margin-left: 3rem;
 }
 
-.local-file-div{
-  display:flex;
-  width:100%;
+.local-file-div {
+  display: flex;
+  width: 100%;
   justify-content: center;
-  .button-file{
+
+  .button-file {
     width: fit-content;
     background: inherit;
     border: 1px dashed black;
@@ -207,6 +231,28 @@
     color: #7496b8;
     min-height: 85px;
 
-}
-//  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
   }
+
+  //  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+
+.light .local-file-para {
+  margin-left: 10px;
+  align-self: center;
+  color: black
+}
+
+.dark .local-file-para {
+  margin-left: 10px;
+  align-self: center;
+  color: white
+}
+
+.center-inp {
+  align-self: center;
+  display: none;
+}
+
+.notes-center {
+  align-self: center;
+}

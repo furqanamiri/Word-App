@@ -22,67 +22,35 @@ export default function Passwordform({
         show={showPassword}
         onHide={handleClosePass}
         centered
-        style={{ height: '100%' }}
+
       >
         <Modal.Header
-          className={isDark ? "modalDarkpass" : "modalLight"}
-          style={{ paddingBottom: "0px" }}
+          className={isDark ? "modalDarkpass pb0" : "modalLight pb0"}
         >
           <Modal.Title className="items title ">Add Your Password</Modal.Title>
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDarkpass" : "modalLight"}>
           <Form>
-            <Form.Group className="mb-3 " controlId="formBasicPassword" style={{ position: "relative" }}>
+            <Form.Group className="mb-3 relative" controlId="formBasicPassword">
               <Form.Control
-                className={isDark ? "modalDark h-md-10 h-lg-30" : "modalLight h-md-10 h-s-10"}
-                style={{
-                  borderRadius: "10px",
-                  paddingLeft: "1.5rem",
-                  borderColor: "#7496B8",
+                className={isDark ? "reset-password-div modalDark h-md-10 h-lg-30" : "reset-password-div modalLight h-md-10 h-s-10"}
 
-                  transition: "none",
-                  width: "60%",
-                  justifySelf: "center",
-                  margin: "0 auto",
-                  fontSize: '1.2rem'
-                }}
                 type={passCheck ? "password" : 'text'}
                 placeholder="Type Password"
               />
-              <button style={{
-                position: 'absolute',
-                top: '50%',
-                left: '65%',
-                transform: 'translateY(-50%)', padding: '0', margin: '0'
-              }}
+              <button className="reset-pass-eye-icon"
                 onClick={togglePassCheck}
               ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
-            <div style={{ padding: "0px", margin: "0px  " }}>
+            <div className="p-0 m-0">
               <Button
-                style={{
-                  width: "fit-content",
-                  height: "40px",
-                  borderRadius: "10px",
-                  border: "none",
-                  marginLeft: "25%",
-                  backgroundColor: "#FA8B2E",
-                  fontWeight: "light",
-
-                }}
+                className="rest-pass-butt"
                 onClick={handleClosePass}
               >
                 Set Password
               </Button>
               <Button
-                style={{
-                  width: "fit-content",
-                  height: "40px",
-                  borderRadius: "10px",
-                  marginLeft: "20px",
-                  fontWeight: "light",
-
-                }}
+                className="reset-pass-cancel-butt"
                 variant={isDark ? "light" : "dark"}
                 onClick={handleClosePass}
               >

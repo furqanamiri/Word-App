@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
+
 import Modal from "react-bootstrap/Modal";
 import "../scss/exportModal.scss";
 import Form from "react-bootstrap/Form";
@@ -39,19 +39,7 @@ export default function Exportmodal({ exportModal, toggleExportModalClose, isDar
                   <p style={{ marginLeft: '20%', fontSize: '45px', }}>Word</p>
                 </div>              </div>
             </div>
-            <button style={{
-              borderRadius: '15px',
-              color: 'white',
-              backgroundColor: 'rgb(250, 139, 46)',
-
-              transition: 'none 0s ease 0s',
-              width: '50%',
-              justifySelf: 'center',
-              fontSize: '40px',
-              padding: '5% 0',
-              fontWeight: 'lighter',
-              margin: '5% 0'
-            }}>Export</button>
+            <button className="export-butt">Export</button>
 
           </Form>
         </Modal.Body>

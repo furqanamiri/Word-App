@@ -126,119 +126,59 @@ useEffect(()=>{
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLight"}>
           <Form onSubmit={validateregister}>
-            <Form.Group className="mb-3 " style={{ position: "relative" }}>
+            <Form.Group className="mb-3 reg-relative">
               <Form.Control
-                className={isDark ? "modalDark" : "modalLight"}
-                style={{
-                  borderRadius: "10px",
-                  paddingLeft: "10%",
-                  borderColor: "#7496B8",
-
-                  transition: "none",
-                  width: "80%",
-                  justifySelf: "center",
-                  margin: "0 auto",
-                  fontSize: '1.2rem'
-                }}
+                className={isDark ? "modalDark reg-input-div" : "reg-input-div modalLight"}
                 type="text"
                 id="usernameid"
                 placeholder=" Enter Username"
               />
               <img src="./svg/loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
-            <Form.Group className="mb-3 " style={{ position: "relative" }}>
+            <Form.Group className="mb-3 reg-relative">
               <Form.Control
-                className={isDark ? "modalDark" : "modalLight"}
-                style={{
-                  borderRadius: "10px",
-                  paddingLeft: "10%",
-                  borderColor: "#7496B8",
-
-                  transition: "none",
-                  width: "80%",
-                  justifySelf: "center",
-                  margin: "0 auto",
-                  fontSize: '1.2rem'
-                }}
+                className={isDark ? "modalDark reg-input-div" : "reg-input-div modalLight"}
                 type="email" id='emailid'
                 placeholder="Enter Your Email"
               />
               <img src="./svg/registeremail.svg" className="inputiconleft"></img>
             </Form.Group>
 
-            <Form.Group className="mb-3 " style={{ position: "relative" }}>
+            <Form.Group className="mb-3 reg-relative">
               <Form.Control
-                className={isDark ? "modalDark" : "modalLight"}
-                style={{
-                  borderRadius: "10px",
-                  paddingLeft: "10%",
-                  borderColor: "#7496B8",
-
-                  transition: "none",
-                  width: "80%",
-                  justifySelf: "center",
-                  margin: "0 auto",
-                  fontSize: '1.2rem'
-                }}
+                className={isDark ? "modalDark reg-input-div" : "reg-input-div modalLight"}
+               
                 type={passCheck ? "password" : "text"}
                 placeholder="Password"
                 id="password"
               />
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
-              <button style={{
-                position: 'absolute',
-                top: '45%',
-                left: '74%',
-                transform: 'translateY(-50%)', padding: '0', maring: '0',
-              }} tabIndex="-1"
+              <button
+              className="reg-input-icons" 
+               tabIndex="-1"
                 onClick={togglePassCheck}
               ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
-            <Form.Group className="mb-3 " style={{ position: "relative" }}>
+            <Form.Group className="mb-3 reg-relative">
               <Form.Control
-                className={isDark ? "modalDark" : "modalLight"}
-                style={{
-                  borderRadius: "10px",
-                  paddingLeft: "10%",
-                  borderColor: "#7496B8",
-
-                  transition: "none",
-                  width: "80%",
-                  justifySelf: "center",
-                  margin: "0 auto",
-                  fontSize: '1.2rem'
-                }}
+                className={isDark ? "reg-input-div modalDark" : "reg-input-div modalLight"}
+                
                 id="cpassword"
                 type={passCheck ? "password" : 'text'}
                 placeholder="Confirm Password"
               />
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
-              <button style={{
-                position: 'absolute',
-                top: '45%',
-                left: '74%',
-                transform: 'translateY(-50%)', padding: '0', maring: '0',
-              }} tabIndex="-1"
+              <button className="reg-input-icons" tabIndex="-1"
                 onClick={togglePassCheck1}
               ><img src="./svg/eye.svg"></img></button>
             </Form.Group>
 
           
-            <Form.Group className="mb-3 " style={{ position: "relative" }}>
+            <Form.Group className="mb-3 reg-relative">
             <Captcha setCaptchaText={setCaptchaText} captchatext={captchatext}/>
               <Form.Control
-                className={isDark ? "modalDark" : "modalLight"}
-                style={{
-                  borderRadius: "10px",
-                  paddingLeft: "",
-                  borderColor: "#7496B8",
-
-                  transition: "none",
-                  width: "80%",
-                  justifySelf: "center",
-                  margin: "0 auto",
-                  fontSize: '1.2rem'
-                }}
+                className={isDark ? "modalDark reg-input-div"  : "reg-input-div modalLight"}
+               
                 type="text"
                 id="captchadiv"
                 
@@ -248,19 +188,7 @@ useEffect(()=>{
 
             </Form.Group>
             <div className="mb-3">
-              <button style={{
-                borderRadius: "10px",
-                color: 'white',
-                borderColor: 'none',
-                backgroundColor: "#FA8B2E",
-                height: "3rem",
-                transition: "none",
-                width: "80%",
-                justifySelf: "center",
-                margin: "0 10%",
-                fontSize: '20px',
-                fontWeight: 'lighter',
-              }} >Sign Up</button>
+              <button className="reg-signup-butt">Sign Up</button>
             </div>
 
             <p className='registererror' id="errormessage"></p>

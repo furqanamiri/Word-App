@@ -174,7 +174,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
 
 
   return (<>
-    <nav className='d-md-none d-lg-flex d-sm-none  flex-wrap-wrap' >
+    <nav className='d-md-none d-lg-flex d-sm-none  d-xs-none flex-wrap-wrap' >
       <ul >
         {/* Note Icon */}
         <li>
@@ -198,7 +198,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
       <div className='align-self-center justify-self-center main-header'>
         <span className='W-head main-header'>W</span>ordpad
       </div>
-      <ul className="justify-content-end" style={{ marginRight: '2rem' }}><li>
+      <ul className="justify-content-end nav-right-margin"><li>
         <button onClick={toggleTheme} className="buttonicon">{theme === 'dark' ? <img src={"./svg/autotheme.svg"} className='buttonicon moon' /> : theme === 'light' ? <Icon className='moon' icon="ph:moon-bold" color="black" /> : <img src={"./svg/light.svg"} className='buttonicon moon' />}
         </button></li>
 
@@ -208,22 +208,22 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
             key={'bottom'}
             placement={'bottom-end'}
             overlay={
-              <Popover id={`popover-positioned-${'bottom'}`} style={{ borderRadius: '10px' }} className={isDark ? "tooltipdark" : "tooltiplight"}  >
+              <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark tooltip-radius" : "tooltip-radius tooltiplight"}  >
                 <Popover.Body className={isDark ? "tooltipdark" : "tooltiplight"} >
                   <div className='exporttool' >
-                    <div style={{ width: "40%", display: "flex", justifyContent: "center", alignItems: 'center' }}>
-                      <input type="radio" name="export" value="pdf" /><label style={{ paddingLeft: '10%' }}>PDF</label>
+                    <div className='export-tooltip-div'>
+                      <input type="radio" name="export" value="pdf" /><label className='tenpad'>PDF</label>
                     </div>
 
-                    <div style={{ width: "50%", display: "flex", justifyContent: "center", alignItems: 'center' }}>
+                    <div className='export-tooltip-div1'>
                       <input type="radio" name="export" value="word" />
-                      <label style={{ paddingLeft: '7%' }}>Word</label>
+                      <label className='sevenpad'>Word</label>
                     </div>
                   </div>
                 </Popover.Body>
               </Popover>
             }>
-            <button className='export' style={isDark ? { color: 'black' } : { color: 'white' }}>
+            <button className='export'>
               <img src={isDark ? "./svg/darkfile.svg" : "./svg/file.svg"} className='buttonicon' />Export
             </button>
 
@@ -232,18 +232,19 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
 
 
         </li>
-        <li style={{ margin: '0' }}>
+        <li className='m-0'>
+        {/* Share Tooltip main nav */}
           <OverlayTrigger
             trigger={'click'}
             key={'bottom'}
             placement={'bottom-end'}
             overlay={
-              <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool" : "tooltiplight sharetool"} style={{ borderRadius: '10px' }}>
+              <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool tooltip-radius" : "tooltiplight sharetool tooltip-radius"}>
                 <Popover.Body>
                   <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p id="urllink">{domain}?id={noteId.current}</p></div>
-                  <form className={isDark ? "tooltipdark " : "tooltiplight"} style={{ display: "flex", justifyContent: "end", alignItems: 'center' }}><input type="radio" name="sharerad" id="view only" onClick={()=>setEdit('No')}/><p style={{ width: 'fit-content', paddingLeft: '1%', paddingRight: '0.5em' }}>View Only</p>
-                    <input type="radio" name="sharerad" id="editnote" onClick={()=>setEdit('yes')}/><p style={{ width: 'fit-content', paddingRight: '0.5em', paddingLeft: '1%' }}> Can Edit</p>
-                    <button type="radio" onClick={copyFunction} name="sharerad" style={{ fontWeight: '300', color: '#7496B8' }}><img src="./svg/copylink.svg" style={{ paddingRight: '1%' }} ></img>Copy Link</button></form>
+                  <form className={isDark ? "tooltipdark shareform" : "tooltiplight shareform"} ><input type="radio" name="sharerad" id="view only" onClick={()=>setEdit('No')}/><p className='viewbutt'>View Only</p>
+                    <input type="radio" name="sharerad" id="editnote" onClick={()=>setEdit('yes')}/><p className='share-edit-butt'> Can Edit</p>
+                    <button type="radio" className='share-copy-butt' onClick={copyFunction} name="sharerad"><img src="./svg/copylink.svg" className='pr1' ></img>Copy Link</button></form>
                 </Popover.Body>
               </Popover>
             }
@@ -257,7 +258,7 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
       </ul>
     </nav>
     {/* Responsive Navbar */}
-    <nav className='d-md-flex d-lg-none d-sm-flex ' style={{ height: '8%' }} >
+    <nav className='d-md-flex  d-lg-none d-sm-flex responsive-nav-height'  >
       <ul >
         {/* Note Icon */}
         <li>
@@ -280,10 +281,10 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
       </ul>
 
-      <div className='align-self-center justify-self-center main-header' style={{ fontSize: '50px' }} >
-        <span className='W-head main-header' style={{ fontSize: '60px' }} >W</span>ordpad
+      <div className='align-self-center justify-self-center main-header font50' >
+        <span className='W-head main-header font60' >W</span>ordpad
       </div>
-      <ul className="justify-content-end" style={{ marginRight: '2rem' }}><li>
+      <ul className="justify-content-end mr2"><li>
         <button onClick={toggleTheme} className=" iconnavsmall d-block">{theme === 'dark' ? <img src={"./svg/light.svg"} className='buttonicon iconnavsmall' /> : theme === 'light' ? <Icon className='moon iconnavsmall' icon="ph:moon-bold" color="black" /> : <img src={"./svg/autotheme.svg"} className=' moon iconnavsmall' />}</button></li>
         <li> <OverlayTrigger
           trigger="click"
@@ -291,10 +292,9 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
           placement={'bottom-end'}
           className='smallarrow'
           overlay={
-            <Popover id={`popover-positioned-${'bottom'}`} style={{ borderRadius: '10px' }} className={isDark ? "tooltipdark smalltootip" : "tooltiplight smalltootip"}  >
+            <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark tooltip-radius smalltootip" : "tooltiplight tooltip-radius  smalltootip"}  >
               <Popover.Body className={isDark ? "tooltipdark smalltooltip" : "tooltiplight smalltooltip"} >
-                <ul className='d-inline'><li><button className=" smallnavbutticon" onClick={toggleExportModalOpen}
-                  style={isDark ? { color: 'white' } : { color: 'black' }}>
+                <ul className='d-inline'><li><button className=" smallnavbutticon" onClick={toggleExportModalOpen}>
                   <img src={isDark ? "./svg/file.svg" : "./svg/darkfile.svg"} height='40' width='40' />Export
                 </button></li>
                   <Exportmodal exportModal={exportModal} toggleExportModalClose={toggleExportModalClose} isDark={isDark} />
@@ -310,8 +310,8 @@ export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) 
               </Popover.Body>
             </Popover>
           }>
-          <button className='navresicon iconnavsmall' style={isDark ? { color: 'black' } : { color: 'white' }}>
-            <img src={isDark ? "./svg/navdropicondark.svg" : "./svg/navdropicon.svg"} style={{ height: '50px', width: '50px' }} className='buttonicon iconnavsmalll' />
+          <button className='navresicon iconnavsmall'>
+            <img src={isDark ? "./svg/navdropicondark.svg" : "./svg/navdropicon.svg"}  className='buttonicon iconnavsmall' />
           </button>
 
         </OverlayTrigger></li>

@@ -1,3 +1,50 @@
+@media (max-width:680px) {
+  textarea.form-control {
+    height: 62%;
+    max-height: 63%;
+    font-size: 100px;
+    border: none;
+  }
+
+  .total-notes {
+    height: 64%
+  }
+}
+
+@media(min-width:700px) {
+  textarea.form-control {
+    height: 78%;
+    max-height: 78%;
+    font-size: 3rem;
+    border: none;
+    font-weight: 500;
+  }
+
+  .total-notes {
+    height: 81%
+  }
+}
+
+@media(min-width:1000px) {
+  textarea.form-control {
+    height: 75%;
+    max-height: 77%;
+    padding: 3rem;
+    border: transparent;
+    outline: 0;
+    font-weight: 200;
+    border: none;
+    font-size: 2rem;
+    scrollbar-color: #fa8b2e;
+    -ms-thumb: none;
+
+  }
+
+  .total-notes {
+    height: 78%
+  }
+}
+
 
 /* Handle */
 
@@ -5,27 +52,33 @@ h1 {
   color: blue;
   font-family: "open sans";
 }
+
 .light {
   font-family: sans-serif;
   color: black;
   background-color: white;
+
   * {
     transition: all 10ms;
   }
 }
+
 .dark {
   font-family: sans-serif;
   color: white;
   background-color: black;
   box-shadow: 0px 0px 20px rgba(21, 95, 136, 0.08);
+
   * {
     transition: all 10ms;
   }
 }
+
 .dark textarea {
   background-color: black !important;
   color: white !important;
 }
+
 .modalDark {
   background-color: #303133 !important;
   color: white !important;
@@ -33,6 +86,7 @@ h1 {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+
 .modalLight {
   color: black !important;
   background: white !important;
@@ -40,17 +94,23 @@ h1 {
   // border-bottom-right-radius: 10px;
   // border-bottom-left-radius: 10px;
 }
+
 body {
   height: 100vh;
+
   -webkit-scrollbar-track {
-    background: inherit; 
+    background: inherit;
   }
-   scrollbar-color: #fe8b2e inherit;;
+
+  scrollbar-color: #fe8b2e inherit;
+  ;
+
   /* Handle */
   -webkit-scrollbar-thumb {
-    background: #fe8b2e; 
+    background: #fe8b2e;
   }
 }
+
 input[type="radio"] {
   appearance: none;
   width: 15px;
@@ -59,6 +119,7 @@ input[type="radio"] {
   position: relative;
   border: 1px solid #fa8b2e;
 }
+
 input[type="radio"]:checked::before {
   content: '';
   width: 65%;
@@ -70,7 +131,7 @@ input[type="radio"]:checked::before {
   transform: translate(-50%, -50%);
   background-color: #fa8b2e;
 }
-.form-control:disabled{
+
+.form-control:disabled {
   background-color: inherit;
- }
- 
+}

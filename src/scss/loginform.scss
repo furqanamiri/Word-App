@@ -9,9 +9,11 @@
 .bordeRv {
   border-radius: 1rem;
   backdrop-filter: blur(1px);
+
   .modal-content {
     background-color: #0000;
     border: none;
+
     .modal-header {
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
@@ -24,10 +26,12 @@
       font-weight: "400";
       font: 1.5em sans-serif;
     }
+
     .modal-footer {
       border-bottom-right-radius: 10px;
       border-bottom-left-radius: 10px;
     }
+
     .form-control:focus {
       color: #212529;
       background-color: #fff;
@@ -37,20 +41,24 @@
     }
   }
 }
+
 .LoginDarkHeader {
   background-color: #48494b !important;
   color: white !important;
   border-color: transparent;
 }
+
 .LoginLightHeader {
   color: black !important;
   background: #ecf5ff !important;
   border-color: transparent;
 }
+
 .centering {
   margin: 0 auto;
   padding: auto 0;
 }
+
 .inputiconleft {
   position: absolute;
   top: 50%;
@@ -58,6 +66,7 @@
 
   transform: translateY(-50%);
 }
+
 .resetbut {
   border-radius: 10px;
 
@@ -71,6 +80,7 @@
   font-size: 16px;
   font-weight: lighter;
 }
+
 .googlebut {
   border-radius: 10px;
   padding-left: 6%;
@@ -85,6 +95,7 @@
   font-weight: lighter;
   position: relative;
 }
+
 .inputiconleftg {
   position: absolute;
   top: 50%;
@@ -92,6 +103,7 @@
 
   transform: translateY(-50%);
 }
+
 p {
   font-size: 14px;
   width: 100%;
@@ -106,8 +118,61 @@ p {
   font-weight: lighter;
   text-align: center;
 }
+
 .nonselect {
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+}
+
+.inputdiv {
+  border-radius: 10px;
+  padding-left: 10%;
+  border-color: #7496B8;
+
+  transition: none;
+  width: 80%;
+  justify-self: center;
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+.eye-icon-pass {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translateY(-50%);
+  padding: 0;
+  margin: 0;
+}
+
+.login-butt {
+  border-radius: 10px;
+  color: white;
+  border-color: none;
+  background-color: #FA8B2E;
+  height: 3rem;
+  transition: none;
+  width: 80%;
+  justify-self: center;
+  margin: 0 10%;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+.or-div {
+  font-size: 14px;
+  width: 100%;
+  font-weight: lighter;
+  color: #666666;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.sign-up-butt {
+  color: #FA8B2E;
+  padding: 0;
+  margin: 0;
+  width: fit-content;
 }

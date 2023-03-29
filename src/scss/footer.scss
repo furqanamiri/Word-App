@@ -1,0 +1,141 @@
+.dark .footer {
+  color: #7496b8;
+  font-family: sans-serif;
+  margin-bottom: 0.5rem;
+  font-weight: 200;
+  height: fit-content;
+  position: fixed;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+  bottom: 1rem;
+  border-top: 1px solid rgb(255, 255, 255, 0.14);
+}
+
+.light .footer {
+  color: #7496b8;
+  font-family: sans-serif;
+  margin-bottom: 0.5rem;
+  font-weight: 200;
+  height: fit-content;
+  position: fixed;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+  bottom: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.footerdiv ul {
+  height: fit-content;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.footerdiv {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  align-items: center;
+}
+
+.footer ul li {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0;
+  margin: 0.3rem 0;
+  margin-left: 1.2rem;
+}
+
+.right-footer {
+  justify-content: end;
+  margin-right: 0;
+  margin-left: 3rem;
+  width: 20%;
+
+  li {
+    width: 50%;
+  }
+}
+
+.left-footer {
+  margin-left: 3rem;
+}
+
+.footerres {
+  color: #7496b8;
+  font-family: sans-serif;
+
+  margin-bottom: 0.2rem;
+  font-weight: 500;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  background-color: inherit;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+  bottom: -2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+
+
+  .footerdiv {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    align-items: center;
+
+  }
+
+  .footer ul li {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 0;
+    margin: 0.3rem 0;
+    margin-left: 1.2rem;
+  }
+
+  .right-footer {
+    justify-content: end;
+    margin-right: 0;
+    margin-left: 3rem;
+    width: 20%;
+
+    li {
+      width: 50%;
+    }
+  }
+
+  .left-footer {
+    margin-left: 3rem;
+  }
+
+  .footerresdivword {
+    ul {
+      width: 35%;
+    }
+  }
+
+  .ulmargin {
+    margin-bottom: -1rem;
+  }
+
+}
+
+.about-footer-string {
+  width: 125px;
+}
+
+.contact-footer-string {
+  width: 25%;
+}
+
+.responsive-footer-div {
+  font-size: xx-large;
+  font-weight: 600;
+}

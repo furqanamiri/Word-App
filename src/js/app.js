@@ -113,8 +113,10 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
     }
     if(window.sessionStorage.getItem('loginToken')){
       loginToken.current = window.sessionStorage.getItem('loginToken')
+      toggleAnonUser()
      
     }
+    
    if(!loginUser)
     fetch(process.env.REACT_APP_ANON_USER,{
       method: 'GET', headers: {
@@ -123,8 +125,8 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
       },
         }).then((response)=> response.json()).then((response)=>{
           if(response.token)
-          loginToken.current = response.token;
-       
+          anonToken.current = response.token;
+          window.sessionStorage.setItem('anonToken',anonToken.current)
           
          
         }).then((response)=>{
@@ -134,7 +136,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
             method: "GET",
             headers:{
               accept: "application/json",
-              token:loginToken.current,
+              token: loginUser?loginToken.current : anonToken.current
             }
             }).then(response=> response.json()).then((response)=>{
              
@@ -160,7 +162,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
             method: 'POST',
             headers: {
               accept: 'application.json', 'Content-Type': 'application/json',
-              token: loginToken.current
+              token: loginUser?loginToken.current : anonToken.current
             }, body: JSON.stringify({
               id: idsave.current,
               content: text,
@@ -182,7 +184,7 @@ useEffect(() => {
          method: 'PUT',
          headers: {
            accept: 'application.json', 'Content-Type': 'application/json',
-           token: loginToken.current
+           token: loginUser?loginToken.current : anonToken.current
          }, body: JSON.stringify({
            id: noteId.current,
            content: text,
@@ -208,7 +210,7 @@ const urlapp = window.location.href
       method: 'PUT',
       headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
-        token: loginToken.current
+        token: loginUser?loginToken.current : anonToken.current
       }, body: JSON.stringify({
         id: noteId.current,
         content: text,
@@ -223,7 +225,7 @@ const urlapp = window.location.href
     method: 'PUT',
     headers: {
       accept: 'application.json', 'Content-Type': 'application/json',
-      token: loginToken.current
+      token: loginUser?loginToken.current : anonToken.current
     }, body: JSON.stringify({
       id: noteId.current,
       content: text,
@@ -237,6 +239,7 @@ const urlapp = window.location.href
   return (
 
     <>
+    
       <IsAuto.Provider value={{ theme }} >
       <AnonContext.Provider value={{anonContext, setAnonContext,toggleAnonUser,anonToken,editableNote,setEditable,editable}}>
         <LoginContext.Provider value={{ loginUser, setLoginUser, toggleUserLogin,loginToken }}>

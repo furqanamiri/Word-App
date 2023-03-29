@@ -2,15 +2,18 @@
   height: 99px;
   border: 1px solid rgba(0, 0, 0, 0.14);
 }
+
 .dark nav {
   height: 99px;
   border-bottom: 1px solid rgb(255, 255, 255, 0.14);
 }
+
 .moon {
   width: 1.5rem;
   height: 1.5rem;
   align-self: center;
 }
+
 button {
   height: 50%;
   width: 6rem;
@@ -20,6 +23,7 @@ button {
   background-color: transparent;
   padding: 0;
 }
+
 ul {
   padding: auto auto;
   width: 30%;
@@ -27,6 +31,7 @@ ul {
   display: flex;
   align-items: center;
 }
+
 ul li {
   display: flex;
   height: fit-content;
@@ -40,9 +45,11 @@ ul li {
   width: 22px;
   height: 22px;
 }
+
 .color-nav {
   color: #7496b8;
 }
+
 .main-header {
   font-size: xx-large;
   font-family: "jomolhari";
@@ -54,17 +61,21 @@ ul li {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
 .W-head {
   color: #fa8b2e;
 }
+
 .buttonicon {
   height: 1.5rem;
   width: 1.5rem;
   padding: 0.1rem;
 }
+
 .shareicon {
   color: #fa8b2e;
 }
+
 .export {
   background-color: #fa8b2e;
   border-color: transparent;
@@ -73,10 +84,11 @@ ul li {
   width: 7rem;
   height: 50%;
 }
+
 .sharetool {
   max-height: 25vh;
   height: fit-content;
-  max-width: 25%;
+  max-width: 275px;
   width: 25%;
 
   .popover-body {
@@ -84,16 +96,19 @@ ul li {
     height: 100%;
   }
 }
+
 .share {
   background-color: transparent;
   border-color: transparent;
   border-radius: 0.5rem;
   color: #fa8b2e;
 }
+
 .right-icons {
   margin-left: 0.5rem;
   margin-right: 1.2rem;
 }
+
 .linktool {
   display: flex;
   overflow: block;
@@ -101,6 +116,7 @@ ul li {
   word-break: break-all;
   max-height: fit-content;
   width: 100%;
+
   p {
     overflow-wrap: break-word;
     width: 85%;
@@ -112,6 +128,7 @@ ul li {
     margin-left: 1em;
   }
 }
+
 .exporttool {
   display: flex;
   width: 8rem;
@@ -125,60 +142,159 @@ ul li {
   color: black;
   border-radius: 10px;
 }
+
 .tooltipdark {
   background-color: black;
   color: #afafaf;
   border-color: #2a3a4a;
   border-radius: 10px;
 }
+
 .popover-arrow::after {
   background-color: transparent;
 }
-.dark .bs-popover-bottom > .popover-arrow::after {
+
+.dark .bs-popover-bottom>.popover-arrow::after {
   top: 1px;
   border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: black;
 }
-.dark .bs-popover-bottom > .popover-arrow::before {
+
+.dark .bs-popover-bottom>.popover-arrow::before {
   top: 0;
   border-width: 0 0.5rem 0.5rem 0.5rem;
   border-bottom-color: #2a3a4a;
 }
+
 .navresicon {
   padding: 0;
   margin: 0;
   background-color: inherit;
   width: fit-content;
 }
+
 .buttonsmallnav {
   background-color: transparent;
   border-color: transparent;
   border-radius: 0.5rem;
   color: #fa8b2e;
 }
+
 .iconnavsmall {
   color: #7496b8;
   align-self: center;
   width: 50px;
   height: 50px;
 }
+
 .smalltooltip {
   padding: 0 1.5rem;
   margin: 0;
 }
+
 .smallnavbutticon {
   font-size: 30px;
 }
+
 .files {
   display: none;
 }
-.files img {
+
+
+.change:hover {
+  cursor: pointer
 }
-.change:hover{
-  cursor:pointer
-}
-.navbar-tooltip{
-  width:fit-content;
+
+.navbar-tooltip {
+  width: fit-content;
   background-color: inherit;
-  color : inherit;
+  color: inherit;
+}
+
+.nav-right-margin {
+  margin-right: 2rem;
+}
+
+.tooltip-radius {
+  border-radius: 10px;
+}
+
+.export-tooltip-div {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tenpad {
+  padding-left: 10%;
+}
+
+.sevenpad {
+  padding-left: 7%;
+}
+
+.export-tooltip-div1 {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.light .export {
+  color: white
+}
+
+.dark .export {
+  color: black;
+}
+
+.shareform {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.viewbutt {
+  width: fit-content;
+  padding-left: 1%;
+  padding-right: 0.5em;
+}
+
+.share-edit-butt{
+  width: fit-content;
+   padding-right: 0.5em;
+    padding-left: 1%;
+}
+.share-copy-butt{
+  font-weight: 300; 
+  color: #7496B8
+}
+.pr1{
+  padding-right: 1%;
+}
+.responsive-nav-height{
+  height: 8%;
+}
+.font50{
+  font-size: 50px;
+}
+.font60{
+  font-size: 60px;
+}
+.mr2{
+  margin-right: 2rem;
+}
+.light .iconnavsmall{
+  color:black
+}
+.dark .iconnavsmall{
+  color:white
+}
+.light .smallnavbutticon{
+  color:black
+}
+.dark .smallnavbutticon{
+  color:white
 }

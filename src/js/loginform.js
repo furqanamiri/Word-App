@@ -9,10 +9,10 @@ import Registerform from "./registerform";
 import { AnonContext } from "./AnonContext";
 
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes, LoginModalOpen }) {
-  const { loginUser, setLoginUser, toggleUserLogin ,loginToken} = useContext(LoginContext)
+  const { toggleUserLogin, loginToken } = useContext(LoginContext)
   const useremail = useRef('')
-  const {toggleAnonUser} = useContext(AnonContext)
-  const [error,SetError] = useState('');
+  const { toggleAnonUser } = useContext(AnonContext)
+  const [error, SetError] = useState('');
   const changeUserEmail = (event) => {
     useremail.current = (event.target.value);
   }
@@ -22,12 +22,12 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   }
   const loginValidation = (e) => {
     e.preventDefault();
-    fetch(process.env.REACT_APP_LOGIN , {
+    fetch(process.env.REACT_APP_LOGIN, {
       method: 'POST', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        
+
         email: useremail.current,
         password: userpassword.current,
 
@@ -36,23 +36,23 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
 
 
 
-        if (response.token) {
+      if (response.token) {
         loginToken.current = response.token
-          toggleUserLogin()
-          toggleAnonUser()
-          toggleViewNotes()
-          LoginModalClose()
-              }
-        else{
-          SetError('Check Credentials')
-        }
-      
-      
+        toggleUserLogin()
+        toggleAnonUser()
+        toggleViewNotes()
+        LoginModalClose()
+      }
+      else {
+        SetError('Check Credentials')
+      }
+
+
       // document.getElementById('loginerrormessage').innerHTML = '{loginState ? "Login Successful" : "Check Credentials"}'
 
 
 
-    }).catch(error => SetError('Check Your Connection') )
+    }).catch(error => SetError('Check Your Connection'))
   }
   const [passCheck, setPassCheck] = useState(true);
 
@@ -72,7 +72,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
     event.preventDefault();
     LoginModalClose();
     setShowRegisterModal(true);
-   
+
   }
 
 
@@ -91,43 +91,23 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLightpass"}>
           <Form onSubmit={loginValidation}>
-            <Form.Group className="mb-3 "  style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
-                className={isDark ? "modalDark" : "modalLight"}
-                style={{
-                  borderRadius: "10px",
-                  paddingLeft: "10%",
-                  borderColor: "#7496B8",
+                className={isDark ? "modalDark inputdiv" : "modalLight inputdiv"}
 
-                  transition: "none",
-                  width: "80%",
-                  justifySelf: "center",
-                  margin: "0 auto",
-                  fontSize: '1.2rem'
-                }}
                 type="email"
                 id='userEmailId'
-                
+
                 onChange={changeUserEmail}
                 placeholder=" Enter your email" required
               />
               <img src="./svg/loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
 
-            <Form.Group className="mb-3 "  style={{ position: "relative" }}>
+            <Form.Group className="mb-3 " style={{ position: "relative" }}>
               <Form.Control
-                className={isDark ? "modalDark" : "modalLight"}
-                style={{
-                  borderRadius: "10px",
-                  paddingLeft: "10%",
-                  borderColor: "#7496B8",
-
-                  transition: "none",
-                  width: "80%",
-                  justifySelf: "center",
-                  margin: "0 auto",
-                  fontSize: '1.2rem'
-                }} id='userpassword'
+                className={isDark ? "modalDark inputdiv" : "modalLight inputdiv"}
+                id='userpassword'
                 type={passCheck ? "password" : 'text'}
                 placeholder="Type Password"
                 onChange={changeUserPassword}
@@ -135,38 +115,18 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 required
               />
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
-              <button className="nonselect" tabIndex="-1" style={{
-                position: 'absolute',
-                top: '50%',
-                left: '75%',
-                transform: 'translateY(-50%)', padding: '0', maring: '0',
-              }}
+              <button className="nonselect eye-icon-pass" tabIndex="-1"
                 onClick={togglePassCheck}
               ><img className="nonselect " src="./svg/eye.svg"></img></button>
             </Form.Group>
             <div className="mb-3">
-              <button style={{
-                borderRadius: "10px",
-                color: 'white',
-                borderColor: 'none',
-                backgroundColor: "#FA8B2E",
-                height: "3rem",
-                transition: "none",
-                width: "80%",
-                justifySelf: "center",
-                margin: "0 10%",
-                fontSize: '20px',
-                fontWeight: 'lighter',
-              }} type="submit" >Login</button>
+              <button className="login-butt" type="submit" >Login</button>
               <button style={isDark ? { color: "#AFAFAF" } : { color: "#666666" }} className='resetbut'
               >Reset Your Password</button>
-              <p style={{
-                fontSize: '14px', width: '100%',
-                fontWeight: 'lighter', color: '#666666', marginTop: '1rem', marginBottom: '1rem', textAlign: 'center',
-              }}> or </p>
+              <p className="or-div"> or </p>
               <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="./svg/googleicon.svg" className="inputiconleftg"></img></button>
               <p style={isDark ? { color: "white" } : { color: 'black' }
-              }> Don't have an account yet? <button onClick={LoginRegisterOpen} style={{ color: "#FA8B2E", padding: '0', margin: '0', width: 'fit-content' }}>Sign Up</button> </p>
+              }> Don't have an account yet? <button onClick={LoginRegisterOpen} className='sign-up-butt'>Sign Up</button> </p>
 
             </div>
 
@@ -175,7 +135,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         </Modal.Body>
 
       </Modal>
-      <Registerform showRegisterModal={showRegisterModal} LoginRegisterClose={LoginRegisterClose} isDark={isDark} LoginModalOpen={LoginModalOpen}/>
+      <Registerform showRegisterModal={showRegisterModal} LoginRegisterClose={LoginRegisterClose} isDark={isDark} LoginModalOpen={LoginModalOpen} />
     </>
   );
 }

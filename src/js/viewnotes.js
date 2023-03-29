@@ -8,11 +8,11 @@ import { updateContext } from "./updatecontext";
 import Footer from './footer';
 
 export function Viewnotes({ isDark, toggleViewNotes, setText }) {
-  const { loginUser, setLoginUser, toggleUserLogin ,loginToken} = useContext(LoginContext)
+  const { loginUser, setLoginUser, toggleUserLogin, loginToken } = useContext(LoginContext)
   const textnote = useRef('')
   textnote.current = 'Click to create a new note'
   const [dateUpd, setDateUpd] = useState(moment())
-  const {setUpdateNote} = useContext(updateContext)
+  const { setUpdateNote } = useContext(updateContext)
   // word count
   const [refreshstate, setrefreshstate] = useState(false)
   const togglerefreshchange = () => {
@@ -29,10 +29,10 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
     fetch(process.env.REACT_APP_NOTES, {
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
-        token: loginToken.current,                                                                                                                                                                                                                                    
+        token: loginToken.current,
       }
     }).then((response) => response.json()).then((response) => {
-   
+
       const temp = response.map(user => (user.content))
       const tempId = response.map(idtemp => (idtemp.id))
       setList(temp);
@@ -41,7 +41,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
 
     })
-  
+
   }
   useEffect(() => {
     // update word count
@@ -59,7 +59,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
     var spaces = textnote;
     // var spaces = self.value;
- 
+
     // var words = spaces ? spaces.length : 0;
   }
 
@@ -73,38 +73,38 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
     window.sessionStorage.clear('text')
     toggleViewNotes()
   }
-//ShowFile
+  //ShowFile
   function showFile() {
 
     clickFunctionnew()
-        var preview = document.getElementById('show-text');
-        var file1 = document.querySelector('#file1').files[0];
-        var reader = new FileReader()
-        
-        var textFile = /text.*/;
-        reader.readAsText(file1)
-        // if (file.type.match(textFile)) 
-        setText(' ')
-        reader.onload = function (event) {
-          setText(event.target.result)
-          
-        }
-        reader.onerror = function (error) {
-          error.target.result
-        }
-        
-       
-      }
+    var preview = document.getElementById('show-text');
+    var file1 = document.querySelector('#file1').files[0];
+    var reader = new FileReader()
+
+    var textFile = /text.*/;
+    reader.readAsText(file1)
+    // if (file.type.match(textFile)) 
+    setText(' ')
+    reader.onload = function (event) {
+      setText(event.target.result)
+
+    }
+    reader.onerror = function (error) {
+      error.target.result
+    }
+
+
+  }
   // })
   return (
-    <>
-     <div className="local-file-div">
-    <label className="button-file "><input style={{display:'none'}} id='file1' type="file" onChange={showFile} /><img src="./svg/localfile.svg"></img><b style={isDark?{color:'white' , marginLeft:'10px',alignSelf:'center'}:{color:'black',marginLeft:'10px',alignSelf:'center'}}>Browse</b> <span style={{alignSelf:'center'}}> your files</span>
-</label>
-    </div>
+    <><div className="total-notes">
+      <div className="local-file-div">
+        <label className="button-file d-flex "><input className="d- center-inp" id='file1' type="file" onChange={showFile} /><img src="./svg/localfile.svg"></img><b className="local-file-para">Browse</b> <span className="notes-center"> your files</span>
+        </label>
+      </div>
       <div className='fluid-container mainnotes' id='mainnotes'>
         <div className="row" id='notesadd'>
-          <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote" style={{minHeight : '201px'}}>
+          <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote">
             <button onClick={clickFunctionnew}><p className="notetext" > {textnote.current}
             </p></button>
             <div className={isDark ? "darknotetext darknotesfooter" : " lightnotetext  darknotesfooter"}>
@@ -123,8 +123,9 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
           }
         </div>
       </div>
+    </div>
 
-      <Footer dateUpd={dateUpd} charCount={charCount} wordCount={wordCount}/>
+      <Footer dateUpd={dateUpd} charCount={charCount} wordCount={wordCount} />
     </>
   )
 }

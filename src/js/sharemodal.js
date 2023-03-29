@@ -7,12 +7,12 @@ import { updateContext } from "./updatecontext";
 
 
 export default function Sharemodal({ shareModal, toggleShareModalClose, isDark, setEdit }) {
-const {noteId,copyFunction} = useContext(updateContext)
-let r = /:\/\/(.[^/]+)/;
-const urlapp = window.location.href
- const domain =  urlapp.match(r)[1] 
+  const { noteId, copyFunction } = useContext(updateContext)
+  let r = /:\/\/(.[^/]+)/;
+  const urlapp = window.location.href
+  const domain = urlapp.match(r)[1]
 
-   
+
   return (
     <>
 
@@ -26,32 +26,22 @@ const urlapp = window.location.href
         centered
       >
 
-        <Modal.Body style={{ borderRadius: '40px' }} className={isDark ? "modalDarkpass d-flex flex-column justify-content-center" : "modalLightpass flex-column d-flex justify-content-center "}>
+        <Modal.Body className={isDark ? "br40 modalDarkpass d-flex flex-column justify-content-center" : " br40 modalLightpass flex-column d-flex justify-content-center "}>
 
-          <div className={isDark ? "items title" : "items title"} style={{ padding: '10% 0', fontSize: '50px' }}>Share As</div><Form className="d-flex flex-column w-100 "    >
-            <div style={{ backgroundColor: 'transparent', fontSize: '60px' }} className={isDark ? "tooltipdark sharelink" : "tooltiplight sharelink"}><p>{domain}?id={noteId.current}</p></div>
-            <div style={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", }} className="">
-              <div className="d-flex flex-nowrap align-items-center " style={{
-                padding: '1em',
-                justifyContent: 'space-evenly',
-                width: '100%',
-              }}><input type="radio" name="export"  onClick={()=>{setEdit("No")}} /><p style={{
-                fontSize: '50px', width: 'fit-content', 
-              }}>View Only</p></div>
+          <div className={isDark ? "items title shareas-div" : "items title shareas-div"} >Share As</div><Form className="d-flex flex-column w-100 "    >
+            <div className={isDark ? "share-link-modal tooltipdark sharelink" : "share-link-modal tooltiplight sharelink"}><p>{domain}?id={noteId.current}</p></div>
+            <div className="share-butt-p-div">
+              <div className="d-flex flex-nowrap align-items-center share-butt-div">
+              <input type="radio" name="export" onClick={() => { setEdit("No") }} /><p className="share-modal-butt">View Only</p></div>
 
 
 
-              <div className="d-flex align-items-center" style={{
-                padding: '1em',
-                justifyContent: 'space-evenly',
-                width: '100%',
-              }} > <input type="radio" name="export" value="word" onClick={()=> setEdit("yes")} />
-                <p style={{ fontSize: '50px', width: 'fit-content', }}>Can Edit</p>
-              </div>              </div>
-            <div className="d-flex justify-content-center"> <button type="radio" onClick={copyFunction} name="sharerad" style={{ fontWeight: 'lighter', fontSize: '50px', color: '#7496B8', width: '50%' }}><img style={{
-              transform: 'scale(3)',
-              marginRight: '0.5em'
-            }} src="./svg/copylink.svg" ></img>Copy Link</button></div>
+              <div className="d-flex align-items-center share-butt-div" > <input type="radio" name="export" value="word" onClick={() => setEdit("yes")} />
+                <p className="share-modal-butt">Can Edit</p>
+              </div>
+          </div>
+            <div className="d-flex justify-content-center "> <button className="share-modal-copy-butt" type="radio" onClick={copyFunction} name="sharerad" >
+            <img className="share-modal-copy-img" src="./svg/copylink.svg" ></img>Copy Link</button></div>
 
           </Form>
         </Modal.Body>
