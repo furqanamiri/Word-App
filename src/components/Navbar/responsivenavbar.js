@@ -7,9 +7,8 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 import Passwordform from '../PasswordForm';
 import Exportmodal from '../ExportModal';
 import Sharemodal from '../ShareModal';
-var FileSaver = require('file-saver');
+
 import { IsAuto } from '../../js/Isauto';
-import { updateContext } from '../../js/updatecontext';
 import { AnonContext } from '../../js/AnonContext';
 
 export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showFile, LoginModalOpen, LogOut,
@@ -17,8 +16,8 @@ export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showF
   toggleShareModalClose, isDark, text, toggleViewNotes, showPassword, handleClosePass, showLoginModal, LoginModalClose }) {
 
   const { theme } = useContext(IsAuto)
-  const { anonContext, toggleAnonUser, setEdit, editable } = useContext(AnonContext)
-  const { updateNote, toggleUpdateNote, noteId, copyFunction } = useContext(updateContext)
+  const { setEdit} = useContext(AnonContext)
+ 
 
   return (<>    {/* Responsive Navbar */}
     <nav className='d-md-flex  d-lg-none d-sm-flex responsive-nav-height'  >
