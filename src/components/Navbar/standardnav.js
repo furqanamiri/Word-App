@@ -3,11 +3,11 @@ import { AnonContext } from '../../js/AnonContext'
 import { IsAuto } from '../../js/Isauto'
 import { LoginContext } from '../../js/Logincontext'
 import { updateContext } from '../../js/updatecontext'
-import "../../scss/navbar.scss"
+import "./styles.scss"
 import { Icon } from '@iconify/react';
-import Loginform from '../loginform';
+import Loginform from '../LoginForm';
 import { useState, useRef, useContext } from 'react';
-import Passwordform from '../passwordform';
+import Passwordform from '../PasswordForm';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default function StandardNav({ toggleSaveFile, showFile, showPassword, isDark, toggleTheme, handleClosePass, handleShowPass

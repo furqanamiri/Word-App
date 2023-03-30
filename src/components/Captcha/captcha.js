@@ -1,5 +1,5 @@
 import React from 'react';
-import "../scss/catpcha.scss"
+import "./styles.scss"
 function Captcha({setCaptchaText,captchatext}) {
   
   

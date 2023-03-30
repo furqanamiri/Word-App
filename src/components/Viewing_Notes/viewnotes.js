@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import '../../scss/viewNotes.scss';
+import './styles.scss';
 import moment from 'moment';
 import Viewingnotes from "./viewingnotes";
 import { LoginContext } from "../../js/Logincontext";
 import { updateContext } from "../../js/updatecontext";
 // import Viewingnotes from "./viewingnotes";
-import Footer from '../Footer/footer';
+import Footer from '../Footer';
 
 export function Viewnotes({ isDark, toggleViewNotes, setText }) {
   const { loginToken } = useContext(LoginContext)

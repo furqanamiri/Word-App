@@ -1,15 +1,14 @@
 import React, { createContext } from 'react';
-import "../scss/app.scss"
-import { Navbar } from '../components/Navbar/navbar.js'
-import TextArea from '../components/textarea';
+import "./styles.scss"
+import  Navbar  from '../components/Navbar'
+import TextArea from '../components/TextArea';
 import { useRef, useState, useEffect, useContext } from 'react'
-import { LoginContext } from './Logincontext';
+import { LoginContext } from '../js/Logincontext';
 import { Viewnotes } from '../components/Viewing_Notes/viewnotes';
-import { IsAuto } from './Isauto';
-import { updateContext } from './updatecontext';
-import FileReaderfun from './filereaderfun';
-import { AnonContext } from './AnonContext';
-import UseApp from './UseApp';
+import { IsAuto } from '../js/Isauto';
+import { updateContext } from '../js/updatecontext';
+import { AnonContext } from '../js/AnonContext';
+import UseApp from '../js/UseApp';
 
 function App() {
 

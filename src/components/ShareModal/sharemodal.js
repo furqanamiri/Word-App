@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import "../scss/sharemodal.scss";
+import "./styles.scss";
 import Form from "react-bootstrap/Form";
-import { updateContext } from "../js/updatecontext";
+import { updateContext } from "../../js/updatecontext";
 
 
 export default function Sharemodal({ shareModal, toggleShareModalClose, isDark, setEdit }) {

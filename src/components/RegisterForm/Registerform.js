@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
-import "../scss/registerform.scss";
+import "./styles.scss";
 import Form from "react-bootstrap/Form";
-import Captcha from "./captcha";
-import Loginform from "./loginform";
+import Captcha from "../Captcha";
 import { useState, useRef } from "react";
-import { GoogleReCaptcha } from "react-google-recaptcha-v3";
 export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark, LoginModalOpen }) {
   let passCheck = true;
   const [captchatext, setCaptchaText] = useState('')

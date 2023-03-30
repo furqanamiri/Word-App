@@ -8,7 +8,7 @@ import { AnonContext } from '../../js/AnonContext';
 import { ResponsiveNavbar } from './responsivenavbar';
 import StandardNav from './standardnav';
 
-export function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
+export default function Navbar({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
   const { loginUser, loginToken } = useContext(LoginContext)
   const [shareModal, setShareModal] = useState(false);
 

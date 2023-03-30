@@ -1,7 +1,6 @@
 import moment from 'moment'
 import React, { useContext, useRef } from 'react'
-import { useState } from 'react'
-import '../../scss/viewNotes.scss'
+import './styles.scss'
 import { LoginContext } from '../../js/Logincontext'
 import { updateContext } from '../../js/updatecontext'
 export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNotes, setText }) {

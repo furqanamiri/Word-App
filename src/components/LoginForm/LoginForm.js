@@ -1,12 +1,12 @@
 import React, { useContext, useRef } from "react";
-import Button from "react-bootstrap/Button";
+
 import Modal from "react-bootstrap/Modal";
-import "../scss/loginform.scss";
+import "./styles.scss";
 import Form from "react-bootstrap/Form";
-import { LoginContext } from "../js/Logincontext";
+import { LoginContext } from "../../js/Logincontext";
 import { useState } from "react";
-import Registerform from "./registerform";
-import { AnonContext } from "../js/AnonContext";
+import Registerform from "../RegisterForm";
+import { AnonContext } from "../../js/AnonContext";
 
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes, LoginModalOpen }) {
   const { toggleUserLogin, loginToken } = useContext(LoginContext)
