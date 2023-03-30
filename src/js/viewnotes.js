@@ -8,11 +8,11 @@ import { updateContext } from "./updatecontext";
 import Footer from './footer';
 
 export function Viewnotes({ isDark, toggleViewNotes, setText }) {
-  const { loginUser, setLoginUser, toggleUserLogin, loginToken } = useContext(LoginContext)
+  const { loginUser, toggleUserLogin, loginToken } = useContext(LoginContext)
   const textnote = useRef('')
   textnote.current = 'Click to create a new note'
   const [dateUpd, setDateUpd] = useState(moment())
-  const { setUpdateNote } = useContext(updateContext)
+  const { toggleUpdateNote } = useContext(updateContext)
   // word count
   const [refreshstate, setrefreshstate] = useState(false)
   const togglerefreshchange = () => {
@@ -69,8 +69,8 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
 
   const clickFunctionnew = () => {
     setText('')
-    setUpdateNote(false)
-    window.sessionStorage.clear('text')
+    toggleUpdateNote(false)
+    window.sessionStorage.removeItem('text')
     toggleViewNotes()
   }
   //ShowFile

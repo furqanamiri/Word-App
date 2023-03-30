@@ -1,142 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import "../../scss/navbar.scss"
 import { Icon } from '@iconify/react';
 import Loginform from '../../js/loginform';
-import { useState, useRef, useContext } from 'react';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 import Passwordform from '../../js/passwordform';
 import Exportmodal from '../../js/exportmodal';
-import { LoginContext } from '../../js/Logincontext';
 import Sharemodal from '../../js/sharemodal';
 var FileSaver = require('file-saver');
 import { IsAuto } from '../../js/Isauto';
 import { updateContext } from '../../js/updatecontext';
 import { AnonContext } from '../../js/AnonContext';
 
-export function Responsivenavbar  ({ toggleTheme, isDark, text, toggleViewNotes, setText }) {
-  const [shareModal, setShareModal] = useState(false);
+export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showFile, LoginModalOpen, LogOut,
+  toggleExportModalOpen, toggleExportModalClose, exportModal, shareModal, toggleShareModalOpen,
+  toggleShareModalClose, isDark, text, toggleViewNotes, showPassword, handleClosePass, showLoginModal, LoginModalClose }) {
 
-  const toggleShareModalClose = () => setShareModal(false);
-  const toggleShareModalOpen = () => setShareModal(true);
-  //ExportModal hook state
-  const { loginUser, toggleUserLogin, loginToken } = useContext(LoginContext)
-  const [exportModal, setExportModal] = useState(false);
-  const toggleExportModalOpen = () => setExportModal(true);
-  const toggleExportModalClose = () => setExportModal(false);
-  let r = /:\/\/(.[^/]+)/;
-  const urlapp = window.location.href
-  const domain = urlapp.match(r)[1]
-  const { anonContext, toggleAnonUser, setEditable, editable } = useContext(AnonContext)
-  const { updateNote, setUpdateNote, noteId, copyFunction } = useContext(updateContext)
   const { theme } = useContext(IsAuto)
-  //Password Modal hook state
-  const [showPassword, setShowPass] = useState(false);
-  const handleClosePass = () => setShowPass(false);
-  const handleShowPass = () => setShowPass(true);
-  const idgenerator = () => {
-    let retVal = "";
-    let charset = "0123456789"
-    let length = 6;
-    for (let i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    idsave.current = retVal;
-  }
-  const setEdit = (string) => { setEditable(string) }
-
-  //File Saving to cloud
-  const idsave = useRef('')
-  //File Opening functionality 
-  function showFile() {
-    var preview = document.getElementById('show-text');
-    var file = document.querySelector('input[type=file]').files[0];
-    var reader = new FileReader()
-    var textFile = /text.*/;
-    reader.readAsText(file)
-    // if (file.type.match(textFile)) 
-    reader.onload = function (event) {
-      setText(event.target.result)
-    }
-    reader.onerror = function (error) {
-      error.target.result
-    }
-
-  }
-  //File Saving functionality
-
-  const toggleSaveFile = () => {
-    console.log(loginUser)
-    if (!loginUser) {
-      const newstring = text;
-      var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
-      FileSaver.saveAs(blob, "hello world.txt")
-    }
-    else {
-      if (!updateNote) {
-        idgenerator()
-        fetch(process.env.REACT_APP_ADD, {
-          method: 'POST',
-          headers: {
-            accept: 'application.json', 'Content-Type': 'application/json',
-            token: loginToken.current
-          }, body: JSON.stringify({
-            id: idsave.current,
-            content: text,
-
-          })
-
-        }).then((response) => {
-          noteId.current = idsave.current
-          setUpdateNote(true)
-        });
-      }
-      else {
-        fetch(process.env.REACT_APP_UPDATE, {
-          method: 'PUT',
-          headers: {
-            accept: 'application.json', 'Content-Type': 'application/json',
-            token: loginToken.current
-          }, body: JSON.stringify({
-            id: noteId.current,
-            content: text,
-
-          })
-
-        })
-      }
-    }
-  }
-
-
-  //Login Modal hook state 
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
-  const LoginModalClose = () => setShowLoginModal(false);
-  const LoginModalOpen = () => { setShowLoginModal(true) };
-
-  const LogOut = () => {
-    fetch(process.env.REACT_APP_LOGOUT, {
-      method: 'GET',
-      headers: {
-        Accept: '*/*',
-        token: loginToken.current,
-      }
-
-    }).then(() => {
-
-      window.sessionStorage.clear('loginToken')
-      window.sessionStorage.clear('loginUser')
-      window.sessionStorage.clear('')
-      toggleAnonUser()
-      location.reload();
-    })
-
-
-  }
-
-
-
+  const { anonContext, toggleAnonUser, setEdit, editable } = useContext(AnonContext)
+  const { updateNote, toggleUpdateNote, noteId, copyFunction } = useContext(updateContext)
 
   return (<>    {/* Responsive Navbar */}
     <nav className='d-md-flex  d-lg-none d-sm-flex responsive-nav-height'  >
@@ -166,7 +48,7 @@ export function Responsivenavbar  ({ toggleTheme, isDark, text, toggleViewNotes,
         <span className='W-head main-header font60' >W</span>ordpad
       </div>
       <ul className="justify-content-end mr2"><li>
-        <button onClick={toggleTheme} className=" iconnavsmall d-block">{theme === 'dark' ? <img src={"./svg/light.svg"} className='buttonicon iconnavsmall' /> : theme === 'light' ? <Icon className='moon iconnavsmall' icon="ph:moon-bold" color="black" /> : <img src={"./svg/autotheme.svg"} className=' moon iconnavsmall' />}</button></li>
+        <button onClick={toggleTheme} className=" iconnavsmall d-block">{theme === 'dark' ? <img src={"./svg/autotheme.svg"} className=' moon iconnavsmall' /> : theme === 'light' ? <Icon className='moon iconnavsmall' icon="ph:moon-bold" color="black" /> : <img src={"./svg/light.svg"} className='buttonicon iconnavsmall' />}</button></li>
         <li> <OverlayTrigger
           trigger="click"
           key={'bottom'}

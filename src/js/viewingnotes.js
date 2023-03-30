@@ -5,7 +5,7 @@ import '../scss/viewNotes.scss'
 import { LoginContext } from './Logincontext'
 import { updateContext } from './updatecontext'
 export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNotes, setText }) {
-  const {setUpdateNote , noteId} = useContext(updateContext)
+  const {toggleUpdateNote , noteId} = useContext(updateContext)
   const textnote = useRef('false')
   const{loginToken} = useContext(LoginContext)
 // const date
@@ -26,10 +26,10 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   }
   // document.getElementById('creatednote').addEventListener('click', () => {
   const clickFunction = () => {
-   setUpdateNote(true)
+   toggleUpdateNote(true)
     noteId.current = idnote;
     setText(textnote.current)
-    window.sessionStorage.clear('text')
+    window.sessionStorage.removeItem('text')
     toggleViewNotes()
   }
   // })
