@@ -5,9 +5,9 @@ import { LoginContext } from '../../js/Logincontext'
 import { updateContext } from '../../js/updatecontext'
 import "../../scss/navbar.scss"
 import { Icon } from '@iconify/react';
-import Loginform from '../../js/loginform';
+import Loginform from '../loginform';
 import { useState, useRef, useContext } from 'react';
-import Passwordform from '../../js/passwordform';
+import Passwordform from '../passwordform';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 export default function StandardNav({ toggleSaveFile, showFile, showPassword, isDark, toggleTheme, handleClosePass, handleShowPass

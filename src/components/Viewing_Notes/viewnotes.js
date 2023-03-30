@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import '../scss/viewNotes.scss';
+import '../../scss/viewNotes.scss';
 import moment from 'moment';
 import Viewingnotes from "./viewingnotes";
-import { LoginContext } from "./Logincontext";
-import { updateContext } from "./updatecontext";
+import { LoginContext } from "../../js/Logincontext";
+import { updateContext } from "../../js/updatecontext";
 // import Viewingnotes from "./viewingnotes";
-import Footer from './footer';
+import Footer from '../Footer/footer';
 
 export function Viewnotes({ isDark, toggleViewNotes, setText }) {
-  const { loginUser, toggleUserLogin, loginToken } = useContext(LoginContext)
+  const { loginToken } = useContext(LoginContext)
   const textnote = useRef('')
   textnote.current = 'Click to create a new note'
   const [dateUpd, setDateUpd] = useState(moment())

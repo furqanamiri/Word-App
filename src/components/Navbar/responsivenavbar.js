@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 
 import "../../scss/navbar.scss"
 import { Icon } from '@iconify/react';
-import Loginform from '../../js/loginform';
+import Loginform from '../loginform';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
-import Passwordform from '../../js/passwordform';
-import Exportmodal from '../../js/exportmodal';
-import Sharemodal from '../../js/sharemodal';
+import Passwordform from '../passwordform';
+import Exportmodal from '..//exportmodal';
+import Sharemodal from '../sharemodal';
 var FileSaver = require('file-saver');
 import { IsAuto } from '../../js/Isauto';
 import { updateContext } from '../../js/updatecontext';

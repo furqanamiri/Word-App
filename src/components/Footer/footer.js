@@ -1,14 +1,8 @@
 import React from 'react'
 import moment from 'moment';
 import { useState, useRef } from 'react';
-import '../scss/footer.scss'
+import './footer.scss'
 export default function Footer({ dateUpd, wordCount, charCount }) {
-
-
-
-
-
-
 
   return (
 

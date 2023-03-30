@@ -1,10 +1,10 @@
 import React, { createContext } from 'react';
 import "../scss/app.scss"
 import { Navbar } from '../components/Navbar/navbar.js'
-import TextArea from './textarea';
+import TextArea from '../components/textarea';
 import { useRef, useState, useEffect, useContext } from 'react'
 import { LoginContext } from './Logincontext';
-import { Viewnotes } from './viewnotes';
+import { Viewnotes } from '../components/Viewing_Notes/viewnotes';
 import { IsAuto } from './Isauto';
 import { updateContext } from './updatecontext';
 import FileReaderfun from './filereaderfun';
@@ -83,8 +83,8 @@ function App() {
     }
   }
 
-  const { loginUser, loginToken, noteId, anonToken, toggleUserLogin,anonContext,toggleAnonUser, viewNotes, toggleViewNotes ,toggleUpdateNote,
-    setEdit,idsave,editableNote, editable, updateNote, textUpdate, text } = UseApp({ isNight, theme, id })
+  const { loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,
+    setEdit, idsave, editableNote, editable, updateNote, textUpdate, text } = UseApp({ isNight, theme, id })
 
   return (
     <>

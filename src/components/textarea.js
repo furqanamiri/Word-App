@@ -2,8 +2,8 @@
 import "../scss/textarea.scss"
 import { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
-import { AnonContext } from './AnonContext';
-import Footer from "./footer";
+import { AnonContext } from '../js/AnonContext';
+import Footer from "./Footer/footer";
 
 export default function TextArea({ text, setText }) {
   const [dateUpd, setDateUpd] = useState(moment())

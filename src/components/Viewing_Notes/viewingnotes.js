@@ -1,20 +1,20 @@
 import moment from 'moment'
 import React, { useContext, useRef } from 'react'
 import { useState } from 'react'
-import '../scss/viewNotes.scss'
-import { LoginContext } from './Logincontext'
-import { updateContext } from './updatecontext'
+import '../../scss/viewNotes.scss'
+import { LoginContext } from '../../js/Logincontext'
+import { updateContext } from '../../js/updatecontext'
 export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNotes, setText }) {
-  const {toggleUpdateNote , noteId} = useContext(updateContext)
+  const { toggleUpdateNote, noteId } = useContext(updateContext)
   const textnote = useRef('false')
-  const{loginToken} = useContext(LoginContext)
-// const date
+  const { loginToken } = useContext(LoginContext)
+  // const date
   textnote.current = list
   const deletenote = () => {
     fetch(process.env.REACT_APP_DELETE, {
       method: 'DELETE', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
-        token : loginToken.current,
+        token: loginToken.current,
       }, body: JSON.stringify({
         id: idnote,
       })
@@ -26,7 +26,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   }
   // document.getElementById('creatednote').addEventListener('click', () => {
   const clickFunction = () => {
-   toggleUpdateNote(true)
+    toggleUpdateNote(true)
     noteId.current = idnote;
     setText(textnote.current)
     window.sessionStorage.removeItem('text')

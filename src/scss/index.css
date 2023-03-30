@@ -1,0 +1,5 @@
+@font-face {
+  font-family: "captcha-code";
+  src: local("captcha-code"), url("./fonts/captcha-code.otf") format("truetype");
+  font-weight: bold;
+}

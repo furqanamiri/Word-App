@@ -1,10 +1,5 @@
 import React from 'react';
-import "../../scss/navbar.scss"
-import { Icon } from '@iconify/react';
-import Loginform from '../../js/loginform';
 import { useState, useRef, useContext } from 'react';
-import { OverlayTrigger, Popover } from 'react-bootstrap';
-import Passwordform from '../../js/passwordform';
 import { LoginContext } from '../../js/Logincontext';
 var FileSaver = require('file-saver');
 import { IsAuto } from '../../js/Isauto';
