@@ -40,6 +40,6 @@ export const useViewNote = () => {
   useEffect(() => { addNotes() }, [refreshstate])
 
   return (
-    { list, users, id, toggleUpdateNote, togglerefreshchange, textnote }
+    { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, dateUpd }
   )
 }
