@@ -11,7 +11,6 @@ const useNavBar = ({ toggleTheme,
   setText }) => {
   const { loginUser, loginToken } = useContext(LoginContext);
   const [shareModal, setShareModal] = useState(false);
-
   const toggleShareModalClose = () => setShareModal(false);
   const toggleShareModalOpen = () => setShareModal(true);
   //ExportModal hook state
@@ -20,8 +19,8 @@ const useNavBar = ({ toggleTheme,
   const toggleExportModalOpen = () => setExportModal(true);
   const toggleExportModalClose = () => setExportModal(false);
 
-  const { toggleAnonUser } = useContext(AnonContext);
-  const { updateNote, noteId } = useContext(updateContext);
+  const { toggleAnonUser,setEdit } = useContext(AnonContext);
+  const { updateNote, noteId, copyFunction } = useContext(updateContext);
   const { theme } = useContext(IsAuto);
 
   //File Opening functionality
@@ -159,7 +158,8 @@ const useNavBar = ({ toggleTheme,
     shareModal,
     toggleShareModalOpen,
     toggleShareModalClose,
-    text
+    text,
+    loginUser,setEdit,theme,copyFunction,noteId
   };
 }
 

@@ -13,13 +13,11 @@ export const useViewNote = () => {
   const togglerefreshchange = () => {
     setrefreshstate(!refreshstate);
   }
-  const [wordCount, setWordCount] = useState(0);
-  const [charCount, setCharCount] = useState(0);
+  
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
   const [id, setId] = useState([])
-  const spaces = textnote.current.match(/\s+/g);
-  let count = 0;
+
   const addNotes = () => {
     fetch(process.env.REACT_APP_NOTES, {
       method: 'GET', headers: {
@@ -38,20 +36,10 @@ export const useViewNote = () => {
     })
 
   }
-  useEffect(() => {
-    // update word count
-    let wordCount = 0;
-    setWordCount(wordCount = spaces ? spaces.length : 0)
-
-    setWordCount(wordCount);
-
-    // update char count (including whitespaces)
-    setCharCount
-      ((prev) => textnote.length);
-  }, [textnote]);
+ 
   useEffect(() => { addNotes() }, [refreshstate])
 
   return (
-    { wordCount, charCount, list, users, id, dateUpd, toggleUpdateNote, togglerefreshchange, textnote }
+    { list, users, id, toggleUpdateNote, togglerefreshchange, textnote }
   )
 }

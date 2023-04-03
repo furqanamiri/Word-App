@@ -27,12 +27,13 @@ export default function Navbar({
     shareModal,
     toggleShareModalOpen,
     toggleShareModalClose,
+    setEdit, theme, copyFunction, noteId
   } = useNavbar({
     toggleTheme,
     isDark,
     text,
     toggleViewNotes,
-    setText,
+    setText
   });
   return (
     <>
@@ -49,6 +50,11 @@ export default function Navbar({
         LoginModalClose={LoginModalClose}
         LogOut={LogOut}
         toggleViewNotes={toggleViewNotes}
+        loginUser={loginUser}
+        setEdit={setEdit}
+        theme={theme}
+        copyFunction={copyFunction}
+        noteId={noteId}
       />
 
       <ResponsiveNavbar

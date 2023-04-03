@@ -1,17 +1,17 @@
 import "./styles.scss";
 import Footer from "../Footer";
-import UseTextArea from "./useTextArea";
+import { useContext, useEffect } from "react";
+import { AnonContext } from "../../js/AnonContext";
 export default function TextArea({ text, setText }) {
   const changeHandler = (event) => {
     setText(event.target.value);
   };
-  const { dateUpd, wordCount, editableNote, charCount } = UseTextArea(
-    text,
-    setText
-  );
+  const { editableNote } = useContext(AnonContext)
 
-  let date = document.lastModified;
+  useEffect(() => {
+    if (window.sessionStorage.getItem('text')) { setText(window.sessionStorage.getItem('text')) }
 
+  }, [])
   return (
     <>
       <textarea
@@ -22,7 +22,7 @@ export default function TextArea({ text, setText }) {
         placeholder="New Note"
         disabled={editableNote ? false : true}
       ></textarea>
-      <Footer dateUpd={dateUpd} charCount={charCount} wordCount={wordCount} />
+      <Footer text={text} setText={setText} />
     </>
   );
 }

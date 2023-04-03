@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import "./styles.scss"
-import  Navbar  from '../components/Navbar'
+import Navbar from '../components/Navbar'
 import TextArea from '../components/TextArea';
 import { useRef, useState, useEffect, useContext } from 'react'
 import { LoginContext } from '../js/Logincontext';
@@ -8,7 +8,7 @@ import { Viewnotes } from '../components/Viewing_Notes/viewnotes';
 import { IsAuto } from '../js/Isauto';
 import { updateContext } from '../js/updatecontext';
 import { AnonContext } from '../js/AnonContext';
-import UseApp from '../js/UseApp';
+import UseApp from './UseApp';
 
 function App() {
 
@@ -93,7 +93,7 @@ function App() {
             <updateContext.Provider value={{ updateNote, toggleUpdateNote, noteId, copyFunction }}>
               <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} domain={domain} />
 
-              {viewNotes ? <Viewnotes isDark={theme === 'dark'} toggleViewNotes={toggleViewNotes} setText={textUpdate} /> : <TextArea text={text} setText={textUpdate} />}
+              {viewNotes ? <Viewnotes isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} /> : <TextArea text={text} setText={textUpdate} />}
               {/* <Footer /> */}
             </updateContext.Provider>
           </LoginContext.Provider>

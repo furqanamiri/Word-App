@@ -8,8 +8,8 @@ import { updateContext } from "../../js/updatecontext";
 import Footer from '../Footer';
 import { useViewNote } from "./useViewNote";
 
-export function Viewnotes({ isDark, toggleViewNotes, setText }) {
-  const { wordCount, charCount, list, users, id, dateUpd, toggleUpdateNote, togglerefreshchange, textnote } = useViewNote()
+export function Viewnotes({ isDark, text, toggleViewNotes, setText }) {
+  const { users, toggleUpdateNote, togglerefreshchange, textnote } = useViewNote()
 
 
   // const notediv = document.getElementById("newnote")
@@ -73,7 +73,7 @@ export function Viewnotes({ isDark, toggleViewNotes, setText }) {
       </div>
     </div>
 
-      <Footer dateUpd={dateUpd} charCount={charCount} wordCount={wordCount} />
+      <Footer text={text} setText={text} />
     </>
   )
 }

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { LoginContext } from './Logincontext'
+import { LoginContext } from '../js/Logincontext'
 
 const UseApp = ({ isNight, theme, id }) => {
   //text string state , used for file storing, saving, api calls
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const textUpdate = (str) => {
     setText(str)
   }

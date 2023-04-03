@@ -59,8 +59,6 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   const togglePassCheck = (e) => {
     e.preventDefault();
     setPassCheck(!passCheck);
-
-
   };
 
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -68,11 +66,11 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   const LoginRegisterClose = () => {
     setShowRegisterModal(false);
   }
+  
   const LoginRegisterOpen = (event) => {
     event.preventDefault();
     LoginModalClose();
     setShowRegisterModal(true);
-
   }
 
 

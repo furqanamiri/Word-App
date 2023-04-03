@@ -1,7 +1,6 @@
 import React from 'react'
 import { AnonContext } from '../../js/AnonContext'
 import { IsAuto } from '../../js/Isauto'
-import { LoginContext } from '../../js/Logincontext'
 import { updateContext } from '../../js/updatecontext'
 import "./styles.scss"
 import { Icon } from '@iconify/react';
@@ -10,12 +9,23 @@ import { useState, useRef, useContext } from 'react';
 import Passwordform from '../PasswordForm';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
-export default function StandardNav({ toggleSaveFile, showFile, showPassword, isDark, toggleTheme, handleClosePass, handleShowPass
-  , showLoginModal, LoginModalOpen, LoginModalClose, LogOut, toggleViewNotes }) {
-  const { setEdit } = useContext(AnonContext)
-  const { noteId, copyFunction } = useContext(updateContext)
-  const { theme } = useContext(IsAuto)
-  const { loginUser } = useContext(LoginContext)
+export default function StandardNav({ toggleSaveFile, showFile,
+  showPassword,
+  isDark,
+  toggleTheme,
+  handleClosePass,
+  handleShowPass,
+  showLoginModal,
+  LoginModalOpen,
+  LoginModalClose,
+  LogOut,
+  toggleViewNotes,
+  loginUser,
+  setEdit,
+  theme,
+  copyFunction, noteId }) {
+
+
   let r = /:\/\/(.[^/]+)/;
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
