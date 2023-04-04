@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import TextArea from '../components/TextArea';
 import { useRef, useState, useEffect, useContext } from 'react'
 import { LoginContext } from '../js/Logincontext';
-import  ViewNotes  from '../components/ViewNotes';
+import ViewNotes from '../components/ViewNotes';
 import { IsAuto } from '../js/Isauto';
 import { updateContext } from '../js/updatecontext';
 import { AnonContext } from '../js/AnonContext';
@@ -83,7 +83,7 @@ function App() {
   }
 
   const { loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,
-    setEdit,  editableNote, editable, updateNote, textUpdate, text } = UseApp({ isNight, theme, id })
+    setEdit, editableNote, editable, updateNote, textUpdate, text } = UseApp({ isNight, theme, id })
 
   return (
     <>

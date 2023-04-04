@@ -3,7 +3,7 @@ import { AnonContext } from "../../js/AnonContext";
 import { IsAuto } from "../../js/Isauto";
 import { LoginContext } from "../../js/Logincontext";
 import { updateContext } from "../../js/updatecontext";
-
+var FileSaver = require('file-saver');
 const useNavBar = ({ toggleTheme,
   isDark,
   text,
