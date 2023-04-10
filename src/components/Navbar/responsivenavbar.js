@@ -13,11 +13,11 @@ import { AnonContext } from '../../js/AnonContext';
 
 export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showFile, LoginModalOpen, LogOut,
   toggleExportModalOpen, toggleExportModalClose, exportModal, shareModal, toggleShareModalOpen,
-  toggleShareModalClose, isDark, text, toggleViewNotes, showPassword, handleClosePass, showLoginModal, LoginModalClose }) {
+  toggleShareModalClose, isDark, text, toggleViewNotes, showPassword, handleClosePass, showLoginModal, LoginModalClose, pdf }) {
 
   const { theme } = useContext(IsAuto)
-  const { setEdit} = useContext(AnonContext)
- 
+  const { setEdit } = useContext(AnonContext)
+
 
   return (<>    {/* Responsive Navbar */}
     <nav className='d-md-flex  d-lg-none d-sm-flex responsive-nav-height'  >
@@ -59,7 +59,7 @@ export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showF
                 <ul className='d-inline'><li><button className=" smallnavbutticon" onClick={toggleExportModalOpen}>
                   <img src={isDark ? "./svg/file.svg" : "./svg/darkfile.svg"} height='40' width='40' />Export
                 </button></li>
-                  <Exportmodal exportModal={exportModal} toggleExportModalClose={toggleExportModalClose} isDark={isDark} />
+                  <Exportmodal exportModal={exportModal} toggleExportModalClose={toggleExportModalClose} isDark={isDark} pdf={pdf} />
                   <li> <button onClick={toggleShareModalOpen} className='share smallnavbutticon' >
                     <img src="./svg/share.png" height='40' width='40' />Share
                   </button></li>

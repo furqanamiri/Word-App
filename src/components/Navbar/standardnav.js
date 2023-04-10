@@ -1,11 +1,7 @@
 import React from 'react'
-import { AnonContext } from '../../js/AnonContext'
-import { IsAuto } from '../../js/Isauto'
-import { updateContext } from '../../js/updatecontext'
 import "./styles.scss"
 import { Icon } from '@iconify/react';
 import Loginform from '../LoginForm';
-import { useState, useRef, useContext } from 'react';
 import Passwordform from '../PasswordForm';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
@@ -23,12 +19,14 @@ export default function StandardNav({ toggleSaveFile, showFile,
   loginUser,
   setEdit,
   theme,
-  copyFunction, noteId }) {
+  copyFunction, noteId,pdf }) {
 
 
   let r = /:\/\/(.[^/]+)/;
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
+  
+  
   return (
     <nav className='d-md-none d-lg-flex d-sm-none  d-xs-none flex-wrap-wrap' >
       <ul >
@@ -68,7 +66,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
                 <Popover.Body className={isDark ? "tooltipdark" : "tooltiplight"} >
                   <div className='exporttool' >
                     <div className='export-tooltip-div'>
-                      <input type="radio" name="export" value="pdf" /><label className='tenpad'>PDF</label>
+                      <input type="radio" name="export" value="pdf" onChange={pdf} /><label className='tenpad'>PDF</label>
                     </div>
 
                     <div className='export-tooltip-div1'>

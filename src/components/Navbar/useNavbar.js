@@ -3,6 +3,8 @@ import { AnonContext } from "../../js/AnonContext";
 import { IsAuto } from "../../js/Isauto";
 import { LoginContext } from "../../js/Logincontext";
 import { updateContext } from "../../js/updatecontext";
+import { jsPDF } from "jspdf";
+
 var FileSaver = require('file-saver');
 const useNavBar = ({ toggleTheme,
   isDark,
@@ -19,7 +21,7 @@ const useNavBar = ({ toggleTheme,
   const toggleExportModalOpen = () => setExportModal(true);
   const toggleExportModalClose = () => setExportModal(false);
 
-  const { toggleAnonUser,setEdit } = useContext(AnonContext);
+  const { toggleAnonUser, setEdit } = useContext(AnonContext);
   const { updateNote, noteId, copyFunction } = useContext(updateContext);
   const { theme } = useContext(IsAuto);
 
@@ -39,7 +41,24 @@ const useNavBar = ({ toggleTheme,
     };
   }
   //File Saving functionality
+  function pdf() {
+    let doc = new jsPDF();
 
+    // Source HTMLElement or a string containing HTML.
+
+    doc.html(text, {
+      callback: function (doc) {
+        // Save the PDF
+        doc.save('note.pdf');
+      },
+      margin: [10, 10, 10, 10],
+      autoPaging: 'text',
+      x: 0,
+      y: 0,
+      width: 190, //target width in the PDF document
+      windowWidth: 675 //window width in CSS pixels
+    });
+  }
   //Password Modal hook state
   const [showPassword, setShowPass] = useState(false);
   const handleClosePass = () => setShowPass(false);
@@ -159,7 +178,7 @@ const useNavBar = ({ toggleTheme,
     toggleShareModalOpen,
     toggleShareModalClose,
     text,
-    loginUser,setEdit,theme,copyFunction,noteId
+    loginUser, setEdit, theme, copyFunction, noteId, pdf
   };
 }
 

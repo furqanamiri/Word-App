@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Modal from "react-bootstrap/Modal";
 import "./styles.scss";
 import Form from "react-bootstrap/Form";
 
 
-export default function Exportmodal({ exportModal, toggleExportModalClose, isDark }) {
-
-
+export default function Exportmodal({ exportModal, toggleExportModalClose, isDark, pdf }) {
+  const [exportSelect, setExportSelect] = useState()
+  const Exportfun = (e) => {
+    console.log(exportSelect)
+    e.preventDefault()
+    if (exportSelect == 'pdf') {
+      pdf()
+    }
+  }
 
   return (
     <>
@@ -21,17 +27,15 @@ export default function Exportmodal({ exportModal, toggleExportModalClose, isDar
 
         centered
       >
-        {/* <Modal.Header className={isDark ? "modalDarkpass" : "modalLight"}
-          style={{ paddingBottom: "0px" }}>
-          <Modal.Title className={isDark ? "items title" : "items title"} style={{ padding: '10% 0', fontSize: '50px' }}>Export As </Modal.Title>
-        </Modal.Header> */}
+
+
         <Modal.Body style={{ borderRadius: '40px' }} className={isDark ? "modalDarkpass d-flex flex-column justify-content-center" : "modalLightpass flex-column d-flex justify-content-center "}>
 
           <div className={isDark ? "items title" : "items title"} style={{ padding: '10% 0', fontSize: '50px' }}>Export As</div><Form className="d-flex flex-column w-100 justify-content-around"    >
 
             <div className='exporttool w-100 d-flex align-items-center justify-content-center' >
               <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: 'center' }}>
-                <div className="d-flex " style={{ alignItems: 'center' }}><input type="radio" name="export" value="pdf" style={{ height: '21px', width: '45px' }} /><p style={{ marginLeft: '20%', fontSize: '45px', }}>PDF</p></div>
+                <div className="d-flex " style={{ alignItems: 'center' }}><input type="radio" name="export" onChange={() => { setExportSelect('pdf') }} value="pdf" style={{ height: '21px', width: '45px' }} /><p style={{ marginLeft: '20%', fontSize: '45px', }}>PDF</p></div>
 
 
 
@@ -39,7 +43,7 @@ export default function Exportmodal({ exportModal, toggleExportModalClose, isDar
                   <p style={{ marginLeft: '20%', fontSize: '45px', }}>Word</p>
                 </div>              </div>
             </div>
-            <button className="export-butt">Export</button>
+            <button className="export-butt" onClick={Exportfun}>Export</button>
 
           </Form>
         </Modal.Body>
