@@ -324,7 +324,7 @@ export default function Navbar({ toggleTheme, isDark, text, toggleViewNotes, set
                   style={isDark ? { color: 'white' } : { color: 'black' }}>
                   <img src={isDark ? "./src/svg/file.svg" : "./src/svg/darkfile.svg"} height='40' width='40' />Export
                 </button></li>
-                  <Exportmodal exportModal={exportModal} toggleExportModalClose={toggleExportModalClose} isDark={isDark} />
+                  <Exportmodal pdf= {pdf} wordFile={wordFile} exportModal={exportModal} toggleExportModalClose={toggleExportModalClose} isDark={isDark} />
                   <li> <button onClick={toggleShareModalOpen} className='share smallnavbutticon' >
                     <img src="./src/svg/share.png" height='40' width='40' />Share
                   </button></li>

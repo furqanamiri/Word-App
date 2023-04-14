@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../scss/exportModal.scss";
 import Form from "react-bootstrap/Form";
 
 
-export default function Exportmodal({ exportModal, toggleExportModalClose, isDark }) {
-
-
+export default function Exportmodal({ exportModal, toggleExportModalClose, isDark, pdf, wordFile }) {
+  const [exportSelect, setExportSelect] = useState()
+  const Exportfun = (e) => {
+    console.log(exportSelect)
+    e.preventDefault()
+    if (exportSelect == 'pdf') {
+      pdf()
+    }
+    else {
+      wordFile()
+    }
+  }
 
   return (
     <>
@@ -31,27 +40,29 @@ export default function Exportmodal({ exportModal, toggleExportModalClose, isDar
 
             <div className='exporttool w-100 d-flex align-items-center justify-content-center' >
               <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: 'center' }}>
-                <div className="d-flex " style={{ alignItems: 'center' }}><input type="radio" name="export" value="pdf" style={{ height: '21px', width: '45px' }} /><p style={{ marginLeft: '20%', fontSize: '45px', }}>PDF</p></div>
+                <div className="d-flex " style={{ alignItems: 'center' }}><input type="radio" onClick={() => { setExportSelect('pdf') }} name="export" value="pdf" style={{ height: '21px', width: '45px' }} /><p style={{ marginLeft: '20%', fontSize: '45px', }}>PDF</p></div>
 
 
 
-                <div className="d-flex" style={{ marginLeft: '15%', alignItems: 'center' }} > <input style={{ height: '20px', width: '49px' }} type="radio" name="export" value="word" />
+                <div className="d-flex" style={{ marginLeft: '15%', alignItems: 'center' }} > <input onClick={() => { setExportSelect('word') }} style={{ height: '20px', width: '49px' }} type="radio" name="export" value="word" />
                   <p style={{ marginLeft: '20%', fontSize: '45px', }}>Word</p>
                 </div>              </div>
             </div>
-            <button style={{
-              borderRadius: '15px',
-              color: 'white',
-              backgroundColor: 'rgb(250, 139, 46)',
+            <button
+              onClick={Exportfun}
+              style={{
+                borderRadius: '15px',
+                color: 'white',
+                backgroundColor: 'rgb(250, 139, 46)',
 
-              transition: 'none 0s ease 0s',
-              width: '50%',
-              justifySelf: 'center',
-              fontSize: '40px',
-              padding: '5% 0',
-              fontWeight: 'lighter',
-              margin: '5% 0'
-            }}>Export</button>
+                transition: 'none 0s ease 0s',
+                width: '50%',
+                justifySelf: 'center',
+                fontSize: '40px',
+                padding: '5% 0',
+                fontWeight: 'lighter',
+                margin: '5% 0',
+              }}>Export</button>
 
           </Form>
         </Modal.Body>
