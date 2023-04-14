@@ -19,7 +19,8 @@ export default function StandardNav({ toggleSaveFile, showFile,
   loginUser,
   setEdit,
   theme,
-  copyFunction, noteId,pdf }) {
+  copyFunction, noteId,pdf ,
+wordFile}) {
 
 
   let r = /:\/\/(.[^/]+)/;
@@ -70,7 +71,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
                     </div>
 
                     <div className='export-tooltip-div1'>
-                      <input type="radio" name="export" value="word" />
+                      <input type="radio" name="export" value="word" onChange={wordFile}/>
                       <label className='sevenpad'>Word</label>
                     </div>
                   </div>

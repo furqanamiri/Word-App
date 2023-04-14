@@ -5,6 +5,8 @@ import { LoginContext } from "../../js/Logincontext";
 import { updateContext } from "../../js/updatecontext";
 import { jsPDF } from "jspdf";
 
+const docx = require("docx")
+
 var FileSaver = require('file-saver');
 const useNavBar = ({ toggleTheme,
   isDark,
@@ -41,6 +43,7 @@ const useNavBar = ({ toggleTheme,
     };
   }
   //File Saving functionality
+  //PDF 
   function pdf() {
     let doc = new jsPDF();
 
@@ -72,6 +75,34 @@ const useNavBar = ({ toggleTheme,
     }
     idsave.current = retVal;
   };
+
+  //Word File
+  function wordFile() {
+    const doc = new docx.Document({
+      sections: [
+        {
+          properties: {},
+          children: [
+            new docx.Paragraph({
+              children: [
+                new docx.TextRun("Note"),
+                new docx.TextRun({
+                  text: "\n " + text,
+                  bold: true
+                }),
+
+              ]
+            })
+          ]
+        }
+      ]
+    });
+
+    docx.Packer.toBlob(doc).then((blob) => {
+      console.log(blob);
+      saveAs(blob, "note.docx");
+    });
+  }
 
   //File Saving to cloud
   const idsave = useRef("");
@@ -178,7 +209,8 @@ const useNavBar = ({ toggleTheme,
     toggleShareModalOpen,
     toggleShareModalClose,
     text,
-    loginUser, setEdit, theme, copyFunction, noteId, pdf
+    loginUser, setEdit, theme, copyFunction, noteId, pdf,
+    wordFile
   };
 }
 

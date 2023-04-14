@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "boxicons": "^2.1.4",
+    "docx": "^8.0.2",
     "electron": "^22.2.0",
     "file-saver": "^2.0.5",
     "gem": "^2.4.3",
