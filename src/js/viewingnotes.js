@@ -14,7 +14,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   textnote.current = list
   const deletenote = () => {
     
-    fetch('http://34.232.69.171:4000/notes/delete', {
+    fetch("https://api.wordpad.app/notes/delete", {
       method: 'DELETE', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
         token : loginToken.current,

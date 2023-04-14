@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "../scss/shareModal.scss";
 import Form from "react-bootstrap/Form";
+import { updateContext } from "./updatecontext";
+
 
 
 export default function Sharemodal({ shareModal, toggleShareModalClose, isDark, setEdit }) {
-  const {noteId,copyFunction} = useContext(updateContext)
+  const { noteId, copyFunction } = useContext(updateContext)
 
 
 
@@ -32,8 +34,8 @@ export default function Sharemodal({ shareModal, toggleShareModalClose, isDark, 
                 padding: '1em',
                 justifyContent: 'space-evenly',
                 width: '100%',
-              }}><input type="radio" name="export"  onClick={()=>{setEdit("No")}} /><p style={{
-                fontSize: '50px', width: 'fit-content', 
+              }}><input type="radio" name="export" onClick={() => { setEdit("No") }} /><p style={{
+                fontSize: '50px', width: 'fit-content',
               }}>View Only</p></div>
 
 
@@ -42,7 +44,7 @@ export default function Sharemodal({ shareModal, toggleShareModalClose, isDark, 
                 padding: '1em',
                 justifyContent: 'space-evenly',
                 width: '100%',
-              }} > <input type="radio" name="export" value="word" onClick={()=> setEdit("yes")} />
+              }} > <input type="radio" name="export" value="word" onClick={() => setEdit("yes")} />
                 <p style={{ fontSize: '50px', width: 'fit-content', }}>Can Edit</p>
               </div>              </div>
             <div className="d-flex justify-content-center"> <button type="radio" onClick={copyFunction} name="sharerad" style={{ fontWeight: 'lighter', fontSize: '50px', color: '#7496B8', width: '50%' }}><img style={{

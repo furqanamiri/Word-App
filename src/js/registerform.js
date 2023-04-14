@@ -61,7 +61,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   const registerformcheck = (passwordstring) => {
 
     const emailid = document.getElementById('emailid').value
-    fetch('http://34.232.69.171:4000/api/ninjas', {
+    fetch("https://api.wordpad.app/api/ninjas" , {
       method: 'POST',
       headers: {
         Accept: 'application.json',

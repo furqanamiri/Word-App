@@ -1,0 +1,182 @@
+.light nav {
+  height: 99px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+}
+.dark nav {
+  height: 99px;
+  border-bottom: 1px solid rgb(255, 255, 255, 0.14);
+}
+.moon {
+  width: 1.5rem;
+  height: 1.5rem;
+  align-self: center;
+}
+button {
+  height: 50%;
+  width: 6rem;
+  align-self: center;
+  margin: 0;
+  border: transparent;
+  background-color: transparent;
+  padding: 0;
+}
+ul {
+  padding: auto auto;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+ul li {
+  display: flex;
+  height: fit-content;
+  height: 100%;
+  margin: 1rem;
+}
+
+.iconnav {
+  color: #7496b8;
+  align-self: center;
+  width: 22px;
+  height: 22px;
+}
+.color-nav {
+  color: #7496b8;
+}
+.main-header {
+  font-size: xx-large;
+  font-family: "jomolhari";
+  font-weight: 200;
+  width: 40%;
+  text-align: center;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.W-head {
+  color: #fa8b2e;
+}
+.buttonicon {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 0.1rem;
+}
+.shareicon {
+  color: #fa8b2e;
+}
+.export {
+  background-color: #fa8b2e;
+  border-color: transparent;
+  border-radius: 0.5rem;
+  color: white;
+  width: 7rem;
+  height: 50%;
+}
+.sharetool {
+  max-height: 25vh;
+  height: fit-content;
+  max-width: 275px;
+  width: 25%;
+
+  .popover-body {
+    padding: 2%;
+    height: 100%;
+  }
+}
+.share {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0.5rem;
+  color: #fa8b2e;
+}
+.right-icons {
+  margin-left: 0.5rem;
+  margin-right: 1.2rem;
+}
+.linktool {
+  display: flex;
+  overflow: block;
+  flex-wrap: wrap;
+  word-break: break-all;
+  max-height: fit-content;
+  width: 100%;
+  p {
+    overflow-wrap: break-word;
+    width: 85%;
+    text-align: start;
+    text-overflow: ellipsis;
+
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 1em;
+  }
+}
+.exporttool {
+  display: flex;
+  width: 8rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-weight: lighter;
+}
+
+.tooltiplight {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+}
+.tooltipdark {
+  background-color: black;
+  color: #afafaf;
+  border-color: #2a3a4a;
+  border-radius: 10px;
+}
+.popover-arrow::after {
+  background-color: transparent;
+}
+.dark .bs-popover-bottom > .popover-arrow::after {
+  top: 1px;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
+  border-bottom-color: black;
+}
+.dark .bs-popover-bottom > .popover-arrow::before {
+  top: 0;
+  border-width: 0 0.5rem 0.5rem 0.5rem;
+  border-bottom-color: #2a3a4a;
+}
+.navresicon {
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  width: fit-content;
+}
+.buttonsmallnav {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0.5rem;
+  color: #fa8b2e;
+}
+.iconnavsmall {
+  color: #7496b8;
+  align-self: center;
+  width: 50px;
+  height: 50px;
+}
+.smalltooltip {
+  padding: 0 1.5rem;
+  margin: 0;
+}
+.smallnavbutticon {
+  font-size: 30px;
+}
+.files {
+  display: none;
+}
+.files img {
+}
+.change:hover{
+  cursor:pointer
+}
+.mr2{
+  margin-right: '2rem';
+}

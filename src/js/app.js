@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import "../scss/app.scss"
-import { Navbar } from './navbar'
+import  Navbar  from '../Components/Navbar'
 import TextArea from './textarea';
 import Footer from './footer';
 import { useRef, useState, useEffect, useContext } from 'react'
@@ -104,7 +104,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
      
     }
    
-    fetch('http://34.232.69.171:4000/anonuser',{
+    fetch("https://api.wordpad.app/anonuser" ,{
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
                                                                                                                                                                                                                                            
@@ -117,7 +117,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
          
         }).then((response)=>{
           idgenerator()
-          fetch('http://34.232.69.171:4000/notes/add', {
+          fetch("https://api.wordpad.app/notes/add" , {
             method: 'POST',
             headers: {
               accept: 'application.json', 'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
     if(!loginUser){
     if (updateNote) {
        
-         fetch('http://34.232.69.171:4000/notes/update', {
+         fetch("https://api.wordpad.app/notes/update" , {
            method: 'PUT',
            headers: {
              accept: 'application.json', 'Content-Type': 'application/json',
@@ -159,26 +159,26 @@ window.sessionStorage.setItem('loginToken',loginToken.current)  }
    }}, [text])
  
   
-   const copyFunction= (e)=>{
+   const copyFunction = (e) => {
     e.preventDefault()
-    navigator.clipboard.writeText("http://localhost:3000/?id="+noteId.current);
+    navigator.clipboard.writeText(domain + '/?id=' + noteId.current);
     if (updateNote) {
-       
-      fetch('http://34.232.69.171:4000/notes/update', {
+
+      fetch("https://api.wordpad.app/notes/update", {
         method: 'PUT',
         headers: {
           accept: 'application.json', 'Content-Type': 'application/json',
-          token: loginToken.current
+          token: loginUser ? loginToken.current : anonToken.current
         }, body: JSON.stringify({
           id: noteId.current,
           content: text,
-          editable : editable.current
-
+          editable: editable.current,
         })
 
       })
     }
-   }
+  }
+
   return (
 
     <>

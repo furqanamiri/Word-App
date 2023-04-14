@@ -23,7 +23,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   
   const loginValidation = (e) => {
     e.preventDefault();
-    fetch('http://34.232.69.171:4000/login', {
+    fetch("https://api.wordpad.app/login" , {
       method: 'POST', headers: {
         accept: 'application.json', 'Content-Type': 'application/json'
       },
