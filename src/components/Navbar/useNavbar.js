@@ -24,7 +24,7 @@ const useNavBar = ({ toggleTheme,
   const toggleExportModalClose = () => setExportModal(false);
 
   const { toggleAnonUser, setEdit } = useContext(AnonContext);
-  const { updateNote, noteId, copyFunction } = useContext(updateContext);
+  const { updateNote, noteId, copyFunction, toggleUpdateNote } = useContext(updateContext);
   const { theme } = useContext(IsAuto);
 
   //File Opening functionality
@@ -132,6 +132,7 @@ const useNavBar = ({ toggleTheme,
       FileSaver.saveAs(blob, "hello world.txt");
     } else {
       if (!updateNote) {
+        toggleUpdateNote();
         idgenerator();
         fetch(process.env.REACT_APP_ADD, {
           method: "POST",
@@ -146,7 +147,7 @@ const useNavBar = ({ toggleTheme,
           }),
         }).then((response) => {
           noteId.current = idsave.current;
-          setUpdateNote(true);
+          
         });
       } else {
         fetch(process.env.REACT_APP_UPDATE, {

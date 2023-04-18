@@ -12,11 +12,7 @@ export default function UseFooter({ text }) {
     setDateUpd(moment());
   }, 1000);
   useEffect(() => {
-    if (text === "" || text === " ") {
-      window.sessionStorage.removeItem("text");
-    } else {
-      window.sessionStorage.setItem("text", text);
-    }
+
     // array of words
     let newDate = new Date();
     setDateUpd(newDate);

@@ -20,7 +20,7 @@ export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showF
 
 
   return (<>    {/* Responsive Navbar */}
-    <nav className='d-md-flex  d-lg-none d-sm-flex responsive-nav-height'  >
+    <nav className='d-md-flex d-xs-flex d-lg-none d-sm-flex responsive responsive-nav-height'  >
       <ul >
         {/* Note Icon */}
         <li>

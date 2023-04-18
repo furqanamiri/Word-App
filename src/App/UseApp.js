@@ -38,8 +38,8 @@ const UseApp = ({ isNight, theme, id }) => {
     setAnonContext(!anonContext)
   }
   const [updateNote, setUpdateNote] = useState(false)
-  const toggleUpdateNote = (str) => {
-    setUpdateNote(str)
+  const toggleUpdateNote = () => {
+    setUpdateNote(!updateNote)
   }
   //editable hook
   const [editable, setEditable] = useState('yes')
@@ -67,7 +67,9 @@ const UseApp = ({ isNight, theme, id }) => {
       toggleAnonUser()
 
     }
-
+    if (window.sessionStorage.getItem('text')) {
+      setText(window.sessionStorage.getItem('text'))
+    }
     if (!loginUser)
       fetch(process.env.REACT_APP_ANON_USER, {
         method: 'GET', headers: {
@@ -165,6 +167,7 @@ const UseApp = ({ isNight, theme, id }) => {
   }, [updateNote])
   // Auto Update
   useEffect(() => {
+    window.sessionStorage.setItem('text', text)
     if (updateNote) {
 
       fetch(process.env.REACT_APP_UPDATE, {
@@ -180,7 +183,26 @@ const UseApp = ({ isNight, theme, id }) => {
 
       })
     }
+    else {
+      idgenerator()
+      setUpdateNote(true)
 
+      fetch(process.env.REACT_APP_ADD, {
+
+        method: 'POST',
+        headers: {
+          accept: 'application.json', 'Content-Type': 'application/json',
+          token: loginUser ? loginToken.current : anonToken.current
+        }, body: JSON.stringify({
+          id: idsave.current,
+          content: text,
+          editable: editable
+
+        })
+
+      }).then(noteId.current = idsave.current)
+
+    }
 
   }, [text])
 

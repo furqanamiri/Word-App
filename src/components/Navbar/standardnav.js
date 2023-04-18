@@ -19,17 +19,17 @@ export default function StandardNav({ toggleSaveFile, showFile,
   loginUser,
   setEdit,
   theme,
-  copyFunction, noteId,pdf ,
-wordFile}) {
+  copyFunction, noteId, pdf,
+  wordFile }) {
 
 
   let r = /:\/\/(.[^/]+)/;
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
-  
-  
+
+
   return (
-    <nav className='d-md-none d-lg-flex d-sm-none  d-xs-none flex-wrap-wrap' >
+    <nav className='d-md-none d-xs-none d-lg-flex d-sm-none standarnav d-xs-none flex-wrap-wrap' >
       <ul >
         {/* Note Icon */}
         <li>
@@ -71,7 +71,7 @@ wordFile}) {
                     </div>
 
                     <div className='export-tooltip-div1'>
-                      <input type="radio" name="export" value="word" onChange={wordFile}/>
+                      <input type="radio" name="export" value="word" onChange={wordFile} />
                       <label className='sevenpad'>Word</label>
                     </div>
                   </div>
