@@ -6,7 +6,7 @@ import Footer from "../Footer";
 import { useViewNote } from "./useViewNote";
 
 export default function ViewNotes({ isDark, text, toggleViewNotes, setText }) {
-  const {list, users, id, toggleUpdateNote, togglerefreshchange, textnote, dateUpd  } =
+  const { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, dateUpd, setUpdateNote } =
     useViewNote();
 
   // const notediv = document.getElementById("newnote")
@@ -14,18 +14,18 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText }) {
 
   const clickFunctionnew = () => {
     setText("");
-    toggleUpdateNote(false);
+    setUpdateNote(false)
     window.sessionStorage.removeItem("text");
     toggleViewNotes();
   };
   //ShowFile
   function showFile() {
     clickFunctionnew();
-    var preview = document.getElementById("show-text");
-    var file1 = document.querySelector("#file1").files[0];
-    var reader = new FileReader();
+    let preview = document.getElementById("show-text");
+    let file1 = document.querySelector("#file1").files[0];
+    let reader = new FileReader();
 
-    var textFile = /text.*/;
+    let textFile = /text.*/;
     reader.readAsText(file1);
     // if (file.type.match(textFile))
     setText(" ");
@@ -35,6 +35,7 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText }) {
     reader.onerror = function (error) {
       error.target.result;
     };
+
   }
   // })
   return (

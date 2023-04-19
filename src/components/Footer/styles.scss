@@ -3,6 +3,7 @@
   font-family: sans-serif;
   margin-bottom: 0.5rem;
   font-weight: 200;
+  background-color: 'inherit';
   height: fit-content;
   position: fixed;
   display: flex;
@@ -25,6 +26,7 @@
   flex-direction: column;
   width: 100%;
   bottom: 1rem;
+  background-color: inherit;
   border-top: 1px solid rgba(0, 0, 0, 0.14);
 }
 

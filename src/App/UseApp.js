@@ -39,7 +39,7 @@ const UseApp = ({ isNight, theme, id }) => {
   }
   const [updateNote, setUpdateNote] = useState(false)
   const toggleUpdateNote = () => {
-    setUpdateNote(!updateNote)
+    setUpdateNote(true)
   }
   //editable hook
   const [editable, setEditable] = useState('yes')
@@ -207,7 +207,7 @@ const UseApp = ({ isNight, theme, id }) => {
   }, [text])
 
   return {
-    loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,
+    loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,setUpdateNote,
     setEdit, idsave, editableNote, editable, updateNote, textUpdate, text
   }
 

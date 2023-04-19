@@ -7,13 +7,13 @@ export const useViewNote = () => {
   const textnote = useRef('')
   textnote.current = 'Click to create a new note'
   const [dateUpd, setDateUpd] = useState(moment())
-  const { toggleUpdateNote } = useContext(updateContext)
+  const { toggleUpdateNote,setUpdateNote } = useContext(updateContext)
   // word count
   const [refreshstate, setrefreshstate] = useState(false)
   const togglerefreshchange = () => {
     setrefreshstate(!refreshstate);
   }
-  
+
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
   const [id, setId] = useState([])
@@ -36,10 +36,10 @@ export const useViewNote = () => {
     })
 
   }
- 
+
   useEffect(() => { addNotes() }, [refreshstate])
 
   return (
-    { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, dateUpd }
+    { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, dateUpd,setUpdateNote }
   )
 }

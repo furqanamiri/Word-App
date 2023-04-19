@@ -3,7 +3,7 @@ import React, { useContext, useRef } from 'react'
 import './styles.scss'
 import { LoginContext } from '../../js/Logincontext'
 import { updateContext } from '../../js/updatecontext'
-export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, toggleViewNotes, setText }) {
+export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, setNoteUpdate, toggleViewNotes, setText,  }) {
   const { toggleUpdateNote, noteId } = useContext(updateContext)
   const textnote = useRef('false')
   const { loginToken } = useContext(LoginContext)
@@ -25,7 +25,10 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   }
   // document.getElementById('creatednote').addEventListener('click', () => {
   const clickFunction = () => {
-    toggleUpdateNote(true)
+  
+    setUpdateNote(true)
+
+   toggleUpdateNote()
     noteId.current = idnote;
     setText(textnote.current)
     window.sessionStorage.removeItem('text')

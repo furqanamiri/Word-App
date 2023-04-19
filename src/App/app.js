@@ -83,14 +83,14 @@ function App() {
   }
 
   const { loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,
-    setEdit, editableNote, editable, updateNote, textUpdate, text } = UseApp({ isNight, theme, id })
+    setEdit, editableNote, editable, updateNote, textUpdate, text,setUpdateNote } = UseApp({ isNight, theme, id })
 
   return (
     <>
       <IsAuto.Provider value={{ theme }} >
         <AnonContext.Provider value={{ anonContext, toggleAnonUser, anonToken, editableNote, setEdit, editable }}>
           <LoginContext.Provider value={{ loginUser, toggleUserLogin, loginToken }}>
-            <updateContext.Provider value={{ updateNote, toggleUpdateNote, noteId, copyFunction }}>
+            <updateContext.Provider value={{ updateNote, toggleUpdateNote, noteId, copyFunction ,setUpdateNote}}>
               <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} domain={domain} />
 
               {viewNotes ? <ViewNotes isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} /> : <TextArea text={text} setText={textUpdate} />}
