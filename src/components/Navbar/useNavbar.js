@@ -147,7 +147,7 @@ const useNavBar = ({ toggleTheme,
           }),
         }).then((response) => {
           noteId.current = idsave.current;
-          
+
         });
       } else {
         fetch(process.env.REACT_APP_UPDATE, {
@@ -171,6 +171,7 @@ const useNavBar = ({ toggleTheme,
   const LoginModalClose = () => setShowLoginModal(false);
   const LoginModalOpen = () => {
     setShowLoginModal(true);
+    console.log('ole')
   };
 
   const LogOut = () => {

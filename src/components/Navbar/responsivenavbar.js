@@ -13,15 +13,15 @@ import { AnonContext } from '../../js/AnonContext';
 
 export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showFile, LoginModalOpen, LogOut,
   toggleExportModalOpen, toggleExportModalClose, exportModal, shareModal, toggleShareModalOpen,
-  toggleShareModalClose, isDark, text, toggleViewNotes, showPassword, handleClosePass, showLoginModal, LoginModalClose, pdf, wordFile }) {
+  toggleShareModalClose, isDark, text, toggleViewNotes, showPassword, handleClosePass, showLoginModal, LoginModalClose, pdf, wordFile, viewNotes }) {
 
   const { theme } = useContext(IsAuto)
-  const { setEdit } = useContext(AnonContext)
+  const { setEdit,editable } = useContext(AnonContext)
 
 
   return (<>    {/* Responsive Navbar */}
     <nav className='d-md-flex d-xs-flex d-lg-none d-sm-flex responsive responsive-nav-height'  >
-      <ul >
+      <ul className={viewNotes ? 'd-none' : ""}>
         {/* Note Icon */}
         <li>
 
@@ -42,6 +42,9 @@ export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showF
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} />
       </ul>
+      <ul className={viewNotes ? "" : "d-none"} >
+        <li><button ><img src="./svg/backlogo.svg" className='iconnavsmall' onClick={toggleViewNotes}></img></button></li>
+      </ul>
 
       <div className='align-self-center justify-self-center main-header font50' >
         <span className='W-head main-header font60' >W</span>ordpad
@@ -60,10 +63,7 @@ export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showF
                   <img src={isDark ? "./svg/file.svg" : "./svg/darkfile.svg"} height='40' width='40' />Export
                 </button></li>
                   <Exportmodal exportModal={exportModal} toggleExportModalClose={toggleExportModalClose} isDark={isDark} pdf={pdf} wordFile={wordFile} />
-                  <li> <button onClick={toggleShareModalOpen} className='share smallnavbutticon' >
-                    <img src="./svg/share.png" height='40' width='40' />Share
-                  </button></li>
-                  <Sharemodal shareModal={shareModal} toggleShareModalClose={toggleShareModalClose} isDark={isDark} setEdit={setEdit} />
+                  {viewNotes ? " " : <><li> <button onClick={toggleShareModalOpen} className='share smallnavbutticon' ><img src="./svg/share.png" height='40' width='40' />Share</button></li><Sharemodal shareModal={shareModal} toggleShareModalClose={toggleShareModalClose} isDark={isDark} setEdit={setEdit} /> </>}
                 </ul>
 
 

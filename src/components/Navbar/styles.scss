@@ -1,11 +1,16 @@
 .light nav {
-  height: 99px;
-  border: 1px solid rgba(0, 0, 0, 0.14);
+  height: 97px;
+  background-color: #fff !important;
+
+  hr {
+    color: white
+  }
 }
 
 .dark nav {
   height: 99px;
-  border-bottom: 1px solid rgb(255, 255, 255, 0.14);
+  background-color: black !important;
+
 }
 
 .moon {
@@ -50,20 +55,36 @@ ul li {
   color: #7496b8;
 }
 
-.main-header {
-  font-size: xx-large;
-  font-family: "jomolhari";
-  font-weight: 200;
-  width: 40%;
-  text-align: center;
+.light {
+  .main-header {
+    font-size: xx-large;
+    font-family: 'Jomolhari', serif;
+    font-weight: 400;
+    width: 40%;
+    text-align: center;
+    color: black;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+}
 
-  user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+.dark {
+  .main-header {
+    font-size: xx-large;
+    font-family: 'Jomolhari', serif;
+    font-weight: 400;
+    width: 40%;
+    text-align: center;
+    color: white;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
 }
 
 .W-head {
-  color: #fa8b2e;
+  color: #fa8b2e !important;
 }
 
 .buttonicon {
@@ -116,16 +137,16 @@ ul li {
   word-break: break-all;
   max-height: fit-content;
   width: 100%;
+  justify-content: right;
 
   p {
     overflow-wrap: break-word;
-    width: 85%;
+    width: 65%;
     text-align: start;
     text-overflow: ellipsis;
-
     overflow: hidden;
     white-space: nowrap;
-    margin-left: 1em;
+    margin-left: 0.5em;
   }
 }
 
@@ -138,7 +159,6 @@ ul li {
 }
 
 .tooltiplight {
-  background-color: white;
   color: black;
   border-radius: 10px;
 }
@@ -183,8 +203,9 @@ ul li {
 .iconnavsmall {
   color: #7496b8;
   align-self: center;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
+  z-index: 1;
 }
 
 .smalltooltip {
@@ -307,4 +328,8 @@ ul li {
 
 .dark .smallnavbutticon {
   color: white
+}
+
+.backlogo {
+  margin-left: 1px;
 }

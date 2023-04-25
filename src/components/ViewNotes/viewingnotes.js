@@ -1,9 +1,9 @@
 import moment from 'moment'
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import './styles.scss'
 import { LoginContext } from '../../js/Logincontext'
 import { updateContext } from '../../js/updatecontext'
-export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, setNoteUpdate, toggleViewNotes, setText,  }) {
+export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, setNoteUpdate, toggleViewNotes, setText, date, dateChange }) {
   const { toggleUpdateNote, noteId } = useContext(updateContext)
   const textnote = useRef('false')
   const { loginToken } = useContext(LoginContext)
@@ -25,10 +25,8 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   }
   // document.getElementById('creatednote').addEventListener('click', () => {
   const clickFunction = () => {
-  
-    setUpdateNote(true)
-
-   toggleUpdateNote()
+    dateChange(date)
+    toggleUpdateNote()
     noteId.current = idnote;
     setText(textnote.current)
     window.sessionStorage.removeItem('text')
@@ -36,14 +34,16 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   }
   // })
   return (<>
-    <div className="note col-md-5 col-lg-2 col-sm-4" id="creatednote">
-      <button onClick={clickFunction}><p className="notetext" > {textnote.current}
-      </p></button>
+    <div className="note col-md-5 col-lg-2 col-sm-4" id="creatednote" >
+      <p className="notetext cursor" onClick={clickFunction} > {textnote.current}
+      </p>
       <div className={isDark ? "darknotetext darknotesfooter" : "lightnotetext darknotesfooter"}>
         <div>
-          <p className='footerpara'>Last Updated</p>
-        </div><div><p className='footerpara'>few seconds ago</p></div>
-        <button className="deletenote" onClick={deletenote}><img src='./svg/notedelete.svg'></img></button>
+          <p className='footerpara'>Last Updated : </p>
+        </div>
+        <div><p className='footerpara'>{moment(date).fromNow()}</p></div>
+        <button className="deletenote" onClick={deletenote}><img src='./svg/notedelete.svg'></img>
+        </button>
       </div>
     </div>
   </>)

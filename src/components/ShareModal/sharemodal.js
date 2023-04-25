@@ -35,7 +35,7 @@ export default function Sharemodal({ shareModal, toggleShareModalClose, isDark, 
 
 
 
-              <div className="d-flex align-items-center share-butt-div" > <input type="radio" name="export" value="word" onClick={() => setEdit("yes")} />
+              <div className="d-flex align-items-center share-butt-div" > <input type="radio" name="export" value="word" onClick={() => setEdit("yes")} checked/>
                 <p className="share-modal-butt">Can Edit</p>
               </div>
             </div>

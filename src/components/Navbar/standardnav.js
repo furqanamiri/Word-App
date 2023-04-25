@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./styles.scss"
 import { Icon } from '@iconify/react';
 import Loginform from '../LoginForm';
 import Passwordform from '../PasswordForm';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
+import { AnonContext } from '../../js/AnonContext';
 
 export default function StandardNav({ toggleSaveFile, showFile,
   showPassword,
@@ -20,17 +21,20 @@ export default function StandardNav({ toggleSaveFile, showFile,
   setEdit,
   theme,
   copyFunction, noteId, pdf,
-  wordFile }) {
+  wordFile,
+  viewNotes }) {
 
 
   let r = /:\/\/(.[^/]+)/;
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
+  const { editableNote } = useContext(AnonContext)
 
 
-  return (
-    <nav className='d-md-none d-xs-none d-lg-flex d-sm-none standarnav d-xs-none flex-wrap-wrap' >
-      <ul >
+
+  return (<>
+    <nav className='d-md-none d-xs-none d-lg-flex d-sm-none d-none standarnav d-xs-none flex-wrap-wrap' >
+      <ul className={viewNotes ? 'd-none' : ''}>
         {/* Note Icon */}
         <li>
 
@@ -49,68 +53,78 @@ export default function StandardNav({ toggleSaveFile, showFile,
         </li>
         <Loginform showLoginModal={showLoginModal} LoginModalClose={LoginModalClose} isDark={isDark} toggleViewNotes={toggleViewNotes} LoginModalOpen={LoginModalOpen} />
       </ul>
-
+      <ul className={viewNotes ? "" : "d-none"} >
+        <li><button className='iconnav backlogo'><img src="./svg/backlogo.svg" onClick={toggleViewNotes}></img></button></li>
+      </ul>
       <div className='align-self-center justify-self-center main-header'>
         <span className='W-head main-header'>W</span>ordpad
       </div>
       <ul className="justify-content-end nav-right-margin"><li>
-        <button onClick={toggleTheme} className="buttonicon">{theme === 'dark' ? <img src={"./svg/autotheme.svg"} className='buttonicon moon' /> : theme === 'light' ? <Icon className='moon' icon="ph:moon-bold" color="black" /> : <img src={"./svg/light.svg"} className='buttonicon moon' />}
+        <button onClick={toggleTheme} className="buttonicon">{theme === 'dark' ? <img src={"./svg/autotheme.svg"} className='buttonicon moon' /> : theme === 'light' ?
+          <Icon className='moon' icon="ph:moon-bold" color="black" /> : <img src={"./svg/light.svg"} className='buttonicon moon' />}
         </button></li>
+        {viewNotes ? " " : <>
+          <li >
+            <OverlayTrigger
+              trigger="focus"
+              key={'bottom'}
+              placement={'bottom-end'}
+              overlay={
+                <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark tooltip-radius" : "tooltip-radius tooltiplight"}  >
+                  <Popover.Body className={isDark ? "tooltipdark" : "tooltiplight"} >
+                    <div className='exporttool' >
+                      <div className='export-tooltip-div'>
+                        <input type="radio" name="export" value="pdf" onChange={pdf} /><label className='tenpad'>PDF</label>
+                      </div>
 
-        <li >
-          <OverlayTrigger
-            trigger="click"
-            key={'bottom'}
-            placement={'bottom-end'}
-            overlay={
-              <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark tooltip-radius" : "tooltip-radius tooltiplight"}  >
-                <Popover.Body className={isDark ? "tooltipdark" : "tooltiplight"} >
-                  <div className='exporttool' >
-                    <div className='export-tooltip-div'>
-                      <input type="radio" name="export" value="pdf" onChange={pdf} /><label className='tenpad'>PDF</label>
+                      <div className='export-tooltip-div1'>
+                        <input type="radio" name="export" value="word" onChange={wordFile} />
+                        <label className='sevenpad'>Word</label>
+                      </div>
                     </div>
-
-                    <div className='export-tooltip-div1'>
-                      <input type="radio" name="export" value="word" onChange={wordFile} />
-                      <label className='sevenpad'>Word</label>
-                    </div>
-                  </div>
-                </Popover.Body>
-              </Popover>
-            }>
-            <button className='export'>
-              <img src={isDark ? "./svg/darkfile.svg" : "./svg/file.svg"} className='buttonicon' />Export
-            </button>
+                  </Popover.Body>
+                </Popover>
+              }>
+              <button className='export'>
+                <img src={isDark ? "./svg/darkfile.svg" : "./svg/file.svg"} className='buttonicon' />Export
+              </button>
 
 
-          </OverlayTrigger>
+            </OverlayTrigger>
 
 
-        </li>
-        <li className='m-0'>
-          {/* Share Tooltip main nav */}
-          <OverlayTrigger
-            trigger={'click'}
-            key={'bottom'}
-            placement={'bottom-end'}
-            overlay={
-              <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool tooltip-radius" : "tooltiplight sharetool tooltip-radius"}>
-                <Popover.Body>
-                  <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p id="urllink">{domain}?id={noteId.current}</p></div>
-                  <form className={isDark ? "tooltipdark shareform" : "tooltiplight shareform"} ><input type="radio" name="sharerad" id="view only" onClick={() => setEdit('No')} /><p className='viewbutt'>View Only</p>
-                    <input type="radio" name="sharerad" id="editnote" onClick={() => setEdit('yes')} /><p className='share-edit-butt'> Can Edit</p>
-                    <button type="radio" className='share-copy-butt' onClick={copyFunction} name="sharerad"><img src="./svg/copylink.svg" className='pr1' ></img>Copy Link</button></form>
-                </Popover.Body>
-              </Popover>
-            }
-          >
-            <button className='share' >
-              <img className="buttonicon" src="./svg/share.png" />Share
-            </button>
-          </OverlayTrigger>
+          </li>
+        </>}
+        {viewNotes ? " " : editableNote ? <>
+          <li className='m-0'>
+            {/* Share Tooltip main nav */}
+            <OverlayTrigger
+              trigger={'focus'}
+              key={'bottom'}
+              placement={'bottom-end'}
+              overlay={
+                <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool tooltip-radius" : "tooltiplight sharetool tooltip-radius"}>
+                  <Popover.Body>
+                    <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p id="urllink">{domain}?id={noteId.current}</p></div>
+                    <form className={isDark ? "tooltipdark shareform" : "tooltiplight shareform"} ><input type="radio" name="sharerad" id="view only" onClick={() => setEdit('No')} /><p className='viewbutt'>View Only</p>
+                      <input type="radio" name="sharerad" id="editnote" onClick={() => setEdit('yes')} checked /><p className='share-edit-butt'> Can Edit</p>
+                      <button type="radio" className='share-copy-butt' onClick={copyFunction} name="sharerad"><img src="./svg/copylink.svg" className='pr1' ></img>Copy Link</button></form>
+                  </Popover.Body>
+                </Popover>
+              }
+            >
+              <button className='share' >
+                <img className="buttonicon" src="./svg/share.png" />Share
+              </button>
+            </OverlayTrigger>
 
-        </li>
+          </li>
+        </> : ''}
       </ul>
+
     </nav>
+    <hr></hr>
+  </>
+
   )
 }

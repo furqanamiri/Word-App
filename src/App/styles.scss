@@ -1,14 +1,13 @@
-// @import "theme.json";
-
 @media (max-width:680px) {
   textarea.form-control {
     height: 62%;
     max-height: 63%;
     font-size: 100px;
     border: none;
+    padding: 3rem
   }
 
- 
+
   .total-notes {
     height: 64%
   }
@@ -19,8 +18,13 @@
     height: 78%;
     max-height: 78%;
     font-size: 3rem;
+    padding: 3rem;
     border: none;
     font-weight: 500;
+  }
+
+  .Maindiv {
+    width: 100%;
   }
 
 
@@ -48,6 +52,10 @@
   .total-notes {
     height: 78%
   }
+
+  .Maindiv {
+    width: 85%;
+  }
 }
 
 
@@ -58,26 +66,6 @@ h1 {
   font-family: "open sans";
 }
 
-.light {
-  font-family: sans-serif;
-  color: black;
-  background-color: white;
-
-  * {
-    transition: all 10ms;
-  }
-}
-
-.dark {
-  font-family: sans-serif;
-  color: white;
-  background-color: black;
-  box-shadow: 0px 0px 20px rgba(21, 95, 136, 0.08);
-
-  * {
-    transition: all 10ms;
-  }
-}
 
 .dark textarea {
   background-color: black !important;
@@ -102,6 +90,10 @@ h1 {
 
 body {
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
 
   -webkit-scrollbar-track {
     background: inherit;
@@ -114,6 +106,14 @@ body {
   -webkit-scrollbar-thumb {
     background: #fe8b2e;
   }
+}
+
+.Maindiv {
+  max-width: 1920px;
+  max-height: 1440px;
+  height: 85%;
+
+  @media screen {}
 }
 
 input[type="radio"] {
@@ -143,4 +143,22 @@ input[type="radio"]:checked::before {
 
 .font-face-captcha {
   font-family: "GoldmanBold";
+}
+
+.light {
+  background-color: #F9FBFD;
+
+  hr {
+    color: rgb(0, 0, 0, 0.14);
+    margin: 0;
+  }
+}
+
+.dark {
+  background-color: #303133;
+
+  hr {
+    color: white;
+    margin: 0;
+  }
 }

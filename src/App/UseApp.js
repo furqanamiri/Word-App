@@ -1,11 +1,18 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { LoginContext } from '../js/Logincontext'
+import moment from 'moment';
 
 const UseApp = ({ isNight, theme, id }) => {
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState("");
   const textUpdate = (str) => {
     setText(str)
+  }
+  //Date
+  const [dateUpd, setDateUpd] = useState(moment())
+
+  const dateChange = (str) => {
+    setDateUpd(str)
   }
   //Login State Handling
   const [loginUser, setLoginUser] = useState(false);
@@ -56,6 +63,7 @@ const UseApp = ({ isNight, theme, id }) => {
     } else {
       setViewNotes(false)
     }
+
 
   }
   useEffect(() => {
@@ -155,7 +163,8 @@ const UseApp = ({ isNight, theme, id }) => {
       }, body: JSON.stringify({
         id: noteId.current,
         content: text,
-        editable: editable
+        editable: editable,
+        date: dateUpd
       })
 
     })
@@ -178,10 +187,11 @@ const UseApp = ({ isNight, theme, id }) => {
         }, body: JSON.stringify({
           id: noteId.current,
           content: text,
-          editable: editable
+          editable: editable,
+          date: dateUpd
         })
 
-      })
+      }).then()
     }
     else {
       idgenerator()
@@ -200,15 +210,18 @@ const UseApp = ({ isNight, theme, id }) => {
 
         })
 
-      }).then(noteId.current = idsave.current)
+      }).then(() => {
+        noteId.current = idsave.current
+        dateChange(moment())
+      })
 
     }
 
   }, [text])
 
   return {
-    loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,setUpdateNote,
-    setEdit, idsave, editableNote, editable, updateNote, textUpdate, text
+    loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote, setUpdateNote,
+    setEdit, idsave, editableNote, editable, updateNote, textUpdate, text, dateUpd, dateChange
   }
 
 }

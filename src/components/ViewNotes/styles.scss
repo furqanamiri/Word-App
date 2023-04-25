@@ -2,6 +2,15 @@
   margin: 0;
   padding: 0 2rem;
   height: 85%;
+
+}
+
+.light .total-notes {
+  background-color: white;
+}
+
+.dark .total-notes {
+  background-color: black;
 }
 
 .total-notes {
@@ -22,6 +31,8 @@
   font-style: normal;
   min-width: 250px;
   min-height: 201px;
+  position: relative;
+
   // box-shadow: 0px 2px 0px 0px gray;
 
   padding: 0 1%;
@@ -33,13 +44,15 @@
   background-repeat: no-repeat;
   padding: 0;
   margin-left: 2rem;
-  font-family: "sans-serif";
-  font-weight: 900;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
   margin-top: 2rem;
   font-size: 3rem;
   font-style: normal;
   min-width: 250px;
   min-height: 201px;
+  position: relative;
+
 
 
   // box-shadow: 0px 2px 0px 0px gray;
@@ -61,15 +74,11 @@
   width: 88%;
   padding-top: 15%;
   text-align: justify;
-  word-wrap: wrap;
-  padding-bottom: 10%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-break: break-all;
-  /* text-overflow: clip; */
-  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  color: black;
+  text-overflow: ellipsis;
 
 }
 
@@ -79,16 +88,14 @@
   width: 88%;
   padding-top: 15%;
   text-align: justify;
-  word-wrap: wrap;
-  padding-bottom: 10%;
+
   color: white;
 
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-break: break-all;
-  /* text-overflow: clip; */
-  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .darknotetext {
@@ -113,11 +120,10 @@
 }
 
 .darknotesfooter {
-  position: relative;
-  position: relative;
-  /* bottom: 0%; */
-  padding-top: 1%;
-  top: 23%;
+  position: absolute;
+  padding: 10px;
+  top: 70%;
+  width: 90%;
 }
 
 .deletenote {
@@ -128,50 +134,7 @@
   transform: translateY(-97%);
 }
 
-.light .footer {
-  color: #7496b8;
-  font-family: sans-serif;
-  margin-bottom: 0.5rem;
-  font-weight: 200;
-  height: fit-content;
-  position: fixed;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  width: 100%;
-  bottom: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.14);
-}
 
-.dark .footer {
-  color: #7496b8;
-  font-family: sans-serif;
-  margin-bottom: 0.5rem;
-  font-weight: 200;
-  height: fit-content;
-  position: fixed;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  width: 100%;
-  bottom: 1rem;
-  border-top: 1px solid rgb(255, 255, 255, 0.14);
-}
-
-.light .footer {
-  color: #7496b8;
-  font-family: sans-serif;
-  margin-bottom: 0.5rem;
-  font-weight: 200;
-  height: fit-content;
-  position: fixed;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  width: 100%;
-  bottom: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.14);
-}
 
 .footerdiv ul {
   height: fit-content;
@@ -255,4 +218,59 @@
 
 .notes-center {
   align-self: center;
+  margin-left: 8px;
+}
+
+.dark .newnote {
+  background-image: url("../../../public/svg/createdark.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin-left: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin-top: 2rem;
+  font-size: 3rem;
+  font-style: normal;
+  min-width: 250px;
+  min-height: 201px;
+  // box-shadow: 0px 2px 0px 0px gray;
+  padding: 0 1%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.light .newnote {
+  background-image: url("../../../public/svg/createlight.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin-left: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin-top: 2rem;
+  font-size: 3rem;
+  font-style: normal;
+  min-width: 250px;
+  min-height: 201px;
+  // box-shadow: 0px 2px 0px 0px gray;
+  padding: 0 1%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.white {
+  color: white
+}
+
+.cursor {
+  cursor: pointer;
 }

@@ -2,11 +2,10 @@ import React from "react";
 import "./styles.scss";
 import moment from "moment";
 import Viewingnotes from "./viewingnotes";
-import Footer from "../Footer";
 import { useViewNote } from "./useViewNote";
 
-export default function ViewNotes({ isDark, text, toggleViewNotes, setText }) {
-  const { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, dateUpd, setUpdateNote } =
+export default function ViewNotes({ isDark, text, toggleViewNotes, setText, viewNotes, dateUpd, dateChange }) {
+  const { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, setUpdateNote } =
     useViewNote();
 
   // const notediv = document.getElementById("newnote")
@@ -50,30 +49,15 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText }) {
               onChange={showFile}
             />
             <img src="./svg/localfile.svg"></img>
-            <b className="local-file-para">Browse</b>{" "}
+            <b className="local-file-para">Browse {" "} </b>
             <span className="notes-center"> your files</span>
           </label>
         </div>
         <div className="fluid-container mainnotes" id="mainnotes">
-          <div className="row" id="notesadd">
-            <div className="note col-md-5 col-lg-2 col-sm-4" id="newnote">
-              <button onClick={clickFunctionnew}>
-                <p className="notetext"> {textnote.current}</p>
-              </button>
-              <div
-                className={
-                  isDark
-                    ? "darknotetext darknotesfooter"
-                    : " lightnotetext  darknotesfooter"
-                }
-              >
-                <div>
-                  <p className="footerpara">Last Updated</p>
-                </div>
-                <div>
-                  <p className="footerpara">{moment(dateUpd).fromNow()}</p>
-                </div>
-              </div>
+          <div className="row justify-content-sm-center justify-content-start" id="notesadd">
+            <div className="newnote col-md-5 col-lg-2 col-sm-4 " id="newnote" onClick={clickFunctionnew}>
+              <img src={isDark ? "./svg/plusicondark.svg" : "./svg/plusicon.svg"} className="plusicon" />
+              <p className={isDark ? "white" : " "}>Click to create New Note</p>
             </div>
 
             {users.map((t) => (
@@ -84,13 +68,14 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText }) {
                 togglerefreshchange={togglerefreshchange}
                 toggleViewNotes={toggleViewNotes}
                 setText={setText}
+                date={t.dateadded}
+                dateChange={dateChange}
               />
             ))}
           </div>
         </div>
       </div>
 
-      <Footer text={text} setText={text} />
     </>
   );
 }

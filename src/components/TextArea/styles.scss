@@ -1,10 +1,13 @@
-
 textarea {
   scrollbar-color: #fe8b2e inherit;
+  border-radius: 0px;
 
   -webkit-scrollbar-track {
     background: inherit;
   }
+
+  font-family: 'Inter',
+  sans-serif;
 
   /* Handle */
   -webkit-scrollbar-thumb {
@@ -21,6 +24,19 @@ textarea.form-control:active {
   -webkit-scrollbar: none;
 }
 
+.light {
+  textarea.form-control {
+    border-radius: 0px;
+    background-color: white !important;
+  }
+}
+
+.dark {
+  textarea.form-control {
+    border-radius: 0px;
+    background-color: black !important;
+  }
+}
 
 textarea.responsiveheight {
   height: 30%;

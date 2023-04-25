@@ -1,21 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import moment from "moment";
 
-export default function UseFooter({ text }) {
-  const [dateUpd, setDateUpd] = useState(moment());
+export default function UseFooter({ text,dateUpd }) {
   let date = document.lastModified;
   // word count
   const [wordCount, setwordCount] = useState(0);  // character count
   const [charCount, setCharCount] = useState(0);
   const spaces = text.match(/\s+/g);
-  setTimeout(() => {
-    setDateUpd(moment());
-  }, 1000);
   useEffect(() => {
-
-    // array of words
-    let newDate = new Date();
-    setDateUpd(newDate);
 
     // update word count
 
@@ -25,5 +17,5 @@ export default function UseFooter({ text }) {
     setCharCount((prev) => text.length);
   }, [text]);
 
-  return { dateUpd, wordCount, charCount, date };
+  return { wordCount, charCount, date };
 }

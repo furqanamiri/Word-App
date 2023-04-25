@@ -1,88 +1,57 @@
-import React from 'react'
-import moment from 'moment';
-import UseFooter from './useFooter';
-import { useState, useRef } from 'react';
-import './styles.scss'
-export default function Footer({ text }) {
-  const { wordCount, dateUpd, charCount } = UseFooter({ text });
+import React from "react";
+import moment from "moment";
+import UseFooter from "./useFooter";
+import { useState, useRef } from "react";
+import "./styles.scss";
+export default function Footer({ text, viewNotes, dateUpd, dateChange }) {
+  const { wordCount, charCount } = UseFooter({ text, dateUpd });
   return (
-
     <>
       {/* Footer */}
       <div className="footer d-lg-flex d-md-none d-sm-none  d-xs-none">
         <div className="d-flex footerdiv">
           <ul className="left-footer">
-            <li id="wordcount">
-
-              Words : {wordCount}
-            </li>
-            <li>
-              Characters : {charCount}
-            </li>
-          </ul><ul className='right-footer '>
-            <li className='endalign' >
-              About Us
-            </li>
-            <li className='endalign'>
-              Contact Us
-            </li>
+            <li id="wordcount"><span className="footersubhead">Words</span> : {viewNotes ? " " : wordCount}</li>
+            <li> <span className="footersubhead">Characters</span>: {viewNotes ? " " : charCount}</li>
+          </ul>
+          <ul className="right-footer ">
+            <li className="endalign"><a href="http://www.elitewaresolutions.com" target="_blank" className="links">About Us</a></li>
+            <li className="endalign"><a href="http://www.elitewaresolutions.com/contact-us.html" target="_blank" className="links">Contact Us</a></li>
           </ul>
         </div>
         <div className="d-flex footerdiv">
-
-          <ul className='left-footer'>
-            <li >  Last Updated : {
-
-
-
-              (moment(dateUpd).fromNow())
-
-
-
-            }</li>
+          <ul className="left-footer">
+            <li> <span className="footersubhead">Last Updated</span> : {viewNotes ? " " : moment(dateUpd).fromNow()}</li>
           </ul>
 
-
-          <ul className='right-footer'>
-            <li className='endalign'>
-              Privacy Policy
-            </li>
-            <li className='endalign'>
-              Terms
-            </li>
+          <ul className="right-footer">
+            <li className="endalign"><a href="/pandp.html" target="_blank" className="links">Privacy Policy</a></li>
+            <li className="endalign"><a href="/tandc.html" target="_blank" className="links">Terms</a></li>
           </ul>
         </div>
-
       </div>
       {/* Resposinve Footer */}
-      <div className='footerres d-lg-none  d-md-flex d-sm-flex  d-xs-flex'>
-        <div className='footerresdivword'>
-          <ul className='w-100 d-flex justify-content-center ulmargin responsive-footer-div'><li >Words : {wordCount} </li><li>Characters : {charCount}</li></ul>
-        </div>
-        <div className='d-flex flex-wrap footeresdivword justify-content-center align-items-center w-100 '>
-          <ul className='w-100 d-flex justify-content-around ulmargin responsive-footer-div'>
-            <li>  Last Updated : {
-
-
-
-              (moment(dateUpd).fromNow())
-
-
-
-            }</li>
+      <div className="footerres d-lg-none  d-md-flex d-sm-flex  d-xs-flex">
+        <div className="footerresdivword">
+          <ul className="w-100 d-flex justify-content-center ulmargin responsive-footer-div">
+            <li><span className='footersubhead' >Words</span> : {viewNotes ? " " : wordCount} </li>
+            <li><span className="footersubhead">Characters</span> : {viewNotes ? " " : charCount}</li>
           </ul>
         </div>
-        <div className='d-flex flex-wrap justify-content-center align-items-center w-100 '>
-          <ul className='w-100 d-flex justify-content-around ulmargin responsive-footer-div' >
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Privacy Policy</li>
-            <li>Terms</li>
+        <div className="d-flex flex-wrap footeresdivword justify-content-center align-items-center w-100 ">
+          <ul className="w-100 d-flex justify-content-around ulmargin responsive-footer-div">
+            <li><span className="footersubhead"> Last Updated</span>  : {moment(dateUpd).fromNow()}</li>
+          </ul>
+        </div>
+        <div className="d-flex flex-wrap justify-content-center align-items-center w-100 ">
+          <ul className="w-100 d-flex justify-content-around ulmargin responsive-footer-div">
+            <li><a href="http://www.elitewaresolutions.com" target="_blank" className="links">About Us</a></li>
+            <li><a href="http://www.elitewaresolutions.com/contact-us.html" target="_blank" className="links">Contact Us</a></li>
+            <li><a href="/pandp.html" target="_blank" className="links">Privacy Policy</a></li>
+            <li><a href="/tandc.html" target="_blank" className="links">Terms</a></li>
           </ul>
         </div>
       </div>
-
     </>
-
-  )
+  );
 }

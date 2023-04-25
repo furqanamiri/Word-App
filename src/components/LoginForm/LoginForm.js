@@ -66,7 +66,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
   const LoginRegisterClose = () => {
     setShowRegisterModal(false);
   }
-  
+
   const LoginRegisterOpen = (event) => {
     event.preventDefault();
     LoginModalClose();
@@ -115,7 +115,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
               <button className="nonselect eye-icon-pass" tabIndex="-1"
                 onClick={togglePassCheck}
-              ><img className="nonselect " src="./svg/eye.svg"></img></button>
+              ><img className="nonselect " src={passCheck ? "./svg/eye.svg" : "./svg/eye-slash.svg"}></img></button>
             </Form.Group>
             <div className="mb-3">
               <button className="login-butt" type="submit" >Login</button>
@@ -123,7 +123,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
               >Reset Your Password</button>
               <p className="or-div"> or </p>
               <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="./svg/googleicon.svg" className="inputiconleftg"></img></button>
-              <p style={isDark ? { color: "white" } : { color: 'black' }
+              <p style={isDark ? { color: "white" } : { color: '#7496B8' }
               }> Don't have an account yet? <button onClick={LoginRegisterOpen} className='sign-up-butt'>Sign Up</button> </p>
 
             </div>

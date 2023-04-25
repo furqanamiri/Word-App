@@ -42,7 +42,7 @@ export default function Exportmodal({ exportModal, toggleExportModalClose, isDar
 
 
 
-                <div className="d-flex" style={{ marginLeft: '15%', alignItems: 'center' }} > <input style={{ height: '20px', width: '49px' }} onClick={() => { setExportSelect('word') }} type="radio" name="export" value="word" />
+                <div className="d-flex" style={{ marginLeft: '15%', alignItems: 'center' }} > <input style={{ height: '20px', width: '49px' }} onClick={() => { setExportSelect('word') }} type="radio" name="export" value="word" checked/>
                   <p style={{ marginLeft: '20%', fontSize: '45px', }}>Word</p>
                 </div>              </div>
             </div>

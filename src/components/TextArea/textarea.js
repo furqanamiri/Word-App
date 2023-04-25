@@ -1,10 +1,12 @@
 import "./styles.scss";
-import Footer from "../Footer";
 import { useContext, useEffect } from "react";
 import { AnonContext } from "../../js/AnonContext";
-export default function TextArea({ text, setText }) {
+import moment from "moment";
+
+export default function TextArea({ text, setText, dateChange }) {
   const changeHandler = (event) => {
     setText(event.target.value);
+    dateChange(moment())
   };
   const { editableNote } = useContext(AnonContext)
 
@@ -14,6 +16,7 @@ export default function TextArea({ text, setText }) {
   }, [])
   return (
     <>
+
       <textarea
         id="inputField"
         value={text}
@@ -22,7 +25,7 @@ export default function TextArea({ text, setText }) {
         placeholder="New Note"
         disabled={editableNote ? false : true}
       ></textarea>
-      <Footer text={text} setText={setText} />
+      <hr />
     </>
   );
 }

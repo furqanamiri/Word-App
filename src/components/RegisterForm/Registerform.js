@@ -7,6 +7,14 @@ import { useState, useRef } from "react";
 export default function Registerform({ showRegisterModal, LoginRegisterClose, isDark, LoginModalOpen }) {
   let passCheck = true;
   const [captchatext, setCaptchaText] = useState('')
+  const [pass, setPass] = useState(false)
+  const [pass1, setPass1] = useState(false)
+  const passChangeFun = () => {
+    setPass(!pass)
+  }
+  const pass1ChangeFun = () => {
+    setPass1(!pass1)
+  }
   const captcha = () => {
     let retVal = "";
     let charset = "0123456789"
@@ -94,6 +102,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     else {
       temp.type = "password"
     }
+    passChangeFun()
   };
   const togglePassCheck1 = (e) => {
     e.preventDefault();
@@ -104,6 +113,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     else {
       temp.type = "password"
     }
+    pass1ChangeFun()
   };
 
 
@@ -150,7 +160,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 className="reg-input-icons"
                 tabIndex="-1"
                 onClick={togglePassCheck}
-              ><img src="./svg/eye.svg"></img></button>
+              ><img src={pass ? "./svg/eye-slash.svg" : "./svg/eye.svg"}></img></button>
             </Form.Group>
             <Form.Group className="mb-3 reg-relative">
               <Form.Control
@@ -162,7 +172,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
               <button className="reg-input-icons" tabIndex="-1"
                 onClick={togglePassCheck1}
-              ><img src="./svg/eye.svg"></img></button>
+              ><img src={pass1 ? "./svg/eye-slash.svg" : "./svg/eye.svg"}></img></button>
             </Form.Group>
             <Form.Group className="mb-3 reg-relative">
               <Captcha setCaptchaText={setCaptchaText} captchatext={captchatext} />

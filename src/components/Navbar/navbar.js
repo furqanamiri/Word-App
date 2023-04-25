@@ -9,6 +9,7 @@ export default function Navbar({
   text,
   toggleViewNotes,
   setText,
+  viewNotes
 }) {
   const {
     toggleSaveFile,
@@ -27,7 +28,7 @@ export default function Navbar({
     shareModal,
     toggleShareModalOpen,
     toggleShareModalClose,
-    setEdit, theme, copyFunction, noteId, pdf,wordFile
+    setEdit, theme, copyFunction, noteId, pdf, wordFile
   } = useNavbar({
     toggleTheme,
     isDark,
@@ -55,7 +56,8 @@ export default function Navbar({
         theme={theme}
         copyFunction={copyFunction}
         noteId={noteId} pdf={pdf}
-        wordFile = {wordFile}
+        wordFile={wordFile}
+        viewNotes={viewNotes}
       />
 
       <ResponsiveNavbar
@@ -79,7 +81,8 @@ export default function Navbar({
         handleShowPass={handleShowPass}
         showLoginModal={showLoginModal}
         LoginModalClose={LoginModalClose} pdf={pdf}
-        wordFile ={wordFile}
+        wordFile={wordFile}
+        viewNotes={viewNotes}
       />
     </>
   );
