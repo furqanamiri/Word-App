@@ -1,0 +1,67 @@
+.sharemodal {
+  input[type="radio"] {
+    transform: scale(4);
+  }
+
+  .br40 {
+    border-radius: 40px;
+  }
+
+  .sharelink p {
+    overflow-wrap: break-word;
+    width: 100%;
+    text-align: center;
+    /* text-overflow: ellipsis; */
+    /* overflow: hidden; */
+    /* white-space: nowrap; */
+
+    font-size: 50px;
+  }
+
+  p {
+    width: fit-content;
+  }
+}
+
+.shareas-div {
+  padding: 10% 0;
+  font-size: 50px;
+}
+
+.share-link-modal {
+  background-color: transparent;
+  font-size: 60px;
+}
+
+.share-butt-p-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.share-butt-div {
+  padding: 1em;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.share-modal-butt {
+  font-size: 50px;
+  width: fit-content;
+
+}
+
+.share-modal-copy-butt {
+  font-weight: lighter;
+  font-size: 50px;
+  color: #7496B8;
+  width: 50%;
+
+}
+
+.share-modal-copy-img {
+
+  transform: scale(3);
+  margin-right: 0.5em;
+}

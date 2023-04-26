@@ -1,0 +1,31 @@
+.captchadiv {
+  height: 3rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.captchadiv p {
+  width: 20%;
+  color: #7496b8;
+}
+
+.captcha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-weight: bolder;
+  background-color: #b5daff;
+  width: fit-content;
+  height: 100%;
+  margin-left: 2rem;
+  border-radius: 10px;
+  padding: 0;
+  font-family: "Captcha code";
+  letter-spacing: 1.1em;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

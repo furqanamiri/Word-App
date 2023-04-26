@@ -31,19 +31,19 @@ const electron = require('electron');
         properties: []
       }).then(file => {
         // Stating whether dialog operation was cancelled or not.
-        
+      
         if (!file.canceled) {
-        
+      
 
           // Creating and Writing to the sample.txt file
           fs.writeFile(file.filePath.toString(),
             'This is a Sample File', function (err) {
               if (err) throw err;
-           
+            
             });
         }
       }).catch(err => {
-       
+     
       });
     });
   }, [saveFile]);
