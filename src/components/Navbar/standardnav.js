@@ -99,7 +99,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
           <li className='m-0'>
             {/* Share Tooltip main nav */}
             <OverlayTrigger
-              trigger={'focus'}
+              trigger={['click']}
               key={'bottom'}
               placement={'bottom-end'}
               overlay={

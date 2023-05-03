@@ -37,7 +37,7 @@
 
     .form-control:focus {
       color: #212529;
-      background-color: #fff;
+      background-color: inherit;
 
       outline: 0;
       box-shadow: none;
@@ -131,8 +131,7 @@ p {
 .inputdiv {
   border-radius: 10px;
   padding-left: 10%;
-  border-color: #7496B8;
-
+  border: 1px solid #7496B8 !important;
   transition: none;
   width: 80%;
   justify-self: center;
