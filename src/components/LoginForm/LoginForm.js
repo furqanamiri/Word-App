@@ -100,12 +100,12 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
                 required
               />
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
-              <button className="nonselect eye-icon-pass" tabIndex="-1"
-                onClick={togglePassCheck}
-              ><img className="nonselect " src={passCheck ? "./svg/eye.svg" : "./svg/eye-slash.svg"}></img></button>
+
+              <img className="nonselect eye-icon-pass" tabIndex="-1"
+                onClick={togglePassCheck} src={passCheck ? "./svg/eye.svg" : "./svg/eye-slash.svg"}></img>
             </Form.Group>
             <div className="mb-3">
-              <button className="login-butt" type="submit" >Login</button>
+              <button className="login-butt" type="submit" onSubmit={loginValidation} onClick={loginValidation}>Login</button>
               {/* <button style={isDark ? { color: "#AFAFAF" } : { color: "#666666" }} className='resetbut'
               >Reset Your Password</button> */}
               <p className="or-div"> or </p>
