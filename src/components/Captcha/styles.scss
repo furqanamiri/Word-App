@@ -32,11 +32,15 @@
 }
 
 .light .refreshicon {
-  color: black
+  svg {
+    color: black
+  }
 }
 
 .dark .refreshicon {
-  color: white
+  svg {
+    color: white
+  }
 }
 
 .refreshicon {

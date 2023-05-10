@@ -136,7 +136,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
           <Modal.Title className={isDark ? "LoginDarkHeader centering" : "LoginLightHeader centering"}>Sign Up Your account </Modal.Title>
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLight"}>
-          <Form onSubmit={validateregister}>
+          <Form >
             <Form.Group className="mb-3 reg-relative">
               <Form.Control
                 className={isDark ? "modalDark reg-input-div" : "reg-input-div modalLight"}
@@ -195,7 +195,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
               />
             </Form.Group>
             <div className="mb-3">
-              <button className="reg-signup-butt">Sign Up</button>
+              <button className="reg-signup-butt" type="submit" onSubmit={validateregister} onClick={validateregister}>Sign Up</button>
             </div>
             <p className='registererror' id="errormessage">{errorMessage}</p>
           </Form>

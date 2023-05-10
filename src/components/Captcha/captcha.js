@@ -5,8 +5,8 @@ function Captcha({ setCaptchaText, captchatext }) {
 
 
 
-  const recaptcha = () => {
-
+  const recaptcha = (e) => {
+e.preventDefault()
     let retVal = "";
     let charset = "0123456789"
     let length = 4;
