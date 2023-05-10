@@ -16,6 +16,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
   LoginModalOpen,
   LoginModalClose,
   LogOut,
+  text,
   toggleViewNotes,
   loginUser,
   setEdit,
@@ -29,7 +30,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
   const { editableNote } = useContext(AnonContext)
-
+    
 
 
   return (<>
@@ -84,10 +85,11 @@ export default function StandardNav({ toggleSaveFile, showFile,
                     </div>
                   </Popover.Body>
                 </Popover>
-              }>
-              <button className='export'>
-                <img src={isDark ? "./svg/darkfile.svg" : "./svg/file.svg"} className='buttonicon' />Export
-              </button>
+              }>{text.length > 0 ?
+                <button className='export'>
+                  <img src={isDark ? "./svg/darkfile.svg" : "./svg/file.svg"} className='buttonicon' />Export
+                </button> : <></>}
+
 
 
             </OverlayTrigger>

@@ -47,6 +47,7 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText, view
               id="file1"
               type="file"
               onChange={showFile}
+              accept=".txt"
             />
             <img src="./svg/localfile.svg"></img>
             <b className="local-file-para">Browse {" "} </b>

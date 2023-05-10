@@ -35,10 +35,12 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   // })
   return (<>
     <div className="note col-md-5 col-lg-2 col-sm-4" id="creatednote" >
-      <p className="notetext cursor" onClick={clickFunction} > {textnote.current}
-      </p>
+      <div className='text-area cursor' onClick={clickFunction}>
+        <p className="notetext cursor"   > {textnote.current}
+        </p>
+      </div>
       <div className={isDark ? "darknotetext darknotesfooter" : "lightnotetext darknotesfooter"}>
-        <div>
+        <div >
           <p className='footerpara'>Last Updated : </p>
         </div>
         <div><p className='footerpara'>{moment(date).fromNow()}</p></div>

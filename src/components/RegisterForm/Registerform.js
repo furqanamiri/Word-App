@@ -9,6 +9,10 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   const [captchatext, setCaptchaText] = useState('')
   const [pass, setPass] = useState(false)
   const [pass1, setPass1] = useState(false)
+
+  const [errorMessage, setErrorMessage] = useState("")
+
+
   const passChangeFun = () => {
     setPass(!pass)
   }
@@ -46,6 +50,10 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     if (!regexspecial.test(usernameid)) {
       return document.getElementById('errormessage').innerHTML = 'No Special Characters allowed'
     }
+    const emailid = document.getElementById('emailid').value
+    if (emailid.length == 0) {
+      return document.getElementById('errormessage').innerHTML = 'Enter Email'
+    }
     const passwordstring = document.getElementById('password').value
     const regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
     if (!regularExpression.test(passwordstring)) {
@@ -68,7 +76,6 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
 
   const registerformcheck = (passwordstring) => {
 
-    const emailid = document.getElementById('emailid').value
     fetch(process.env.REACT_APP_REGISTER, {
       method: 'POST',
       headers: {
@@ -135,7 +142,9 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 className={isDark ? "modalDark reg-input-div" : "reg-input-div modalLight"}
                 type="text"
                 id="usernameid"
-                placeholder=" Enter Username"
+                placeholder="Enter Username"
+                maxlength="15"
+
               />
               <img src="./svg/loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
@@ -154,6 +163,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 type={passCheck ? "password" : "text"}
                 placeholder="Password"
                 id="password"
+                maxlength="16"
               />
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
               <button
@@ -168,6 +178,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
                 id="cpassword"
                 type={passCheck ? "password" : 'text'}
                 placeholder="Confirm Password"
+                maxlength="16"
               />
               <img src="./svg/loginlock.svg" className="inputiconleft"></img>
               <button className="reg-input-icons" tabIndex="-1"
@@ -186,7 +197,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
             <div className="mb-3">
               <button className="reg-signup-butt">Sign Up</button>
             </div>
-            <p className='registererror' id="errormessage"></p>
+            <p className='registererror' id="errormessage">{errorMessage}</p>
           </Form>
         </Modal.Body>
       </Modal>

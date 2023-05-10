@@ -122,8 +122,12 @@
 .darknotesfooter {
   position: absolute;
   padding: 10px;
-  top: 70%;
+
   width: 90%;
+}
+
+.text-area {
+  height: 60%;
 }
 
 .deletenote {
@@ -131,7 +135,7 @@
   left: 82%;
   height: 60%;
   width: 9%;
-  transform: translateY(-97%);
+  transform: translateY(-85%);
 }
 
 
@@ -160,7 +164,7 @@
 }
 
 .right-footer {
-  justify-content: end;
+  justify-content: flex-end;
   margin-right: 0;
   margin-left: 3rem;
   width: 20%;
@@ -180,6 +184,7 @@
   justify-content: center;
 
   .button-file {
+    cursor: pointer;
     width: fit-content;
     background: inherit;
     border: 1px dashed black;

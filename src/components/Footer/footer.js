@@ -11,8 +11,8 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange }) {
       <div className="footer d-lg-flex d-md-none d-sm-none  d-xs-none">
         <div className="d-flex footerdiv">
           <ul className="left-footer">
-            <li id="wordcount"><span className="footersubhead">Words</span> : {viewNotes ? " " : wordCount}</li>
-            <li> <span className="footersubhead">Characters</span>: {viewNotes ? " " : charCount}</li>
+            <li id="wordcount">{viewNotes ? "" : <><span className="footersubhead">Words</span> : {wordCount}</>}</li>
+            <li>{viewNotes ? "" : <><span className="footersubhead">Characters</span>: {charCount}</>}</li>
           </ul>
           <ul className="right-footer ">
             <li className="endalign"><a href="http://www.elitewaresolutions.com" target="_blank" className="links">About Us</a></li>
@@ -21,12 +21,12 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange }) {
         </div>
         <div className="d-flex footerdiv">
           <ul className="left-footer">
-            <li> <span className="footersubhead">Last Updated</span> : {viewNotes ? " " : moment(dateUpd).fromNow()}</li>
+            <li>{viewNotes ? "" : <><span className="footersubhead">Last Updated </span> : {moment(dateUpd).fromNow()}</>}</li>
           </ul>
 
           <ul className="right-footer">
             <li className="endalign"><a href="/pandp.html" target="_blank" className="links">Privacy Policy</a></li>
-            <li className="endalign"><a href="/tandc.html" target="_blank" className="links">Terms</a></li>
+            <li className="endalign"><a href="/tandc.html" target="_blank" className="links">Terms And Conditions</a></li>
           </ul>
         </div>
       </div>
@@ -34,13 +34,13 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange }) {
       <div className="footerres d-lg-none  d-md-flex d-sm-flex  d-xs-flex">
         <div className="footerresdivword">
           <ul className="w-100 d-flex justify-content-center ulmargin responsive-footer-div">
-            <li><span className='footersubhead' >Words</span> : {viewNotes ? " " : wordCount} </li>
-            <li><span className="footersubhead">Characters</span> : {viewNotes ? " " : charCount}</li>
+            <li>{viewNotes ? "" : <><span className='footersubhead' >Words</span> :  {wordCount}</>}</li>
+            <li>{viewNotes ? " " : <><span className="footersubhead">Characters</span> :  {charCount} </>}</li>
           </ul>
         </div>
         <div className="d-flex flex-wrap footeresdivword justify-content-center align-items-center w-100 ">
           <ul className="w-100 d-flex justify-content-around ulmargin responsive-footer-div">
-            <li><span className="footersubhead"> Last Updated</span>  : {moment(dateUpd).fromNow()}</li>
+            <li>{viewNotes ? "" : <><span className="footersubhead"> Last Updated</span>  : {moment(dateUpd).fromNow()}</>}</li>
           </ul>
         </div>
         <div className="d-flex flex-wrap justify-content-center align-items-center w-100 ">

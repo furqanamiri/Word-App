@@ -24,8 +24,10 @@ export default function TextArea({ text, setText, dateChange }) {
         className="form-control "
         placeholder="New Note"
         disabled={editableNote ? false : true}
+        maxlength="10000"
       ></textarea>
       <hr />
     </>
   );
 }
+

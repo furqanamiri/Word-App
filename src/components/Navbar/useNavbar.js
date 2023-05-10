@@ -171,7 +171,7 @@ const useNavBar = ({ toggleTheme,
   const LoginModalClose = () => setShowLoginModal(false);
   const LoginModalOpen = () => {
     setShowLoginModal(true);
-    console.log('ole')
+    
   };
 
   const LogOut = () => {

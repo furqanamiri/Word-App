@@ -54,6 +54,7 @@ export default function Navbar({
         loginUser={loginUser}
         setEdit={setEdit}
         theme={theme}
+        text={text}
         copyFunction={copyFunction}
         noteId={noteId} pdf={pdf}
         wordFile={wordFile}
