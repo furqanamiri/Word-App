@@ -10,6 +10,7 @@ import { updateContext } from '../js/updatecontext';
 import { AnonContext } from '../js/AnonContext';
 import Footer from '../components/Footer';
 import UseApp from './UseApp';
+import Toast from 'react-bootstrap/Toast';
 
 function App() {
 
@@ -20,19 +21,8 @@ function App() {
   id = urlParams.get('id')
   let token = " "
   token = urlParams.get('token')
-
-
-
-
-
-
   //loginUser is used to persist login state once user is logged in
-
-
-
-
   //Note state
-
   const time = new Date().getHours()
 
   const isNight = () => {
@@ -80,6 +70,14 @@ function App() {
         <AnonContext.Provider value={{ anonContext, toggleAnonUser, anonToken, editableNote, setEdit, editable }}>
           <LoginContext.Provider value={{ loginUser, toggleUserLogin, loginToken }}>
             <updateContext.Provider value={{ updateNote, toggleUpdateNote, noteId, copyFunction, setUpdateNote, editToken, setEditToken }}>
+              <Toast className="notification">
+                <Toast.Header>
+                  <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                  <strong className="me-auto">Bootstrap</strong>
+                  <small>11 mins ago</small>
+                </Toast.Header>
+                <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+              </Toast>
               <div className="Maindiv">
                 <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} domain={domain} viewNotes={viewNotes} />
 

@@ -78,7 +78,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         </Modal.Header>
         <Modal.Body className={isDark ? "modalDark" : "modalLightpass"}>
           <Form onSubmit={loginValidation}>
-            <Form.Group className="mb-3 " style={{ position: "relative" }}>
+            <Form.Group className="mb-2 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark inputdiv" : "modalLight inputdiv"}
                 type="email"
@@ -89,7 +89,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
               <img src="./svg/loginemail.svg" className="inputiconleft"></img>
             </Form.Group>
 
-            <Form.Group className="mb-3 " style={{ position: "relative" }}>
+            <Form.Group className="mb-2 " style={{ position: "relative" }}>
               <Form.Control
                 className={isDark ? "modalDark inputdiv" : "modalLight inputdiv"}
                 id='userpassword'
@@ -104,13 +104,13 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
               <img className="nonselect eye-icon-pass" tabIndex="-1"
                 onClick={togglePassCheck} src={passCheck ? "./svg/eye.svg" : "./svg/eye-slash.svg"}></img>
             </Form.Group>
-            <div className="mb-3">
+            <div className="mb-2">
               <button className="login-butt" type="submit" onSubmit={loginValidation} onClick={loginValidation}>Login</button>
               {/* <button style={isDark ? { color: "#AFAFAF" } : { color: "#666666" }} className='resetbut'
               >Reset Your Password</button> */}
               <p className="or-div"> or </p>
               {/* <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="./svg/googleicon.svg" className="inputiconleftg"></img></button> */}
-              <p style={isDark ? { color: "white",fontWeight: '200' } : { color: '#7496B8', fontWeight: '200' }
+              <p style={isDark ? { color: "white", fontWeight: '200' } : { color: '#7496B8', fontWeight: '200' }
               }> Don't have an account yet? <button onClick={LoginRegisterOpen} className='sign-up-butt'>Sign Up</button> </p>
 
             </div>

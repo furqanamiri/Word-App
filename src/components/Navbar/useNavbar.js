@@ -5,6 +5,7 @@ import { LoginContext } from "../../js/Logincontext";
 import { updateContext } from "../../js/updatecontext";
 import { jsPDF } from "jspdf";
 
+
 const docx = require("docx")
 
 var FileSaver = require('file-saver');
@@ -17,6 +18,8 @@ const useNavBar = ({ toggleTheme,
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
   const toggleShareModalOpen = () => setShareModal(true);
+
+
   //ExportModal hook state
 
   const [exportModal, setExportModal] = useState(false);
@@ -189,9 +192,6 @@ const useNavBar = ({ toggleTheme,
         response.json()
       ).then((response) => {
         editToken.current = response.token
-       
-
-
       }
       );
 
@@ -208,7 +208,7 @@ const useNavBar = ({ toggleTheme,
         response.json()
       ).then(((response) => {
         editToken.current = response.token
-       
+
 
       })
       );
@@ -230,6 +230,7 @@ const useNavBar = ({ toggleTheme,
       location.reload();
     });
   };
+
 
   return {
     toggleSaveFile,
@@ -254,6 +255,7 @@ const useNavBar = ({ toggleTheme,
     text,
     loginUser, setEdit, theme, copyFunction, noteId, pdf,
     wordFile,
+
     changeLink
   };
 }

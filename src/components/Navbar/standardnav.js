@@ -7,6 +7,7 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { AnonContext } from '../../js/AnonContext';
 import { LoginContext } from '../../js/Logincontext';
 import { updateContext } from '../../js/updatecontext';
+import { Link } from 'react-router-dom';
 
 export default function StandardNav({ toggleSaveFile, showFile,
   showPassword,
@@ -61,7 +62,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
         <li><button className='iconnav backlogo'><img src="./svg/backlogo.svg" onClick={toggleViewNotes}></img></button></li>
       </ul>
       <div className='align-self-center justify-self-center main-header'>
-        <span className='W-head main-header'>W</span>ordpad
+        <a href="/"><span className='W-head main-header'>W</span>ordpad</a>
       </div>
       <ul className="justify-content-end nav-right-margin"><li>
         <button onClick={toggleTheme} className="buttonicon">{theme === 'dark' ? <img src={"./svg/autotheme.svg"} className='buttonicon moon' /> : theme === 'light' ?
@@ -118,9 +119,9 @@ export default function StandardNav({ toggleSaveFile, showFile,
                 </Popover>
               }
             >
-              <button className='share' >
+              {text.length > 0 ?<button className='share' >
                 <img className="buttonicon" src="./svg/share.png" />Share
-              </button>
+              </button> : <></> }
             </OverlayTrigger>
 
           </li>

@@ -16,7 +16,7 @@ export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showF
   toggleShareModalClose, isDark, text, toggleViewNotes, showPassword, handleClosePass, showLoginModal, LoginModalClose, pdf, wordFile, viewNotes }) {
 
   const { theme } = useContext(IsAuto)
-  const { setEdit,editable } = useContext(AnonContext)
+  const { setEdit, editable } = useContext(AnonContext)
 
 
   return (<>    {/* Responsive Navbar */}
@@ -59,9 +59,10 @@ export function ResponsiveNavbar({ toggleTheme, toggleSaveFile, loginUser, showF
           overlay={
             <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark tooltip-radius smalltootip" : "tooltiplight tooltip-radius  smalltootip"}  >
               <Popover.Body className={isDark ? "tooltipdark smalltooltip" : "tooltiplight smalltooltip"} >
-                <ul className='d-inline'><li><button className=" smallnavbutticon" onClick={toggleExportModalOpen}>
-                  <img src={isDark ? "./svg/file.svg" : "./svg/darkfile.svg"} height='40' width='40' />Export
-                </button></li>
+                <ul className='d-inline'>
+                  {viewNotes ? " " : <li><button className=" smallnavbutticon" onClick={toggleExportModalOpen}>
+                    <img src={isDark ? "./svg/file.svg" : "./svg/darkfile.svg"} height='50' width='50' />Export
+                  </button></li>}
                   <Exportmodal exportModal={exportModal} toggleExportModalClose={toggleExportModalClose} isDark={isDark} pdf={pdf} wordFile={wordFile} />
                   {viewNotes ? " " : <><li> <button onClick={toggleShareModalOpen} className='share smallnavbutticon' ><img src="./svg/share.png" height='40' width='40' />Share</button></li><Sharemodal shareModal={shareModal} toggleShareModalClose={toggleShareModalClose} isDark={isDark} setEdit={setEdit} /> </>}
                 </ul>

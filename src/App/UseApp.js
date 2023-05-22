@@ -99,7 +99,6 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
       }).then((response) => {
         if (id != " ") {
-          console.log(id)
           fetch(process.env.REACT_APP_SHARE_NOTE + id + '/' + token, {
             method: "GET",
             headers: {
@@ -111,7 +110,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
             setText(response.note.content)
             toggleUpdateNote(true)
-            if (response.note.editable == "No") {
+            if (response.editable == false) {
               setEditable('No')
               setEditableNote(false)
             }
@@ -149,6 +148,8 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
     //Id in url parameter from share
   }, [])
+
+
   useEffect(() => {
     if (loginUser) {
       window.sessionStorage.setItem('loginUser', loginUser)

@@ -59,7 +59,8 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText, view
           <div className="row justify-content-sm-center justify-content-start" id="notesadd">
             <div className="newnote col-md-5 col-lg-2 col-sm-4 " id="newnote" onClick={clickFunctionnew}>
               <img src={isDark ? "./svg/plusicondark.svg" : "./svg/plusicon.svg"} className="plusicon" />
-              <p className={isDark ? "white" : " "}>Click to create New</p>
+        
+              <p className={"notetext cursor"}>Click to create New</p>
             </div>
 
             {users.map((t) => (
@@ -70,7 +71,7 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText, view
                 togglerefreshchange={togglerefreshchange}
                 toggleViewNotes={toggleViewNotes}
                 setText={setText}
-                date={t.dateadded}
+                date={t.date}
                 dateChange={dateChange}
               />
             ))}
