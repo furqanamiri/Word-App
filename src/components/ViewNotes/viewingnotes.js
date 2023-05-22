@@ -28,6 +28,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
     dateChange(date)
     toggleUpdateNote()
     noteId.current = idnote;
+    sessionStorage.setItem("noteid", idnote)
     setText(textnote.current)
     window.sessionStorage.removeItem('text')
     toggleViewNotes()

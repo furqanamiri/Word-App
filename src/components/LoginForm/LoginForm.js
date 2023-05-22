@@ -110,7 +110,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
               >Reset Your Password</button> */}
               <p className="or-div"> or </p>
               {/* <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="./svg/googleicon.svg" className="inputiconleftg"></img></button> */}
-              <p style={isDark ? { color: "white" } : { color: '#7496B8' }
+              <p style={isDark ? { color: "white",fontWeight: '200' } : { color: '#7496B8', fontWeight: '200' }
               }> Don't have an account yet? <button onClick={LoginRegisterOpen} className='sign-up-butt'>Sign Up</button> </p>
 
             </div>

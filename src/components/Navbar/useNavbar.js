@@ -171,7 +171,7 @@ const useNavBar = ({ toggleTheme,
   const LoginModalClose = () => setShowLoginModal(false);
   const LoginModalOpen = () => {
     setShowLoginModal(true);
-    
+
   };
 
   const LogOut = () => {
@@ -212,7 +212,7 @@ const useNavBar = ({ toggleTheme,
     toggleShareModalClose,
     text,
     loginUser, setEdit, theme, copyFunction, noteId, pdf,
-    wordFile
+    wordFile, 
   };
 }
 

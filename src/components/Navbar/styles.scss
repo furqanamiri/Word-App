@@ -109,13 +109,17 @@ ul li {
 .sharetool {
   max-height: 25vh;
   height: fit-content;
-  max-width: 275px;
-  width: 25%;
+  // max-width: 300px;
+  width: 30%;
 
   .popover-body {
     padding: 2%;
     height: 100%;
   }
+}
+
+.popover {
+  max-width: 350px
 }
 
 .share {
@@ -141,8 +145,8 @@ ul li {
 
   p {
     overflow-wrap: break-word;
-    width: 65%;
-    text-align: start;
+    width: fit-content;
+    text-align: end;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

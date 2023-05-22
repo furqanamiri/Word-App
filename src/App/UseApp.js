@@ -67,8 +67,10 @@ const UseApp = ({ isNight, theme, id }) => {
 
   }
   useEffect(() => {
-    if (window.sessionStorage.getItem('loginUser')) {
-      setLoginUser(window.sessionStorage.getItem('loginUser'))
+
+    if (localStorage.getItem("noteid")) {
+      noteId.current = sessionStorage.getItem("noteid")
+      idsave.current = sessionStorage.getItem("noteid")
     }
     if (window.sessionStorage.getItem('loginToken')) {
       loginToken.current = window.sessionStorage.getItem('loginToken')
@@ -78,7 +80,11 @@ const UseApp = ({ isNight, theme, id }) => {
     if (window.sessionStorage.getItem('text')) {
       setText(window.sessionStorage.getItem('text'))
     }
-    if (!loginUser)
+    if (window.sessionStorage.getItem('loginUser')) {
+      setLoginUser(window.sessionStorage.getItem('loginUser'))
+      toggleViewNotes()
+    }
+    else {
       fetch(process.env.REACT_APP_ANON_USER, {
         method: 'GET', headers: {
           accept: 'application.json', 'Content-Type': 'application/json',
@@ -100,7 +106,6 @@ const UseApp = ({ isNight, theme, id }) => {
               token: loginUser ? loginToken.current : anonToken.current
             }
           }).then(response => response.json()).then((response) => {
-
 
 
             setText(response.note.content)
@@ -139,6 +144,7 @@ const UseApp = ({ isNight, theme, id }) => {
         }
       }
       ).catch()
+    }
 
     //Id in url parameter from share
   }, [])
@@ -218,6 +224,7 @@ const UseApp = ({ isNight, theme, id }) => {
     }
 
   }, [text])
+  
 
   return {
     loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote, setUpdateNote,

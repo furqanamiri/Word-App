@@ -28,7 +28,7 @@ export default function Navbar({
     shareModal,
     toggleShareModalOpen,
     toggleShareModalClose,
-    setEdit, theme, copyFunction, noteId, pdf, wordFile
+    setEdit, theme, copyFunction, noteId, pdf, wordFile, loginToken
   } = useNavbar({
     toggleTheme,
     isDark,
@@ -59,6 +59,7 @@ export default function Navbar({
         noteId={noteId} pdf={pdf}
         wordFile={wordFile}
         viewNotes={viewNotes}
+ 
       />
 
       <ResponsiveNavbar
