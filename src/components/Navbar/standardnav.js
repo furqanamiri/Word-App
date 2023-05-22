@@ -6,6 +6,7 @@ import Passwordform from '../PasswordForm';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { AnonContext } from '../../js/AnonContext';
 import { LoginContext } from '../../js/Logincontext';
+import { updateContext } from '../../js/updatecontext';
 
 export default function StandardNav({ toggleSaveFile, showFile,
   showPassword,
@@ -24,7 +25,9 @@ export default function StandardNav({ toggleSaveFile, showFile,
   theme,
   copyFunction, noteId, pdf,
   wordFile,
-  viewNotes }) {
+  viewNotes,
+  changeLink,
+  editToken }) {
 
   const { loginToken } = useContext(LoginContext)
 
@@ -32,40 +35,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
   const { editableNote } = useContext(AnonContext)
-  const [editToken, setEditToken] = useState(" ")
 
-  const changeLink = (type) => {
-    if (type == 'edit') {
-      fetch('https://api.wordpad.app/notes/' + noteId.current + '/note-link?type=edit', {
-        method: "GET",
-        headers: {
-          accept: "application.json",
-          "Content-Type": "application/json",
-          token: loginToken.current,
-        }
-      }).then((response) =>
-        response.json()
-      ).then(
-        setEditToken(response.token)
-      );
-
-    }
-    else {
-      fetch('https://api.wordpad.app/notes/' + noteId.current + '/note-link?type=view', {
-        method: "GET",
-        headers: {
-          accept: "application.json",
-          "Content-Type": "application/json",
-          token: loginToken.current,
-        }
-      }).then((response) =>
-        response.json()
-      ).then(
-        setEditToken(response.token)
-      );
-
-    }
-  }
   return (<>
     <nav className='d-md-none d-xs-none d-lg-flex d-sm-none d-none standarnav d-xs-none flex-wrap-wrap' >
       <ul className={viewNotes ? 'd-none' : ''}>
@@ -140,7 +110,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
               overlay={
                 <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool tooltip-radius" : "tooltiplight sharetool tooltip-radius"}>
                   <Popover.Body>
-                    <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p id="urllink">{domain}/notes/{noteId.current}/{editToken}</p></div>
+                    <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p id="urllink">{domain}/notes/{noteId.current}</p></div>
                     <form className={isDark ? "tooltipdark shareform" : "tooltiplight shareform"} ><input type="radio" name="sharerad" id="view only" onClick={() => changeLink('view')} /><p className='viewbutt'>View Only</p>
                       <input type="radio" name="sharerad" id="editnote" onClick={() => changeLink('edit')} checked /><p className='share-edit-butt'> Can Edit</p>
                       <button type="radio" className='share-copy-butt' onClick={copyFunction} name="sharerad"><img src="./svg/copylink.svg" className='pr1' ></img>Copy Link</button></form>

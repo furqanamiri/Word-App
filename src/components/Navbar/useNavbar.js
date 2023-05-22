@@ -174,6 +174,47 @@ const useNavBar = ({ toggleTheme,
 
   };
 
+  const { editToken, setEditToken } = useContext(updateContext)
+
+  const changeLink = (type) => {
+    if (type == 'edit') {
+      fetch('https://api.wordpad.app/notes/' + noteId.current + '/note-link?type=edit', {
+        method: "GET",
+        headers: {
+          accept: "application.json",
+          "Content-Type": "application/json",
+          token: loginToken.current,
+        }
+      }).then((response) =>
+        response.json()
+      ).then((response) => {
+        editToken.current = response.token
+       
+
+
+      }
+      );
+
+    }
+    else {
+      fetch('https://api.wordpad.app/notes/' + noteId.current + '/note-link?type=view', {
+        method: "GET",
+        headers: {
+          accept: "application.json",
+          "Content-Type": "application/json",
+          token: loginToken.current,
+        }
+      }).then((response) =>
+        response.json()
+      ).then(((response) => {
+        editToken.current = response.token
+       
+
+      })
+      );
+
+    }
+  }
   const LogOut = () => {
     fetch(process.env.REACT_APP_LOGOUT, {
       method: "GET",
@@ -212,7 +253,8 @@ const useNavBar = ({ toggleTheme,
     toggleShareModalClose,
     text,
     loginUser, setEdit, theme, copyFunction, noteId, pdf,
-    wordFile, 
+    wordFile,
+    changeLink
   };
 }
 

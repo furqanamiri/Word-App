@@ -18,7 +18,8 @@ function App() {
   const urlParams = new URLSearchParams(queryString);
   let id = " "
   id = urlParams.get('id')
-
+  let token = " "
+  token = urlParams.get('token')
 
 
 
@@ -58,40 +59,27 @@ function App() {
     }
 
   };
-
+  const { loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,
+    setEdit, editableNote, editable, updateNote, textUpdate, text, setUpdateNote, dateUpd, dateChange, editToken, setEditToken } = UseApp({ isNight, theme, id, token })
   //url check
   let r = /:\/\/(.[^/]+)/;
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
   const copyFunction = (e) => {
     e.preventDefault()
-    navigator.clipboard.writeText(domain + '/?id=' + noteId.current);
-    if (updateNote) {
+    console.log(editToken)
+    navigator.clipboard.writeText(domain + '/?id=' + noteId.current + '&token=' + editToken.current);
 
-      fetch(process.env.REACT_APP_UPDATE, {
-        method: 'PUT',
-        headers: {
-          accept: 'application.json', 'Content-Type': 'application/json',
-          token: loginUser ? loginToken.current : anonToken.current
-        }, body: JSON.stringify({
-          id: noteId.current,
-          content: text,
-          editable: editable.current,
-        })
-
-      })
-    }
   }
 
-  const { loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,
-    setEdit, editableNote, editable, updateNote, textUpdate, text, setUpdateNote, dateUpd, dateChange } = UseApp({ isNight, theme, id })
+
 
   return (
     <>
       <IsAuto.Provider value={{ theme }} >
         <AnonContext.Provider value={{ anonContext, toggleAnonUser, anonToken, editableNote, setEdit, editable }}>
           <LoginContext.Provider value={{ loginUser, toggleUserLogin, loginToken }}>
-            <updateContext.Provider value={{ updateNote, toggleUpdateNote, noteId, copyFunction, setUpdateNote }}>
+            <updateContext.Provider value={{ updateNote, toggleUpdateNote, noteId, copyFunction, setUpdateNote, editToken, setEditToken }}>
               <div className="Maindiv">
                 <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} domain={domain} viewNotes={viewNotes} />
 

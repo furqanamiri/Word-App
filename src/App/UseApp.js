@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { LoginContext } from '../js/Logincontext'
 import moment from 'moment';
 
-const UseApp = ({ isNight, theme, id }) => {
+const UseApp = ({ isNight, theme, id, token }) => {
   //text string state , used for file storing, saving, api calls
   const [text, setText] = useState("");
   const textUpdate = (str) => {
@@ -14,6 +14,7 @@ const UseApp = ({ isNight, theme, id }) => {
   const dateChange = (str) => {
     setDateUpd(str)
   }
+  const editToken = useRef('')
   //Login State Handling
   const [loginUser, setLoginUser] = useState(false);
   const loginToken = useRef('')
@@ -98,8 +99,8 @@ const UseApp = ({ isNight, theme, id }) => {
 
       }).then((response) => {
         if (id != " ") {
-
-          fetch(process.env.REACT_APP_SHARE_NOTE + id, {
+          console.log(id)
+          fetch(process.env.REACT_APP_SHARE_NOTE + id + '/' + token, {
             method: "GET",
             headers: {
               accept: "application/json",
@@ -224,11 +225,11 @@ const UseApp = ({ isNight, theme, id }) => {
     }
 
   }, [text])
-  
+
 
   return {
     loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote, setUpdateNote,
-    setEdit, idsave, editableNote, editable, updateNote, textUpdate, text, dateUpd, dateChange
+    setEdit, idsave, editableNote, editable, updateNote, textUpdate, text, dateUpd, dateChange, editToken
   }
 
 }

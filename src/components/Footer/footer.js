@@ -4,6 +4,11 @@ import UseFooter from "./useFooter";
 import { useState, useRef } from "react";
 import "./styles.scss";
 export default function Footer({ text, viewNotes, dateUpd, dateChange, changingTime }) {
+  const [minutesPassed, setMinutesPassed] = useState(moment.duration(moment().diff(dateUpd)))
+  setInterval(() => {
+    setMinutesPassed(moment.duration(moment().diff(dateUpd)))
+
+  }, 10000)
   const { wordCount, charCount } = UseFooter({ text, dateUpd });
   return (
     <>
@@ -21,7 +26,7 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange, changingT
         </div>
         <div className="d-flex footerdiv">
           <ul className="left-footer">
-            <li>{viewNotes ? "" : <><span className="footersubhead">Last Updated </span> : </>}</li>
+            <li>{viewNotes ? "" : <><span className="footersubhead">Last Updated </span> : {moment(dateUpd).fromNow()}<></></>}</li>
           </ul>
 
           <ul className="right-footer">
@@ -40,7 +45,7 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange, changingT
         </div>
         <div className="d-flex flex-wrap footeresdivword justify-content-center align-items-center w-100 ">
           <ul className="w-100 d-flex justify-content-around ulmargin responsive-footer-div">
-            <li>{viewNotes ? "" : <><span className="footersubhead"> Last Updated</span>  : </>}</li>
+            <li>{viewNotes ? "" : <><span className="footersubhead"> Last Updated</span>  : {moment(dateUpd).fromNow()}</>}</li>
           </ul>
         </div>
         <div className="d-flex flex-wrap justify-content-center align-items-center w-100 ">
