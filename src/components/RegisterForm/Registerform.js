@@ -48,7 +48,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
       return document.getElementById('errormessage').innerHTML = 'Username is too long'
     }
     if (!regexspecial.test(usernameid)) {
-      return document.getElementById('errormessage').innerHTML = 'No Special Characters allowed'
+      return document.getElementById('errormessage').innerHTML = 'No Special Characters allowed or capital letters'
     }
     const emailid = document.getElementById('emailid').value
     if (emailid.length == 0) {
@@ -88,15 +88,13 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
       })
 
 
-    }).then(respone => {
-      document.getElementById('errormessage').innerHTML = "User is successfully Registered"
+    }).then((response) => response.json()).then((response) => {
+      document.getElementById('errormessage').innerHTML = response.message
       setTimeout(() => {
         LoginRegisterClose();
         LoginModalOpen();
       }, 3000)
 
-    }).catch((err) => {
-      return document.getElementById('errormessage').innerHTML = 'Check your Internet Connection'
     })
   }
   const togglePassCheck = (e) => {
