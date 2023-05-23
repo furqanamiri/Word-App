@@ -74,13 +74,14 @@ function App() {
               <ToastContainer
                 position={"top-start"}
                 className="notification">
-                
+
                 <Toast show={showToast}
                   className="notification">
 
                   <Toast.Body>Click on the Download Button to Downloading the Wordpad App for Your Computer.
                     <div className='toastbutton'>
-                      <button className='appbutt'>
+                      <button className='appbutt'
+                        onClick={() => { setShowToast(false) }}>
                         Download Desktop App
                       </button>
                       <img src='./svg/closetoast.svg' onClick={() => { setShowToast(false) }}></img>
