@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.scss";
 import moment from "moment";
 import Viewingnotes from "./viewingnotes";
+import Spinner from 'react-bootstrap/Spinner';
 import { useViewNote } from "./useViewNote";
 
 export default function ViewNotes({ isDark, text, toggleViewNotes, setText, viewNotes, dateUpd, dateChange }) {
@@ -64,19 +65,21 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText, view
 
               <p className={"notetext cursor"}>Click to create New</p>
             </div>
-
-            {users.map((t) => (
-              <Viewingnotes
-                isDark={isDark}
-                list={t.content}
-                idnote={t.id}
-                togglerefreshchange={togglerefreshchange}
-                toggleViewNotes={toggleViewNotes}
-                setText={setText}
-                date={t.date}
-                dateChange={dateChange}
-              />
-            ))}
+            {users.lenght ? <><Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner></> :
+              users.map((t) => (
+                <Viewingnotes
+                  isDark={isDark}
+                  list={t.content}
+                  idnote={t.id}
+                  togglerefreshchange={togglerefreshchange}
+                  toggleViewNotes={toggleViewNotes}
+                  setText={setText}
+                  date={t.date}
+                  dateChange={dateChange}
+                />
+              ))}
           </div>
         </div>
       </div>

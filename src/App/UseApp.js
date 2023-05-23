@@ -35,6 +35,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
     }
 
     idsave.current = retVal;
+    noteId.current = retVal
 
 
   }
@@ -139,7 +140,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
           }).then((response) => {
             noteId.current = idsave.current
-            windows.sessionStorage.setItem("noteid", noteId.current)
+            window.sessionStorage.setItem("noteid", noteId.current)
             toggleUpdateNote(true)
           })
         }
