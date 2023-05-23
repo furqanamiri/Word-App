@@ -75,7 +75,6 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   }
 
   const registerformcheck = (passwordstring) => {
-    console.log(usernameid.value, emailid.value, passwordstring)
     fetch(process.env.REACT_APP_REGISTER, {
       method: 'POST',
       headers: {
