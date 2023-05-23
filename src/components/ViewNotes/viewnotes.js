@@ -13,6 +13,8 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText, view
 
   const clickFunctionnew = () => {
     window.sessionStorage.clear()
+    window.sessionStorage.removeItem("noteid");
+    toggleUpdateNote(false)
     setText("");
     setUpdateNote(false)
     window.sessionStorage.removeItem("text");

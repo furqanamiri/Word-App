@@ -154,6 +154,9 @@ const UseApp = ({ isNight, theme, id, token }) => {
   useEffect(() => {
     if (loginUser) {
       window.sessionStorage.setItem('loginUser', loginUser)
+      setText("")
+      setUpdateNote(false)
+      sessionStorage.clear()
       window.sessionStorage.setItem('loginToken', loginToken.current)
     }
   }, [loginUser])
@@ -208,8 +211,8 @@ const UseApp = ({ isNight, theme, id, token }) => {
       }).then()
     }
     else {
-      if (!window.sessionStorage.getItem('noteid'))
-        idgenerator()
+
+      idgenerator()
       setUpdateNote(true)
       fetch(process.env.REACT_APP_ADD, {
 
@@ -220,7 +223,8 @@ const UseApp = ({ isNight, theme, id, token }) => {
         }, body: JSON.stringify({
           id: idsave.current,
           content: text,
-          editable: editable
+          editable: editable,
+          content: text,
 
         })
 

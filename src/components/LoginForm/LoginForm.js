@@ -7,12 +7,14 @@ import { LoginContext } from "../../js/Logincontext";
 import { useState } from "react";
 import Registerform from "../RegisterForm";
 import { AnonContext } from "../../js/AnonContext";
+import { updateContext } from "../../js/updatecontext";
 
 export default function Loginform({ showLoginModal, LoginModalClose, isDark, toggleViewNotes, LoginModalOpen }) {
   const { toggleUserLogin, loginToken } = useContext(LoginContext)
   const useremail = useRef('')
   const { toggleAnonUser } = useContext(AnonContext)
   const [error, SetError] = useState('');
+  const { noteId, toggleUpdateNote } = useContext(updateContext)
   const changeUserEmail = (event) => {
     useremail.current = (event.target.value);
   }
@@ -33,10 +35,15 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
     }).then((response) => response.json()).then((response) => {
       if (response.token) {
         loginToken.current = response.token
+        toggleUpdateNote(false)
         toggleUserLogin()
         toggleAnonUser()
         toggleViewNotes()
         LoginModalClose()
+
+
+        sessionStorage.clear()
+
       }
       else {
         SetError('Check Credentials')
