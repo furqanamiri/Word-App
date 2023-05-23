@@ -1,6 +1,6 @@
 .sharemodal {
   input[type="radio"] {
-    transform: scale(4);
+    transform: scale(3);
   }
 
   .br40 {
@@ -21,6 +21,14 @@
   p {
     width: fit-content;
   }
+}
+
+.right {
+  margin-right: 15px;
+}
+
+.right1 {
+  margin-right: 30px;
 }
 
 .shareas-div {
@@ -56,12 +64,14 @@
   font-weight: lighter;
   font-size: 50px;
   color: #7496B8;
-  width: 50%;
+  width: 100%;
 
 }
-
+.left{
+  margin-left: 20px;
+}
 .share-modal-copy-img {
 
   transform: scale(3);
-  margin-right: 0.5em;
+  margin-right: 65px;
 }

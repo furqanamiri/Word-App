@@ -28,6 +28,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
   wordFile,
   viewNotes,
   changeLink,
+  checked,
   editToken }) {
 
   const { loginToken } = useContext(LoginContext)
@@ -111,17 +112,17 @@ export default function StandardNav({ toggleSaveFile, showFile,
               overlay={
                 <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool tooltip-radius" : "tooltiplight sharetool tooltip-radius"}>
                   <Popover.Body>
-                    <div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p id="urllink">{domain}/notes/{noteId.current}</p></div>
+                    {checked ?<div className={isDark ? "tooltipdark linktool" : "tooltiplight linktool"}><img src="./svg/tooltiplink.svg"></img><p id="urllink">{domain}/notes/{noteId.current}</p></div>:<></>}
                     <form className={isDark ? "tooltipdark shareform" : "tooltiplight shareform"} ><input type="radio" name="sharerad" id="view only" onClick={() => changeLink('view')} /><p className='viewbutt'>View Only</p>
-                      <input type="radio" name="sharerad" id="editnote" onClick={() => changeLink('edit')} checked /><p className='share-edit-butt'> Can Edit</p>
+                      <input type="radio" name="sharerad" id="editnote" onClick={() => changeLink('edit')} /><p className='share-edit-butt'> Can Edit</p>
                       <button type="radio" className='share-copy-butt' onClick={copyFunction} name="sharerad"><img src="./svg/copylink.svg" className='pr1' ></img>Copy Link</button></form>
                   </Popover.Body>
                 </Popover>
               }
             >
-              {text.length > 0 ?<button className='share' >
+              {text.length > 0 ? <button className='share' >
                 <img className="buttonicon" src="./svg/share.png" />Share
-              </button> : <></> }
+              </button> : <></>}
             </OverlayTrigger>
 
           </li>

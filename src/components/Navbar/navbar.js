@@ -29,8 +29,8 @@ export default function Navbar({
     toggleShareModalOpen,
     toggleShareModalClose,
     changeLink,
-    newNote,
-    setEdit, theme, copyFunction, noteId, pdf, wordFile, loginToken
+    checked,
+    setEdit, theme, copyFunction, noteId, pdf, wordFile, loginToken, editToken
   } = useNavbar({
     toggleTheme,
     isDark,
@@ -62,7 +62,9 @@ export default function Navbar({
         noteId={noteId} pdf={pdf}
         wordFile={wordFile}
         viewNotes={viewNotes}
-      
+        editToken={editToken}
+        checked={checked}
+
 
       />
 
@@ -89,7 +91,9 @@ export default function Navbar({
         LoginModalClose={LoginModalClose} pdf={pdf}
         wordFile={wordFile}
         viewNotes={viewNotes}
-       
+        editToken={editToken}
+        checked={checked}
+        changeLink={changeLink}
       />
     </>
   );

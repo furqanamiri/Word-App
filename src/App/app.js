@@ -11,11 +11,12 @@ import { AnonContext } from '../js/AnonContext';
 import Footer from '../components/Footer';
 import UseApp from './UseApp';
 import Toast from 'react-bootstrap/Toast';
+import { ToastContainer } from 'react-bootstrap';
 
 function App() {
 
   const queryString = window.location.search;
-
+  const [showToast, setShowToast] = useState(true)
   const urlParams = new URLSearchParams(queryString);
   let id = " "
   id = urlParams.get('id')
@@ -67,18 +68,28 @@ function App() {
   return (
     <>
       <IsAuto.Provider value={{ theme }} >
-        <AnonContext.Provider value={{ anonContext, toggleAnonUser, anonToken, editableNote, setEdit, editable }}>
+        <AnonContext.Provider value={{ anonContext, toggleAnonUser, anonToken, editableNote, setEdit, editable, text }}>
           <LoginContext.Provider value={{ loginUser, toggleUserLogin, loginToken }}>
             <updateContext.Provider value={{ updateNote, toggleUpdateNote, noteId, copyFunction, setUpdateNote, editToken, setEditToken }}>
-              <Toast className="notification">
-                <Toast.Header>
-                  <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                  <strong className="me-auto">Bootstrap</strong>
-                  <small>11 mins ago</small>
-                </Toast.Header>
-                <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
-              </Toast>
+              <ToastContainer
+                position={"top-start"}
+                className="notification">
+                
+                <Toast show={showToast}
+                  className="notification">
+
+                  <Toast.Body>Click on the Download Button to Downloading the Wordpad App for Your Computer.
+                    <div className='toastbutton'>
+                      <button className='appbutt'>
+                        Download Desktop App
+                      </button>
+                      <img src='./svg/closetoast.svg' onClick={() => { setShowToast(false) }}></img>
+                    </div></Toast.Body>
+                </Toast>
+              </ToastContainer>
+
               <div className="Maindiv">
+
                 <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} domain={domain} viewNotes={viewNotes} />
 
                 {viewNotes ? <ViewNotes isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} viewNotes={viewNotes} dateUpd={dateUpd} dateChange={dateChange} /> : <TextArea text={text} setText={textUpdate} dateChange={dateChange} />}

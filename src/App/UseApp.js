@@ -139,6 +139,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
           }).then((response) => {
             noteId.current = idsave.current
+            windows.sessionStorage.setItem("noteid", noteId.current)
             toggleUpdateNote(true)
           })
         }
@@ -181,6 +182,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
   //update check
   useEffect(() => {
     window.sessionStorage.setItem('updatecontext', updateNote)
+    window.sessionStorage.setItem('noteid', noteId.current)
   }, [updateNote])
   // Auto Update
   useEffect(() => {
@@ -202,6 +204,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
       }).then()
     }
     else {
+      if(!window.sessionStorage.getItem('noteid'))
       idgenerator()
       setUpdateNote(true)
 
@@ -220,6 +223,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
       }).then(() => {
         noteId.current = idsave.current
+        window.sessionStorage.setItem("noteid", noteId.current)
         dateChange(moment())
       })
 

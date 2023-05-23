@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AnonContext } from "../../js/AnonContext";
 import { IsAuto } from "../../js/Isauto";
 import { LoginContext } from "../../js/Logincontext";
@@ -18,7 +18,7 @@ const useNavBar = ({ toggleTheme,
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
   const toggleShareModalOpen = () => setShareModal(true);
-
+const  [checked,setChecked] = useState(false)
 
   //ExportModal hook state
 
@@ -179,6 +179,7 @@ const useNavBar = ({ toggleTheme,
 
   const { editToken, setEditToken } = useContext(updateContext)
 
+
   const changeLink = (type) => {
     if (type == 'edit') {
       fetch('https://api.wordpad.app/notes/' + noteId.current + '/note-link?type=edit', {
@@ -192,6 +193,7 @@ const useNavBar = ({ toggleTheme,
         response.json()
       ).then((response) => {
         editToken.current = response.token
+        setChecked(true)
       }
       );
 
@@ -208,8 +210,7 @@ const useNavBar = ({ toggleTheme,
         response.json()
       ).then(((response) => {
         editToken.current = response.token
-
-
+        setChecked(true)
       })
       );
 
@@ -225,12 +226,17 @@ const useNavBar = ({ toggleTheme,
     }).then(() => {
       window.sessionStorage.clear("loginToken");
       window.sessionStorage.clear("loginUser");
+      window.sessionStorage.clear("noteid")
       window.sessionStorage.clear("");
       toggleAnonUser();
       location.reload();
     });
   };
 
+  useEffect(()=>{
+    if(window.sessionStorage.getItem("noteid"))
+    noteId.current=sessionStorage.getItem("noteid")
+  },[noteId])
 
   return {
     toggleSaveFile,
@@ -255,8 +261,9 @@ const useNavBar = ({ toggleTheme,
     text,
     loginUser, setEdit, theme, copyFunction, noteId, pdf,
     wordFile,
-
-    changeLink
+    editToken,
+    changeLink,
+    checked
   };
 }
 
