@@ -87,6 +87,10 @@ const UseApp = ({ isNight, theme, id, token }) => {
       toggleViewNotes()
     }
     else {
+      if (window.sessionStorage.getItem("loginToken")) {
+        setLoginUser(true)
+        loginToken.current = window.sessionStorage.getItem("loginToken")
+      }
       fetch(process.env.REACT_APP_ANON_USER, {
         method: 'GET', headers: {
           accept: 'application.json', 'Content-Type': 'application/json',
@@ -159,6 +163,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
       setUpdateNote(false)
       sessionStorage.clear()
       window.sessionStorage.setItem('loginToken', loginToken.current)
+      loginToken.current = window.sessionStorage.getItem('loginToken')
     }
   }, [loginUser])
 

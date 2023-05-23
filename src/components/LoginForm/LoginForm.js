@@ -35,6 +35,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
     }).then((response) => response.json()).then((response) => {
       if (response.token) {
         loginToken.current = response.token
+
         toggleUpdateNote(false)
         toggleUserLogin()
         toggleAnonUser()
