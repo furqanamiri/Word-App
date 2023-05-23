@@ -114,7 +114,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
               setEditable('No')
               setEditableNote(false)
             }
-
+            window.sessionStorage.setItem("noteid", id)
             noteId.current = id
           })
 
@@ -185,6 +185,10 @@ const UseApp = ({ isNight, theme, id, token }) => {
     window.sessionStorage.setItem('noteid', noteId.current)
   }, [updateNote])
   // Auto Update
+
+
+
+
   useEffect(() => {
     window.sessionStorage.setItem('text', text)
     if (updateNote) {
@@ -204,10 +208,9 @@ const UseApp = ({ isNight, theme, id, token }) => {
       }).then()
     }
     else {
-      if(!window.sessionStorage.getItem('noteid'))
-      idgenerator()
+      if (!window.sessionStorage.getItem('noteid'))
+        idgenerator()
       setUpdateNote(true)
-
       fetch(process.env.REACT_APP_ADD, {
 
         method: 'POST',
@@ -223,13 +226,16 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
       }).then(() => {
         noteId.current = idsave.current
-        window.sessionStorage.setItem("noteid", noteId.current)
+        window.sessionStorage.setItem("noteid", idsave.current)
         dateChange(moment())
       })
 
     }
-
   }, [text])
+
+
+
+
 
 
   return {

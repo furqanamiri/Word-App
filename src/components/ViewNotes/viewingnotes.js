@@ -27,6 +27,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   const clickFunction = () => {
     dateChange(date)
     toggleUpdateNote()
+    sessionStorage.clear("noteid")
     noteId.current = idnote;
     sessionStorage.setItem("noteid", idnote)
     setText(textnote.current)

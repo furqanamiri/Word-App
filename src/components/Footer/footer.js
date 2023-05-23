@@ -20,8 +20,8 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange, changingT
             <li>{viewNotes ? "" : <><span className="footersubhead">Characters</span>: {charCount}</>}</li>
           </ul>
           <ul className="right-footer ">
-            <li className="endalign"><a href="http://www.elitewaresolutions.com" target="_blank" className="links">About Us</a></li>
-            <li className="endalign"><a href="http://www.elitewaresolutions.com/contact-us.html" target="_blank" className="links">Contact Us</a></li>
+            <li className="endalign"><a href="/about.html" target="_blank" className="links">About Us</a></li>
+            <li className="endalign"><a href="/contactUs.html" target="_blank" className="links">Contact Us</a></li>
           </ul>
         </div>
         <div className="d-flex footerdiv">
@@ -50,8 +50,8 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange, changingT
         </div>
         <div className="d-flex flex-wrap justify-content-center align-items-center w-100 ">
           <ul className="w-100 d-flex justify-content-around ulmargin responsive-footer-div">
-            <li><a href="http://www.elitewaresolutions.com" target="_blank" className="links">About Us</a></li>
-            <li><a href="http://www.elitewaresolutions.com/contact-us.html" target="_blank" className="links">Contact Us</a></li>
+            <li><a href="/about.html" target="_blank" className="links">About Us</a></li>
+            <li><a href="/contactUs.html" target="_blank" className="links">Contact Us</a></li>
             <li><a href="/pandp.html" target="_blank" className="links">Privacy Policy</a></li>
             <li><a href="/tandc.html" target="_blank" className="links">Terms</a></li>
           </ul>
