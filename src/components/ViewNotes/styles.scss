@@ -76,6 +76,7 @@
   width: 88%;
   padding-top: 15%;
   text-align: justify;
+  font-family: 'Open Sans', sans-serif;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -90,7 +91,7 @@
   width: 88%;
   padding-top: 15%;
   text-align: justify;
-
+  font-family: 'Open Sans', sans-serif;
   color: white;
 
   display: -webkit-box;
@@ -117,6 +118,7 @@
   width: fit-content;
   text-align: justify;
   margin-bottom: 0;
+  font-family: 'Open Sans', sans-serif;
   margin-top: 0;
   color: #7496b8;
 }
@@ -124,6 +126,7 @@
 .darknotesfooter {
   position: absolute;
   padding: 10px;
+  font-family: 'Open Sans', sans-serif;
 
   width: 90%;
 }
@@ -135,6 +138,7 @@
 .deletenote {
   position: relative;
   left: 82%;
+  font-family: 'Open Sans', sans-serif;
   height: 60%;
   width: 9%;
   transform: translateY(-85%);
@@ -145,6 +149,7 @@
 .footerdiv ul {
   height: fit-content;
   padding: 0;
+  font-family: 'Open Sans', sans-serif;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -154,6 +159,7 @@
   justify-content: space-between;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  font-family: 'Open Sans', sans-serif;
   align-items: center;
 }
 
@@ -162,6 +168,7 @@
   flex-wrap: wrap;
   padding-bottom: 0;
   margin: 0.3rem 0;
+  font-family: 'Open Sans', sans-serif;
   margin-left: 1.2rem;
 }
 
@@ -170,20 +177,23 @@
   margin-right: 0;
   margin-left: 3rem;
   width: 20%;
-
+  font-family: 'Open Sans', sans-serif;
   li {
     width: 50%;
+    font-family: 'Open Sans', sans-serif;
   }
 }
 
 .left-footer {
   margin-left: 3rem;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .local-file-div {
   display: flex;
   width: 100%;
   justify-content: center;
+  font-family: 'Open Sans', sans-serif;
 
   .button-file {
     cursor: pointer;
@@ -196,6 +206,7 @@
     /* padding: 15px; */
     padding: 1.5% 5%;
     margin-top: 2%;
+    font-family: 'Open Sans', sans-serif;
     margin-bottom: 1%;
     /* font-size: 1rem; */
     color: #7496b8;
@@ -209,22 +220,26 @@
 .light .local-file-para {
   margin-left: 10px;
   align-self: center;
-  color: black
+  color: black;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .dark .local-file-para {
   margin-left: 10px;
   align-self: center;
+  font-family: 'Open Sans', sans-serif;
   color: white
 }
 
 .center-inp {
   align-self: center;
+  font-family: 'Open Sans', sans-serif;
   display: none;
 }
 
 .notes-center {
   align-self: center;
+  font-family: 'Open Sans', sans-serif;
   margin-left: 8px;
 }
 
@@ -234,7 +249,7 @@
   background-repeat: no-repeat;
   padding: 0;
   margin-left: 2rem;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   margin-top: 2rem;
   font-size: 3rem;
@@ -257,7 +272,7 @@
   background-repeat: no-repeat;
   padding: 0;
   margin-left: 2rem;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   margin-top: 2rem;
   font-size: 3rem;

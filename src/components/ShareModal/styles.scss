@@ -10,6 +10,8 @@
   .sharelink p {
     overflow-wrap: break-word;
     width: 100%;
+
+    font-family: 'Open Sans', sans-serif;
     text-align: center;
     /* text-overflow: ellipsis; */
     /* overflow: hidden; */
@@ -46,17 +48,20 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .share-butt-div {
   padding: 1em;
   justify-content: space-evenly;
   width: 100%;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .share-modal-butt {
   font-size: 50px;
   width: fit-content;
+  font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -64,12 +69,15 @@
   font-weight: lighter;
   font-size: 50px;
   color: #7496B8;
+  font-family: 'Open Sans', sans-serif;
   width: 100%;
 
 }
-.left{
+
+.left {
   margin-left: 20px;
 }
+
 .share-modal-copy-img {
 
   transform: scale(3);

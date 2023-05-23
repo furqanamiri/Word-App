@@ -23,17 +23,20 @@
   .modal-content {
     background-color: #0000;
     border: none;
+    font-family: 'Open Sans', sans-serif;
 
     .modal-header {
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
       padding-top: 2rem;
       height: auto;
+      font-family: 'Open Sans', sans-serif;
     }
 
     .modal-footer {
       border-bottom-right-radius: 10px;
       border-bottom-left-radius: 10px;
+      font-family: 'Open Sans', sans-serif;
     }
 
     .form-control:focus {
@@ -64,6 +67,7 @@
   justify-self: center;
   margin: 0 auto;
   font-size: 1.2rem;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .reset-pass-butt {
@@ -73,7 +77,8 @@
   border: none;
   margin-left: 25%;
   background-color: #FA8B2E;
-  font-weight: light
+  font-weight: light;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .reset-pass-eye-icon {
@@ -82,7 +87,8 @@
   left: 65%;
   transform: translateY(-50%);
   padding: 0;
-  margin: 0
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .reset-pass-cancel-butt {
@@ -90,5 +96,6 @@
   height: 40px;
   border-radius: 10px;
   margin-left: 20px;
+  font-family: 'Open Sans', sans-serif;
   font-weight: light;
 }
