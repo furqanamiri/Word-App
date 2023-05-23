@@ -61,7 +61,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
     }
     const cpasswordid = document.getElementById('cpassword').value
     if (cpasswordid != passwordstring) {
-      return document.getElementById('errormessage').innerHTML = 'Confirm Password and Password should match  '
+      return document.getElementById('errormessage').innerHTML = 'Confirm Password and Password should match'
     }
     const captchatextstr = document.getElementById('captchadiv').value
 
@@ -75,7 +75,7 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
   }
 
   const registerformcheck = (passwordstring) => {
-
+    console.log(usernameid.value, emailid.value, passwordstring)
     fetch(process.env.REACT_APP_REGISTER, {
       method: 'POST',
       headers: {
@@ -84,10 +84,10 @@ export default function Registerform({ showRegisterModal, LoginRegisterClose, is
       },
       body: JSON.stringify({
         name: usernameid.value,
-        email: emailid,
+        email: emailid.value,
         password: passwordstring,
-
       })
+
 
     }).then(respone => {
       document.getElementById('errormessage').innerHTML = "User is successfully Registered"
