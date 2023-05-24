@@ -33,7 +33,9 @@
   min-width: 250px;
   min-height: 201px;
   position: relative;
-
+  .spinner-border  {
+height: 100%;
+  }
   // box-shadow: 0px 2px 0px 0px gray;
 
   padding: 0 1%;
@@ -315,4 +317,9 @@
     text-align: center !important;
     width: 100% !important;
   }
+}
+.loader {
+ margin: 10%;
+  color:#fa8b2e
+
 }

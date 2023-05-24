@@ -169,7 +169,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
   useEffect(() => {
     document.body.className = " ";
-    document.body.className = theme === "auto" && isNight() ? "dark" : theme === "auto" && !isNight() ? "light" : theme === "light" ? "light" : "dark";
+    document.body.className = theme === "dark" ? "dark" : 'light';
   }, [theme]);
   //edit update
   useEffect(() => {

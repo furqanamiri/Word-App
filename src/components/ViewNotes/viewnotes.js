@@ -6,7 +6,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useViewNote } from "./useViewNote";
 
 export default function ViewNotes({ isDark, text, toggleViewNotes, setText, viewNotes, dateUpd, dateChange }) {
-  const { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, setUpdateNote } =
+  const { list, users, loading, id, toggleUpdateNote, togglerefreshchange, textnote, setUpdateNote } =
     useViewNote();
 
   // const notediv = document.getElementById("newnote")
@@ -65,8 +65,9 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText, view
 
               <p className={"notetext cursor"}>Click to create New</p>
             </div>
-            {users.lenght ? <><Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
+
+            {loading ? <><Spinner animation="border" className="loader" role="status">
+              <span className="visually-hidden loader">...</span>
             </Spinner></> :
               users.map((t) => (
                 <Viewingnotes

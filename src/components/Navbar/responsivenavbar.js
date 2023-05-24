@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import "./styles.scss";
 import { Icon } from "@iconify/react";
@@ -38,7 +38,28 @@ export function ResponsiveNavbar({
   changeLink,
 }) {
   const { theme } = useContext(IsAuto);
+  const [popoverTool, setPopoverTool] = useState(false)
   const { setEdit, editable } = useContext(AnonContext);
+  const [auto, setAuto] = useState(false)
+  const exportModalClick = () => {
+    toggleExportModalOpen()
+    setPopoverTool(!popoverTool)
+  }
+
+  const changeAuto = () => {
+    setAuto(!auto)
+    toggleTheme('auto')
+
+
+  }
+  const changeDay = () => {
+    setAuto(prev => prev = false)
+    toggleTheme('light')
+  }
+  const changeNight = () => {
+    setAuto(prev => prev = false)
+    toggleTheme('dark')
+  }
 
   return (
     <>
@@ -76,6 +97,7 @@ export function ResponsiveNavbar({
               <input
                 className="files iconnavsmall"
                 type="file"
+                accept=".txt"
                 onChange={showFile}
               />
               <img
@@ -144,33 +166,35 @@ export function ResponsiveNavbar({
           <span className="W-head main-header font60">W</span>ordpad
         </div>
         <ul className="justify-content-end mr2">
+          {auto ? <li>
+            {isDark ?
+              <img src={"./svg/nonautonight.svg"} className='responsiveIcon  moon' onClick={changeDay} />
+              :
+              <img src={"./svg/nonautoday.svg"} className='responsiveIcon  moon' onClick={changeNight} />}
+          </li> :
+            <li>
+              {isDark ?
+                <img src={"./svg/light.svg"} onClick={() => { toggleTheme("light") }} className='responsiveIcon moon' /> :
+                <img src={"./svg/night.svg"} className='responsiveIcon moon' onClick={() => { toggleTheme("dark") }} />}
+            </li>}
+          {auto ? <><li>{isDark ? <img src={"./svg/autonight.svg"} onClick={changeAuto} className='responsiveIcon moon' />
+            : <img src={"./svg/autoday.svg"} className='responsiveIcon moon' onClick={changeAuto} />} </li></> :
+            <> <li><img src={"./svg/autotheme.svg"} className='responsiveIcon moon' onClick={changeAuto} /></li></>}
           <li>
-            <button onClick={toggleTheme} className=" iconnavsmall d-block">
-              {theme === "dark" ? (
-                <img
-                  src={"./svg/autotheme.svg"}
-                  className=" moon iconnavsmall"
-                />
-              ) : theme === "light" ? (
-                <Icon
-                  className="moon iconnavsmall"
-                  icon="ph:moon-bold"
-                  color="black"
-                />
-              ) : (
-                <img
-                  src={"./svg/light.svg"}
-                  className="buttonicon iconnavsmall"
-                />
-              )}
-            </button>
-          </li> <li>
-            {" "}
+
             <OverlayTrigger
-              trigger="click"
+              show={popoverTool}
+              trigger={focus}
               key={"bottom"}
               placement={"bottom-end"}
               className="smallarrow"
+              rootClose={true}
+               onToggle={()=>{
+                 setPopoverTool(false)
+               }}
+              onHide={() => {
+                setPopoverTool((item) => item = false)
+              }}
               overlay={
                 <Popover
                   id={`popover-positioned-${"bottom"}`}
@@ -194,7 +218,9 @@ export function ResponsiveNavbar({
                         <li>
                           <button
                             className=" smallnavbutticon"
-                            onClick={toggleExportModalOpen}
+                            onClick={
+                              toggleExportModalOpen
+                            }
                           >
                             <img
                               src={
@@ -246,16 +272,17 @@ export function ResponsiveNavbar({
                   </Popover.Body>
                 </Popover>
               }
-            >{text.length > 0 && !viewNotes ? <button className="navresicon iconnavsmall">
-              <img
-                src={
-                  isDark
-                    ? "./svg/navdropicondark.svg"
-                    : "./svg/navdropicon.svg"
-                }
-                className="buttonicon iconnavsmall"
-              />
-            </button>
+            >{text.length > 0 && !viewNotes ?
+              <button className="navresicon iconnavsmall" onClick={() => { setPopoverTool(!popoverTool) }}>
+                <img
+                  src={
+                    isDark
+                      ? "./svg/navdropicondark.svg"
+                      : "./svg/navdropicon.svg"
+                  }
+                  className="buttonicon iconnavsmall"
+                />
+              </button>
               :
               <></>}
 

@@ -208,6 +208,12 @@ ul li {
 .tooltiplight {
   color: black;
   border-radius: 10px;
+
+
+}
+.boxs{
+  box-shadow: 0px 15px 20px rgba(116, 150, 184, 0.06);
+
 }
 
 .tooltipdark {
@@ -215,6 +221,8 @@ ul li {
   color: #afafaf;
   border-color: #2a3a4a;
   border-radius: 10px;
+  
+
 }
 
 .popover-arrow::after {
@@ -256,7 +264,7 @@ ul li {
 }
 
 .smalltooltip {
-  padding: 0 1.5rem;
+  padding: 0 15px;
   margin: 0;
 }
 
@@ -384,4 +392,8 @@ ul li {
 .themeIcon {
   height: 1.5rem;
   width: 50px;
+}
+.responsiveIcon {
+  width: 55px;
+  height: 40px;
 }

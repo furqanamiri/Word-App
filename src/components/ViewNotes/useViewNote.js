@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState,dateChange } from 'react'
+import React, { useContext, useEffect, useRef, useState, dateChange } from 'react'
 import moment from 'moment';
 import { LoginContext } from "../../js/Logincontext";
 import { updateContext } from "../../js/updatecontext";
@@ -7,7 +7,8 @@ export const useViewNote = () => {
   const textnote = useRef('')
   textnote.current = 'Click to create a new note'
   const [dateUpd, setDateUpd] = useState(moment())
-  const { toggleUpdateNote,setUpdateNote } = useContext(updateContext)
+  const [loading, setLoading] = useState(true)
+  const { toggleUpdateNote, setUpdateNote } = useContext(updateContext)
   // word count
   const [refreshstate, setrefreshstate] = useState(false)
   const togglerefreshchange = () => {
@@ -19,6 +20,8 @@ export const useViewNote = () => {
   const [id, setId] = useState([])
 
   const addNotes = () => {
+
+
     fetch(process.env.REACT_APP_NOTES, {
       method: 'GET', headers: {
         accept: 'application.json', 'Content-Type': 'application/json',
@@ -31,15 +34,21 @@ export const useViewNote = () => {
       setList(temp);
       setId(tempId)
       setUsers(response)
+      setLoading(!loading)
 
 
-    })
+    }).catch((error) => console.log(error.message))
 
   }
+  useEffect(() => {
+    console.log(loading)
+  }, [loading])
 
-  useEffect(() => { addNotes() }, [refreshstate])
+  useEffect(() => {
+    addNotes()
+  }, [refreshstate])
 
   return (
-    { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, dateUpd,setUpdateNote }
+    { list, users, id, toggleUpdateNote, togglerefreshchange, textnote, loading, dateUpd, setUpdateNote }
   )
 }

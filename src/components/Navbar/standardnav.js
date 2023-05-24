@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react';
 import Loginform from '../LoginForm';
 import Passwordform from '../PasswordForm';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
+import Overlay from 'react-bootstrap/Overlay';
 import { AnonContext } from '../../js/AnonContext';
 import { LoginContext } from '../../js/Logincontext';
 import { updateContext } from '../../js/updatecontext';
@@ -30,7 +31,8 @@ export default function StandardNav({ toggleSaveFile, showFile,
   changeLink,
   checked,
   editToken }) {
-
+  const [exportTool, setExportTool] = useState(false)
+  const [shareTool, setShareTool] = useState(false)
   const { loginToken } = useContext(LoginContext)
   const [auto, setAuto] = useState(false)
   let r = /:\/\/(.[^/]+)/;
@@ -81,12 +83,12 @@ export default function StandardNav({ toggleSaveFile, showFile,
       </div>
       <ul className="justify-content-end nav-right-margin">
         {auto ? <li>
-          {theme === 'light' ?
-            <img src={"./svg/nonautoday.svg"} className='themeIcon moon' onClick={changeNight} /> : <img src={"./svg/nonautonight.svg"} className='themeIcon moon' onClick={changeDay} />}
+          {isDark ?
+            <img src={"./svg/nonautonight.svg"} className='themeIcon moon' onClick={changeDay} /> : <img src={"./svg/nonautoday.svg"} className='themeIcon moon' onClick={changeNight} />}
         </li> :
           <li>
-            {theme === 'light' ?
-              <img src={"./svg/night.svg"} onClick={() => { toggleTheme("night") }} className='themeIcon moon' /> : <img src={"./svg/light.svg"} className='themeIcon moon' onClick={() => { toggleTheme("light") }} />}
+            {isDark ?
+              <img src={"./svg/light.svg"} onClick={() => { toggleTheme("light") }} className='themeIcon moon' /> : <img src={"./svg/night.svg"} className='themeIcon moon' onClick={() => { toggleTheme("dark") }} />}
           </li>}
         {auto ? <><li>{isDark ? <img src={"./svg/autonight.svg"} onClick={changeAuto} className='buttonicon moon' /> : <img src={"./svg/autoday.svg"} className='buttonicon moon' onClick={changeAuto} />} </li></> : <> <li><img src={"./svg/autotheme.svg"} className='buttonicon moon' onClick={changeAuto} /></li></>}
 
@@ -95,12 +97,22 @@ export default function StandardNav({ toggleSaveFile, showFile,
         {viewNotes ? " " : <>
           <li >
             <OverlayTrigger
-              trigger="focus"
+              show={exportTool}
+              trigger={"focus"}
               key={'bottom'}
+              rootClose={true}
+              onHide={() => {
+                setExportTool(false)
+              }}
+              onToggle={() => {
+                setExportTool(false)
+              }}
+
               placement={'bottom-end'}
+
               overlay={
-                <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark tooltip-radius" : "tooltip-radius tooltiplight"}  >
-                  <Popover.Body className={isDark ? "tooltipdark" : "tooltiplight"} >
+                <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "boxs tooltipdark tooltip-radius" : "tooltip-radius tooltiplight"}  >
+                  <Popover.Body className={isDark ? "tooltipdark boxs" : "tooltiplight boxs"} >
                     <div className='exporttool' >
                       <div className='export-tooltip-div'>
                         <input type="radio" name="export" value="pdf" onChange={pdf} /><label className='tenpad'>PDF</label>
@@ -113,15 +125,18 @@ export default function StandardNav({ toggleSaveFile, showFile,
                     </div>
                   </Popover.Body>
                 </Popover>
-              }>{text.length > 0 ?
-                <button className='export'>
-                  <img src={isDark ? "./svg/file.svg" : "./svg/darkfile.svg"} className='buttonicon' />Export
+              }>
+
+
+              {text.length > 0 ?
+                <button className='export' onClick={() => {
+                  setExportTool(!exportTool)
+
+                }}>
+                  <img src={isDark ? "./svg/file.svg" : "./svg/darkfile.svg"} className='buttonicon' /> Export
                 </button> : <></>}
 
-
-
             </OverlayTrigger>
-
 
           </li>
         </>}
@@ -129,9 +144,17 @@ export default function StandardNav({ toggleSaveFile, showFile,
           <li className='m-0'>
             {/* Share Tooltip main nav */}
             <OverlayTrigger
-              trigger={['click']}
+              trigger={focus}
+              show={shareTool}
               key={'bottom'}
+              rootClose={true}
               placement={'bottom-end'}
+              onHide={() => {
+                setShareTool(!shareTool)
+              }}
+              onToggle={() => {
+                setShareTool(false)
+              }}
               overlay={
                 <Popover id={`popover-positioned-${'bottom'}`} className={isDark ? "tooltipdark sharetool tooltip-radius" : "tooltiplight sharetool tooltip-radius"}>
                   <Popover.Body>
@@ -143,7 +166,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
                 </Popover>
               }
             >
-              {text.length > 0 ? <button className='share' >
+              {text.length > 0 ? <button className='share' onClick={() => { setShareTool(!shareTool) }} >
                 <img className="buttonicon" src="./svg/share.png" />Share
               </button> : <></>}
             </OverlayTrigger>
@@ -152,7 +175,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
         </> : ''}
       </ul>
 
-    </nav>
+    </nav >
     <hr></hr>
   </>
 
