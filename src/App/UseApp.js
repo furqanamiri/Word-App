@@ -217,7 +217,8 @@ const UseApp = ({ isNight, theme, id, token }) => {
       }).then()
     }
     else {
-
+if(text.length==0){}
+else{
       idgenerator()
       setUpdateNote(true)
       fetch(process.env.REACT_APP_ADD, {
@@ -238,7 +239,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
         noteId.current = idsave.current
         window.sessionStorage.setItem("noteid", idsave.current)
         dateChange(moment())
-      })
+      })}
 
     }
   }, [text])

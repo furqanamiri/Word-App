@@ -118,11 +118,16 @@
   width: fit-content;
   text-align: justify;
   margin-bottom: 0;
+  font-weight:100;
   font-family: 'Open Sans', sans-serif;
   margin-top: 0;
   color: #7496b8;
-}
 
+
+}
+.bold{
+  font-weight: 400 !important;
+}
 .darknotesfooter {
   position: absolute;
   padding: 10px;
