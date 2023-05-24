@@ -32,11 +32,25 @@ export default function StandardNav({ toggleSaveFile, showFile,
   editToken }) {
 
   const { loginToken } = useContext(LoginContext)
-
+  const [auto, setAuto] = useState(false)
   let r = /:\/\/(.[^/]+)/;
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
   const { editableNote } = useContext(AnonContext)
+  const changeAuto = () => {
+    setAuto(!auto)
+    toggleTheme('auto')
+
+
+  }
+  const changeDay = () => {
+    setAuto(prev => prev = false)
+    toggleTheme('light')
+  }
+  const changeNight = () => {
+    setAuto(prev => prev = false)
+    toggleTheme('dark')
+  }
 
   return (<>
     <nav className='d-md-none d-xs-none d-lg-flex d-sm-none d-none standarnav d-xs-none flex-wrap-wrap' >
@@ -65,10 +79,19 @@ export default function StandardNav({ toggleSaveFile, showFile,
       <div className='align-self-center justify-self-center main-header'>
         <a href="/"><span className='W-head main-header'>W</span>ordpad</a>
       </div>
-      <ul className="justify-content-end nav-right-margin"><li>
-        <button onClick={toggleTheme} className="buttonicon">{theme === 'dark' ? <img src={"./svg/autotheme.svg"} className='buttonicon moon' /> : theme === 'light' ?
-          <Icon className='moon' icon="ph:moon-bold" color="black" /> : <img src={"./svg/light.svg"} className='buttonicon moon' />}
-        </button></li>
+      <ul className="justify-content-end nav-right-margin">
+        {auto ? <li>
+          {theme === 'light' ?
+            <img src={"./svg/nonautoday.svg"} className='themeIcon moon' onClick={changeNight} /> : <img src={"./svg/nonautonight.svg"} className='themeIcon moon' onClick={changeDay} />}
+        </li> :
+          <li>
+            {theme === 'light' ?
+              <img src={"./svg/night.svg"} onClick={() => { toggleTheme("night") }} className='themeIcon moon' /> : <img src={"./svg/light.svg"} className='themeIcon moon' onClick={() => { toggleTheme("light") }} />}
+          </li>}
+        {auto ? <><li>{isDark ? <img src={"./svg/autonight.svg"} onClick={changeAuto} className='buttonicon moon' /> : <img src={"./svg/autoday.svg"} className='buttonicon moon' onClick={changeAuto} />} </li></> : <> <li><img src={"./svg/autotheme.svg"} className='buttonicon moon' onClick={changeAuto} /></li></>}
+
+
+
         {viewNotes ? " " : <>
           <li >
             <OverlayTrigger
@@ -92,7 +115,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
                 </Popover>
               }>{text.length > 0 ?
                 <button className='export'>
-                  <img src={isDark ? "./svg/darkfile.svg" : "./svg/file.svg"} className='buttonicon' />Export
+                  <img src={isDark ? "./svg/file.svg" : "./svg/darkfile.svg"} className='buttonicon' />Export
                 </button> : <></>}
 
 

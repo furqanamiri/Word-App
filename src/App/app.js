@@ -37,17 +37,16 @@ function App() {
 
   //  Theme hook
   const [theme, setTheme] = useState('light');
-  const toggleTheme = () => {
-
-    if (theme === 'light') {
-      setTheme('dark');
-    } else if (theme === 'dark') {
-      setTheme('auto');
-
+  const toggleTheme = (themePass) => {
+    if (themePass == 'auto') {
+      if (isNight()) {
+        setTheme('dark')
+      } else {
+        setTheme('light')
+      }
     }
-    else {
-      setTheme('light');
-    }
+    else
+      setTheme(themePass)
 
   };
   const { loginUser, loginToken, noteId, anonToken, toggleUserLogin, anonContext, toggleAnonUser, viewNotes, toggleViewNotes, toggleUpdateNote,

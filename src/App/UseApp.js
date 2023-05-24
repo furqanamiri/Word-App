@@ -217,29 +217,30 @@ const UseApp = ({ isNight, theme, id, token }) => {
       }).then()
     }
     else {
-if(text.length==0){}
-else{
-      idgenerator()
-      setUpdateNote(true)
-      fetch(process.env.REACT_APP_ADD, {
+      if (text.length == 0) { }
+      else {
+        idgenerator()
+        setUpdateNote(true)
+        fetch(process.env.REACT_APP_ADD, {
 
-        method: 'POST',
-        headers: {
-          accept: 'application.json', 'Content-Type': 'application/json',
-          token: loginUser ? loginToken.current : anonToken.current
-        }, body: JSON.stringify({
-          id: idsave.current,
-          content: text,
-          editable: editable,
-          content: text,
+          method: 'POST',
+          headers: {
+            accept: 'application.json', 'Content-Type': 'application/json',
+            token: loginUser ? loginToken.current : anonToken.current
+          }, body: JSON.stringify({
+            id: idsave.current,
+            content: text,
+            editable: editable,
+            content: text,
 
+          })
+
+        }).then(() => {
+          noteId.current = idsave.current
+          window.sessionStorage.setItem("noteid", idsave.current)
+          dateChange(moment())
         })
-
-      }).then(() => {
-        noteId.current = idsave.current
-        window.sessionStorage.setItem("noteid", idsave.current)
-        dateChange(moment())
-      })}
+      }
 
     }
   }, [text])

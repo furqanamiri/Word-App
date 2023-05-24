@@ -18,7 +18,7 @@ const useNavBar = ({ toggleTheme,
   const [shareModal, setShareModal] = useState(false);
   const toggleShareModalClose = () => setShareModal(false);
   const toggleShareModalOpen = () => setShareModal(true);
-const  [checked,setChecked] = useState(false)
+  const [checked, setChecked] = useState(false)
 
   //ExportModal hook state
 
@@ -88,7 +88,6 @@ const  [checked,setChecked] = useState(false)
           children: [
             new docx.Paragraph({
               children: [
-                new docx.TextRun("Note"),
                 new docx.TextRun({
                   text: "\n " + text,
                   bold: true
@@ -233,10 +232,10 @@ const  [checked,setChecked] = useState(false)
     });
   };
 
-  useEffect(()=>{
-    if(window.sessionStorage.getItem("noteid"))
-    noteId.current=sessionStorage.getItem("noteid")
-  },[noteId])
+  useEffect(() => {
+    if (window.sessionStorage.getItem("noteid"))
+      noteId.current = sessionStorage.getItem("noteid")
+  }, [noteId])
 
   return {
     toggleSaveFile,

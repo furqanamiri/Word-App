@@ -20,7 +20,7 @@
   }
 
   hr {
-    color: white
+    color: rgba(255, 255, 255, 0.2)
   }
 }
 
@@ -44,6 +44,13 @@
 
     }
   }
+
+
+}
+
+.dark hr {
+  color: rgba(255, 255, 255, 0.2);
+  height: 0.5px !important;
 }
 
 .moon {
@@ -304,11 +311,11 @@ ul li {
 }
 
 .light .export {
-  color: white
+  color: black
 }
 
 .dark .export {
-  color: black;
+  color: white;
 }
 
 .shareform {
@@ -372,4 +379,9 @@ ul li {
 
 .backlogo {
   margin-left: 1px;
+}
+
+.themeIcon {
+  height: 1.5rem;
+  width: 50px;
 }
