@@ -189,9 +189,7 @@ export function ResponsiveNavbar({
               placement={"bottom-end"}
               className="smallarrow"
               rootClose={true}
-               onToggle={()=>{
-                 setPopoverTool(false)
-               }}
+
               onHide={() => {
                 setPopoverTool((item) => item = false)
               }}
