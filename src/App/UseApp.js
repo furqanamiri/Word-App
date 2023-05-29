@@ -85,13 +85,11 @@ const UseApp = ({ isNight, theme, id, token }) => {
     }
     if (window.localStorage.getItem('loginUser')) {
       setLoginUser(window.localStorage.getItem('loginUser'))
+      loginToken.current = window.localStorage.getItem("loginToken")
       toggleViewNotes()
     }
-    else {
-      if (window.localStorage.getItem("loginToken")) {
-        setLoginUser(true)
-        loginToken.current = window.localStorage.getItem("loginToken")
-      }
+
+    if (!window.localStorage.getItem('loginUser'))
       fetch(process.env.REACT_APP_ANON_USER, {
         method: 'GET', headers: {
           accept: 'application.json', 'Content-Type': 'application/json',
@@ -151,6 +149,53 @@ const UseApp = ({ isNight, theme, id, token }) => {
         }
       }
       ).catch()
+    else {
+      loginToken.current = window.localStorage.getItem('loginToken')
+      if (id != " ") {
+        fetch(process.env.REACT_APP_SHARE_NOTE + id + '/' + token, {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            token: loginToken.current
+          }
+        }).then(response => response.json()).then((response) => {
+
+
+          setText(response.note.content)
+          toggleUpdateNote(true)
+          if (response.editable == false) {
+            setEditable('Yes')
+            setEditableNote(true)
+          }
+          window.localStorage.setItem("noteid", id)
+          noteId.current = id
+        })
+
+
+      }
+
+
+      if (!updateNote) {
+        idgenerator()
+        fetch(process.env.REACT_APP_ADD, {
+
+          method: 'POST',
+          headers: {
+            accept: 'application.json', 'Content-Type': 'application/json',
+            token: loginUser ? loginToken.current : anonToken.current
+          }, body: JSON.stringify({
+            id: idsave.current,
+            content: text,
+            editable: editable
+
+          })
+        }).then((response) => {
+          noteId.current = idsave.current
+          window.localStorage.setItem("noteid", noteId.current)
+          toggleUpdateNote(true)
+        })
+
+      }
     }
 
     //Id in url parameter from share

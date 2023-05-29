@@ -29,7 +29,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   const clickFunction = () => {
     dateChange(date)
     toggleUpdateNote()
-    localStorage.clear("noteid")
+    localStorage.removeItem("noteid")
     noteId.current = idnote;
     localStorage.setItem("noteid", idnote)
     setText(textnote.current)
