@@ -86,7 +86,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
     if (window.localStorage.getItem('loginUser')) {
       setLoginUser(window.localStorage.getItem('loginUser'))
       loginToken.current = window.localStorage.getItem("loginToken")
-      toggleViewNotes()
+
     }
 
     if (!window.localStorage.getItem('loginUser'))
@@ -111,15 +111,19 @@ const UseApp = ({ isNight, theme, id, token }) => {
             }
           }).then(response => response.json()).then((response) => {
 
-
-            setText(response.note.content)
-            toggleUpdateNote(true)
             if (response.editable == false) {
               setEditable('No')
               setEditableNote(false)
+             
+            
+            
             }
             window.localStorage.setItem("noteid", id)
             noteId.current = id
+            toggleUpdateNote(true)
+            setText(response.note.content)
+           
+            
           })
 
 
@@ -151,7 +155,9 @@ const UseApp = ({ isNight, theme, id, token }) => {
       ).catch()
     else {
       loginToken.current = window.localStorage.getItem('loginToken')
+      // setViewNotes(true)
       if (id != " ") {
+
         fetch(process.env.REACT_APP_SHARE_NOTE + id + '/' + token, {
           method: "GET",
           headers: {
@@ -164,9 +170,10 @@ const UseApp = ({ isNight, theme, id, token }) => {
           setText(response.note.content)
           toggleUpdateNote(true)
           if (response.editable == false) {
-            setEditable('Yes')
-            setEditableNote(true)
+            setEditable('No')
+            setEditableNote(false)
           }
+          setViewNotes(false)
           window.localStorage.setItem("noteid", id)
           noteId.current = id
         })

@@ -86,7 +86,7 @@ export default function StandardNav({
         <li><button className='iconnav backlogo'><img src="./svg/backlogo.svg" onClick={toggleViewNotes}></img></button></li>
       </ul>
       <div className='align-self-center justify-self-center main-header'>
-        <a href="/"><span className='W-head main-header'>W</span>ordpad</a>
+        <span className='W-head main-header'>W</span>ordpad
       </div>
       <ul className="justify-content-end nav-right-margin">
         {auto ? <li>

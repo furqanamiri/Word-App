@@ -4,6 +4,7 @@ import { IsAuto } from "../../js/Isauto";
 import { LoginContext } from "../../js/Logincontext";
 import { updateContext } from "../../js/updatecontext";
 import { jsPDF } from "jspdf";
+import { useNavigate } from "react-router-dom";
 
 
 const docx = require("docx")
@@ -217,6 +218,7 @@ const useNavBar = ({ toggleTheme,
 
     }
   }
+
   const LogOut = () => {
     fetch(process.env.REACT_APP_LOGOUT, {
       method: "GET",
@@ -230,7 +232,9 @@ const useNavBar = ({ toggleTheme,
       window.localStorage.clear("noteid")
       window.localStorage.clear("");
       toggleAnonUser();
+      window.history.pushState({}, document.title, "/");
       location.reload();
+
     });
   };
 

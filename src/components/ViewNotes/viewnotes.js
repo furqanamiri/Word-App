@@ -13,7 +13,7 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText, view
   // notediv.addEventListener('click', () => {
 
   const clickFunctionnew = () => {
-   
+    window.history.replaceState({}, "/", "")
     window.localStorage.removeItem("noteid");
     toggleUpdateNote(false)
     setText("");
