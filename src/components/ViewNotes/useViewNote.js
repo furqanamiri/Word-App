@@ -34,7 +34,7 @@ export const useViewNote = () => {
       setList(temp);
       setId(tempId)
       setUsers(response)
-      setLoading(!loading)
+      setLoading(false)
 
 
     }).catch((error) => console.log(error.message))

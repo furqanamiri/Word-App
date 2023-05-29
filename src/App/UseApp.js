@@ -68,28 +68,29 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
 
   }
+
   useEffect(() => {
 
     if (localStorage.getItem("noteid")) {
-      noteId.current = sessionStorage.getItem("noteid")
-      idsave.current = sessionStorage.getItem("noteid")
+      noteId.current = localStorage.getItem("noteid")
+      idsave.current = localStorage.getItem("noteid")
     }
-    if (window.sessionStorage.getItem('loginToken')) {
-      loginToken.current = window.sessionStorage.getItem('loginToken')
+    if (window.localStorage.getItem('loginToken')) {
+      loginToken.current = window.localStorage.getItem('loginToken')
       toggleAnonUser()
 
     }
-    if (window.sessionStorage.getItem('text')) {
-      setText(window.sessionStorage.getItem('text'))
+    if (window.localStorage.getItem('text')) {
+      setText(window.localStorage.getItem('text'))
     }
-    if (window.sessionStorage.getItem('loginUser')) {
-      setLoginUser(window.sessionStorage.getItem('loginUser'))
+    if (window.localStorage.getItem('loginUser')) {
+      setLoginUser(window.localStorage.getItem('loginUser'))
       toggleViewNotes()
     }
     else {
-      if (window.sessionStorage.getItem("loginToken")) {
+      if (window.localStorage.getItem("loginToken")) {
         setLoginUser(true)
-        loginToken.current = window.sessionStorage.getItem("loginToken")
+        loginToken.current = window.localStorage.getItem("loginToken")
       }
       fetch(process.env.REACT_APP_ANON_USER, {
         method: 'GET', headers: {
@@ -99,7 +100,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
       }).then((response) => response.json()).then((response) => {
         if (response.token)
           anonToken.current = response.token;
-        window.sessionStorage.setItem('anonToken', anonToken.current)
+        window.localStorage.setItem('anonToken', anonToken.current)
 
 
       }).then((response) => {
@@ -119,7 +120,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
               setEditable('No')
               setEditableNote(false)
             }
-            window.sessionStorage.setItem("noteid", id)
+            window.localStorage.setItem("noteid", id)
             noteId.current = id
           })
 
@@ -144,7 +145,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
           }).then((response) => {
             noteId.current = idsave.current
-            window.sessionStorage.setItem("noteid", noteId.current)
+            window.localStorage.setItem("noteid", noteId.current)
             toggleUpdateNote(true)
           })
         }
@@ -158,12 +159,11 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
   useEffect(() => {
     if (loginUser) {
-      window.sessionStorage.setItem('loginUser', loginUser)
+      window.localStorage.setItem('loginUser', loginUser)
       setText("")
       setUpdateNote(false)
-      sessionStorage.clear()
-      window.sessionStorage.setItem('loginToken', loginToken.current)
-      loginToken.current = window.sessionStorage.getItem('loginToken')
+      window.localStorage.setItem('loginToken', loginToken.current)
+      loginToken.current = window.localStorage.getItem('loginToken')
     }
   }, [loginUser])
 
@@ -190,8 +190,8 @@ const UseApp = ({ isNight, theme, id, token }) => {
     , [editable])
   //update check
   useEffect(() => {
-    window.sessionStorage.setItem('updatecontext', updateNote)
-    window.sessionStorage.setItem('noteid', noteId.current)
+    window.localStorage.setItem('updatecontext', updateNote)
+    window.localStorage.setItem('noteid', noteId.current)
   }, [updateNote])
   // Auto Update
 
@@ -199,7 +199,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
 
   useEffect(() => {
-    window.sessionStorage.setItem('text', text)
+    window.localStorage.setItem('text', text)
     if (updateNote) {
 
       fetch(process.env.REACT_APP_UPDATE, {
@@ -237,7 +237,7 @@ const UseApp = ({ isNight, theme, id, token }) => {
 
         }).then(() => {
           noteId.current = idsave.current
-          window.sessionStorage.setItem("noteid", idsave.current)
+          window.localStorage.setItem("noteid", idsave.current)
           dateChange(moment())
         })
       }

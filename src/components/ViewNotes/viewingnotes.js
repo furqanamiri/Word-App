@@ -3,6 +3,7 @@ import React, { useContext, useRef, useState } from 'react'
 import './styles.scss'
 import { LoginContext } from '../../js/Logincontext'
 import { updateContext } from '../../js/updatecontext'
+import { toast } from 'react-hot-toast'
 export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange, setNoteUpdate, toggleViewNotes, setText, date, dateChange }) {
   const { toggleUpdateNote, noteId } = useContext(updateContext)
   const textnote = useRef('false')
@@ -18,6 +19,7 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
         id: idnote,
       })
     }).then((response) => {
+      toast.error("Note deleted")
       togglerefreshchange()
 
     })
@@ -27,11 +29,11 @@ export default function Viewingnotes({ isDark, list, idnote, togglerefreshchange
   const clickFunction = () => {
     dateChange(date)
     toggleUpdateNote()
-    sessionStorage.clear("noteid")
+    localStorage.clear("noteid")
     noteId.current = idnote;
-    sessionStorage.setItem("noteid", idnote)
+    localStorage.setItem("noteid", idnote)
     setText(textnote.current)
-    window.sessionStorage.removeItem('text')
+    window.localStorage.removeItem('text')
     toggleViewNotes()
   }
   // })

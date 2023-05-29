@@ -19,6 +19,7 @@ const useNavBar = ({ toggleTheme,
   const toggleShareModalClose = () => setShareModal(false);
   const toggleShareModalOpen = () => setShareModal(true);
   const [checked, setChecked] = useState(false)
+  const [fileType, setFileType] = useState("")
 
   //ExportModal hook state
 
@@ -47,7 +48,7 @@ const useNavBar = ({ toggleTheme,
   }
   //File Saving functionality
   //PDF 
-  function pdf() {
+  function pdf(fileName) {
     let doc = new jsPDF();
 
     // Source HTMLElement or a string containing HTML.
@@ -55,7 +56,7 @@ const useNavBar = ({ toggleTheme,
     doc.html(text, {
       callback: function (doc) {
         // Save the PDF
-        doc.save('note.pdf');
+        doc.save(fileName + '.pdf');
       },
       margin: [10, 10, 10, 10],
       autoPaging: 'text',
@@ -80,7 +81,7 @@ const useNavBar = ({ toggleTheme,
   };
 
   //Word File
-  function wordFile() {
+  function wordFile(fileName) {
     const doc = new docx.Document({
       sections: [
         {
@@ -102,7 +103,7 @@ const useNavBar = ({ toggleTheme,
 
     docx.Packer.toBlob(doc).then((blob) => {
       console.log(blob);
-      saveAs(blob, "note.docx");
+      saveAs(blob, fileName + ".docx");
     });
   }
 
@@ -126,45 +127,46 @@ const useNavBar = ({ toggleTheme,
   }
   //File Saving functionality
 
-  const toggleSaveFile = () => {
+  const toggleSaveFile = (fileName) => {
     console.log(loginUser);
     if (!loginUser) {
       const newstring = text;
       var blob = new Blob([newstring], { type: "text/plain;charset=utf-8" });
-      FileSaver.saveAs(blob, "hello world.txt");
+      FileSaver.saveAs(blob, fileName + ".txt");
     } else {
-      if (!updateNote) {
-        toggleUpdateNote();
-        idgenerator();
-        fetch(process.env.REACT_APP_ADD, {
-          method: "POST",
-          headers: {
-            accept: "application.json",
-            "Content-Type": "application/json",
-            token: loginToken.current,
-          },
-          body: JSON.stringify({
-            id: idsave.current,
-            content: text,
-          }),
-        }).then((response) => {
-          noteId.current = idsave.current;
+      setText("")
+      // if (!updateNote) {
+      //   toggleUpdateNote();
+      //   idgenerator();
+      //   fetch(process.env.REACT_APP_ADD, {
+      //     method: "POST",
+      //     headers: {
+      //       accept: "application.json",
+      //       "Content-Type": "application/json",
+      //       token: loginToken.current,
+      //     },
+      //     body: JSON.stringify({
+      //       id: idsave.current,
+      //       content: text,
+      //     }),
+      //   }).then((response) => {
+      //     noteId.current = idsave.current;
 
-        });
-      } else {
-        fetch(process.env.REACT_APP_UPDATE, {
-          method: "PUT",
-          headers: {
-            accept: "application.json",
-            "Content-Type": "application/json",
-            token: loginToken.current,
-          },
-          body: JSON.stringify({
-            id: noteId.current,
-            content: text,
-          }),
-        });
-      }
+      //   });
+      // } else {
+      //   fetch(process.env.REACT_APP_UPDATE, {
+      //     method: "PUT",
+      //     headers: {
+      //       accept: "application.json",
+      //       "Content-Type": "application/json",
+      //       token: loginToken.current,
+      //     },
+      //     body: JSON.stringify({
+      //       id: noteId.current,
+      //       content: text,
+      //     }),
+      //   });
+      // }
     }
   };
 
@@ -223,25 +225,31 @@ const useNavBar = ({ toggleTheme,
         token: loginToken.current,
       },
     }).then(() => {
-      window.sessionStorage.clear("loginToken");
-      window.sessionStorage.clear("loginUser");
-      window.sessionStorage.clear("noteid")
-      window.sessionStorage.clear("");
+      window.localStorage.clear("loginToken");
+      window.localStorage.clear("loginUser");
+      window.localStorage.clear("noteid")
+      window.localStorage.clear("");
       toggleAnonUser();
       location.reload();
     });
   };
 
   useEffect(() => {
-    if (window.sessionStorage.getItem("noteid"))
-      noteId.current = sessionStorage.getItem("noteid")
+    if (window.localStorage.getItem("noteid"))
+      noteId.current = localStorage.getItem("noteid")
   }, [noteId])
 
+  const textDownload = (filetype1) => {
+    setFileType(filetype1)
+    handleShowPass()
+  }
   return {
     toggleSaveFile,
     showFile,
     showPassword,
     isDark,
+    fileType,
+    textDownload,
     toggleTheme,
     handleClosePass,
     handleShowPass,

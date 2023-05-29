@@ -10,7 +10,9 @@ import { LoginContext } from '../../js/Logincontext';
 import { updateContext } from '../../js/updatecontext';
 import { Link } from 'react-router-dom';
 
-export default function StandardNav({ toggleSaveFile, showFile,
+export default function StandardNav({
+  toggleSaveFile,
+  showFile,
   showPassword,
   isDark,
   toggleTheme,
@@ -20,6 +22,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
   LoginModalOpen,
   LoginModalClose,
   LogOut,
+  textDownload,
   text,
   toggleViewNotes,
   loginUser,
@@ -28,6 +31,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
   copyFunction, noteId, pdf,
   wordFile,
   viewNotes,
+  fileType,
   changeLink,
   checked,
   editToken }) {
@@ -45,6 +49,7 @@ export default function StandardNav({ toggleSaveFile, showFile,
 
 
   }
+
   const changeDay = () => {
     setAuto(prev => prev = false)
     toggleTheme('light')
@@ -54,19 +59,21 @@ export default function StandardNav({ toggleSaveFile, showFile,
     toggleTheme('dark')
   }
 
+
+
   return (<>
     <nav className='d-md-none d-xs-none d-lg-flex d-sm-none d-none standarnav d-xs-none flex-wrap-wrap' >
       <ul className={viewNotes ? 'd-none' : ''}>
         {/* Note Icon */}
         <li>
 
-          <button className='iconnav' onClick={toggleSaveFile} id="save" ><img src="./svg/noteicon.svg" data-bs-custom-class='navbar-tooltip' className='iconnav' color="#7496b8" width="20" height="20" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Saving Note" /></button>
+          <button className='iconnav' onClick={() => { textDownload("text") }} id="save" ><img src="./svg/noteicon.svg" data-bs-custom-class='navbar-tooltip' className='iconnav' color="#7496b8" width="20" height="20" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Saving Note" /></button>
         </li>
         {/* File Open / List View */}
         <li><button className={loginUser ? "iconnav change" : "d-none"} onClick={toggleViewNotes}><img src='/svg/openfiles.svg' color="#7496b8" width="20" height="20" data-bs-custom-class='navbar-tooltip' data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Open Note"></img></button>
           <label className={loginUser ? "d-none" : "iconnav change"}><input className="files iconnav" accept=".txt" type="file" onChange={showFile} /><img src="./svg/openfiles.svg" className='iconnav' color="#7496b8" width="20" height="20" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Open Note" /></label> </li>
 
-        <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} />
+
 
         {/* Login and Logout*/}
         <li><button className={loginUser ? "d-none" : "iconnav"} onClick={LoginModalOpen} data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-container='true' data-bs-placement="bottom" title="Login"><img src="./svg/person.svg" width="20" height="20" className='iconnav'
@@ -115,11 +122,11 @@ export default function StandardNav({ toggleSaveFile, showFile,
                   <Popover.Body className={isDark ? "tooltipdark boxs" : "tooltiplight boxs"} >
                     <div className='exporttool' >
                       <div className='export-tooltip-div'>
-                        <input type="radio" name="export" value="pdf" onChange={pdf} /><label className='tenpad'>PDF</label>
+                        <input type="radio" name="export" value="pdf" onChange={()=> {textDownload('pdf')}} /><label className='tenpad'>PDF</label>
                       </div>
 
                       <div className='export-tooltip-div1'>
-                        <input type="radio" name="export" value="word" onChange={wordFile} />
+                        <input type="radio" name="export" value="word" onChange={()=> {textDownload('word')}} />
                         <label className='sevenpad'>Word</label>
                       </div>
                     </div>
@@ -174,8 +181,8 @@ export default function StandardNav({ toggleSaveFile, showFile,
           </li>
         </> : ''}
       </ul>
-
-    </nav >
+      <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} SaveFileText={toggleSaveFile} FileType={fileType} wordFile={wordFile} pdf={pdf}/>
+    </nav>
     <hr></hr>
   </>
 

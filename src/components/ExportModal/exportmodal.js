@@ -5,16 +5,16 @@ import "./styles.scss";
 import Form from "react-bootstrap/Form";
 
 
-export default function Exportmodal({ exportModal, toggleExportModalClose, isDark, pdf, wordFile }) {
+export default function Exportmodal({ exportModal, toggleExportModalClose, isDark, pdf, wordFile, textDownload }) {
   const [exportSelect, setExportSelect] = useState()
   const Exportfun = (e) => {
-    console.log(exportSelect)
+
     e.preventDefault()
     if (exportSelect == 'pdf') {
-      pdf()
+      textDownload('pdf')
     }
     else {
-      wordFile()
+      textDownload('word')
     }
   }
 

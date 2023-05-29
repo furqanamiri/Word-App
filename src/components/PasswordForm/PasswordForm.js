@@ -8,60 +8,75 @@ export default function Passwordform({
   showPassword,
   handleClosePass,
   isDark,
-}) {
-  const [passCheck, setPassCheck] = useState(true);
+  SaveFileText,
+  FileType,
+  wordFile,
+  pdf
 
-  const togglePassCheck = (e) => {
-    e.preventDefault();
-    setPassCheck(!passCheck);
-  };
+}) {
+  const [fileName, setFileName] = useState("")
+  const handleFileChange = (e) => {
+    setFileName(e.target.value)
+  }
+
+  const handleDownload = (e) => {
+    e.preventDefault()
+    if (FileType == 'text')
+      SaveFileText(fileName)
+    else {
+      if (FileType == 'word')
+        wordFile(fileName)
+      else {
+        pdf(fileName)
+      }
+    }
+
+  }
+
   return (
     <>
       <Modal
-        className="bordeRpass"
+        className='bordeRv '
         show={showPassword}
-        onHide={handleClosePass}
+        onHide={() => {
+          setFileName("")
+          handleClosePass()
+        }}
         centered
-
       >
-        <Modal.Header
-          className={isDark ? "modalDarkpass pb0" : "modalLight pb0"}
-        >
-          <Modal.Title className="items title ">Add Your Password</Modal.Title>
+        <Modal.Header className={isDark ? "LoginDarkHeader" : "LoginLightHeader"}  >
+          <Modal.Title className={isDark ? "LoginDarkHeader centering" : "LoginLightHeader centering"}>Enter File Name  </Modal.Title>
         </Modal.Header>
-        <Modal.Body className={isDark ? "modalDarkpass" : "modalLight"}>
+        <Modal.Body className={isDark ? "modalDark" : "modalLightpass"}>
           <Form>
-            <Form.Group className="mb-3 relative" controlId="formBasicPassword">
+            <Form.Group className="mb-2 " style={{ position: "relative" }}>
               <Form.Control
-                className={isDark ? "reset-password-div modalDark h-md-10 h-lg-30" : "reset-password-div modalLight h-md-10 h-s-10"}
-
-                type={passCheck ? "password" : 'text'}
-                placeholder="Type Password"
+                className={isDark ? "modalDark inputdiv" : "modalLight inputdiv"}
+                id='userpassword'
+                type={'text'}
+                placeholder="Type Filename"
+                value={fileName}
+                onChange={handleFileChange}
+                required
               />
-              <button className="reset-pass-eye-icon"
-                onClick={togglePassCheck}
-              ><img src="./svg/eye.svg"></img></button>
+
+
+
             </Form.Group>
-            <div className="p-0 m-0">
-              <Button
-                className="rest-pass-butt"
-                onClick={handleClosePass}
-              >
-                Set Password
-              </Button>
-              <Button
-                className="reset-pass-cancel-butt"
-                variant={isDark ? "light" : "dark"}
-                onClick={handleClosePass}
-              >
-                Cancel
-              </Button>
+            <div className="mb-2">
+              <button className="login-butt" onClick={handleDownload}>Download File</button>
+              {/* <button style={isDark ? { color: "#AFAFAF" } : { color: "#666666" }} className='resetbut'
+              >Reset Your Password</button> */}
+
+              {/* <button className="googlebut" style={isDark ? { color: '#AFAFAF' } : { color: '#666666' }}>Continue with Google<img src="./svg/googleicon.svg" className="inputiconleftg"></img></button> */}
+
+
             </div>
+
           </Form>
+
         </Modal.Body>
-        <Modal.Footer
-          className={isDark ? "modalDark items" : "modalLight items "}
-        ></Modal.Footer>
+
       </Modal>
     </>
   );

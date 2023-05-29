@@ -12,6 +12,7 @@ import Footer from '../components/Footer';
 import UseApp from './UseApp';
 import Toast from 'react-bootstrap/Toast';
 import { ToastContainer } from 'react-bootstrap';
+import { toast, Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -59,7 +60,9 @@ function App() {
     e.preventDefault()
     console.log(editToken)
     navigator.clipboard.writeText(domain + '/?id=' + noteId.current + '&token=' + editToken.current);
-
+    setTimeout(() => {
+      toast.success("Copied to clipboard")
+    }, 1000)
   }
 
 
@@ -77,7 +80,7 @@ function App() {
                 <Toast show={showToast}
                   className="notification">
 
-                  <Toast.Body>Click on the Download Button to Downloading the Wordpad App for Your Computer.
+                  <Toast.Body>Click on the button to download the Wordpad App for your computer.
                     <div className='toastbutton'>
                       <button className='appbutt'
                         onClick={() => { setShowToast(false) }}>
@@ -87,13 +90,11 @@ function App() {
                     </div></Toast.Body>
                 </Toast>
               </ToastContainer>
-
+              <Toaster />
               <div className="Maindiv">
-
                 <Navbar toggleTheme={toggleTheme} isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} domain={domain} viewNotes={viewNotes} />
-
-                {viewNotes ? <ViewNotes isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} viewNotes={viewNotes} dateUpd={dateUpd} dateChange={dateChange} /> : <TextArea text={text} setText={textUpdate} dateChange={dateChange} />}
-
+                {viewNotes ? <ViewNotes isDark={theme === 'dark'} text={text} toggleViewNotes={toggleViewNotes} setText={textUpdate} viewNotes={viewNotes} dateUpd={dateUpd} dateChange={dateChange} /> :
+                  <TextArea text={text} setText={textUpdate} dateChange={dateChange} />}
                 <Footer text={text} viewNotes={viewNotes} dateUpd={dateUpd} dateChange={dateChange} />
               </div>
             </updateContext.Provider>

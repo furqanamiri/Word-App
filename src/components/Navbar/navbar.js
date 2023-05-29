@@ -21,6 +21,7 @@ export default function Navbar({
     LoginModalOpen,
     LoginModalClose,
     LogOut,
+    fileType,
     loginUser,
     toggleExportModalOpen,
     toggleExportModalClose,
@@ -30,6 +31,7 @@ export default function Navbar({
     toggleShareModalClose,
     changeLink,
     checked,
+    textDownload,
     setEdit, theme, copyFunction, noteId, pdf, wordFile, loginToken, editToken
   } = useNavbar({
     toggleTheme,
@@ -38,6 +40,7 @@ export default function Navbar({
     toggleViewNotes,
     setText
   });
+
   return (
     <>
       <StandardNav
@@ -45,6 +48,7 @@ export default function Navbar({
         showFile={showFile}
         showPassword={showPassword}
         isDark={isDark}
+        textDownload={textDownload}
         toggleTheme={toggleTheme}
         handleClosePass={handleClosePass}
         handleShowPass={handleShowPass}
@@ -58,6 +62,7 @@ export default function Navbar({
         theme={theme}
         changeLink={changeLink}
         text={text}
+        fileType={fileType}
         copyFunction={copyFunction}
         noteId={noteId} pdf={pdf}
         wordFile={wordFile}
@@ -83,17 +88,19 @@ export default function Navbar({
         toggleShareModalClose={toggleShareModalClose}
         isDark={isDark}
         text={text}
-        toggleViewNotes={toggleViewNotes}
-        showPassword={showPassword}
-        handleClosePass={handleClosePass}
-        handleShowPass={handleShowPass}
-        showLoginModal={showLoginModal}
-        LoginModalClose={LoginModalClose} pdf={pdf}
-        wordFile={wordFile}
-        viewNotes={viewNotes}
-        editToken={editToken}
-        checked={checked}
-        changeLink={changeLink}
+        fileType={fileType}
+      textDownload={textDownload}
+      toggleViewNotes={toggleViewNotes}
+      showPassword={showPassword}
+      handleClosePass={handleClosePass}
+      handleShowPass={handleShowPass}
+      showLoginModal={showLoginModal}
+      LoginModalClose={LoginModalClose} pdf={pdf}
+      wordFile={wordFile}
+      viewNotes={viewNotes}
+      editToken={editToken}
+      checked={checked}
+      changeLink={changeLink}
       />
     </>
   );

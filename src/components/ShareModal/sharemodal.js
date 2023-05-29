@@ -11,8 +11,8 @@ export default function Sharemodal({ shareModal, toggleShareModalClose, isDark, 
   const urlapp = window.location.href
   const domain = urlapp.match(r)[1]
   useEffect(() => {
-    if (window.sessionStorage.getItem("noteid")) {
-      noteId.current = window.sessionStorage.getItem("noteid")
+    if (window.localStorage.getItem("noteid")) {
+      noteId.current = window.localStorage.getItem("noteid")
     }
   }, [])
 

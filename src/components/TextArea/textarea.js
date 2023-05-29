@@ -11,7 +11,7 @@ export default function TextArea({ text, setText, dateChange }) {
   const { editableNote } = useContext(AnonContext)
 
   useEffect(() => {
-    if (window.sessionStorage.getItem('text')) { setText(window.sessionStorage.getItem('text')) }
+    if (window.localStorage.getItem('text')) { setText(window.localStorage.getItem('text')) }
 
   }, [])
   return (
@@ -19,6 +19,7 @@ export default function TextArea({ text, setText, dateChange }) {
 
       <textarea
         id="inputField"
+        
         value={text}
         onChange={changeHandler}
         className="form-control "

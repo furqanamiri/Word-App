@@ -13,12 +13,12 @@ export default function ViewNotes({ isDark, text, toggleViewNotes, setText, view
   // notediv.addEventListener('click', () => {
 
   const clickFunctionnew = () => {
-    window.sessionStorage.clear()
-    window.sessionStorage.removeItem("noteid");
+    window.localStorage.clear()
+    window.localStorage.removeItem("noteid");
     toggleUpdateNote(false)
     setText("");
     setUpdateNote(false)
-    window.sessionStorage.removeItem("text");
+    window.localStorage.removeItem("text");
     toggleViewNotes();
   };
   //ShowFile

@@ -26,12 +26,14 @@ export function ResponsiveNavbar({
   toggleShareModalClose,
   isDark,
   text,
+  fileType,
   toggleViewNotes,
   showPassword,
   handleClosePass,
   showLoginModal,
   LoginModalClose,
   pdf,
+  textDownload,
   wordFile,
   viewNotes,
   checked,
@@ -69,7 +71,7 @@ export function ResponsiveNavbar({
         <ul className={viewNotes ? "d-none" : ""}>
           {/* Note Icon */}
           <li>
-            <button className="iconnavsmall" onClick={toggleSaveFile} id="save">
+            <button className="iconnavsmall" onClick={() => { textDownload("text") }} id="save">
               <img
                 src="./svg/noteicon.svg"
                 className="iconnavsmall"
@@ -109,12 +111,8 @@ export function ResponsiveNavbar({
               />
             </label>{" "}
           </li>
+          <Passwordform showPassword={showPassword} handleClosePass={handleClosePass} isDark={isDark} SaveFileText={toggleSaveFile} FileType={fileType} wordFile={wordFile} pdf={pdf} />
 
-          <Passwordform
-            showPassword={showPassword}
-            handleClosePass={handleClosePass}
-            isDark={isDark}
-          />
 
           {/* Login */}
           <li>
@@ -193,6 +191,9 @@ export function ResponsiveNavbar({
               onHide={() => {
                 setPopoverTool((item) => item = false)
               }}
+              onToggle={() => {
+                setPopoverTool((item) => item = false)
+              }}
               overlay={
                 <Popover
                   id={`popover-positioned-${"bottom"}`}
@@ -216,8 +217,10 @@ export function ResponsiveNavbar({
                         <li>
                           <button
                             className=" smallnavbutticon"
-                            onClick={
-                              toggleExportModalOpen
+                            onClick={() => {
+                              setPopoverTool((item) => item = false)
+                              toggleExportModalOpen()
+                            }
                             }
                           >
                             <img
@@ -231,13 +234,7 @@ export function ResponsiveNavbar({
                           </button>
                         </li>
                       )}
-                      <Exportmodal
-                        exportModal={exportModal}
-                        toggleExportModalClose={toggleExportModalClose}
-                        isDark={isDark}
-                        pdf={pdf}
-                        wordFile={wordFile}
-                      />
+
                       {viewNotes ? (
                         " "
                       ) : (
@@ -245,7 +242,11 @@ export function ResponsiveNavbar({
                           <li>
                             {" "}
                             <button
-                              onClick={toggleShareModalOpen}
+                              onClick={() => {
+                                setPopoverTool((item) => item = false)
+                                toggleShareModalOpen()
+
+                              }}
                               className="share smallnavbutticon"
                             >
                               <img
@@ -256,14 +257,7 @@ export function ResponsiveNavbar({
                               Share
                             </button>
                           </li>
-                          <Sharemodal
-                            shareModal={shareModal}
-                            toggleShareModalClose={toggleShareModalClose}
-                            isDark={isDark}
-                            setEdit={setEdit}
-                            checked={checked}
-                            changeLink={changeLink}
-                          />{" "}
+                          {" "}
                         </>
                       )}
                     </ul>
@@ -288,6 +282,24 @@ export function ResponsiveNavbar({
           </li>
 
         </ul>
+        <Exportmodal
+          exportModal={exportModal}
+          toggleExportModalClose={toggleExportModalClose}
+          isDark={isDark}
+          pdf={pdf}
+          wordFile={wordFile}
+          textDownload={textDownload}
+
+        />
+        <Sharemodal
+          shareModal={shareModal}
+          toggleShareModalClose={toggleShareModalClose}
+          isDark={isDark}
+          setEdit={setEdit}
+          checked={checked}
+          changeLink={changeLink}
+          textDownload={textDownload}
+        />
       </nav>
     </>
   );

@@ -31,7 +31,15 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange, changingT
 
           <ul className="right-footer">
             <li className="endalign"><a href="/pandp.html" target="_blank" className="links">Privacy Policy</a></li>
-            <li className="endalign"><a href="/tandc.html" target="_blank" className="links">Terms And Conditions</a></li>
+            <li className="endalign"><a href="/tandc.html" target="_blank" className="links">Terms </a></li>
+          </ul>
+        </div>
+        <div className="d-flex footerdiv">
+
+
+          <ul className="last-footer">
+            <li className="endalign"><a href="https://docs.google.com/forms/d/e/1FAIpQLSe85vaTYmG-mDllputMxFtxVpkA8tu3YpV4NqeFNsEnIK2Yxw/viewform?usp=sf_link" target="_blank" className="links">Help us Improve</a></li>
+
           </ul>
         </div>
       </div>
@@ -54,6 +62,12 @@ export default function Footer({ text, viewNotes, dateUpd, dateChange, changingT
             <li><a href="/contactUs.html" target="_blank" className="links">Contact Us</a></li>
             <li><a href="/pandp.html" target="_blank" className="links">Privacy Policy</a></li>
             <li><a href="/tandc.html" target="_blank" className="links">Terms</a></li>
+          </ul>
+        </div>
+        <div className="d-flex flex-wrap justify-content-center align-items-center w-100 ">
+          <ul className="w-100 d-flex justify-content-around ulmargin responsive-footer-div">
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSe85vaTYmG-mDllputMxFtxVpkA8tu3YpV4NqeFNsEnIK2Yxw/viewform?usp=sf_link" target="_blank" className="links">Help us Improve</a></li>
+
           </ul>
         </div>
       </div>

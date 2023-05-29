@@ -43,7 +43,7 @@ export default function Loginform({ showLoginModal, LoginModalClose, isDark, tog
         LoginModalClose()
 
 
-        sessionStorage.clear()
+        localStorage.clear()
 
       }
       else {
